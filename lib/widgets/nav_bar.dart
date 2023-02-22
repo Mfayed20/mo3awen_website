@@ -70,8 +70,7 @@ Widget navBarTabletDesktop() {
 Widget navLogo() {
   return Container(
     width: 60,
-    decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage('assets/images/logo.png'))),
+    decoration: BoxDecoration(image: DecorationImage(image: AssetImage(logo))),
   );
 }
 

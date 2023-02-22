@@ -44,16 +44,23 @@ Widget navBarTabletDesktop() {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        navLogo(),
+        Row(
+          children: [
+            navLogo(),
+            const SizedBox(width: 10),
+            Text("Mo3awan", style: WebTextStyles.navTitle),
+          ],
+        ),
         Row(
           children: [
             navItem('Home'),
             navItem('About'),
+            navItem("Excercises"),
             navItem('Services'),
             navItem('Contact'),
-            navBttn('Sign In/Up')
           ],
         ),
+        navBttn('Sign In/Up'),
       ],
     ),
   );
@@ -61,21 +68,10 @@ Widget navBarTabletDesktop() {
 
 // nav logo
 Widget navLogo() {
-  return Row(
-    children: const [
-      DecoratedBox(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(logo),
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-      Text(
-        'Mo3awen',
-        style: WebTextStyles.navTitle,
-      ),
-    ],
+  return Container(
+    width: 60,
+    decoration: BoxDecoration(
+        image: DecorationImage(image: AssetImage('assets/images/logo.png'))),
   );
 }
 

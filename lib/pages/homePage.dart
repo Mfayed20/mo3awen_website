@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/homeWidget/aboutusWidget.dart';
+import '../widgets/homeWidget/welcome_widget.dart';
 import '../widgets/nav_bar.dart';
 
 class Home extends StatelessWidget {
@@ -7,6 +9,17 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: NavBar());
+    // return singlechildscroll view
+    return SingleChildScrollView(
+      child: Column(
+        children: const [
+          // navigation bar
+          NavBar(),
+          // main part
+          MainPart(),
+          AboutUs(),
+        ],
+      ),
+    );
   }
 }

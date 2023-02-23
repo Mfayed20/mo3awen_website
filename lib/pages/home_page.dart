@@ -13,17 +13,19 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return singlechildscroll view
-    return SingleChildScrollView(
-      child: Column(
-        children: const [
-          // navigation bar
-          NavBar(),
-          MainPart(),
-          AboutUs(),
-          Plans(),
-          VisitUs(),
-          Footer(),
-        ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            // navigation bar
+            NavBar(),
+            MainPart(),
+            AboutUs(),
+            Plans(),
+            VisitUs(),
+            Footer(),
+          ],
+        ),
       ),
     );
   }

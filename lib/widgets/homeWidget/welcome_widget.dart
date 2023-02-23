@@ -32,7 +32,7 @@ Widget mainTabletDesktop(BuildContext context) {
       children: [
         Positioned(
           // nolongeristhereaneedtodoboring (2:86)
-          left: 0 * fem,
+          left: 82 * fem,
           top: 313 * fem,
           child: Align(
             child: SizedBox(

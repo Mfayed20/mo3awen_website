@@ -51,15 +51,18 @@ Widget navBarTabletDesktop(BuildContext context) {
                 margin:
                     EdgeInsets.fromLTRB(0 * fem, 0 * fem, 19 * fem, 0 * fem),
                 height: double.infinity,
-                child: Text(
-                  'Home',
-                  style: SafeGoogleFont(
-                    'Inter',
-                    fontSize: 16 * ffem,
-                    fontWeight: FontWeight.w500,
-                    height: 1.2125 * ffem / fem,
-                    letterSpacing: 1.44 * fem,
-                    color: Color(0xff2774b4),
+                child: TextButton(
+                  onPressed: () => {},
+                  child: Text(
+                    'Home',
+                    style: SafeGoogleFont(
+                      'Inter',
+                      fontSize: 16 * ffem,
+                      fontWeight: FontWeight.w500,
+                      height: 1.2125 * ffem / fem,
+                      letterSpacing: 1.44 * fem,
+                      color: Color(0xff2774b4),
+                    ),
                   ),
                 ),
               ),
@@ -69,22 +72,6 @@ Widget navBarTabletDesktop(BuildContext context) {
                     EdgeInsets.fromLTRB(0 * fem, 0 * fem, 18 * fem, 0 * fem),
                 child: Text(
                   'Excercises',
-                  style: SafeGoogleFont(
-                    'Inter',
-                    fontSize: 16 * ffem,
-                    fontWeight: FontWeight.w500,
-                    height: 1.2125 * ffem / fem,
-                    letterSpacing: 1.44 * fem,
-                    color: Color(0xffffffff),
-                  ),
-                ),
-              ),
-              Container(
-                // blogstNN (I1:27;2:30)
-                margin:
-                    EdgeInsets.fromLTRB(0 * fem, 0 * fem, 19 * fem, 0 * fem),
-                child: Text(
-                  'Blogs',
                   style: SafeGoogleFont(
                     'Inter',
                     fontSize: 16 * ffem,

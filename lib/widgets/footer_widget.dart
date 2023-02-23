@@ -136,8 +136,8 @@ Widget desktopView(BuildContext context) {
                             // vectoraUm (2:84)
                             margin: EdgeInsets.fromLTRB(
                                 0 * fem, 0.03 * fem, 0 * fem, 0 * fem),
-                            width: 15 * fem,
-                            height: 17.62 * fem,
+                            width: 14 * fem,
+                            height: 16.62 * fem,
                             child: Image.asset(
                               'assets/page-1/images/vector-guK.png',
                               width: 15 * fem,
@@ -357,7 +357,7 @@ Widget desktopView(BuildContext context) {
                           ),
                           Text(
                             // blogsnMB (2:56)
-                            'Blogs',
+                            'plans',
                             style: SafeGoogleFont(
                               'Poppins',
                               fontSize: 16 * ffem,
@@ -448,7 +448,7 @@ Widget desktopView(BuildContext context) {
                               'Poppins',
                               fontSize: 16 * ffem,
                               fontWeight: FontWeight.w400,
-                              height: 1.5 * ffem / fem,
+                              height: 1 * ffem / fem,
                               decoration: TextDecoration.underline,
                               color: Color(0xff000000),
                               decorationColor: Color(0xff000000),
@@ -465,29 +465,14 @@ Widget desktopView(BuildContext context) {
         ),
         Container(
           // autogrouplpffnR3 (YA9Y59bYyy8Yjg4X4pLpfF)
-          margin: EdgeInsets.fromLTRB(356 * fem, 0 * fem, 0 * fem, 14 * fem),
+          margin: EdgeInsets.fromLTRB(345 * fem, 0 * fem, 0 * fem, 14 * fem),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 // plansshP (2:50)
                 margin:
-                    EdgeInsets.fromLTRB(0 * fem, 0 * fem, 263 * fem, 4 * fem),
-                child: Text(
-                  'Plans',
-                  style: SafeGoogleFont(
-                    'Poppins',
-                    fontSize: 16 * ffem,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5 * ffem / fem,
-                    color: Color(0xff000000),
-                  ),
-                ),
-              ),
-              Container(
-                // plansmGy (2:57)
-                margin:
-                    EdgeInsets.fromLTRB(0 * fem, 0 * fem, 176 * fem, 4 * fem),
+                    EdgeInsets.fromLTRB(5 * fem, 0 * fem, 263 * fem, 4 * fem),
                 child: Text(
                   'Plans',
                   style: SafeGoogleFont(
@@ -502,7 +487,7 @@ Widget desktopView(BuildContext context) {
               Container(
                 // vector4G5 (2:40)
                 margin: EdgeInsets.fromLTRB(
-                    0 * fem, 4.9 * fem, 26.63 * fem, 0 * fem),
+                    210 * fem, 4.9 * fem, 26.63 * fem, 0 * fem),
                 width: 12.37 * fem,
                 height: 20 * fem,
                 child: Image.asset(
@@ -530,7 +515,7 @@ Widget desktopView(BuildContext context) {
         ),
         Container(
           // autogroupxh332cD (YA9YJosTXE2W3P62U3xH33)
-          margin: EdgeInsets.fromLTRB(278 * fem, 0 * fem, 0 * fem, 6 * fem),
+          margin: EdgeInsets.fromLTRB(350 * fem, 0 * fem, 0 * fem, 6 * fem),
           height: 66 * fem,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -573,46 +558,9 @@ Widget desktopView(BuildContext context) {
                 ),
               ),
               Container(
-                // autogroupc3grSJZ (YA9YgTv3JXyzJirrVXC3gR)
-                margin:
-                    EdgeInsets.fromLTRB(0 * fem, 0 * fem, 170 * fem, 0 * fem),
-                height: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      // aboutuska9 (2:58)
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 18 * fem),
-                      child: Text(
-                        'About us',
-                        style: SafeGoogleFont(
-                          'Poppins',
-                          fontSize: 16 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      // contactus33T (2:59)
-                      'Contact us',
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 16 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
                 // facebookcoloredsvgrepocom13ZnV (2:74)
                 margin:
-                    EdgeInsets.fromLTRB(0 * fem, 6 * fem, 35 * fem, 0 * fem),
+                    EdgeInsets.fromLTRB(260 * fem, 6 * fem, 35 * fem, 0 * fem),
                 width: 32 * fem,
                 height: 32 * fem,
                 child: Image.asset(

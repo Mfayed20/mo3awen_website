@@ -1,6 +1,5 @@
 // import
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import '../utils/constants.dart';
 import '../utils/styles.dart';
 import '../utils/colors.dart';
@@ -11,31 +10,10 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: navBarMobile(),
-      desktop: navBarTabletDesktop(),
-    );
+    return navBarTabletDesktop();
   }
 }
 
-// mobile navigation bar, logo and text
-Widget navBarMobile() {
-  return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 20),
-    height: 80,
-    color: Colors.black,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Icon(Icons.menu),
-        navLogo(),
-        navBttn('Sign In/Up'),
-      ],
-    ),
-  );
-}
-
-// tablet and desktop navigation bar
 Widget navBarTabletDesktop() {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 20),

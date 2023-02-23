@@ -17,25 +17,21 @@ Widget visitUs(BuildContext context) {
   double fem = MediaQuery.of(context).size.width / baseWidth;
   double ffem = fem * 0.97;
   return Container(
-    // physicaltherapyhomepagekKC (1:27)
-    width: double.infinity,
-    height: 1186 * fem,
-    decoration: BoxDecoration(
-      color: Color(0xffffffff),
-    ),
+    // autogrouptuj17jj (YA9S9z81qNS4EjWKb4tUJ1)
+    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 54 * fem),
+    width: 1441 * fem,
+    height: 961 * fem,
     child: Stack(
       children: [
         Positioned(
-          // crossrectangle2Gi (9:50)
+          // crossrectangleAi1 (2:130)
           left: 0 * fem,
           top: 0 * fem,
           child: Align(
             child: SizedBox(
               width: 1441 * fem,
               height: 890 * fem,
-              child:
-                  // ignore: cross-rectangle
-                  Image.asset(
+              child: Image.asset(
                 'assets/page-1/images/cross-rectangle.png',
                 width: 1441 * fem,
                 height: 890 * fem,
@@ -44,8 +40,8 @@ Widget visitUs(BuildContext context) {
           ),
         ),
         Positioned(
-          // rectanglecontactusHyL (9:51)
-          left: 740 * fem,
+          // rectanglecontactus2kD (2:131)
+          left: 739 * fem,
           top: 175 * fem,
           child: Align(
             child: SizedBox(
@@ -67,8 +63,8 @@ Widget visitUs(BuildContext context) {
           ),
         ),
         Positioned(
-          // rectangle349Vk (9:52)
-          left: 84 * fem,
+          // rectangle34GuT (2:132)
+          left: 83 * fem,
           top: 117 * fem,
           child: Align(
             child: SizedBox(
@@ -84,8 +80,8 @@ Widget visitUs(BuildContext context) {
           ),
         ),
         Positioned(
-          // visitusexJ (9:53)
-          left: 84 * fem,
+          // visitusY6H (2:133)
+          left: 83 * fem,
           top: 45 * fem,
           child: Align(
             child: SizedBox(
@@ -93,14 +89,20 @@ Widget visitUs(BuildContext context) {
               height: 60 * fem,
               child: Text(
                 'VISIT US',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 40 * ffem,
+                  fontWeight: FontWeight.w700,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // contactusY26 (9:54)
-          left: 969 * fem,
+          // contactusoH7 (2:134)
+          left: 968 * fem,
           top: 225 * fem,
           child: Align(
             child: SizedBox(
@@ -108,14 +110,20 @@ Widget visitUs(BuildContext context) {
               height: 36 * fem,
               child: Text(
                 'CONTACT US',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 24 * ffem,
+                  fontWeight: FontWeight.w600,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0xff0076f9),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // namedJS (9:55)
-          left: 820 * fem,
+          // namerWH (2:135)
+          left: 819 * fem,
           top: 309 * fem,
           child: Align(
             child: SizedBox(
@@ -123,14 +131,20 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Name:',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 16 * ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // alfaisaluniversityriyadhsaudia (9:56)
-          left: 86 * fem,
+          // alfaisaluniversityriyadhsaudia (2:136)
+          left: 85 * fem,
           top: 279 * fem,
           child: Align(
             child: SizedBox(
@@ -138,14 +152,28 @@ Widget visitUs(BuildContext context) {
               height: 72 * fem,
               child: RichText(
                 text: TextSpan(
-                  style: WebTextStyles.home_widgets_Text,
+                  style: SafeGoogleFont(
+                    'Poppins',
+                    fontSize: 16 * ffem,
+                    fontWeight: FontWeight.w400,
+                    height: 1.5 * ffem / fem,
+                    color: Color(0xff000000),
+                  ),
                   children: [
                     TextSpan(
                       text: 'Alfaisal university\nRiyadh, Saudi Arabia\n',
                     ),
                     TextSpan(
                       text: 'updownstudiosgames@gmail.com\n',
-                      style: WebTextStyles.home_widgets_Text,
+                      style: SafeGoogleFont(
+                        'Poppins',
+                        fontSize: 16 * ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.5 * ffem / fem,
+                        decoration: TextDecoration.underline,
+                        color: Color(0xff000000),
+                        decorationColor: Color(0xff000000),
+                      ),
                     ),
                   ],
                 ),
@@ -154,8 +182,8 @@ Widget visitUs(BuildContext context) {
           ),
         ),
         Positioned(
-          // emailxtS (9:57)
-          left: 820 * fem,
+          // emailAhK (2:137)
+          left: 819 * fem,
           top: 419 * fem,
           child: Align(
             child: SizedBox(
@@ -163,14 +191,20 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Email:',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 16 * ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // subjectTKQ (9:58)
-          left: 820 * fem,
+          // subjectdL1 (2:138)
+          left: 819 * fem,
           top: 529 * fem,
           child: Align(
             child: SizedBox(
@@ -178,14 +212,20 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Subject:',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 16 * ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // messagek3c (9:59)
-          left: 820 * fem,
+          // message5C1 (2:139)
+          left: 819 * fem,
           top: 639 * fem,
           child: Align(
             child: SizedBox(
@@ -193,14 +233,20 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Message:',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 16 * ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // rectangle35Sx2 (9:60)
-          left: 820 * fem,
+          // rectangle35Ltd (2:140)
+          left: 819 * fem,
           top: 337 * fem,
           child: Align(
             child: SizedBox(
@@ -215,8 +261,8 @@ Widget visitUs(BuildContext context) {
           ),
         ),
         Positioned(
-          // rectangle36a2e (9:61)
-          left: 820 * fem,
+          // rectangle36Ez1 (2:141)
+          left: 819 * fem,
           top: 447 * fem,
           child: Align(
             child: SizedBox(
@@ -231,8 +277,8 @@ Widget visitUs(BuildContext context) {
           ),
         ),
         Positioned(
-          // rectangle37GgA (9:62)
-          left: 820 * fem,
+          // rectangle37M33 (2:142)
+          left: 819 * fem,
           top: 557 * fem,
           child: Align(
             child: SizedBox(
@@ -247,8 +293,8 @@ Widget visitUs(BuildContext context) {
           ),
         ),
         Positioned(
-          // rectangle38CZp (9:63)
-          left: 820 * fem,
+          // rectangle38EsX (2:143)
+          left: 819 * fem,
           top: 667 * fem,
           child: Align(
             child: SizedBox(
@@ -263,8 +309,8 @@ Widget visitUs(BuildContext context) {
           ),
         ),
         Positioned(
-          // rectangle39LAE (9:64)
-          left: 1060 * fem,
+          // rectangle39YtD (2:144)
+          left: 1059 * fem,
           top: 836 * fem,
           child: Align(
             child: SizedBox(
@@ -279,8 +325,8 @@ Widget visitUs(BuildContext context) {
           ),
         ),
         Positioned(
-          // enteryournameGZg (9:65)
-          left: 881 * fem,
+          // enteryourname45s (2:145)
+          left: 880 * fem,
           top: 355 * fem,
           child: Align(
             child: SizedBox(
@@ -288,14 +334,20 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Enter your name',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 16 * ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0x7f000000),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // enteryouremailBRk (9:66)
-          left: 881 * fem,
+          // enteryouremail7K3 (2:146)
+          left: 880 * fem,
           top: 465 * fem,
           child: Align(
             child: SizedBox(
@@ -303,14 +355,20 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Enter your email',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 16 * ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0x7f000000),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // enteryoursubject5X8 (9:67)
-          left: 881 * fem,
+          // enteryoursubjectYfF (2:147)
+          left: 880 * fem,
           top: 575 * fem,
           child: Align(
             child: SizedBox(
@@ -318,14 +376,20 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Enter your subject',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 16 * ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0x7f000000),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // enteryourmessagezPC (9:68)
-          left: 881 * fem,
+          // enteryourmessageQSZ (2:148)
+          left: 880 * fem,
           top: 685 * fem,
           child: Align(
             child: SizedBox(
@@ -333,14 +397,20 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Enter your message',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 16 * ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0x7f000000),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // submit6h8 (9:69)
-          left: 1134 * fem,
+          // submitGjf (2:149)
+          left: 1133 * fem,
           top: 853 * fem,
           child: Align(
             child: SizedBox(
@@ -348,14 +418,20 @@ Widget visitUs(BuildContext context) {
               height: 27 * fem,
               child: Text(
                 'SUBMIT',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 18 * ffem,
+                  fontWeight: FontWeight.w600,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0x7f000000),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // map11p6 (9:70)
-          left: 87 * fem,
+          // map1w57 (2:150)
+          left: 86 * fem,
           top: 367 * fem,
           child: Align(
             child: SizedBox(

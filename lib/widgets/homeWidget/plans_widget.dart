@@ -87,7 +87,14 @@ Widget desktopPlans(BuildContext context) {
               height: 60 * fem,
               child: Text(
                 'PLANS',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 40 * ffem,
+                  fontWeight: FontWeight.w700,
+                  height: 1.5 * ffem / fem,
+                  letterSpacing: 2.6 * fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
@@ -176,7 +183,13 @@ Widget desktopPlans(BuildContext context) {
                 child: Text(
                   '9000',
                   textAlign: TextAlign.center,
-                  style: WebTextStyles.home_widgets_Text,
+                  style: SafeGoogleFont(
+                    'Inter',
+                    fontSize: 80 * ffem,
+                    fontWeight: FontWeight.w600,
+                    height: 1.2125 * ffem / fem,
+                    color: Color(0xff4098fb),
+                  ),
                 ),
               ),
             ),
@@ -192,7 +205,13 @@ Widget desktopPlans(BuildContext context) {
               height: 37 * fem,
               child: Text(
                 'Riyal',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Inter',
+                  fontSize: 30 * ffem,
+                  fontWeight: FontWeight.w600,
+                  height: 1.2125 * ffem / fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
@@ -207,7 +226,13 @@ Widget desktopPlans(BuildContext context) {
               height: 37 * fem,
               child: Text(
                 '1 YEAR',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Inter',
+                  fontSize: 30 * ffem,
+                  fontWeight: FontWeight.w600,
+                  height: 1.2125 * ffem / fem,
+                  color: Color(0xff0076f9),
+                ),
               ),
             ),
           ),
@@ -222,7 +247,13 @@ Widget desktopPlans(BuildContext context) {
               height: 30 * fem,
               child: Text(
                 'Valid for one year',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Inter',
+                  fontSize: 24 * ffem,
+                  fontWeight: FontWeight.w500,
+                  height: 1.2125 * ffem / fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
@@ -237,7 +268,13 @@ Widget desktopPlans(BuildContext context) {
               height: 30 * fem,
               child: Text(
                 '10% Discount',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Inter',
+                  fontSize: 24 * ffem,
+                  fontWeight: FontWeight.w500,
+                  height: 1.2125 * ffem / fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
@@ -291,7 +328,14 @@ Widget desktopPlans(BuildContext context) {
               height: 25 * fem,
               child: Text(
                 'SELECT',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Inter',
+                  fontSize: 20 * ffem,
+                  fontWeight: FontWeight.w500,
+                  height: 1.2125 * ffem / fem,
+                  letterSpacing: 0.8 * fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
@@ -332,7 +376,13 @@ Widget desktopPlans(BuildContext context) {
                 child: Text(
                   '16000',
                   textAlign: TextAlign.center,
-                  style: WebTextStyles.home_widgets_Text,
+                  style: SafeGoogleFont(
+                    'Inter',
+                    fontSize: 80 * ffem,
+                    fontWeight: FontWeight.w600,
+                    height: 1.2125 * ffem / fem,
+                    color: Color(0xff4098fb),
+                  ),
                 ),
               ),
             ),
@@ -348,7 +398,13 @@ Widget desktopPlans(BuildContext context) {
               height: 37 * fem,
               child: Text(
                 'Riyal',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Inter',
+                  fontSize: 30 * ffem,
+                  fontWeight: FontWeight.w600,
+                  height: 1.2125 * ffem / fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
@@ -365,7 +421,13 @@ Widget desktopPlans(BuildContext context) {
                 child: Text(
                   '2 YEAR',
                   textAlign: TextAlign.center,
-                  style: WebTextStyles.home_widgets_Text,
+                  style: SafeGoogleFont(
+                    'Inter',
+                    fontSize: 30 * ffem,
+                    fontWeight: FontWeight.w600,
+                    height: 1.2125 * ffem / fem,
+                    color: Color(0xff0076f9),
+                  ),
                 ),
               ),
             ),
@@ -383,7 +445,13 @@ Widget desktopPlans(BuildContext context) {
                 child: Text(
                   'Valid for two year',
                   textAlign: TextAlign.center,
-                  style: WebTextStyles.home_widgets_Text,
+                  style: SafeGoogleFont(
+                    'Inter',
+                    fontSize: 24 * ffem,
+                    fontWeight: FontWeight.w500,
+                    height: 1.2125 * ffem / fem,
+                    color: Color(0xff000000),
+                  ),
                 ),
               ),
             ),
@@ -401,7 +469,13 @@ Widget desktopPlans(BuildContext context) {
                 child: Text(
                   '20% Discount',
                   textAlign: TextAlign.center,
-                  style: WebTextStyles.home_widgets_Text,
+                  style: SafeGoogleFont(
+                    'Inter',
+                    fontSize: 24 * ffem,
+                    fontWeight: FontWeight.w500,
+                    height: 1.2125 * ffem / fem,
+                    color: Color(0xff000000),
+                  ),
                 ),
               ),
             ),
@@ -456,7 +530,14 @@ Widget desktopPlans(BuildContext context) {
               height: 25 * fem,
               child: Text(
                 'SELECT',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Inter',
+                  fontSize: 20 * ffem,
+                  fontWeight: FontWeight.w500,
+                  height: 1.2125 * ffem / fem,
+                  letterSpacing: 0.8 * fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
@@ -529,7 +610,13 @@ Widget desktopPlans(BuildContext context) {
                 child: Text(
                   '5000',
                   textAlign: TextAlign.center,
-                  style: WebTextStyles.home_widgets_Text,
+                  style: SafeGoogleFont(
+                    'Inter',
+                    fontSize: 80 * ffem,
+                    fontWeight: FontWeight.w600,
+                    height: 1.2125 * ffem / fem,
+                    color: Color(0xff4098fb),
+                  ),
                 ),
               ),
             ),
@@ -545,7 +632,13 @@ Widget desktopPlans(BuildContext context) {
               height: 37 * fem,
               child: Text(
                 'Riyal',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Inter',
+                  fontSize: 30 * ffem,
+                  fontWeight: FontWeight.w600,
+                  height: 1.2125 * ffem / fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
@@ -562,7 +655,13 @@ Widget desktopPlans(BuildContext context) {
                 child: Text(
                   '6 MONTH',
                   textAlign: TextAlign.center,
-                  style: WebTextStyles.home_widgets_Text,
+                  style: SafeGoogleFont(
+                    'Inter',
+                    fontSize: 30 * ffem,
+                    fontWeight: FontWeight.w600,
+                    height: 1.2125 * ffem / fem,
+                    color: Color(0xff0076f9),
+                  ),
                 ),
               ),
             ),
@@ -580,7 +679,13 @@ Widget desktopPlans(BuildContext context) {
                 child: Text(
                   'Valid for 6 month',
                   textAlign: TextAlign.center,
-                  style: WebTextStyles.home_widgets_Text,
+                  style: SafeGoogleFont(
+                    'Inter',
+                    fontSize: 24 * ffem,
+                    fontWeight: FontWeight.w500,
+                    height: 1.2125 * ffem / fem,
+                    color: Color(0xff000000),
+                  ),
                 ),
               ),
             ),
@@ -598,7 +703,13 @@ Widget desktopPlans(BuildContext context) {
                 child: Text(
                   '5% Discount',
                   textAlign: TextAlign.center,
-                  style: WebTextStyles.home_widgets_Text,
+                  style: SafeGoogleFont(
+                    'Inter',
+                    fontSize: 24 * ffem,
+                    fontWeight: FontWeight.w500,
+                    height: 1.2125 * ffem / fem,
+                    color: Color(0xff000000),
+                  ),
                 ),
               ),
             ),
@@ -653,7 +764,14 @@ Widget desktopPlans(BuildContext context) {
               height: 25 * fem,
               child: Text(
                 'SELECT',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Inter',
+                  fontSize: 20 * ffem,
+                  fontWeight: FontWeight.w500,
+                  height: 1.2125 * ffem / fem,
+                  letterSpacing: 0.8 * fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),

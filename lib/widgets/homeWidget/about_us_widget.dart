@@ -17,16 +17,14 @@ Widget desktopView(BuildContext context) {
   double fem = MediaQuery.of(context).size.width / baseWidth;
   double ffem = fem * 0.97;
   return Container(
-    // physicaltherapyhomepageD8E (1:27)
-    width: double.infinity,
-    height: 841 * fem,
-    decoration: BoxDecoration(
-      color: Color(0xffffffff),
-    ),
+    // autogroupkfmpWS1 (YA9Qa7bRqDr6oMrxKukFMP)
+    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 95 * fem),
+    width: 1441 * fem,
+    height: 721 * fem,
     child: Stack(
       children: [
         Positioned(
-          // rectangle14Kaa (6:8)
+          // rectangle14og1 (2:3)
           left: 0 * fem,
           top: 141 * fem,
           child: Align(
@@ -42,7 +40,7 @@ Widget desktopView(BuildContext context) {
           ),
         ),
         Positioned(
-          // rectangle13CPU (6:9)
+          // rectangle1357j (2:35)
           left: 85 * fem,
           top: 72 * fem,
           child: Align(
@@ -59,7 +57,7 @@ Widget desktopView(BuildContext context) {
           ),
         ),
         Positioned(
-          // rectangle21tGJ (6:10)
+          // rectangle21vu3 (2:92)
           left: 761 * fem,
           top: 1 * fem,
           child: Align(
@@ -75,7 +73,7 @@ Widget desktopView(BuildContext context) {
           ),
         ),
         Positioned(
-          // aboutusPir (6:11)
+          // aboutusQ3X (2:93)
           left: 85 * fem,
           top: 0 * fem,
           child: Align(
@@ -84,13 +82,20 @@ Widget desktopView(BuildContext context) {
               height: 60 * fem,
               child: Text(
                 'ABOUT US',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 40 * ffem,
+                  fontWeight: FontWeight.w700,
+                  height: 1.5 * ffem / fem,
+                  letterSpacing: 2.6 * fem,
+                  color: Color(0xff000000),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // themaingoalofmo3awenistohelpyo (6:12)
+          // themaingoalofmo3awenistohelpyo (2:96)
           left: 85 * fem,
           top: 216 * fem,
           child: Align(
@@ -99,13 +104,20 @@ Widget desktopView(BuildContext context) {
               height: 216 * fem,
               child: Text(
                 'The main goal of Mo3awen is to help you do your physical therapy. It adds a fun element to the dull routine of working out. It will also keep the patients entertained and committed to doing their exercises.',
-                style: WebTextStyles.home_widgets_Text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 24 * ffem,
+                  fontWeight: FontWeight.w500,
+                  height: 1.5 * ffem / fem,
+                  letterSpacing: 1.56 * fem,
+                  color: Color(0xffffffff),
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          // rectangle152QS (6:13)
+          // rectangle15aEq (2:97)
           left: 789 * fem,
           top: 29 * fem,
           child: Align(
@@ -114,7 +126,6 @@ Widget desktopView(BuildContext context) {
               height: 556 * fem,
               child: Image.asset(
                 'assets/page-1/images/rectangle-15.png',
-                fit: BoxFit.fill,
               ),
             ),
           ),

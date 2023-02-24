@@ -48,8 +48,7 @@ Widget navBarTabletDesktop(BuildContext context) {
             children: [
               Container(
                 // frame1qmU (I1:27;29:133)
-                margin:
-                    EdgeInsets.fromLTRB(0 * fem, 0 * fem, 19 * fem, 0 * fem),
+                margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
                 height: double.infinity,
                 child: TextButton(
                   onPressed: () => {},
@@ -68,42 +67,63 @@ Widget navBarTabletDesktop(BuildContext context) {
               ),
               Container(
                 // excercisesQxz (I1:27;2:29)
-                margin:
-                    EdgeInsets.fromLTRB(0 * fem, 0 * fem, 18 * fem, 0 * fem),
-                child: Text(
-                  'Excercises',
-                  style: SafeGoogleFont(
-                    'Inter',
-                    fontSize: 16 * ffem,
-                    fontWeight: FontWeight.w500,
-                    height: 1.2125 * ffem / fem,
-                    letterSpacing: 1.44 * fem,
-                    color: Color(0xffffffff),
+                margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
+                child: TextButton(
+                  onPressed: () => {},
+                  child: Text(
+                    'Excercises',
+                    style: SafeGoogleFont(
+                      'Inter',
+                      fontSize: 16 * ffem,
+                      fontWeight: FontWeight.w500,
+                      height: 1.2125 * ffem / fem,
+                      letterSpacing: 1.44 * fem,
+                      color: Color(0xffffffff),
+                    ),
                   ),
                 ),
               ),
               Container(
                 // plansDQe (I1:27;2:31)
-                margin:
-                    EdgeInsets.fromLTRB(0 * fem, 0 * fem, 19 * fem, 0 * fem),
-                child: Text(
-                  'Plans',
-                  style: SafeGoogleFont(
-                    'Inter',
-                    fontSize: 16 * ffem,
-                    fontWeight: FontWeight.w500,
-                    height: 1.2125 * ffem / fem,
-                    letterSpacing: 1.44 * fem,
-                    color: Color(0xffffffff),
+                margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
+                child: TextButton(
+                  onPressed: () => {},
+                  child: Text(
+                    'Plans',
+                    style: SafeGoogleFont(
+                      'Inter',
+                      fontSize: 16 * ffem,
+                      fontWeight: FontWeight.w500,
+                      height: 1.2125 * ffem / fem,
+                      letterSpacing: 1.44 * fem,
+                      color: Color(0xffffffff),
+                    ),
                   ),
                 ),
               ),
               Container(
                 // aboutusjNz (I1:27;2:32)
-                margin:
-                    EdgeInsets.fromLTRB(0 * fem, 0 * fem, 19 * fem, 0 * fem),
+                margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
+                child: TextButton(
+                  onPressed: () => {},
+                  child: Text(
+                    'About Us',
+                    style: SafeGoogleFont(
+                      'Inter',
+                      fontSize: 16 * ffem,
+                      fontWeight: FontWeight.w500,
+                      height: 1.2125 * ffem / fem,
+                      letterSpacing: 1.44 * fem,
+                      color: Color(0xffffffff),
+                    ),
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () => {},
                 child: Text(
-                  'About Us',
+                  // contactusrCi (I1:27;2:33)
+                  'Contact Us',
                   style: SafeGoogleFont(
                     'Inter',
                     fontSize: 16 * ffem,
@@ -112,18 +132,6 @@ Widget navBarTabletDesktop(BuildContext context) {
                     letterSpacing: 1.44 * fem,
                     color: Color(0xffffffff),
                   ),
-                ),
-              ),
-              Text(
-                // contactusrCi (I1:27;2:33)
-                'Contact Us',
-                style: SafeGoogleFont(
-                  'Inter',
-                  fontSize: 16 * ffem,
-                  fontWeight: FontWeight.w500,
-                  height: 1.2125 * ffem / fem,
-                  letterSpacing: 1.44 * fem,
-                  color: Color(0xffffffff),
                 ),
               ),
             ],
@@ -153,16 +161,19 @@ Widget navBarTabletDesktop(BuildContext context) {
                   ],
                 ),
                 child: Center(
-                  child: Text(
-                    'LOGIN',
-                    textAlign: TextAlign.center,
-                    style: SafeGoogleFont(
-                      'Inter',
-                      fontSize: 14 * ffem,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2125 * ffem / fem,
-                      letterSpacing: 0.56 * fem,
-                      color: Color(0xffffffff),
+                  child: ElevatedButton(
+                    onPressed: () => {},
+                    child: Text(
+                      'LOGIN',
+                      textAlign: TextAlign.center,
+                      style: SafeGoogleFont(
+                        'Inter',
+                        fontSize: 14 * ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2125 * ffem / fem,
+                        letterSpacing: 0.56 * fem,
+                        color: Color(0xffffffff),
+                      ),
                     ),
                   ),
                 ),
@@ -182,16 +193,19 @@ Widget navBarTabletDesktop(BuildContext context) {
                   ],
                 ),
                 child: Center(
-                  child: Text(
-                    'SIGN UP',
-                    textAlign: TextAlign.center,
-                    style: SafeGoogleFont(
-                      'Inter',
-                      fontSize: 14 * ffem,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2125 * ffem / fem,
-                      letterSpacing: 0.56 * fem,
-                      color: Color(0xffffffff),
+                  child: ElevatedButton(
+                    onPressed: () => {},
+                    child: Text(
+                      'SIGN UP',
+                      textAlign: TextAlign.center,
+                      style: SafeGoogleFont(
+                        'Inter',
+                        fontSize: 14 * ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2125 * ffem / fem,
+                        letterSpacing: 0.56 * fem,
+                        color: Color(0xffffffff),
+                      ),
                     ),
                   ),
                 ),

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../utils/constants.dart';
 import '../utils/styles.dart';
 
 class Footer extends StatelessWidget {
@@ -42,108 +43,28 @@ Widget desktopView(BuildContext context) {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      // vectorh6D (2:85)
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 6.13 * fem),
-                      width: 84.06 * fem,
-                      height: 56.5 * fem,
-                      child: Image.asset(
-                        'assets/page-1/images/vector-733.png',
-                        width: 84.06 * fem,
-                        height: 56.5 * fem,
-                      ),
-                    ),
+                    footerimages(
+                        0, 0, 0, 6.13, 84.06, 56.5, footerlogoimg, context),
                     Container(
                       // groupn7f (2:77)
                       width: double.infinity,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
-                            // vectori1K (2:78)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0.03 * fem, 2.64 * fem, 0 * fem),
-                            width: 18.82 * fem,
-                            height: 17.62 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/vector-Ya9.png',
-                              width: 18.82 * fem,
-                              height: 17.62 * fem,
-                            ),
-                          ),
-                          Container(
-                            // vector61s (2:79)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0.07 * fem, 1.44 * fem, 0 * fem),
-                            width: 18.15 * fem,
-                            height: 18.29 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/vector-rQ5.png',
-                              width: 18.15 * fem,
-                              height: 18.29 * fem,
-                            ),
-                          ),
-                          Container(
-                            // vectorybT (2:80)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 1.18 * fem, 0.02 * fem),
-                            width: 12.63 * fem,
-                            height: 18.34 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/vector-Fkh.png',
-                              width: 12.63 * fem,
-                              height: 18.34 * fem,
-                            ),
-                          ),
-                          Container(
-                            // vector58h (2:81)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0.02 * fem, 0.41 * fem, 0 * fem),
-                            width: 15.91 * fem,
-                            height: 17.62 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/vector-Hss.png',
-                              width: 15.91 * fem,
-                              height: 17.62 * fem,
-                            ),
-                          ),
-                          Container(
-                            // vectorNNh (2:82)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 1.92 * fem, 0.02 * fem),
-                            width: 23.96 * fem,
-                            height: 17.67 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/vector.png',
-                              width: 23.96 * fem,
-                              height: 17.67 * fem,
-                            ),
-                          ),
-                          Container(
-                            // vectorGDB (2:83)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0.02 * fem, 2.64 * fem, 0 * fem),
-                            width: 11.31 * fem,
-                            height: 17.62 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/vector-s41.png',
-                              width: 11.31 * fem,
-                              height: 17.62 * fem,
-                            ),
-                          ),
-                          Container(
-                            // vectoraUm (2:84)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0.03 * fem, 0 * fem, 0 * fem),
-                            width: 14 * fem,
-                            height: 16.62 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/vector-guK.png',
-                              width: 15 * fem,
-                              height: 17.62 * fem,
-                            ),
-                          ),
+                          footerimages(0, 0.03, 2.64, 0, 18.82, 17.62,
+                              footerlogoimglatter_M, context),
+                          footerimages(0, 0.07, 1.44, 0, 18.15, 18.29,
+                              footerlogoimglatter_O, context),
+                          footerimages(0, 0, 1.18, 0.02, 12.63, 18.34,
+                              footerlogoimglatter_3, context),
+                          footerimages(0, 0.02, 0.41, 0, 15.91, 17.62,
+                              footerlogoimglatter_A, context),
+                          footerimages(0, 0, 1.92, 0.02, 23.96, 17.67,
+                              footerlogoimglatter_W, context),
+                          footerimages(0, 0.02, 2.64, 0, 11.31, 17.62,
+                              footerlogoimglatter_E, context),
+                          footerimages(0, 0.03, 0, 0, 14, 16.62,
+                              footerlogoimglatter_N, context),
                         ],
                       ),
                     ),
@@ -640,3 +561,23 @@ Widget desktopView(BuildContext context) {
     ),
   );
 }
+
+// a widget that takes 6 integers and 1 string and returns a container
+Widget footerimages(double left, double top, double right, double bottom,
+    double width, double height, String image, BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Container(
+    margin:
+        EdgeInsets.fromLTRB(left * fem, top * fem, right * fem, bottom * fem),
+    width: width * fem,
+    height: height * fem,
+    child: Image.asset(
+      image,
+      width: width * fem,
+      height: height * fem,
+    ),
+  );
+}
+// a widget call footerboldtext that takes 4 doubles and 1 string and returns a container 
+

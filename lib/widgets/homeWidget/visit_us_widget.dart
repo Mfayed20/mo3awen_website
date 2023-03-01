@@ -89,7 +89,7 @@ Widget visitUs(BuildContext context) {
               height: 60 * fem,
               child: Text(
                 'VISIT US',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 40 * ffem,
                   fontWeight: FontWeight.w700,
@@ -110,7 +110,7 @@ Widget visitUs(BuildContext context) {
               height: 36 * fem,
               child: Text(
                 'CONTACT US',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 24 * ffem,
                   fontWeight: FontWeight.w600,
@@ -131,7 +131,7 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Name:',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 16 * ffem,
                   fontWeight: FontWeight.w400,
@@ -152,7 +152,7 @@ Widget visitUs(BuildContext context) {
               height: 72 * fem,
               child: RichText(
                 text: TextSpan(
-                  style: SafeGoogleFont(
+                  style: safeGoogleFont(
                     'Poppins',
                     fontSize: 16 * ffem,
                     fontWeight: FontWeight.w400,
@@ -165,7 +165,7 @@ Widget visitUs(BuildContext context) {
                     ),
                     TextSpan(
                       text: 'updownstudiosgames@gmail.com\n',
-                      style: SafeGoogleFont(
+                      style: safeGoogleFont(
                         'Poppins',
                         fontSize: 16 * ffem,
                         fontWeight: FontWeight.w400,
@@ -191,7 +191,7 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Email:',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 16 * ffem,
                   fontWeight: FontWeight.w400,
@@ -212,7 +212,7 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Subject:',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 16 * ffem,
                   fontWeight: FontWeight.w400,
@@ -233,7 +233,7 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Message:',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 16 * ffem,
                   fontWeight: FontWeight.w400,
@@ -334,7 +334,7 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Enter your name',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 16 * ffem,
                   fontWeight: FontWeight.w400,
@@ -355,7 +355,7 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Enter your email',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 16 * ffem,
                   fontWeight: FontWeight.w400,
@@ -376,7 +376,7 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Enter your subject',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 16 * ffem,
                   fontWeight: FontWeight.w400,
@@ -397,7 +397,7 @@ Widget visitUs(BuildContext context) {
               height: 24 * fem,
               child: Text(
                 'Enter your message',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 16 * ffem,
                   fontWeight: FontWeight.w400,
@@ -418,7 +418,7 @@ Widget visitUs(BuildContext context) {
               height: 27 * fem,
               child: Text(
                 'SUBMIT',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 18 * ffem,
                   fontWeight: FontWeight.w600,

@@ -171,7 +171,7 @@ Widget desktopView(BuildContext context) {
                                 0 * fem, 0 * fem, 0 * fem, 14 * fem),
                             child: Text(
                               'Quick Links',
-                              style: SafeGoogleFont(
+                              style: safeGoogleFont(
                                 'Poppins',
                                 fontSize: 18 * ffem,
                                 fontWeight: FontWeight.w700,
@@ -205,7 +205,7 @@ Widget desktopView(BuildContext context) {
                                 0 * fem, 0 * fem, 0 * fem, 14 * fem),
                             child: Text(
                               'Services',
-                              style: SafeGoogleFont(
+                              style: safeGoogleFont(
                                 'Poppins',
                                 fontSize: 18 * ffem,
                                 fontWeight: FontWeight.w700,
@@ -238,7 +238,7 @@ Widget desktopView(BuildContext context) {
                                 0 * fem, 0 * fem, 0 * fem, 15 * fem),
                             child: Text(
                               'Get In Touch',
-                              style: SafeGoogleFont(
+                              style: safeGoogleFont(
                                 'Poppins',
                                 fontSize: 18 * ffem,
                                 fontWeight: FontWeight.w700,
@@ -280,7 +280,7 @@ Widget desktopView(BuildContext context) {
                 ),
                 child: Text(
                   'The main goal of Mo3awen is to \nhelp you do your physical therapy.\nIt adds a fun element to the dull \nroutine of working out.',
-                  style: SafeGoogleFont(
+                  style: safeGoogleFont(
                     'Poppins',
                     fontSize: 14 * ffem,
                     fontWeight: FontWeight.w400,
@@ -310,7 +310,7 @@ Widget desktopView(BuildContext context) {
                                 0 * fem, 0 * fem, 0 * fem, 18 * fem),
                             child: Text(
                               'Excercises',
-                              style: SafeGoogleFont(
+                              style: safeGoogleFont(
                                 'Poppins',
                                 fontSize: 16 * ffem,
                                 fontWeight: FontWeight.w400,
@@ -322,7 +322,7 @@ Widget desktopView(BuildContext context) {
                           Text(
                             // blogsFyX (2:49)
                             'Blogs',
-                            style: SafeGoogleFont(
+                            style: safeGoogleFont(
                               'Poppins',
                               fontSize: 16 * ffem,
                               fontWeight: FontWeight.w400,
@@ -346,7 +346,7 @@ Widget desktopView(BuildContext context) {
                                 0 * fem, 0 * fem, 0 * fem, 18 * fem),
                             child: Text(
                               'Excercises',
-                              style: SafeGoogleFont(
+                              style: safeGoogleFont(
                                 'Poppins',
                                 fontSize: 16 * ffem,
                                 fontWeight: FontWeight.w400,
@@ -358,7 +358,7 @@ Widget desktopView(BuildContext context) {
                           Text(
                             // blogsnMB (2:56)
                             'plans',
-                            style: SafeGoogleFont(
+                            style: safeGoogleFont(
                               'Poppins',
                               fontSize: 16 * ffem,
                               fontWeight: FontWeight.w400,
@@ -412,7 +412,7 @@ Widget desktopView(BuildContext context) {
                                 0 * fem, 0 * fem, 0 * fem, 18 * fem),
                             child: RichText(
                               text: TextSpan(
-                                style: SafeGoogleFont(
+                                style: safeGoogleFont(
                                   'Poppins',
                                   fontSize: 16 * ffem,
                                   fontWeight: FontWeight.w400,
@@ -427,7 +427,7 @@ Widget desktopView(BuildContext context) {
                                   ),
                                   TextSpan(
                                     text: '123)-566-76615',
-                                    style: SafeGoogleFont(
+                                    style: safeGoogleFont(
                                       'Poppins',
                                       fontSize: 16 * ffem,
                                       fontWeight: FontWeight.w400,
@@ -444,7 +444,7 @@ Widget desktopView(BuildContext context) {
                           Text(
                             // updownstudiosgamesgmailcomgN1 (2:62)
                             'updownstudiosgames@gmail.com\n',
-                            style: SafeGoogleFont(
+                            style: safeGoogleFont(
                               'Poppins',
                               fontSize: 16 * ffem,
                               fontWeight: FontWeight.w400,
@@ -475,7 +475,7 @@ Widget desktopView(BuildContext context) {
                     EdgeInsets.fromLTRB(5 * fem, 0 * fem, 263 * fem, 4 * fem),
                 child: Text(
                   'Plans',
-                  style: SafeGoogleFont(
+                  style: safeGoogleFont(
                     'Poppins',
                     fontSize: 16 * ffem,
                     fontWeight: FontWeight.w400,
@@ -501,7 +501,7 @@ Widget desktopView(BuildContext context) {
                 margin: EdgeInsets.fromLTRB(0 * fem, 4 * fem, 0 * fem, 0 * fem),
                 child: Text(
                   'Alfaisal university, Riyadh, Saudi Arabia',
-                  style: SafeGoogleFont(
+                  style: safeGoogleFont(
                     'Poppins',
                     fontSize: 16 * ffem,
                     fontWeight: FontWeight.w400,
@@ -534,7 +534,7 @@ Widget desktopView(BuildContext context) {
                           0 * fem, 0 * fem, 0 * fem, 18 * fem),
                       child: Text(
                         'About us',
-                        style: SafeGoogleFont(
+                        style: safeGoogleFont(
                           'Poppins',
                           fontSize: 16 * ffem,
                           fontWeight: FontWeight.w400,
@@ -546,7 +546,7 @@ Widget desktopView(BuildContext context) {
                     Text(
                       // contactusidT (2:52)
                       'Contact us',
-                      style: SafeGoogleFont(
+                      style: safeGoogleFont(
                         'Poppins',
                         fontSize: 16 * ffem,
                         fontWeight: FontWeight.w400,
@@ -612,7 +612,7 @@ Widget desktopView(BuildContext context) {
           margin: EdgeInsets.fromLTRB(775 * fem, 0 * fem, 0 * fem, 78 * fem),
           child: Text(
             'UPDOWN STUDIO',
-            style: SafeGoogleFont(
+            style: safeGoogleFont(
               'Poppins',
               fontSize: 18 * ffem,
               fontWeight: FontWeight.w500,
@@ -627,7 +627,7 @@ Widget desktopView(BuildContext context) {
           margin: EdgeInsets.fromLTRB(44 * fem, 0 * fem, 0 * fem, 0 * fem),
           child: Text(
             '© 2022 MO3AWEN. All rights reserved.',
-            style: SafeGoogleFont(
+            style: safeGoogleFont(
               'Poppins',
               fontSize: 14 * ffem,
               fontWeight: FontWeight.w400,

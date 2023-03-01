@@ -82,7 +82,7 @@ Widget desktopView(BuildContext context) {
               height: 60 * fem,
               child: Text(
                 'ABOUT US',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 40 * ffem,
                   fontWeight: FontWeight.w700,
@@ -104,7 +104,7 @@ Widget desktopView(BuildContext context) {
               height: 216 * fem,
               child: Text(
                 'The main goal of Mo3awen is to help you do your physical therapy. It adds a fun element to the dull routine of working out. It will also keep the patients entertained and committed to doing their exercises.',
-                style: SafeGoogleFont(
+                style: safeGoogleFont(
                   'Poppins',
                   fontSize: 24 * ffem,
                   fontWeight: FontWeight.w500,

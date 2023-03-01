@@ -31,67 +31,39 @@ Widget mainTabletDesktop(BuildContext context) {
     child: Stack(
       children: [
         welcomeText(
-          82 * fem,
-          313 * fem,
-          605 * fem,
-          94 * fem,
+          82,
+          313,
+          605,
+          94,
           'NO LONGER IS THERE A NEED TO\n\nDO BORING EXERCISES',
-          34 * ffem,
+          34,
           FontWeight.w700,
-          0.68 * fem,
-          1.3799999461 * ffem / fem,
+          0.68,
+          1.3799999461,
           Color(0xff000000),
+          context,
         ),
         Positioned(
           // rectangle12tS1 (2:87)
-          left: 85 * fem,
-          top: 552 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 583 * fem,
-              height: 54 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xffffffff),
-                ),
+          left: 85,
+          top: 552,
+          child: SizedBox(
+            width: 573,
+            height: 54,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12 * fem),
+                color: Color(0xffffffff),
               ),
             ),
           ),
         ),
-        welcomeText(
-            114 * fem,
-            562 * fem,
-            523 * fem,
-            34 * fem,
-            'COMBING GAMING WITH EXERCISING',
-            28 * ffem,
-            FontWeight.w800,
-            1.2125 * ffem / fem,
-            0,
-            Color(0xff000000)),
-        elevatedButton(
-            235 * fem,
-            663 * fem,
-            265 * fem,
-            60 * fem,
-            Color(0xff0076f9),
-            'BROWSE EXERCISES',
-            25 * ffem,
-            FontWeight.w800,
-            1.2125 * ffem / fem,
-            0,
-            Color(0xffffffff)),
-        welcomeText(
-            84 * fem,
-            442 * fem,
-            582 * fem,
-            105 * fem,
-            'TIME FOR FUN',
-            86 * ffem,
-            FontWeight.w900,
-            1.2125 * ffem / fem,
-            -1.72 * fem,
-            Color(0xff000000)),
+        welcomeText(114, 562, 523, 34, 'COMBING GAMING WITH EXERCISING', 28,
+            FontWeight.w800, 1.2125, 0, Color(0xff000000), context),
+        elevatedButton(235, 663, 265, 60, Color(0xff0076f9), 'BROWSE EXERCISES',
+            25, FontWeight.w800, 1.2125, 0, Color(0xffffffff), context),
+        welcomeText(84, 442, 582, 105, 'TIME FOR FUN', 86, FontWeight.w900,
+            1.2125 * ffem, -1.72, Color(0xff000000), context),
       ],
     ),
   );
@@ -108,22 +80,26 @@ Widget welcomeText(
     FontWeight fontWeight,
     double height2,
     double letterSpacing,
-    Color color) {
+    Color color,
+    BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
   return Positioned(
-    left: left,
-    top: top,
+    left: left * fem,
+    top: top * fem,
     child: Align(
       child: SizedBox(
-        width: width,
-        height: height,
+        width: width * fem,
+        height: height * fem,
         child: Text(
           text,
           style: safeGoogleFont(
             'Poppins',
-            fontSize: fontSize,
+            fontSize: fontSize * ffem,
             fontWeight: fontWeight,
-            height: height2,
-            letterSpacing: letterSpacing,
+            height: height2 * ffem / fem,
+            letterSpacing: letterSpacing * fem,
             color: color,
           ),
         ),
@@ -144,14 +120,18 @@ Widget elevatedButton(
     FontWeight fontWeight,
     double height2,
     double letterSpacing,
-    Color color2) {
+    Color color2,
+    BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
   return Positioned(
-    left: left,
-    top: top,
+    left: left * fem,
+    top: top * fem,
     child: Align(
       child: SizedBox(
-        width: width,
-        height: height,
+        width: width * fem,
+        height: height * fem,
         child: ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
@@ -162,10 +142,10 @@ Widget elevatedButton(
             text,
             style: safeGoogleFont(
               'Poppins',
-              fontSize: fontSize,
+              fontSize: fontSize * ffem,
               fontWeight: fontWeight,
-              height: height2,
-              letterSpacing: letterSpacing,
+              height: height2 * ffem / fem,
+              letterSpacing: letterSpacing * fem,
               color: color2,
             ),
           ),

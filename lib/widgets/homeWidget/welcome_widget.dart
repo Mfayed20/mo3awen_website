@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
 class MainPart extends StatelessWidget {
@@ -17,134 +18,73 @@ Widget mainTabletDesktop(BuildContext context) {
   double fem = MediaQuery.of(context).size.width / baseWidth;
   double ffem = fem * 0.97;
   return Container(
-    // autogroupkiyvB6M (YA9PAQSaT4KRkMYPh8kiYV)
     margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 87 * fem),
     width: 1441 * fem,
     height: 844 * fem,
     decoration: BoxDecoration(
       image: DecorationImage(
         image: AssetImage(
-          'assets/page-1/images/hero-section-image-bg.png',
+          welcomeHomePage,
         ),
       ),
     ),
     child: Stack(
       children: [
         welcomeText(
-          82 * fem,
-          313 * fem,
-          605 * fem,
-          94 * fem,
+          82,
+          313,
+          605,
+          94,
           'NO LONGER IS THERE A NEED TO\n\nDO BORING EXERCISES',
+          34,
+          FontWeight.w700,
+          0.68,
+          1.3799999461,
+          Color(0xff000000),
+          context,
         ),
         Positioned(
           // rectangle12tS1 (2:87)
-          left: 85 * fem,
-          top: 552 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 583 * fem,
-              height: 54 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xffffffff),
-                ),
+          left: 85,
+          top: 552,
+          child: SizedBox(
+            width: 573,
+            height: 54,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12 * fem),
+                color: Color(0xffffffff),
               ),
             ),
           ),
         ),
-        Positioned(
-          // combinggamingwithexercisingMqP (2:88)
-          left: 114 * fem,
-          top: 562 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 523 * fem,
-              height: 34 * fem,
-              child: Text(
-                'COMBING GAMING WITH EXERCISING',
-                style: safeGoogleFont(
-                  'Inter',
-                  fontSize: 28 * ffem,
-                  fontWeight: FontWeight.w800,
-                  height: 1.2125 * ffem / fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          // rectanglebuttonBpR (2:89)
-          left: 235 * fem,
-          top: 663 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 265 * fem,
-              height: 60 * fem,
-              child: TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xff000000)),
-                    color: Color(0xff0076f9),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0x3f000000),
-                        offset: Offset(0 * fem, 4 * fem),
-                        blurRadius: 2 * fem,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          // browseexercises12m (2:90)
-          left: 277 * fem,
-          top: 682 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 181 * fem,
-              height: 22 * fem,
-              child: Text(
-                'BROWSE EXERCISES',
-                style: safeGoogleFont(
-                  'Inter',
-                  fontSize: 18 * ffem,
-                  fontWeight: FontWeight.w600,
-                  height: 1.2125 * ffem / fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-          ),
-        ),
-        welcomeText(
-          84,
-          442,
-          582,
-          105,
-          Color(0xff000000),
-          'TIME FOR FUN',
-          context,
-        ),
+        welcomeText(114, 562, 523, 34, 'COMBING GAMING WITH EXERCISING', 28,
+            FontWeight.w800, 1.2125, 0, Color(0xff000000), context),
+        elevatedButton(235, 663, 265, 60, Color(0xff0076f9), 'BROWSE EXERCISES',
+            25, FontWeight.w800, 1.2125, 0, Color(0xffffffff), context),
+        welcomeText(84, 442, 582, 105, 'TIME FOR FUN', 86, FontWeight.w900,
+            1.2125 * ffem, -1.72, Color(0xff000000), context),
       ],
     ),
   );
 }
 
-// widget welcomeText that takes left, top, width, height, color, text, TextStyle as parameters and returns Positioned
-Widget welcomeText(double left, double top, double width, double height,
-    Color color, String text, BuildContext context) {
+// widget welcomeText that takes left, top, width, height, text, fontSize, fontWeight, height, letterSpacing, color
+Widget welcomeText(
+    double left,
+    double top,
+    double width,
+    double height,
+    String text,
+    double fontSize,
+    FontWeight fontWeight,
+    double height2,
+    double letterSpacing,
+    Color color,
+    BuildContext context) {
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
-
+  double ffem = fem * 0.97;
   return Positioned(
     left: left * fem,
     top: top * fem,
@@ -154,7 +94,61 @@ Widget welcomeText(double left, double top, double width, double height,
         height: height * fem,
         child: Text(
           text,
-          style: tFFWelcomeWidget(context),
+          style: safeGoogleFont(
+            'Poppins',
+            fontSize: fontSize * ffem,
+            fontWeight: fontWeight,
+            height: height2 * ffem / fem,
+            letterSpacing: letterSpacing * fem,
+            color: color,
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+// widget elevatedButton that takes left, top, width, height, color, text, fontSize, fontWeight, height, letterSpacing, color
+Widget elevatedButton(
+    double left,
+    double top,
+    double width,
+    double height,
+    Color color,
+    String text,
+    double fontSize,
+    FontWeight fontWeight,
+    double height2,
+    double letterSpacing,
+    Color color2,
+    BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
+  return Positioned(
+    left: left * fem,
+    top: top * fem,
+    child: Align(
+      child: SizedBox(
+        width: width * fem,
+        height: height * fem,
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            backgroundColor: color,
+            padding: EdgeInsets.zero,
+          ),
+          child: Text(
+            text,
+            style: safeGoogleFont(
+              'Poppins',
+              fontSize: fontSize * ffem,
+              fontWeight: fontWeight,
+              height: height2 * ffem / fem,
+              letterSpacing: letterSpacing * fem,
+              color: color2,
+            ),
+          ),
         ),
       ),
     ),

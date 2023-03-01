@@ -30,27 +30,12 @@ Widget mainTabletDesktop(BuildContext context) {
     ),
     child: Stack(
       children: [
-        Positioned(
-          // nolongeristhereaneedtodoboring (2:86)
-          left: 82 * fem,
-          top: 313 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 605 * fem,
-              height: 94 * fem,
-              child: Text(
-                'NO LONGER IS THERE A NEED TO DO\nBORING EXERCISES',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 34 * ffem,
-                  fontWeight: FontWeight.w700,
-                  height: 1.3799999461 * ffem / fem,
-                  letterSpacing: 0.68 * fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-          ),
+        welcomeText(
+          82 * fem,
+          313 * fem,
+          605 * fem,
+          94 * fem,
+          'NO LONGER IS THERE A NEED TO\n\nDO BORING EXERCISES',
         ),
         Positioned(
           // rectangle12tS1 (2:87)

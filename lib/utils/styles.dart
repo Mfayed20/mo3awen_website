@@ -102,3 +102,31 @@ TextStyle tFFWelcomeWidget(BuildContext context) {
     color: const Color(0xff000000),
   );
 }
+
+TextStyle normalTxtStyle(BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
+  return TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 24 * ffem,
+    fontWeight: FontWeight.w500,
+    height: 1.5 * ffem / fem,
+    letterSpacing: 1.56 * fem,
+    color: const Color(0xffffffff),
+  );
+}
+
+TextStyle headerTxtStyle(BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
+  return TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 40 * ffem,
+    fontWeight: FontWeight.w700,
+    height: 1.5 * ffem / fem,
+    letterSpacing: 2.6 * fem,
+    color: const Color(0xff000000),
+  );
+}

@@ -45,15 +45,17 @@ Widget mainTabletDesktop(BuildContext context) {
         ),
         Positioned(
           // rectangle12tS1 (2:87)
-          left: 85,
-          top: 552,
-          child: SizedBox(
-            width: 573,
-            height: 54,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12 * fem),
-                color: Color(0xffffffff),
+          left: 85 * fem,
+          top: 552 * fem,
+          child: Align(
+            child: SizedBox(
+              width: 583 * fem,
+              height: 54 * fem,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12 * fem),
+                  color: Color(0xffffffff),
+                ),
               ),
             ),
           ),

@@ -88,16 +88,17 @@ TextStyle navBttnTextStyle(BuildContext context) {
   );
 }
 
-TextStyle navitemTextStyle(BuildContext context) {
+// welcome widget
+TextStyle tFFWelcomeWidget(BuildContext context) {
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
   double ffem = fem * 0.97;
   return TextStyle(
-    fontFamily: 'Inter',
-    fontSize: 16 * ffem,
-    fontWeight: FontWeight.w500,
+    fontFamily: 'Poppins',
+    fontSize: 86 * ffem,
+    fontWeight: FontWeight.w900,
     height: 1.2125 * ffem / fem,
-    letterSpacing: 1.44 * fem,
-    color: Color(0xffffffff),
+    letterSpacing: -1.27 * fem,
+    color: const Color(0xff000000),
   );
 }

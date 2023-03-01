@@ -75,7 +75,7 @@ Widget navItem(String title, Function() method, BuildContext context) {
       onPressed: method,
       child: Text(
         title,
-        style: navitemTextStyle(context),
+        style: navBttnTextStyle(context),
       ),
     ),
   );

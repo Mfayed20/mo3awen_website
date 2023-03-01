@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../utils/constants.dart';
 import '../utils/styles.dart';
 
-// navigation bar
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);
 
@@ -69,21 +68,13 @@ Widget navBarTabletDesktop(BuildContext context) {
 Widget navItem(String title, Function() method, BuildContext context) {
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
   return Container(
     margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
     child: TextButton(
       onPressed: method,
       child: Text(
         title,
-        style: safeGoogleFont(
-          'Inter',
-          fontSize: 16 * ffem,
-          fontWeight: FontWeight.w500,
-          height: 1.2125 * ffem / fem,
-          letterSpacing: 1.44 * fem,
-          color: Color(0xffffffff),
-        ),
+        style: navitemTextStyle(context),
       ),
     ),
   );
@@ -93,7 +84,6 @@ Widget navItem(String title, Function() method, BuildContext context) {
 Widget navSignBttn(String title, Function() method, BuildContext context) {
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
   return Container(
     // buttonwV4 (I1:27;29:143)
     margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 10 * fem, 0 * fem),

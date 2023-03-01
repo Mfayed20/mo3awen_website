@@ -72,3 +72,32 @@ TextStyle safeGoogleFont(
     );
   }
 }
+
+// method that takes String and context as parameters and return Textstyle
+TextStyle navBttnTextStyle(BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
+  return TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 16 * ffem,
+    fontWeight: FontWeight.w500,
+    height: 1.2125 * ffem / fem,
+    letterSpacing: 1.44 * fem,
+    color: const Color(0xffffffff),
+  );
+}
+
+TextStyle navitemTextStyle(BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
+  return TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 16 * ffem,
+    fontWeight: FontWeight.w500,
+    height: 1.2125 * ffem / fem,
+    letterSpacing: 1.44 * fem,
+    color: Color(0xffffffff),
+  );
+}

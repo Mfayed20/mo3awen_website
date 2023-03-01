@@ -162,24 +162,11 @@ Widget desktopView(BuildContext context) {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            // excercisesyFK (2:47)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 0 * fem, 18 * fem),
-                            child: Text(
-                              'Excercises',
-                              style: safeGoogleFont(
-                                'Poppins',
-                                fontSize: 16 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff000000),
-                              ),
-                            ),
-                          ),
+                          footerboldtext(0, 0, 0, 18, "Excercises", 16,
+                              FontWeight.w400, context),
                           Text(
                             // blogsFyX (2:49)
-                            'Blogs',
+                            'Plans',
                             style: safeGoogleFont(
                               'Poppins',
                               fontSize: 16 * ffem,
@@ -198,21 +185,8 @@ Widget desktopView(BuildContext context) {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            // excercisesVN5 (2:55)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 0 * fem, 18 * fem),
-                            child: Text(
-                              'Excercises',
-                              style: safeGoogleFont(
-                                'Poppins',
-                                fontSize: 16 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff000000),
-                              ),
-                            ),
-                          ),
+                          footerboldtext(0, 0, 0, 18, "Excercises", 16,
+                              FontWeight.w400, context),
                           Text(
                             // blogsnMB (2:56)
                             'plans',
@@ -234,28 +208,39 @@ Widget desktopView(BuildContext context) {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Container(
-                            // phoneiconcr1 (2:151)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 0.52 * fem, 26 * fem),
-                            width: 15.2 * fem,
-                            height: 20 * fem,
-                            child: Image.asset(
+                          // Container(
+                          //   // phoneiconcr1 (2:151)
+                          //   margin: EdgeInsets.fromLTRB(
+                          //       0 * fem, 0 * fem, 0.52 * fem, 26 * fem),
+                          //   width: 15.2 * fem,
+                          //   height: 20 * fem,
+                          //   child: Image.asset(
+                          //     'assets/page-1/images/phone-icon-L7X.png',
+                          //     width: 15.2 * fem,
+                          //     height: 20 * fem,
+                          //   ),
+                          // ),
+                          footerimages(
+                              0,
+                              0,
+                              0.52,
+                              26,
+                              15.2,
+                              20,
                               'assets/page-1/images/phone-icon-L7X.png',
-                              width: 15.2 * fem,
-                              height: 20 * fem,
-                            ),
-                          ),
-                          Container(
-                            // vectoruKK (2:41)
-                            width: 17.73 * fem,
-                            height: 12 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/vector-oGq.png',
-                              width: 17.73 * fem,
-                              height: 12 * fem,
-                            ),
-                          ),
+                              context),
+                          // Container(
+                          //   // vectoruKK (2:41)
+                          //   width: 17.73 * fem,
+                          //   height: 12 * fem,
+                          //   child: Image.asset(
+                          //     'assets/page-1/images/vector-oGq.png',
+                          //     width: 17.73 * fem,
+                          //     height: 12 * fem,
+                          //   ),
+                          // ),
+                          footerimages(0, 0, 0, 0, 17.73, 12,
+                              'assets/page-1/images/vector-oGq.png', context),
                         ],
                       ),
                     ),
@@ -267,7 +252,7 @@ Widget desktopView(BuildContext context) {
                           Container(
                             // MSD (2:63)
                             margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 0 * fem, 18 * fem),
+                                0 * fem, 5 * fem, 0 * fem, 18 * fem),
                             child: RichText(
                               text: TextSpan(
                                 style: safeGoogleFont(
@@ -327,33 +312,10 @@ Widget desktopView(BuildContext context) {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                // plansshP (2:50)
-                margin:
-                    EdgeInsets.fromLTRB(5 * fem, 0 * fem, 263 * fem, 4 * fem),
-                child: Text(
-                  'Plans',
-                  style: safeGoogleFont(
-                    'Poppins',
-                    fontSize: 16 * ffem,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5 * ffem / fem,
-                    color: Color(0xff000000),
-                  ),
-                ),
-              ),
-              Container(
-                // vector4G5 (2:40)
-                margin: EdgeInsets.fromLTRB(
-                    210 * fem, 4.9 * fem, 26.63 * fem, 0 * fem),
-                width: 12.37 * fem,
-                height: 20 * fem,
-                child: Image.asset(
-                  'assets/page-1/images/vector-P1X.png',
-                  width: 12.37 * fem,
-                  height: 20 * fem,
-                ),
-              ),
+              footerboldtext(
+                  5, 0, 263, 18, "About us", 16, FontWeight.w400, context),
+              footerimages(180, 0, 26.63, 0, 12.37, 20,
+                  'assets/page-1/images/vector-P1X.png', context),
               Container(
                 // alfaisaluniversityriyadhsaudia (2:54)
                 margin: EdgeInsets.fromLTRB(0 * fem, 4 * fem, 0 * fem, 0 * fem),

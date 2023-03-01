@@ -110,8 +110,8 @@ TextStyle footerBoldText(
   double ffem = fem * 0.97;
   return TextStyle(
     fontFamily: 'Poppins',
-    fontSize: 18 * ffem,
-    fontWeight: FontWeight.w700,
+    fontSize: fontSize * ffem,
+    fontWeight: fontWeight,
     height: 1.5 * ffem / fem,
     color: const Color(0xff000000),
   );

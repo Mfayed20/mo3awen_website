@@ -109,14 +109,7 @@ Widget navSignBttn(String title, Function() method, BuildContext context) {
           child: Text(
             title,
             textAlign: TextAlign.center,
-            style: safeGoogleFont(
-              'Inter',
-              fontSize: 14 * ffem,
-              fontWeight: FontWeight.w400,
-              height: 1.2125 * ffem / fem,
-              letterSpacing: 0.56 * fem,
-              color: Color(0xffffffff),
-            ),
+            style: navBttnTextStyle(context),
           ),
         ),
       ),

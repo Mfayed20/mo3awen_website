@@ -80,10 +80,10 @@ TextStyle navBttnTextStyle(BuildContext context) {
   double ffem = fem * 0.97;
   return TextStyle(
     fontFamily: 'Inter',
-    fontSize: 16 * ffem,
-    fontWeight: FontWeight.w500,
+    fontSize: 14 * ffem,
+    fontWeight: FontWeight.w400,
     height: 1.2125 * ffem / fem,
-    letterSpacing: 1.44 * fem,
+    letterSpacing: 0.56 * fem,
     color: const Color(0xffffffff),
   );
 }

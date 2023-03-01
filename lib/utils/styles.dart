@@ -102,3 +102,17 @@ TextStyle tFFWelcomeWidget(BuildContext context) {
     color: const Color(0xff000000),
   );
 }
+
+TextStyle footerBoldText(
+    double fontSize, FontWeight fontWeight, BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
+  return TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 18 * ffem,
+    fontWeight: FontWeight.w700,
+    height: 1.5 * ffem / fem,
+    color: const Color(0xff000000),
+  );
+}

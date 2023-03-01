@@ -86,30 +86,9 @@ Widget desktopView(BuildContext context) {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            // quicklinkstds (2:42)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 0 * fem, 14 * fem),
-                            child: Text(
-                              'Quick Links',
-                              style: safeGoogleFont(
-                                'Poppins',
-                                fontSize: 18 * ffem,
-                                fontWeight: FontWeight.w700,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff000000),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            // rectangle4Xwj (2:43)
-                            width: 60 * fem,
-                            height: 5 * fem,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4 * fem),
-                              color: Color(0xff2774b4),
-                            ),
-                          ),
+                          footerboldtext(0, 0, 0, 14, "Quick Links", 16,
+                              FontWeight.w700, context),
+                          footerbluelane(context)
                         ],
                       ),
                     ),
@@ -120,30 +99,9 @@ Widget desktopView(BuildContext context) {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            // servicesMA5 (2:44)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 0 * fem, 14 * fem),
-                            child: Text(
-                              'Services',
-                              style: safeGoogleFont(
-                                'Poppins',
-                                fontSize: 18 * ffem,
-                                fontWeight: FontWeight.w700,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff000000),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            // rectangle6qL9 (2:45)
-                            width: 60 * fem,
-                            height: 5 * fem,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4 * fem),
-                              color: Color(0xff2774b4),
-                            ),
-                          ),
+                          footerboldtext(0, 0, 0, 14, "Services", 16,
+                              FontWeight.w700, context),
+                          footerbluelane(context),
                         ],
                       ),
                     ),
@@ -153,30 +111,9 @@ Widget desktopView(BuildContext context) {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            // getintouchgrZ (2:46)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 0 * fem, 15 * fem),
-                            child: Text(
-                              'Get In Touch',
-                              style: safeGoogleFont(
-                                'Poppins',
-                                fontSize: 18 * ffem,
-                                fontWeight: FontWeight.w700,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff000000),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            // rectangle5mt1 (2:61)
-                            width: 60 * fem,
-                            height: 5 * fem,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4 * fem),
-                              color: Color(0xff2774b4),
-                            ),
-                          ),
+                          footerboldtext(0, 0, 0, 14, "Get In Touch", 16,
+                              FontWeight.w700, context),
+                          footerbluelane(context),
                         ],
                       ),
                     ),
@@ -579,5 +516,29 @@ Widget footerimages(double left, double top, double right, double bottom,
     ),
   );
 }
-// a widget call footerboldtext that takes 4 doubles and 1 string and returns a container 
 
+// a widget call footerboldtext that takes 4 doubles and 1 string and returns a container
+Widget footerboldtext(double left, double top, double right, double bottom,
+    String text, double fontSize, FontWeight fontWeight, BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Container(
+    margin:
+        EdgeInsets.fromLTRB(left * fem, top * fem, right * fem, bottom * fem),
+    child: Text(text, style: footerBoldText(fontSize, fontWeight, context)),
+  );
+}
+
+// a widget called footerbluelane that returns a container
+Widget footerbluelane(BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Container(
+    width: 60 * fem,
+    height: 5 * fem,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(4 * fem),
+      color: Color(0xff2774b4),
+    ),
+  );
+}

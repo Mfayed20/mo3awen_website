@@ -54,10 +54,9 @@ Widget navBarTabletDesktop(BuildContext context) {
           margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 0 * fem),
           height: 39 * fem,
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              navSignBttn("SIGN UP", printHello, context),
-              navSignBttn("LOGIN", printHello, context),
+              navSignBttn("SIGN UP/IN", printHello, context),
             ],
           ),
         ),
@@ -98,10 +97,9 @@ Widget navSignBttn(String title, Function() method, BuildContext context) {
   return Container(
     // buttonwV4 (I1:27;29:143)
     margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 10 * fem, 0 * fem),
-    width: 106 * fem,
+    width: 140 * fem,
     height: double.infinity,
     decoration: BoxDecoration(
-      color: Color(0xff0076f9),
       boxShadow: [
         BoxShadow(
           color: Color(0x3f000000),
@@ -111,18 +109,24 @@ Widget navSignBttn(String title, Function() method, BuildContext context) {
       ],
     ),
     child: Center(
-      child: ElevatedButton(
-        onPressed: method,
-        child: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: safeGoogleFont(
-            'Inter',
-            fontSize: 14 * ffem,
-            fontWeight: FontWeight.w400,
-            height: 1.2125 * ffem / fem,
-            letterSpacing: 0.56 * fem,
-            color: Color(0xffffffff),
+      child:
+          // a button with a text inside it with a height of 60 and width of 140
+          SizedBox(
+        height: 60 * fem,
+        width: 140 * fem,
+        child: ElevatedButton(
+          onPressed: method,
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: safeGoogleFont(
+              'Inter',
+              fontSize: 14 * ffem,
+              fontWeight: FontWeight.w400,
+              height: 1.2125 * ffem / fem,
+              letterSpacing: 0.56 * fem,
+              color: Color(0xffffffff),
+            ),
           ),
         ),
       ),

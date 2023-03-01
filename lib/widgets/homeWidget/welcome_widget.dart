@@ -35,7 +35,7 @@ Widget mainTabletDesktop(BuildContext context) {
           313 * fem,
           605 * fem,
           94 * fem,
-          'NO LONGER IS THERE A NEED TO\n\n\nDO BORING EXERCISES',
+          'NO LONGER IS THERE A NEED TO\n\nDO BORING EXERCISES',
           34 * ffem,
           FontWeight.w700,
           0.68 * fem,

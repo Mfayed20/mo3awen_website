@@ -144,3 +144,44 @@ TextStyle headerTxtStyle(BuildContext context) {
     color: const Color(0xff000000),
   );
 }
+
+// HomePage: plans_widget fonts
+TextStyle txtPlansWidget(
+  BuildContext context,
+  String font,
+  double size,
+  Color color,
+) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
+  return TextStyle(
+    fontFamily: font,
+    fontSize: size * ffem,
+    fontWeight: FontWeight.w500,
+    height: 1.2125 * ffem / fem,
+    color: color,
+  );
+}
+
+TextStyle newTxtPlansWidget(
+  BuildContext context,
+  String font,
+  double size,
+  FontWeight fontWeight,
+  double fontHeight,
+  double letterSpacing,
+  Color color,
+) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
+  return TextStyle(
+    fontFamily: font,
+    fontSize: size * ffem,
+    fontWeight: fontWeight,
+    height: fontHeight * ffem / fem,
+    letterSpacing: letterSpacing * fem,
+    color: color,
+  );
+}

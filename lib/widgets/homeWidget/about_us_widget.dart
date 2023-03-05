@@ -22,50 +22,35 @@ Widget desktopView(BuildContext context) {
     height: 721 * fem,
     child: Stack(
       children: [
-        Positioned(
-          left: 0 * fem,
-          top: 141 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 1441 * fem,
-              height: 580 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xff0076f9),
-                ),
-              ),
-            ),
-          ),
+        colorContanier(
+          context,
+          0,
+          141,
+          1441,
+          580,
+          0,
+          Color(0xff0076f9),
+          Colors.transparent,
         ),
-        Positioned(
-          left: 85 * fem,
-          top: 72 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 100 * fem,
-              height: 9 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4 * fem),
-                  color: Color(0xff0076f9),
-                ),
-              ),
-            ),
-          ),
+        colorContanier(
+          context,
+          85,
+          72,
+          100,
+          9,
+          4,
+          Color(0xff0076f9),
+          Colors.transparent,
         ),
-        Positioned(
-          // rectangle21vu3 (2:92)
-          left: 761 * fem,
-          top: 1 * fem,
-          child: SizedBox(
-            width: 606 * fem,
-            height: 612 * fem,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Color(0xff000000)),
-              ),
-            ),
-          ),
+        colorContanier(
+          context,
+          761,
+          1,
+          606,
+          612,
+          0,
+          Colors.transparent,
+          Color(0xff000000),
         ),
         aboutUs(context, 85, 0, 222, 60, 'ABOUT US', headerTxtStyle(context)),
         aboutUs(
@@ -116,6 +101,38 @@ Widget aboutUs(
         child: Text(
           text,
           style: textStyle,
+        ),
+      ),
+    ),
+  );
+}
+
+// widget blueContanier that takes left, top, width, height, text as parameters and returns position widget
+Widget colorContanier(
+  BuildContext context,
+  double left,
+  double top,
+  double width,
+  double height,
+  double borderRadius,
+  Color color,
+  Color borderColor,
+) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Positioned(
+    left: left * fem,
+    top: top * fem,
+    child: Align(
+      child: SizedBox(
+        width: width * fem,
+        height: height * fem,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius * fem),
+            color: color,
+            border: Border.all(color: borderColor),
+          ),
         ),
       ),
     ),

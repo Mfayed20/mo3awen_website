@@ -30,7 +30,7 @@ Widget desktopView(BuildContext context) {
       children: [
         Container(
           // autogroups4wrt8m (YA9UmQmhjcu6uJ2TvGS4WR)
-          margin: EdgeInsets.fromLTRB(3 * fem, 0 * fem, 196 * fem, 40 * fem),
+          margin: EdgeInsets.fromLTRB(3 * fem, 0 * fem, 196 * fem, 20 * fem),
           width: double.infinity,
           height: 81 * fem,
           child: Row(
@@ -82,7 +82,7 @@ Widget desktopView(BuildContext context) {
                     Container(
                       // autogroupbv5wat5 (YA9V3z8RCwKwyT8tdYbV5w)
                       margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 201 * fem, 1 * fem),
+                          0 * fem, 0 * fem, 201 * fem, 0 * fem),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -150,7 +150,7 @@ Widget desktopView(BuildContext context) {
               Container(
                 // autogroupxcvzMzd (YA9XRkWCZvu3LJdXZWXcvZ)
                 padding:
-                    EdgeInsets.fromLTRB(115 * fem, 0 * fem, 0 * fem, 0 * fem),
+                    EdgeInsets.fromLTRB(100 * fem, 0 * fem, 0 * fem, 0 * fem),
                 height: double.infinity,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,46 +158,28 @@ Widget desktopView(BuildContext context) {
                     Container(
                       // autogroupwaqtfEd (YA9WqWzEwL3UUd7w8swaqT)
                       margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 224 * fem, 0 * fem),
+                          0 * fem, 0 * fem, 170 * fem, 0 * fem),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          footerboldtext(0, 0, 0, 18, "Excercises", 16,
-                              FontWeight.w400, context),
-                          Text(
-                            // blogsFyX (2:49)
-                            'Plans',
-                            style: safeGoogleFont(
-                              'Poppins',
-                              fontSize: 16 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff000000),
-                            ),
-                          ),
+                          footerNavItem(10, 0, 0, 0, "Excercises", 16,
+                              FontWeight.w400, printHello, context),
+                          footerNavItem(0, 0, 0, 0, "plans", 16,
+                              FontWeight.w400, printHello, context),
                         ],
                       ),
                     ),
                     Container(
                       // autogroupmtr9PK3 (YA9WyvutbgBRQKbPNqMtr9)
                       margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 134 * fem, 0 * fem),
+                          0 * fem, 0 * fem, 154 * fem, 0 * fem),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          footerboldtext(0, 0, 0, 18, "Excercises", 16,
-                              FontWeight.w400, context),
-                          Text(
-                            // blogsnMB (2:56)
-                            'plans',
-                            style: safeGoogleFont(
-                              'Poppins',
-                              fontSize: 16 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff000000),
-                            ),
-                          ),
+                          footerNavItem(10, 0, 0, 0, "Excercises", 16,
+                              FontWeight.w400, printHello, context),
+                          footerNavItem(0, 0, 0, 0, "Plans", 16,
+                              FontWeight.w400, printHello, context),
                         ],
                       ),
                     ),
@@ -208,18 +190,6 @@ Widget desktopView(BuildContext context) {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          // Container(
-                          //   // phoneiconcr1 (2:151)
-                          //   margin: EdgeInsets.fromLTRB(
-                          //       0 * fem, 0 * fem, 0.52 * fem, 26 * fem),
-                          //   width: 15.2 * fem,
-                          //   height: 20 * fem,
-                          //   child: Image.asset(
-                          //     'assets/page-1/images/phone-icon-L7X.png',
-                          //     width: 15.2 * fem,
-                          //     height: 20 * fem,
-                          //   ),
-                          // ),
                           footerimages(
                               0,
                               0,
@@ -229,16 +199,6 @@ Widget desktopView(BuildContext context) {
                               20,
                               'assets/page-1/images/phone-icon-L7X.png',
                               context),
-                          // Container(
-                          //   // vectoruKK (2:41)
-                          //   width: 17.73 * fem,
-                          //   height: 12 * fem,
-                          //   child: Image.asset(
-                          //     'assets/page-1/images/vector-oGq.png',
-                          //     width: 17.73 * fem,
-                          //     height: 12 * fem,
-                          //   ),
-                          // ),
                           footerimages(0, 0, 0, 0, 17.73, 12,
                               'assets/page-1/images/vector-oGq.png', context),
                         ],
@@ -284,19 +244,15 @@ Widget desktopView(BuildContext context) {
                               ),
                             ),
                           ),
-                          Text(
-                            // updownstudiosgamesgmailcomgN1 (2:62)
-                            'updownstudiosgames@gmail.com\n',
-                            style: safeGoogleFont(
-                              'Poppins',
-                              fontSize: 16 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1 * ffem / fem,
-                              decoration: TextDecoration.underline,
-                              color: Color(0xff000000),
-                              decorationColor: Color(0xff000000),
-                            ),
-                          ),
+                          footerboldtext(
+                              0,
+                              4,
+                              0,
+                              0,
+                              "updownstudiosgames@gmail.com",
+                              16,
+                              FontWeight.w400,
+                              context),
                         ],
                       ),
                     ),
@@ -308,34 +264,29 @@ Widget desktopView(BuildContext context) {
         ),
         Container(
           // autogrouplpffnR3 (YA9Y59bYyy8Yjg4X4pLpfF)
-          margin: EdgeInsets.fromLTRB(345 * fem, 0 * fem, 0 * fem, 14 * fem),
+          margin: EdgeInsets.fromLTRB(344 * fem, 0 * fem, 0 * fem, 0 * fem),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              footerboldtext(
-                  5, 0, 263, 18, "About us", 16, FontWeight.w400, context),
-              footerimages(180, 0, 26.63, 0, 12.37, 20,
+              footerNavItem(0, 0, 263, 0, "About us", 16, FontWeight.w400,
+                  printHello, context),
+              footerimages(184, 0, 26.63, 0, 12.37, 20,
                   'assets/page-1/images/vector-P1X.png', context),
-              Container(
-                // alfaisaluniversityriyadhsaudia (2:54)
-                margin: EdgeInsets.fromLTRB(0 * fem, 4 * fem, 0 * fem, 0 * fem),
-                child: Text(
-                  'Alfaisal university, Riyadh, Saudi Arabia',
-                  style: safeGoogleFont(
-                    'Poppins',
-                    fontSize: 16 * ffem,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5 * ffem / fem,
-                    color: Color(0xff000000),
-                  ),
-                ),
-              ),
+              footerboldtext(
+                  0,
+                  4,
+                  0,
+                  0,
+                  "Alfaisal university, Riyadh, Saudi Arabia",
+                  16,
+                  FontWeight.w400,
+                  context),
             ],
           ),
         ),
         Container(
           // autogroupxh332cD (YA9YJosTXE2W3P62U3xH33)
-          margin: EdgeInsets.fromLTRB(350 * fem, 0 * fem, 0 * fem, 6 * fem),
+          margin: EdgeInsets.fromLTRB(344 * fem, 0 * fem, 0 * fem, 6 * fem),
           height: 66 * fem,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -348,114 +299,38 @@ Widget desktopView(BuildContext context) {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      // aboutusECV (2:51)
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 18 * fem),
-                      child: Text(
-                        'About us',
-                        style: safeGoogleFont(
-                          'Poppins',
-                          fontSize: 16 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      // contactusidT (2:52)
-                      'Contact us',
-                      style: safeGoogleFont(
-                        'Poppins',
-                        fontSize: 16 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff000000),
-                      ),
-                    ),
+                    footerNavItem(0, 0, 0, 18, "Contact us", 16,
+                        FontWeight.w400, printHello, context),
                   ],
                 ),
               ),
-              Container(
-                // facebookcoloredsvgrepocom13ZnV (2:74)
-                margin:
-                    EdgeInsets.fromLTRB(260 * fem, 6 * fem, 35 * fem, 0 * fem),
-                width: 32 * fem,
-                height: 32 * fem,
-                child: Image.asset(
-                  'assets/page-1/images/facebook-colored-svgrepo-com-1-3.png',
-                  width: 32 * fem,
-                  height: 32 * fem,
-                ),
-              ),
-              Container(
-                // instagramcoloredsvgrepocom13Sb (2:69)
-                margin:
-                    EdgeInsets.fromLTRB(0 * fem, 6 * fem, 35 * fem, 0 * fem),
-                width: 32 * fem,
-                height: 32 * fem,
-                child: Image.asset(
+              footerNavImages(
+                  250,
+                  6,
+                  25,
+                  0,
+                  90,
+                  90,
                   'assets/page-1/images/instagram-colored-svgrepo-com-1-3.png',
-                  width: 32 * fem,
-                  height: 32 * fem,
-                ),
-              ),
-              Container(
-                // youtubecoloredsvgrepocom3K9P (2:64)
-                margin:
-                    EdgeInsets.fromLTRB(0 * fem, 6 * fem, 35 * fem, 0 * fem),
-                width: 32 * fem,
-                height: 22.64 * fem,
-                child: Image.asset(
-                  'assets/page-1/images/youtube-colored-svgrepo-com-3.png',
-                  width: 32 * fem,
-                  height: 22.64 * fem,
-                ),
-              ),
-              Container(
-                // twittercoloredsvgrepocom13yDw (2:67)
-                margin: EdgeInsets.fromLTRB(0 * fem, 6 * fem, 0 * fem, 0 * fem),
-                width: 32 * fem,
-                height: 26.2 * fem,
-                child: Image.asset(
+                  printHello,
+                  context),
+              footerNavImages(
+                  0,
+                  6,
+                  0,
+                  0,
+                  90,
+                  90,
                   'assets/page-1/images/twitter-colored-svgrepo-com-1-3.png',
-                  width: 32 * fem,
-                  height: 26.2 * fem,
-                ),
-              ),
+                  printHello,
+                  context),
             ],
           ),
         ),
-        Container(
-          // updownstudioSNR (2:53)
-          margin: EdgeInsets.fromLTRB(775 * fem, 0 * fem, 0 * fem, 78 * fem),
-          child: Text(
-            'UPDOWN STUDIO',
-            style: safeGoogleFont(
-              'Poppins',
-              fontSize: 18 * ffem,
-              fontWeight: FontWeight.w500,
-              height: 1.5 * ffem / fem,
-              letterSpacing: 1.17 * fem,
-              color: Color(0xff000000),
-            ),
-          ),
-        ),
-        Container(
-          // mo3awenallrightsreservedKBK (2:60)
-          margin: EdgeInsets.fromLTRB(44 * fem, 0 * fem, 0 * fem, 0 * fem),
-          child: Text(
-            '© 2022 MO3AWEN. All rights reserved.',
-            style: safeGoogleFont(
-              'Poppins',
-              fontSize: 14 * ffem,
-              fontWeight: FontWeight.w400,
-              height: 1.5 * ffem / fem,
-              color: Color(0xff000000),
-            ),
-          ),
-        ),
+        footerboldtext(
+            775, 4, 0, 78, "UPDOWN STUDIO", 18, FontWeight.w500, context),
+        footerboldtext(44, 0, 0, 0, "© 2022 MO3AWEN. All rights reserved.", 14,
+            FontWeight.w400, context),
       ],
     ),
   );
@@ -479,6 +354,34 @@ Widget footerimages(double left, double top, double right, double bottom,
   );
 }
 
+Widget footerNavImages(
+    double left,
+    double top,
+    double right,
+    double bottom,
+    double width,
+    double height,
+    String image,
+    Function() method,
+    BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Container(
+    margin:
+        EdgeInsets.fromLTRB(left * fem, top * fem, right * fem, bottom * fem),
+    width: width * fem,
+    height: height * fem,
+    child: IconButton(
+      onPressed: method,
+      icon: Image.asset(
+        image,
+        width: width * fem,
+        height: height * fem,
+      ),
+    ),
+  );
+}
+
 // a widget call footerboldtext that takes 4 doubles and 1 string and returns a container
 Widget footerboldtext(double left, double top, double right, double bottom,
     String text, double fontSize, FontWeight fontWeight, BuildContext context) {
@@ -488,6 +391,28 @@ Widget footerboldtext(double left, double top, double right, double bottom,
     margin:
         EdgeInsets.fromLTRB(left * fem, top * fem, right * fem, bottom * fem),
     child: Text(text, style: footerBoldText(fontSize, fontWeight, context)),
+  );
+}
+
+Widget footerNavItem(
+    double left,
+    double top,
+    double right,
+    double bottom,
+    String text,
+    double fontSize,
+    FontWeight fontWeight,
+    Function() method,
+    BuildContext context) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Container(
+    margin:
+        EdgeInsets.fromLTRB(left * fem, top * fem, right * fem, bottom * fem),
+    child: TextButton(
+        onPressed: method,
+        child:
+            Text(text, style: footerBoldText(fontSize, fontWeight, context))),
   );
 }
 
@@ -503,4 +428,8 @@ Widget footerbluelane(BuildContext context) {
       color: Color(0xff2774b4),
     ),
   );
+}
+
+void printHello() {
+  print('Hello');
 }

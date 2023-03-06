@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
@@ -14,6 +12,25 @@ class AboutUs extends StatelessWidget {
 }
 
 Widget desktopView(BuildContext context) {
+  TextStyle normalStyle = textStyle(
+    context,
+    "poppins",
+    24,
+    FontWeight.w500,
+    1.5,
+    1.56,
+    const Color(0xff000000),
+  );
+  TextStyle titleStyle = textStyle(
+    context,
+    "poppins",
+    40,
+    FontWeight.w700,
+    1.5,
+    2.6,
+    const Color(0xff000000),
+  );
+
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
   return Container(
@@ -22,27 +39,49 @@ Widget desktopView(BuildContext context) {
     height: 721 * fem,
     child: Stack(
       children: [
-        colorContanier(
+        /* background */
+        colorContainer(
           context,
           0,
           141,
           1441,
           580,
           0,
-          Color(0xff0076f9),
+          const Color(0xff0076f9),
           Colors.transparent,
         ),
-        colorContanier(
+        /* title */
+        colorContainer(
           context,
           85,
           72,
           100,
           9,
           4,
-          Color(0xff0076f9),
+          const Color(0xff0076f9),
           Colors.transparent,
         ),
-        colorContanier(
+        textContainer(context, 85, 0, 222, 60, 'ABOUT US', titleStyle),
+        /* text */
+        textContainer(
+          context,
+          85,
+          216,
+          554,
+          216,
+          'The main goal of Mo3awen is to help you do your physical therapy. It adds a fun element to the dull routine of working out. It will also keep the patients entertained and committed to doing their exercises.',
+          normalStyle,
+        ),
+        /* Image */
+        imageContainer(
+          context,
+          789,
+          29,
+          550,
+          556,
+          aboutUsPhoto,
+        ),
+        colorContainer(
           context,
           761,
           1,
@@ -50,91 +89,9 @@ Widget desktopView(BuildContext context) {
           612,
           0,
           Colors.transparent,
-          Color(0xff000000),
-        ),
-        aboutUs(context, 85, 0, 222, 60, 'ABOUT US', headerTxtStyle(context)),
-        aboutUs(
-            context,
-            85,
-            216,
-            554,
-            216,
-            'The main goal of Mo3awen is to help you do your physical therapy. It adds a fun element to the dull routine of working out. It will also keep the patients entertained and committed to doing their exercises.',
-            normalTxtStyle(context)),
-        Positioned(
-          left: 789 * fem,
-          top: 29 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 550 * fem,
-              height: 556 * fem,
-              child: Image.asset(
-                aboutUsPhoto,
-              ),
-            ),
-          ),
+          const Color(0xff000000),
         ),
       ],
-    ),
-  );
-}
-
-// widget aboutUs that takes left, top, width, height, text as parameters and returns position widget
-Widget aboutUs(
-  BuildContext context,
-  double left,
-  double top,
-  double width,
-  double height,
-  String text,
-  TextStyle textStyle,
-) {
-  double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
-  return Positioned(
-    left: left * fem,
-    top: top * fem,
-    child: Align(
-      child: SizedBox(
-        width: width * fem,
-        height: height * fem,
-        child: Text(
-          text,
-          style: textStyle,
-        ),
-      ),
-    ),
-  );
-}
-
-// widget blueContanier that takes left, top, width, height, text as parameters and returns position widget
-Widget colorContanier(
-  BuildContext context,
-  double left,
-  double top,
-  double width,
-  double height,
-  double borderRadius,
-  Color color,
-  Color borderColor,
-) {
-  double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
-  return Positioned(
-    left: left * fem,
-    top: top * fem,
-    child: Align(
-      child: SizedBox(
-        width: width * fem,
-        height: height * fem,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius * fem),
-            color: color,
-            border: Border.all(color: borderColor),
-          ),
-        ),
-      ),
     ),
   );
 }

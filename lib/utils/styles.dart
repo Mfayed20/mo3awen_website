@@ -73,36 +73,7 @@ TextStyle safeGoogleFont(
   }
 }
 
-// method that takes String and context as parameters and return Textstyle
-TextStyle navBttnTextStyle(BuildContext context) {
-  double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
-  return TextStyle(
-    fontFamily: 'Inter',
-    fontSize: 14 * ffem,
-    fontWeight: FontWeight.w400,
-    height: 1.2125 * ffem / fem,
-    letterSpacing: 0.56 * fem,
-    color: const Color(0xffffffff),
-  );
-}
-
-// welcome widget
-TextStyle tFFWelcomeWidget(BuildContext context) {
-  double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
-  return TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 86 * ffem,
-    fontWeight: FontWeight.w900,
-    height: 1.2125 * ffem / fem,
-    letterSpacing: -1.27 * fem,
-    color: const Color(0xff000000),
-  );
-}
-
+// ! remove this and make it as local variable in footer widget
 TextStyle footerBoldText(
     double fontSize, FontWeight fontWeight, BuildContext context) {
   double baseWidth = 1440;
@@ -117,54 +88,8 @@ TextStyle footerBoldText(
   );
 }
 
-TextStyle normalTxtStyle(BuildContext context) {
-  double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
-  return TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 24 * ffem,
-    fontWeight: FontWeight.w500,
-    height: 1.5 * ffem / fem,
-    letterSpacing: 1.56 * fem,
-    color: const Color(0xffffffff),
-  );
-}
-
-TextStyle headerTxtStyle(BuildContext context) {
-  double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
-  return TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 40 * ffem,
-    fontWeight: FontWeight.w700,
-    height: 1.5 * ffem / fem,
-    letterSpacing: 2.6 * fem,
-    color: const Color(0xff000000),
-  );
-}
-
-// HomePage: plans_widget fonts
-TextStyle txtPlansWidget(
-  BuildContext context,
-  String font,
-  double size,
-  Color color,
-) {
-  double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
-  return TextStyle(
-    fontFamily: font,
-    fontSize: size * ffem,
-    fontWeight: FontWeight.w500,
-    height: 1.2125 * ffem / fem,
-    color: color,
-  );
-}
-
-TextStyle newTxtPlansWidget(
+/* textStyle method */
+TextStyle textStyle(
   BuildContext context,
   String font,
   double size,
@@ -183,5 +108,311 @@ TextStyle newTxtPlansWidget(
     height: fontHeight * ffem / fem,
     letterSpacing: letterSpacing * fem,
     color: color,
+  );
+}
+
+/* Navigation Bar: navItem widget  */
+Widget navItem(
+  BuildContext context,
+  String title,
+  TextStyle textStyle,
+  Function() method,
+) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Container(
+    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
+    child: TextButton(
+      onPressed: method,
+      child: Text(
+        title,
+        style: textStyle,
+      ),
+    ),
+  );
+}
+
+/* Navigation Bar: navSignBttn widget */
+Widget navSignBttn(BuildContext context, String title, TextStyle textStyle,
+    Function() method) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Container(
+    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 10 * fem, 0 * fem),
+    width: 140 * fem,
+    height: double.infinity,
+    decoration: BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+          color: const Color(0x3f000000),
+          offset: Offset(0 * fem, 4 * fem),
+          blurRadius: 7 * fem,
+        ),
+      ],
+    ),
+    child: Center(
+      child: SizedBox(
+        height: 60 * fem,
+        width: 140 * fem,
+        child: ElevatedButton(
+          onPressed: method,
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: textStyle,
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+/* textCountanier method */
+Widget textContainer(
+  BuildContext context,
+  double left,
+  double top,
+  double width,
+  double height,
+  String text,
+  TextStyle textStyle,
+) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Positioned(
+    left: left * fem,
+    top: top * fem,
+    child: Align(
+      child: SizedBox(
+        width: width * fem,
+        height: height * fem,
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: textStyle,
+        ),
+      ),
+    ),
+  );
+}
+
+/* textCountanier method */
+Widget textBttnContanier(
+  BuildContext context,
+  double left,
+  double top,
+  double width,
+  double height,
+  String text,
+  TextStyle textStyle,
+  Function() onpressed,
+) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Positioned(
+    left: left * fem,
+    top: top * fem,
+    child: Align(
+      child: SizedBox(
+        width: width * fem,
+        height: height * fem,
+        child: TextButton(
+          onPressed: onpressed,
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: textStyle,
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+/* colorCountanier method */
+Widget colorContainer(
+  BuildContext context,
+  double left,
+  double top,
+  double width,
+  double height,
+  double borderRadius,
+  Color color,
+  Color borderColor,
+) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Positioned(
+    left: left * fem,
+    top: top * fem,
+    child: Align(
+      child: SizedBox(
+        width: width * fem,
+        height: height * fem,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius * fem),
+            color: color,
+            border: Border.all(color: borderColor),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+/* blurContainer method */
+Widget blurContainer(
+  BuildContext context,
+  double left,
+  double top,
+  double sigmaX,
+  double sigmaY,
+  double width,
+  double height,
+  Color color,
+) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Positioned(
+    left: left * fem,
+    top: top * fem,
+    child: ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: sigmaX * fem,
+          sigmaY: sigmaY * fem,
+        ),
+        child: Align(
+          child: SizedBox(
+            width: width * fem,
+            height: height * fem,
+            child: Container(
+              decoration: BoxDecoration(
+                color: color,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+/* elevatedBttn method */
+Widget elevatedBttn(
+  BuildContext context,
+  double left,
+  double top,
+  double width,
+  double height,
+  Color bttnColor,
+  Color borderColor,
+  double borderWidth,
+  double borderRadius,
+  Function() onPressed,
+  String text,
+  TextStyle textStyle,
+) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Positioned(
+    left: left * fem,
+    top: top * fem,
+    child: Align(
+      child: SizedBox(
+        width: width * fem,
+        height: height * fem,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: bttnColor,
+            side: BorderSide(
+              color: borderColor,
+              width: borderWidth * fem,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius * fem),
+            ),
+          ),
+          onPressed: onPressed,
+          child: Text(
+            text,
+            style: textStyle,
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+/* imageContainer */
+Widget imageContainer(
+  BuildContext context,
+  double left,
+  double top,
+  double width,
+  double height,
+  String image,
+) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Positioned(
+    left: left * fem,
+    top: top * fem,
+    child: Align(
+      child: SizedBox(
+        width: width * fem,
+        height: height * fem,
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(image),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+/* textFieldContainer */
+Widget textFieldContainer(
+  BuildContext context,
+  double left,
+  double top,
+  double width,
+  double height,
+  String hintText,
+  TextStyle style,
+  int maxLines,
+  Color bgColor,
+  Color borderColor,
+  double boderRadius,
+) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Positioned(
+    left: left * fem,
+    top: top * fem,
+    child: Align(
+      child: SizedBox(
+        width: width * fem,
+        height: height * fem,
+        child: TextField(
+          maxLines: maxLines,
+          decoration: InputDecoration(
+            hintText: hintText,
+            hintStyle: style,
+            filled: true,
+            fillColor: bgColor,
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: borderColor),
+              borderRadius: BorderRadius.circular(boderRadius),
+            ),
+          ),
+        ),
+      ),
+    ),
   );
 }

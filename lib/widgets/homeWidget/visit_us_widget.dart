@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
+import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
 class VisitUs extends StatelessWidget {
@@ -13,436 +12,255 @@ class VisitUs extends StatelessWidget {
 }
 
 Widget visitUs(BuildContext context) {
+  TextStyle titleStyle = textStyle(
+    context,
+    "Poppins",
+    40,
+    FontWeight.w700,
+    1.5,
+    0,
+    const Color(0xff000000),
+  );
+  TextStyle contactUsStyle = textStyle(
+    context,
+    "Poppins",
+    24,
+    FontWeight.w600,
+    1.5,
+    0,
+    const Color(0xff0076f9),
+  );
+  TextStyle inputHeaderStyle = textStyle(
+    context,
+    "Poppins",
+    16,
+    FontWeight.w400,
+    1.5,
+    0,
+    const Color(0xff000000),
+  );
+  TextStyle bttnTextStyle = textStyle(
+    context,
+    "Poppins",
+    18,
+    FontWeight.w400,
+    1.5,
+    0,
+    const Color(0xff000000),
+  );
+  TextStyle normalStyle = textStyle(
+    context,
+    "Poppins",
+    16,
+    FontWeight.w400,
+    1.5,
+    0,
+    const Color(0xff000000),
+  );
+  TextStyle textFieldlStyle = textStyle(
+    context,
+    "Poppins",
+    16,
+    FontWeight.w400,
+    1.5,
+    0,
+    const Color(0xff000000),
+  );
+
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
   return Container(
-    // autogrouptuj17jj (YA9S9z81qNS4EjWKb4tUJ1)
     margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 54 * fem),
     width: 1441 * fem,
     height: 961 * fem,
     child: Stack(
       children: [
-        Positioned(
-          // crossrectangleAi1 (2:130)
-          left: 0 * fem,
-          top: 0 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 1441 * fem,
-              height: 890 * fem,
-              child: Image.asset(
-                'assets/page-1/images/cross-rectangle.png',
-                width: 1441 * fem,
-                height: 890 * fem,
-              ),
-            ),
-          ),
+        /* I=images */
+        imageContainer(
+          context,
+          0,
+          0,
+          1441,
+          890,
+          visitUsPhoto,
         ),
-        Positioned(
-          // rectanglecontactus2kD (2:131)
-          left: 739 * fem,
-          top: 175 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 614 * fem,
-              height: 786 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xffffffff),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0x3f000000),
-                      offset: Offset(0 * fem, 4 * fem),
-                      blurRadius: 7 * fem,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
+        imageContainer(
+          context,
+          86,
+          367,
+          575,
+          392,
+          visitUslocationPhoto,
         ),
-        Positioned(
-          // rectangle34GuT (2:132)
-          left: 83 * fem,
-          top: 117 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 100 * fem,
-              height: 9 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4 * fem),
-                  color: Color(0xff0076f9),
-                ),
-              ),
-            ),
-          ),
+        /* Title */
+        textContainer(
+          context,
+          83,
+          45,
+          163,
+          60,
+          'VISIT US',
+          titleStyle,
         ),
-        Positioned(
-          // visitusY6H (2:133)
-          left: 83 * fem,
-          top: 45 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 163 * fem,
-              height: 60 * fem,
-              child: Text(
-                'VISIT US',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 40 * ffem,
-                  fontWeight: FontWeight.w700,
-                  height: 1.5 * ffem / fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-          ),
+        colorContainer(
+          context,
+          83,
+          117,
+          100,
+          9,
+          4,
+          const Color(0xff0076f9),
+          Colors.transparent,
         ),
-        Positioned(
-          // contactusoH7 (2:134)
-          left: 968 * fem,
-          top: 225 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 156 * fem,
-              height: 36 * fem,
-              child: Text(
-                'CONTACT US',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 24 * ffem,
-                  fontWeight: FontWeight.w600,
-                  height: 1.5 * ffem / fem,
-                  color: Color(0xff0076f9),
-                ),
-              ),
-            ),
-          ),
+        /* info, Location, email text */
+        textContainer(
+          context,
+          26,
+          280,
+          282,
+          72,
+          'Alfaisal university',
+          normalStyle,
         ),
-        Positioned(
-          // namerWH (2:135)
-          left: 819 * fem,
-          top: 309 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 52 * fem,
-              height: 24 * fem,
-              child: Text(
-                'Name:',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 16 * ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.5 * ffem / fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-          ),
+        textContainer(
+          context,
+          35,
+          300,
+          282,
+          72,
+          'Riyadh, Saudi Arabia',
+          normalStyle,
         ),
-        Positioned(
-          // alfaisaluniversityriyadhsaudia (2:136)
-          left: 85 * fem,
-          top: 279 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 282 * fem,
-              height: 72 * fem,
-              child: RichText(
-                text: TextSpan(
-                  style: safeGoogleFont(
-                    'Poppins',
-                    fontSize: 16 * ffem,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5 * ffem / fem,
-                    color: Color(0xff000000),
-                  ),
-                  children: [
-                    TextSpan(
-                      text: 'Alfaisal university\nRiyadh, Saudi Arabia\n',
-                    ),
-                    TextSpan(
-                      text: 'updownstudiosgames@gmail.com\n',
-                      style: safeGoogleFont(
-                        'Poppins',
-                        fontSize: 16 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        decoration: TextDecoration.underline,
-                        color: Color(0xff000000),
-                        decorationColor: Color(0xff000000),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
+        textContainer(
+          context,
+          85,
+          320,
+          282,
+          72,
+          'updownstudiosgames@gmail.com',
+          normalStyle,
         ),
-        Positioned(
-          // emailAhK (2:137)
-          left: 819 * fem,
-          top: 419 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 47 * fem,
-              height: 24 * fem,
-              child: Text(
-                'Email:',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 16 * ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.5 * ffem / fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-          ),
+        /* Contact Us Rectangle*/
+        colorContainer(
+          context,
+          739,
+          175,
+          614,
+          786,
+          3,
+          const Color(0xffffffff),
+          Colors.transparent,
         ),
-        Positioned(
-          // subjectdL1 (2:138)
-          left: 819 * fem,
-          top: 529 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 64 * fem,
-              height: 24 * fem,
-              child: Text(
-                'Subject:',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 16 * ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.5 * ffem / fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-          ),
+        textContainer(
+          context,
+          968,
+          225,
+          156,
+          36,
+          'CONTACT US',
+          contactUsStyle,
         ),
-        Positioned(
-          // message5C1 (2:139)
-          left: 819 * fem,
-          top: 639 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 76 * fem,
-              height: 24 * fem,
-              child: Text(
-                'Message:',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 16 * ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.5 * ffem / fem,
-                  color: Color(0xff000000),
-                ),
-              ),
-            ),
-          ),
+        textContainer(
+          context,
+          819,
+          309,
+          52,
+          24,
+          'Name:',
+          inputHeaderStyle,
         ),
-        Positioned(
-          // rectangle35Ltd (2:140)
-          left: 819 * fem,
-          top: 337 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 454 * fem,
-              height: 60 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xffe2e2e2),
-                ),
-              ),
-            ),
-          ),
+        textContainer(
+          context,
+          819,
+          419,
+          47,
+          24,
+          'Email:',
+          inputHeaderStyle,
         ),
-        Positioned(
-          // rectangle36Ez1 (2:141)
-          left: 819 * fem,
-          top: 447 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 454 * fem,
-              height: 60 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xffe2e2e2),
-                ),
-              ),
-            ),
-          ),
+        textContainer(
+          context,
+          819,
+          529,
+          64,
+          24,
+          'Subject:',
+          inputHeaderStyle,
         ),
-        Positioned(
-          // rectangle37M33 (2:142)
-          left: 819 * fem,
-          top: 557 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 454 * fem,
-              height: 60 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xffe2e2e2),
-                ),
-              ),
-            ),
-          ),
+        textContainer(
+          context,
+          819,
+          639,
+          76,
+          24,
+          'Message:',
+          inputHeaderStyle,
         ),
-        Positioned(
-          // rectangle38EsX (2:143)
-          left: 819 * fem,
-          top: 667 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 454 * fem,
-              height: 119 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xffe2e2e2),
-                ),
-              ),
-            ),
-          ),
+        textFieldContainer(
+          context,
+          819,
+          337,
+          454,
+          60,
+          'Enter your name',
+          textFieldlStyle,
+          1,
+          const Color(0xffe2e2e2),
+          Colors.transparent,
+          3,
         ),
-        Positioned(
-          // rectangle39YtD (2:144)
-          left: 1059 * fem,
-          top: 836 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 214 * fem,
-              height: 60 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xff0076f9),
-                ),
-              ),
-            ),
-          ),
+        textFieldContainer(
+          context,
+          819,
+          447,
+          454,
+          60,
+          'Enter your email',
+          textFieldlStyle,
+          1,
+          const Color(0xffe2e2e2),
+          Colors.transparent,
+          3,
         ),
-        Positioned(
-          // enteryourname45s (2:145)
-          left: 880 * fem,
-          top: 355 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 132 * fem,
-              height: 24 * fem,
-              child: Text(
-                'Enter your name',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 16 * ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.5 * ffem / fem,
-                  color: Color(0x7f000000),
-                ),
-              ),
-            ),
-          ),
+        textFieldContainer(
+          context,
+          819,
+          557,
+          454,
+          60,
+          'Enter your subject',
+          textFieldlStyle,
+          1,
+          const Color(0xffe2e2e2),
+          Colors.transparent,
+          3,
         ),
-        Positioned(
-          // enteryouremail7K3 (2:146)
-          left: 880 * fem,
-          top: 465 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 130 * fem,
-              height: 24 * fem,
-              child: Text(
-                'Enter your email',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 16 * ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.5 * ffem / fem,
-                  color: Color(0x7f000000),
-                ),
-              ),
-            ),
-          ),
+        textFieldContainer(
+          context,
+          819,
+          667,
+          454,
+          119,
+          'Enter your message',
+          textFieldlStyle,
+          5,
+          const Color(0xffe2e2e2),
+          Colors.transparent,
+          3,
         ),
-        Positioned(
-          // enteryoursubjectYfF (2:147)
-          left: 880 * fem,
-          top: 575 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 143 * fem,
-              height: 24 * fem,
-              child: Text(
-                'Enter your subject',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 16 * ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.5 * ffem / fem,
-                  color: Color(0x7f000000),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          // enteryourmessageQSZ (2:148)
-          left: 880 * fem,
-          top: 685 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 159 * fem,
-              height: 24 * fem,
-              child: Text(
-                'Enter your message',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 16 * ffem,
-                  fontWeight: FontWeight.w400,
-                  height: 1.5 * ffem / fem,
-                  color: Color(0x7f000000),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          // submitGjf (2:149)
-          left: 1133 * fem,
-          top: 853 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 67 * fem,
-              height: 27 * fem,
-              child: Text(
-                'SUBMIT',
-                style: safeGoogleFont(
-                  'Poppins',
-                  fontSize: 18 * ffem,
-                  fontWeight: FontWeight.w600,
-                  height: 1.5 * ffem / fem,
-                  color: Color(0x7f000000),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          // map1w57 (2:150)
-          left: 86 * fem,
-          top: 367 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 575 * fem,
-              height: 392 * fem,
-              child: Image.asset(
-                'assets/page-1/images/map-1-dwK.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+        elevatedBttn(
+          context,
+          1059,
+          836,
+          214,
+          60,
+          const Color(0xff0076f9),
+          Colors.transparent,
+          0,
+          3,
+          () {},
+          'SUBMIT',
+          bttnTextStyle,
         ),
       ],
     ),

@@ -131,22 +131,6 @@ Widget desktopView(BuildContext context) {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Container(
-              //   // themaingoalofmo3awenistohelpyo (2:48)
-              //   constraints: BoxConstraints(
-              //     maxWidth: 200 * fem,
-              //   ),
-              //   child: Text(
-              //     'The main goal of Mo3awen is to \nhelp you do your physical therapy.\nIt adds a fun element to the dull \nroutine of working out.',
-              //     style: safeGoogleFont(
-              //       'Poppins',
-              //       fontSize: 14 * ffem,
-              //       fontWeight: FontWeight.w400,
-              //       height: 1.5 * ffem / fem,
-              //       color: Color(0xff000000),
-              //     ),
-              //   ),
-              // ),
               footerboldtext(
                   0,
                   0,

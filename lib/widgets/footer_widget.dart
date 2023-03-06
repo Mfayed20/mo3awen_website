@@ -131,22 +131,31 @@ Widget desktopView(BuildContext context) {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                // themaingoalofmo3awenistohelpyo (2:48)
-                constraints: BoxConstraints(
-                  maxWidth: 241 * fem,
-                ),
-                child: Text(
-                  'The main goal of Mo3awen is to \nhelp you do your physical therapy.\nIt adds a fun element to the dull \nroutine of working out.',
-                  style: safeGoogleFont(
-                    'Poppins',
-                    fontSize: 14 * ffem,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5 * ffem / fem,
-                    color: Color(0xff000000),
-                  ),
-                ),
-              ),
+              // Container(
+              //   // themaingoalofmo3awenistohelpyo (2:48)
+              //   constraints: BoxConstraints(
+              //     maxWidth: 200 * fem,
+              //   ),
+              //   child: Text(
+              //     'The main goal of Mo3awen is to \nhelp you do your physical therapy.\nIt adds a fun element to the dull \nroutine of working out.',
+              //     style: safeGoogleFont(
+              //       'Poppins',
+              //       fontSize: 14 * ffem,
+              //       fontWeight: FontWeight.w400,
+              //       height: 1.5 * ffem / fem,
+              //       color: Color(0xff000000),
+              //     ),
+              //   ),
+              // ),
+              footerboldtext(
+                  0,
+                  0,
+                  0,
+                  0,
+                  "The main goal of Mo3awen is to \nhelp you do your physical therapy.\nIt adds a fun element to the dull \nroutine of working out.",
+                  16,
+                  FontWeight.w400,
+                  context),
               Container(
                 // autogroupxcvzMzd (YA9XRkWCZvu3LJdXZWXcvZ)
                 padding:
@@ -180,7 +189,7 @@ Widget desktopView(BuildContext context) {
                         Container(
                           // autogroupmtr9PK3 (YA9WyvutbgBRQKbPNqMtr9)
                           margin: EdgeInsets.fromLTRB(
-                              50 * fem, 0 * fem, 70 * fem, 0 * fem),
+                              100 * fem, 0 * fem, 50 * fem, 0 * fem),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -196,7 +205,7 @@ Widget desktopView(BuildContext context) {
                             Container(
                               // autogroupk1fsuwb (YA9X7gByzMPuaiWEESK1fs)
                               margin: EdgeInsets.fromLTRB(
-                                  50 * fem, 4 * fem, 24.27 * fem, 0 * fem),
+                                  40 * fem, 4 * fem, 20.27 * fem, 0 * fem),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [

@@ -88,7 +88,7 @@ Widget desktopView(BuildContext context) {
                         children: [
                           footerboldtext(0, 0, 0, 14, "Quick Links", 16,
                               FontWeight.w700, context),
-                          footerbluelane(context)
+                          footerbluelane(context),
                         ],
                       ),
                     ),
@@ -127,7 +127,7 @@ Widget desktopView(BuildContext context) {
           // autogroup2bokgk5 (YA9WWShgxFA9c5eijH2BoK)
           margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 29 * fem, 0 * fem),
           width: double.infinity,
-          height: 84 * fem,
+          height: 150 * fem,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -155,155 +155,161 @@ Widget desktopView(BuildContext context) {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      // autogroupwaqtfEd (YA9WqWzEwL3UUd7w8swaqT)
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 170 * fem, 0 * fem),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          footerNavItem(10, 0, 0, 0, "Excercises", 16,
-                              FontWeight.w400, printHello, context),
-                          footerNavItem(0, 0, 0, 0, "plans", 16,
-                              FontWeight.w400, printHello, context),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      // autogroupmtr9PK3 (YA9WyvutbgBRQKbPNqMtr9)
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 154 * fem, 0 * fem),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          footerNavItem(10, 0, 0, 0, "Excercises", 16,
-                              FontWeight.w400, printHello, context),
-                          footerNavItem(0, 0, 0, 0, "Plans", 16,
-                              FontWeight.w400, printHello, context),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      // autogroupk1fsuwb (YA9X7gByzMPuaiWEESK1fs)
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 4 * fem, 24.27 * fem, 0 * fem),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          footerimages(
-                              0,
-                              0,
-                              0.52,
-                              26,
-                              15.2,
-                              20,
-                              'assets/page-1/images/phone-icon-L7X.png',
-                              context),
-                          footerimages(0, 0, 0, 0, 17.73, 12,
-                              'assets/page-1/images/vector-oGq.png', context),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      // autogroupg8vbczR (YA9XFRU5P2cPm7R563G8Vb)
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            // MSD (2:63)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 5 * fem, 0 * fem, 18 * fem),
-                            child: RichText(
-                              text: TextSpan(
-                                style: safeGoogleFont(
-                                  'Poppins',
-                                  fontSize: 16 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.5 * ffem / fem,
-                                  decoration: TextDecoration.underline,
-                                  color: Color(0xff000000),
-                                  decorationColor: Color(0xff000000),
-                                ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          height: double.maxFinite,
+                          // autogroupwaqtfEd (YA9WqWzEwL3UUd7w8swaqT)
+                          margin: EdgeInsets.fromLTRB(
+                              0 * fem, 0 * fem, 50 * fem, 0 * fem),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              footerNavItem(0, 0, 0, 0, "Excercises", 16,
+                                  FontWeight.w400, printHello, context),
+                              footerNavItem(0, 0, 0, 0, "plans", 16,
+                                  FontWeight.w400, printHello, context),
+                              footerNavItem(0, 0, 0, 0, "About us", 16,
+                                  FontWeight.w400, printHello, context),
+                              footerNavItem(0, 0, 0, 0, "Contact us", 16,
+                                  FontWeight.w400, printHello, context),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          // autogroupmtr9PK3 (YA9WyvutbgBRQKbPNqMtr9)
+                          margin: EdgeInsets.fromLTRB(
+                              50 * fem, 0 * fem, 70 * fem, 0 * fem),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              footerNavItem(0, 0, 0, 0, "Excercises", 16,
+                                  FontWeight.w400, printHello, context),
+                              footerNavItem(0, 0, 0, 0, "Plans", 16,
+                                  FontWeight.w400, printHello, context),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              // autogroupk1fsuwb (YA9X7gByzMPuaiWEESK1fs)
+                              margin: EdgeInsets.fromLTRB(
+                                  50 * fem, 4 * fem, 24.27 * fem, 0 * fem),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  TextSpan(
-                                    text: '(',
-                                  ),
-                                  TextSpan(
-                                    text: '123)-566-76615',
-                                    style: safeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 16 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.5 * ffem / fem,
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xff000000),
-                                      decorationColor: Color(0xff000000),
-                                    ),
-                                  ),
+                                  footerimages(
+                                      0,
+                                      0,
+                                      0.52,
+                                      26,
+                                      15.2,
+                                      20,
+                                      'assets/page-1/images/phone-icon-L7X.png',
+                                      context),
+                                  footerimages(
+                                      0,
+                                      0,
+                                      0,
+                                      29,
+                                      17.73,
+                                      12,
+                                      'assets/page-1/images/vector-oGq.png',
+                                      context),
+                                  footerimages(
+                                      0,
+                                      0,
+                                      0,
+                                      0,
+                                      12.37,
+                                      20,
+                                      'assets/page-1/images/vector-P1X.png',
+                                      context),
                                 ],
                               ),
                             ),
-                          ),
-                          footerboldtext(
-                              0,
-                              4,
-                              0,
-                              0,
-                              "updownstudiosgames@gmail.com",
-                              16,
-                              FontWeight.w400,
-                              context),
-                        ],
-                      ),
+                            Container(
+                              // autogroupg8vbczR (YA9XFRU5P2cPm7R563G8Vb)
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    // MSD (2:63)
+                                    margin: EdgeInsets.fromLTRB(
+                                        0 * fem, 5 * fem, 0 * fem, 18 * fem),
+                                    child: RichText(
+                                      text: TextSpan(
+                                        style: safeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 16 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.5 * ffem / fem,
+                                          decoration: TextDecoration.underline,
+                                          color: Color(0xff000000),
+                                          decorationColor: Color(0xff000000),
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text: '(',
+                                          ),
+                                          TextSpan(
+                                            text: '123)-566-76615',
+                                            style: safeGoogleFont(
+                                              'Poppins',
+                                              fontSize: 16 * ffem,
+                                              fontWeight: FontWeight.w400,
+                                              height: 1.5 * ffem / fem,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              color: Color(0xff000000),
+                                              decorationColor:
+                                                  Color(0xff000000),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  footerboldtext(
+                                      0,
+                                      4,
+                                      0,
+                                      15,
+                                      "updownstudiosgames@gmail.com",
+                                      16,
+                                      FontWeight.w400,
+                                      context),
+                                  footerboldtext(
+                                      0,
+                                      4,
+                                      0,
+                                      0,
+                                      "Alfaisal university, Riyadh, Saudi Arabia",
+                                      16,
+                                      FontWeight.w400,
+                                      context),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
-        ),
-        Container(
-          // autogrouplpffnR3 (YA9Y59bYyy8Yjg4X4pLpfF)
-          margin: EdgeInsets.fromLTRB(344 * fem, 0 * fem, 0 * fem, 0 * fem),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              footerNavItem(0, 0, 263, 0, "About us", 16, FontWeight.w400,
-                  printHello, context),
-              footerimages(184, 0, 26.63, 0, 12.37, 20,
-                  'assets/page-1/images/vector-P1X.png', context),
-              footerboldtext(
-                  0,
-                  4,
-                  0,
-                  0,
-                  "Alfaisal university, Riyadh, Saudi Arabia",
-                  16,
-                  FontWeight.w400,
-                  context),
             ],
           ),
         ),
         Container(
           // autogroupxh332cD (YA9YJosTXE2W3P62U3xH33)
-          margin: EdgeInsets.fromLTRB(344 * fem, 0 * fem, 0 * fem, 6 * fem),
+          margin: EdgeInsets.fromLTRB(650 * fem, 0 * fem, 0 * fem, 6 * fem),
           height: 66 * fem,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                // autogroup1lgdX3B (YA9YYPKAn2JmkgAhwk1LGD)
-                margin:
-                    EdgeInsets.fromLTRB(0 * fem, 0 * fem, 218 * fem, 0 * fem),
-                height: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    footerNavItem(0, 0, 0, 18, "Contact us", 16,
-                        FontWeight.w400, printHello, context),
-                  ],
-                ),
-              ),
               footerNavImages(
                   250,
                   6,
@@ -407,9 +413,13 @@ Widget footerNavItem(
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
   return Container(
+    height: fem * 30,
     margin:
         EdgeInsets.fromLTRB(left * fem, top * fem, right * fem, bottom * fem),
     child: TextButton(
+        style: TextButton.styleFrom(
+          alignment: Alignment.centerLeft,
+        ),
         onPressed: method,
         child:
             Text(text, style: footerBoldText(fontSize, fontWeight, context))),

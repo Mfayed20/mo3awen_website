@@ -61,9 +61,9 @@ Widget desktopView(BuildContext context) {
           const Color(0xff0076f9),
           Colors.transparent,
         ),
-        textContainer(context, 85, 0, 222, 60, 'ABOUT US', titleStyle),
+        textPositioned(context, 85, 0, 222, 60, 'ABOUT US', titleStyle),
         /* text */
-        textContainer(
+        textPositioned(
           context,
           85,
           216,

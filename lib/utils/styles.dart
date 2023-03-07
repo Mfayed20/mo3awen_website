@@ -168,7 +168,7 @@ Widget navSignBttnContainer(BuildContext context, String title,
 }
 
 /* textCountanier method */
-Widget textContainer(
+Widget textPositioned(
   BuildContext context,
   double left,
   double top,

@@ -77,7 +77,7 @@ Widget desktopPlans(BuildContext context) {
           plansPhoto,
         ),
         /* Title*/
-        textContainer(
+        textPositioned(
           context,
           85,
           0,
@@ -107,7 +107,7 @@ Widget desktopPlans(BuildContext context) {
           580,
           const Color(0x4cc5c5c5),
         ),
-        textContainer(
+        textPositioned(
           context,
           221,
           281.5,
@@ -116,7 +116,7 @@ Widget desktopPlans(BuildContext context) {
           '6 MONTH',
           durationStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           224,
           348.5,
@@ -125,7 +125,7 @@ Widget desktopPlans(BuildContext context) {
           '5% Discount',
           normalStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           187,
           409,
@@ -134,7 +134,7 @@ Widget desktopPlans(BuildContext context) {
           '5000',
           priceStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           383,
           418.5,
@@ -143,7 +143,7 @@ Widget desktopPlans(BuildContext context) {
           'Riyal',
           normalStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           195,
           558.5,
@@ -187,7 +187,7 @@ Widget desktopPlans(BuildContext context) {
           580,
           const Color(0x4cc5c5c5),
         ),
-        textContainer(
+        textPositioned(
           context,
           667,
           73.5,
@@ -196,7 +196,7 @@ Widget desktopPlans(BuildContext context) {
           '1 YEAR',
           durationStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           644,
           140.5,
@@ -205,7 +205,7 @@ Widget desktopPlans(BuildContext context) {
           '10% Discount',
           normalStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           613,
           201,
@@ -214,7 +214,7 @@ Widget desktopPlans(BuildContext context) {
           '9000',
           priceStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           811,
           213.5,
@@ -223,7 +223,7 @@ Widget desktopPlans(BuildContext context) {
           'Riyal',
           normalStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           619,
           350.5,
@@ -267,7 +267,7 @@ Widget desktopPlans(BuildContext context) {
           580,
           const Color(0x4cc5c5c5),
         ),
-        textContainer(
+        textPositioned(
           context,
           1094,
           281.5,
@@ -276,7 +276,7 @@ Widget desktopPlans(BuildContext context) {
           '2 YEAR',
           durationStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           1071,
           348.5,
@@ -285,7 +285,7 @@ Widget desktopPlans(BuildContext context) {
           '20% Discount',
           normalStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           1022,
           409,
@@ -294,7 +294,7 @@ Widget desktopPlans(BuildContext context) {
           '16000',
           priceStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           1258,
           418.5,
@@ -303,7 +303,7 @@ Widget desktopPlans(BuildContext context) {
           'Riyal',
           normalStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           1048,
           558.5,

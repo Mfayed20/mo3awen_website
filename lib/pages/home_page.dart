@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import '../widgets/SignUpInPage/sign_up_in_widget.dart';
+import '../widgets/exercisePage/exercise_widget.dart';
 import '../widgets/footer_widget.dart';
 import '../widgets/homePage/plans_widget.dart';
 import '../widgets/homePage/visit_us_widget.dart';
@@ -16,9 +19,11 @@ class Home extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          // ignore: prefer_const_literals_to_create_immutables
           children: [
-            homePage()
+            // homePage(),
             // SignUpIn(),
+            exercisePage(),
           ],
         ),
       ),
@@ -35,6 +40,19 @@ Widget homePage() {
         AboutUs(),
         Plans(),
         VisitUs(),
+        Footer(),
+      ],
+    ),
+  );
+}
+
+// widget ExercisePage
+Widget exercisePage() {
+  return SingleChildScrollView(
+    child: Column(
+      children: const [
+        NavBar(),
+        Exercises(),
         Footer(),
       ],
     ),

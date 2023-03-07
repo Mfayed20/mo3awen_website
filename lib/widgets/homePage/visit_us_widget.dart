@@ -93,7 +93,7 @@ Widget visitUs(BuildContext context) {
           visitUslocationPhoto,
         ),
         /* Title */
-        textContainer(
+        textPositioned(
           context,
           83,
           45,
@@ -113,7 +113,7 @@ Widget visitUs(BuildContext context) {
           Colors.transparent,
         ),
         /* info, Location, email text */
-        textContainer(
+        textPositioned(
           context,
           26,
           280,
@@ -122,7 +122,7 @@ Widget visitUs(BuildContext context) {
           'Alfaisal university',
           normalStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           35,
           300,
@@ -131,7 +131,7 @@ Widget visitUs(BuildContext context) {
           'Riyadh, Saudi Arabia',
           normalStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           85,
           320,
@@ -151,7 +151,7 @@ Widget visitUs(BuildContext context) {
           const Color(0xffffffff),
           Colors.transparent,
         ),
-        textContainer(
+        textPositioned(
           context,
           968,
           225,
@@ -160,7 +160,7 @@ Widget visitUs(BuildContext context) {
           'CONTACT US',
           contactUsStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           819,
           309,
@@ -169,7 +169,7 @@ Widget visitUs(BuildContext context) {
           'Name:',
           inputHeaderStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           819,
           419,
@@ -178,7 +178,7 @@ Widget visitUs(BuildContext context) {
           'Email:',
           inputHeaderStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           819,
           529,
@@ -187,7 +187,7 @@ Widget visitUs(BuildContext context) {
           'Subject:',
           inputHeaderStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           819,
           639,

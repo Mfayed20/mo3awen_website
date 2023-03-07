@@ -67,7 +67,7 @@ Widget mainTabletDesktop(BuildContext context) {
           welcomeHomePage,
         ),
         /* first text */
-        textContainer(
+        textPositioned(
           context,
           82,
           313,
@@ -77,7 +77,7 @@ Widget mainTabletDesktop(BuildContext context) {
           firstTxtStyle,
         ),
         /* second text */
-        textContainer(
+        textPositioned(
           context,
           84,
           442,
@@ -97,7 +97,7 @@ Widget mainTabletDesktop(BuildContext context) {
           const Color(0xffffffff),
           Colors.transparent,
         ),
-        textContainer(
+        textPositioned(
           context,
           114,
           562,

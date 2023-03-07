@@ -52,3 +52,9 @@ const String aboutUsbgimg1 =
     'assets/page-1/images/hero-section-for-about-us.png';
 const String aboutUsbgimg2 =
     'assets/page-1/images/b7a2665c-978e-46cf-83ed-7b46f77ed88f-1.png';
+
+// Plans: plans_widget
+const String plansbgimg = 'assets/page-1/images/hero-section-image-wND.png';
+
+// ContactUs: contact_us
+const String contactUsbgimg = 'assets/page-1/images/hero-section-image-Evq.png';

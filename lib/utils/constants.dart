@@ -39,3 +39,6 @@ const String exerciseloginimg2 =
     'assets/page-1/images/rectangle-02-eye-cordination-bg.png';
 const String exerciseloginimg3 =
     'assets/page-1/images/rectangle-01-hand-stretch-bg.png';
+
+// Plans: plans_widget
+const String plansbgimg = 'assets/page-1/images/hero-section-image-wND.png';

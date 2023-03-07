@@ -9,6 +9,7 @@ import '../widgets/homePage/visit_us_widget.dart';
 import '../widgets/homePage/welcome_widget.dart';
 import '../widgets/nav_bar.dart';
 import '../widgets/homePage/about_us_widget.dart';
+import '../widgets/plansPage/plans_widget.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -23,7 +24,8 @@ class Home extends StatelessWidget {
           children: [
             // homePage(),
             // SignUpIn(),
-            exercisePage(),
+            // exercisePage(),
+            plansPage(),
           ],
         ),
       ),
@@ -53,6 +55,20 @@ Widget exercisePage() {
       children: const [
         NavBar(),
         Exercises(),
+        Footer(),
+      ],
+    ),
+  );
+}
+
+// widget PlansPage
+Widget plansPage() {
+  return SingleChildScrollView(
+    child: Column(
+      children: const [
+        NavBar(),
+        Planspage(),
+        Plans(),
         Footer(),
       ],
     ),

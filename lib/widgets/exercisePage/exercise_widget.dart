@@ -146,28 +146,12 @@ class Exercises extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
-                  // rectangle15ay8 (0:70)
-                  left: 806 * fem,
-                  top: 0 * fem,
-                  child: Align(
-                    child: SizedBox(
-                      width: 550 * fem,
-                      height: 580 * fem,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xff0076f9),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0x4c000000),
-                              offset: Offset(0 * fem, 0 * fem),
-                              blurRadius: 7 * fem,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                colorBoxWidget(
+                  context,
+                  806,
+                  0,
+                  550,
+                  580,
                 ),
                 textWidget(
                     context,

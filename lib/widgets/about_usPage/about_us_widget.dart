@@ -114,7 +114,7 @@ Widget desktopView(BuildContext context) {
         Container(
           // autogroupua9q5ke (UTiod33qZ9MAvkJjGdUa9Q)
           width: 1441 * fem,
-          height: 1080 * fem,
+          height: 800 * fem,
           child: Stack(
             children: [
               Positioned(

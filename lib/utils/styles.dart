@@ -112,7 +112,7 @@ TextStyle textStyle(
 }
 
 /* Navigation Bar: navItem widget  */
-Widget navItem(
+Widget navItemContainer(
   BuildContext context,
   String title,
   TextStyle textStyle,
@@ -133,8 +133,8 @@ Widget navItem(
 }
 
 /* Navigation Bar: navSignBttn widget */
-Widget navSignBttn(BuildContext context, String title, TextStyle textStyle,
-    Function() method) {
+Widget navSignBttnContainer(BuildContext context, String title,
+    TextStyle textStyle, Function() method) {
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
   return Container(
@@ -168,7 +168,7 @@ Widget navSignBttn(BuildContext context, String title, TextStyle textStyle,
 }
 
 /* textCountanier method */
-Widget textContainer(
+Widget textPositioned(
   BuildContext context,
   double left,
   double top,
@@ -197,7 +197,7 @@ Widget textContainer(
 }
 
 /* textCountanier method */
-Widget textBttnContanier(
+Widget textBttnPositioned(
   BuildContext context,
   double left,
   double top,
@@ -230,7 +230,7 @@ Widget textBttnContanier(
 }
 
 /* colorCountanier method */
-Widget colorContainer(
+Widget colorPositioned(
   BuildContext context,
   double left,
   double top,
@@ -262,7 +262,7 @@ Widget colorContainer(
 }
 
 /* blurContainer method */
-Widget blurContainer(
+Widget blurPositioned(
   BuildContext context,
   double left,
   double top,
@@ -300,7 +300,7 @@ Widget blurContainer(
 }
 
 /* elevatedBttn method */
-Widget elevatedBttn(
+Widget elevatedBttnPositioned(
   BuildContext context,
   double left,
   double top,
@@ -346,7 +346,7 @@ Widget elevatedBttn(
 }
 
 /* imageContainer */
-Widget imageContainer(
+Widget imagepositioned(
   BuildContext context,
   double left,
   double top,
@@ -377,7 +377,7 @@ Widget imageContainer(
 }
 
 /* textFieldContainer */
-Widget textFieldContainer(
+Widget textFieldPositioned(
   BuildContext context,
   double left,
   double top,
@@ -413,6 +413,23 @@ Widget textFieldContainer(
           ),
         ),
       ),
+    ),
+  );
+}
+
+Widget imageContainer(BuildContext context, double left, double top,
+    double right, double bottom, double width, double height, String image) {
+  double baseWidth = 1440;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  return Container(
+    margin:
+        EdgeInsets.fromLTRB(left * fem, top * fem, right * fem, bottom * fem),
+    width: width * fem,
+    height: height * fem,
+    child: Image.asset(
+      image,
+      // width: width * fem,
+      // height: height * fem,
     ),
   );
 }

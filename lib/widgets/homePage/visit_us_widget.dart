@@ -76,7 +76,7 @@ Widget visitUs(BuildContext context) {
     child: Stack(
       children: [
         /* I=images */
-        imageContainer(
+        imagepositioned(
           context,
           0,
           0,
@@ -84,7 +84,7 @@ Widget visitUs(BuildContext context) {
           890,
           visitUsPhoto,
         ),
-        imageContainer(
+        imagepositioned(
           context,
           86,
           367,
@@ -93,7 +93,7 @@ Widget visitUs(BuildContext context) {
           visitUslocationPhoto,
         ),
         /* Title */
-        textContainer(
+        textPositioned(
           context,
           83,
           45,
@@ -102,7 +102,7 @@ Widget visitUs(BuildContext context) {
           'VISIT US',
           titleStyle,
         ),
-        colorContainer(
+        colorPositioned(
           context,
           83,
           117,
@@ -113,7 +113,7 @@ Widget visitUs(BuildContext context) {
           Colors.transparent,
         ),
         /* info, Location, email text */
-        textContainer(
+        textPositioned(
           context,
           26,
           280,
@@ -122,7 +122,7 @@ Widget visitUs(BuildContext context) {
           'Alfaisal university',
           normalStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           35,
           300,
@@ -131,7 +131,7 @@ Widget visitUs(BuildContext context) {
           'Riyadh, Saudi Arabia',
           normalStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           85,
           320,
@@ -141,7 +141,7 @@ Widget visitUs(BuildContext context) {
           normalStyle,
         ),
         /* Contact Us Rectangle*/
-        colorContainer(
+        colorPositioned(
           context,
           739,
           175,
@@ -151,7 +151,7 @@ Widget visitUs(BuildContext context) {
           const Color(0xffffffff),
           Colors.transparent,
         ),
-        textContainer(
+        textPositioned(
           context,
           968,
           225,
@@ -160,7 +160,7 @@ Widget visitUs(BuildContext context) {
           'CONTACT US',
           contactUsStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           819,
           309,
@@ -169,7 +169,7 @@ Widget visitUs(BuildContext context) {
           'Name:',
           inputHeaderStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           819,
           419,
@@ -178,7 +178,7 @@ Widget visitUs(BuildContext context) {
           'Email:',
           inputHeaderStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           819,
           529,
@@ -187,7 +187,7 @@ Widget visitUs(BuildContext context) {
           'Subject:',
           inputHeaderStyle,
         ),
-        textContainer(
+        textPositioned(
           context,
           819,
           639,
@@ -196,7 +196,7 @@ Widget visitUs(BuildContext context) {
           'Message:',
           inputHeaderStyle,
         ),
-        textFieldContainer(
+        textFieldPositioned(
           context,
           819,
           337,
@@ -209,7 +209,7 @@ Widget visitUs(BuildContext context) {
           Colors.transparent,
           3,
         ),
-        textFieldContainer(
+        textFieldPositioned(
           context,
           819,
           447,
@@ -222,7 +222,7 @@ Widget visitUs(BuildContext context) {
           Colors.transparent,
           3,
         ),
-        textFieldContainer(
+        textFieldPositioned(
           context,
           819,
           557,
@@ -235,7 +235,7 @@ Widget visitUs(BuildContext context) {
           Colors.transparent,
           3,
         ),
-        textFieldContainer(
+        textFieldPositioned(
           context,
           819,
           667,
@@ -248,7 +248,7 @@ Widget visitUs(BuildContext context) {
           Colors.transparent,
           3,
         ),
-        elevatedBttn(
+        elevatedBttnPositioned(
           context,
           1059,
           836,

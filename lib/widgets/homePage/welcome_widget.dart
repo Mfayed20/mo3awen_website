@@ -58,7 +58,7 @@ Widget mainTabletDesktop(BuildContext context) {
     child: Stack(
       children: [
         /* Image */
-        imageContainer(
+        imagepositioned(
           context,
           0,
           0,
@@ -67,7 +67,7 @@ Widget mainTabletDesktop(BuildContext context) {
           welcomeHomePage,
         ),
         /* first text */
-        textContainer(
+        textPositioned(
           context,
           82,
           313,
@@ -77,7 +77,7 @@ Widget mainTabletDesktop(BuildContext context) {
           firstTxtStyle,
         ),
         /* second text */
-        textContainer(
+        textPositioned(
           context,
           84,
           442,
@@ -87,7 +87,7 @@ Widget mainTabletDesktop(BuildContext context) {
           mainTextStyle,
         ),
         /* first text and contanier*/
-        colorContainer(
+        colorPositioned(
           context,
           85,
           552,
@@ -97,7 +97,7 @@ Widget mainTabletDesktop(BuildContext context) {
           const Color(0xffffffff),
           Colors.transparent,
         ),
-        textContainer(
+        textPositioned(
           context,
           114,
           562,
@@ -107,7 +107,7 @@ Widget mainTabletDesktop(BuildContext context) {
           thirdTxtStyle,
         ),
         /* browse exercise Bttn*/
-        elevatedBttn(
+        elevatedBttnPositioned(
             context,
             235,
             663,

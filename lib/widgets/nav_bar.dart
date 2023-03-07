@@ -59,11 +59,11 @@ Widget navBarTabletDesktop(BuildContext context) {
         /* Navigation items */
         Row(
           children: [
-            navItem(context, "Home", navItemStyle, printHello),
-            navItem(context, "Exercises", navItemStyle, printHello),
-            navItem(context, "Plans", navItemStyle, printHello),
-            navItem(context, "About", navItemStyle, printHello),
-            navItem(context, "Contact", navItemStyle, printHello),
+            navItemContainer(context, "Home", navItemStyle, printHello),
+            navItemContainer(context, "Exercises", navItemStyle, printHello),
+            navItemContainer(context, "Plans", navItemStyle, printHello),
+            navItemContainer(context, "About", navItemStyle, printHello),
+            navItemContainer(context, "Contact", navItemStyle, printHello),
           ],
         ),
         /* empty container */
@@ -73,8 +73,8 @@ Widget navBarTabletDesktop(BuildContext context) {
         /* Sign In/Up button */
         SizedBox(
             height: 35 * fem,
-            child:
-                navSignBttn(context, "Sign In/Up", navBttnStyle, printHello)),
+            child: navSignBttnContainer(
+                context, "Sign In/Up", navBttnStyle, printHello)),
       ],
     ),
   );

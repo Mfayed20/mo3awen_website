@@ -1,5 +1,5 @@
 // NavBar: navBar_widget
-const String navBarLogo = 'assets/page-1/images/logo-navigation-bar-f7b.png';
+const String navBarLogo = 'assets/page-1/images/Picture3.png';
 
 // Homepage: welcome_widget
 const String welcomeHomePage = 'assets/page-1/images/hero-section-image-bg.png';
@@ -23,3 +23,19 @@ const String footerlogoimglatterA = 'assets/page-1/images/vector-Hss.png';
 const String footerlogoimglatterW = 'assets/page-1/images/vector.png';
 const String footerlogoimglatterE = 'assets/page-1/images/vector-s41.png';
 const String footerlogoimglatterN = 'assets/page-1/images/vector-guK.png';
+
+// SignUpIn: SignUpIn_widget
+const String signlogoimg = 'assets/page-1/images/Picture3.png';
+const String signbgimg = 'assets/page-1/images/rectangle-53-bg-1au.png';
+const String signcloseicon = 'assets/page-1/images/icon-close.png';
+
+// Exercise: exercise_widget
+const String exercisebgimg1 = 'assets/page-1/images/hero-section-image.png';
+const String exercisebgimg2 = 'assets/page-1/images/rectangle-41.png';
+const String exercisebgimg3 = 'assets/page-1/images/rectangle-40.png';
+const String exerciseloginimg1 =
+    'assets/page-1/images/rectangle-01-hand-stretch-bg-MCZ.png';
+const String exerciseloginimg2 =
+    'assets/page-1/images/rectangle-02-eye-cordination-bg.png';
+const String exerciseloginimg3 =
+    'assets/page-1/images/rectangle-01-hand-stretch-bg.png';

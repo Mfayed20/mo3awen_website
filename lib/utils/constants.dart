@@ -1,5 +1,5 @@
 // NavBar: navBar_widget
-const String navBarLogo = 'assets/page-1/images/logo-navigation-bar-f7b.png';
+const String navBarLogo = 'assets/page-1/images/Picture3.png';
 
 // Homepage: welcome_widget
 const String welcomeHomePage = 'assets/page-1/images/hero-section-image-bg.png';
@@ -23,3 +23,8 @@ const String footerlogoimglatterA = 'assets/page-1/images/vector-Hss.png';
 const String footerlogoimglatterW = 'assets/page-1/images/vector.png';
 const String footerlogoimglatterE = 'assets/page-1/images/vector-s41.png';
 const String footerlogoimglatterN = 'assets/page-1/images/vector-guK.png';
+
+// SignUpIn: SignUpIn_widget
+const String signlogoimg = 'assets/page-1/images/Picture3.png';
+const String signbgimg = 'assets/page-1/images/rectangle-53-bg-1au.png';
+const String signcloseicon = 'assets/page-1/images/icon-close.png';

@@ -68,7 +68,7 @@ Widget desktopPlans(BuildContext context) {
     child: Stack(
       children: [
         /* Image */
-        imageContainer(
+        imagepositioned(
           context,
           0,
           162,
@@ -86,7 +86,7 @@ Widget desktopPlans(BuildContext context) {
           'PLANS',
           titleStyle,
         ),
-        colorContainer(
+        colorPositioned(
           context,
           85,
           72,
@@ -97,7 +97,7 @@ Widget desktopPlans(BuildContext context) {
           Colors.transparent,
         ),
         /* first plan item*/
-        blurContainer(
+        blurPositioned(
           context,
           86,
           216,
@@ -152,7 +152,7 @@ Widget desktopPlans(BuildContext context) {
           'Valid for 6 month',
           normalStyle,
         ),
-        colorContainer(
+        colorPositioned(
           context,
           105,
           235,
@@ -162,7 +162,7 @@ Widget desktopPlans(BuildContext context) {
           Colors.transparent,
           const Color(0xff000000),
         ),
-        elevatedBttn(
+        elevatedBttnPositioned(
           context,
           168,
           641,
@@ -177,7 +177,7 @@ Widget desktopPlans(BuildContext context) {
           textBttnStyle,
         ),
         /* secound plan item*/
-        blurContainer(
+        blurPositioned(
           context,
           512,
           8,
@@ -232,7 +232,7 @@ Widget desktopPlans(BuildContext context) {
           'Valid for one year',
           normalStyle,
         ),
-        colorContainer(
+        colorPositioned(
           context,
           531,
           27,
@@ -242,7 +242,7 @@ Widget desktopPlans(BuildContext context) {
           Colors.transparent,
           const Color(0xff000000),
         ),
-        elevatedBttn(
+        elevatedBttnPositioned(
           context,
           594,
           433,
@@ -257,7 +257,7 @@ Widget desktopPlans(BuildContext context) {
           textBttnStyle,
         ),
         /* third plan item*/
-        blurContainer(
+        blurPositioned(
           context,
           940,
           216,
@@ -312,7 +312,7 @@ Widget desktopPlans(BuildContext context) {
           'Valid for two year',
           normalStyle,
         ),
-        colorContainer(
+        colorPositioned(
           context,
           960,
           235,
@@ -322,7 +322,7 @@ Widget desktopPlans(BuildContext context) {
           Colors.transparent,
           const Color(0xff000000),
         ),
-        elevatedBttn(
+        elevatedBttnPositioned(
           context,
           1023,
           641,

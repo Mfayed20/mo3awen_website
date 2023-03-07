@@ -40,7 +40,7 @@ Widget desktopView(BuildContext context) {
     child: Stack(
       children: [
         /* background */
-        colorContainer(
+        colorPositioned(
           context,
           0,
           141,
@@ -51,7 +51,7 @@ Widget desktopView(BuildContext context) {
           Colors.transparent,
         ),
         /* title */
-        colorContainer(
+        colorPositioned(
           context,
           85,
           72,
@@ -73,7 +73,7 @@ Widget desktopView(BuildContext context) {
           normalStyle,
         ),
         /* Image */
-        imageContainer(
+        imagepositioned(
           context,
           789,
           29,
@@ -81,7 +81,7 @@ Widget desktopView(BuildContext context) {
           556,
           aboutUsPhoto,
         ),
-        colorContainer(
+        colorPositioned(
           context,
           761,
           1,

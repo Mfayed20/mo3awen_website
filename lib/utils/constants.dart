@@ -42,3 +42,6 @@ const String exerciseloginimg3 =
 
 // Plans: plans_widget
 const String plansbgimg = 'assets/page-1/images/hero-section-image-wND.png';
+
+// ContactUs: contact_us
+const String contactUsbgimg = 'assets/page-1/images/hero-section-image-Evq.png';

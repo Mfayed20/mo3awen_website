@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../widgets/SignUpInPage/sign_up_in_widget.dart';
+import '../widgets/contactUsPage/contact_us.dart';
 import '../widgets/exercisePage/exercise_widget.dart';
 import '../widgets/footer_widget.dart';
 import '../widgets/homePage/plans_widget.dart';
@@ -25,7 +26,8 @@ class Home extends StatelessWidget {
             // homePage(),
             // SignUpIn(),
             // exercisePage(),
-            plansPage(),
+            // plansPage(),
+            contactUsPage(),
           ],
         ),
       ),
@@ -69,6 +71,20 @@ Widget plansPage() {
         NavBar(),
         Planspage(),
         Plans(),
+        Footer(),
+      ],
+    ),
+  );
+}
+
+// widget ContactUsPage
+Widget contactUsPage() {
+  return SingleChildScrollView(
+    child: Column(
+      children: const [
+        NavBar(),
+        ContactUs(),
+        VisitUs(),
         Footer(),
       ],
     ),

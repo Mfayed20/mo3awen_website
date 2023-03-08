@@ -15,9 +15,8 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Mo3awen',
       theme: ThemeData(
-        // fontFamily: 'HindSiliguri',
         brightness: Brightness.light,
-        primaryColor: WebColors.primaryColor,
+        // primaryColor: WebColors.primaryColor,
       ),
       home: const HomePage(),
     );

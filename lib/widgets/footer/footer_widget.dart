@@ -1,9 +1,13 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
-
-import '../utils/constants.dart';
-import '../utils/styles.dart';
+import '../../pages/about_us_page.dart';
+import '../../pages/contact_us_page.dart';
+import '../../pages/exercise_page.dart';
+import '../../pages/plans_page.dart';
+import '../../utils/constants.dart';
+import '../../utils/styles.dart';
+import 'dart:js' as js;
 
 class Footer extends StatelessWidget {
   const Footer({Key? key}) : super(key: key);
@@ -17,7 +21,6 @@ class Footer extends StatelessWidget {
 Widget desktopView(BuildContext context) {
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
   return Container(
       // footer26Z (2:38)
       padding: EdgeInsets.fromLTRB(82 * fem, 49 * fem, 127 * fem, 46 * fem),
@@ -70,13 +73,13 @@ Widget desktopView(BuildContext context) {
                       FontWeight.w700, context),
                   footerbluelane(context),
                   footerNavItem(0, 0, 0, 0, "Excercises", 16, FontWeight.w400,
-                      printHello, context),
+                      navigateToPage(context, const ExercisePage()), context),
                   footerNavItem(0, 0, 0, 0, "plans", 16, FontWeight.w400,
-                      printHello, context),
+                      navigateToPage(context, const PlansPage()), context),
                   footerNavItem(0, 0, 0, 0, "About us", 16, FontWeight.w400,
-                      printHello, context),
+                      navigateToPage(context, const AboutUsPage()), context),
                   footerNavItem(0, 0, 0, 0, "Contact us", 16, FontWeight.w400,
-                      printHello, context),
+                      navigateToPage(context, const ContactUsPage()), context),
                 ],
               ),
               Column(
@@ -86,9 +89,9 @@ Widget desktopView(BuildContext context) {
                       15, 0, 170, 14, "Services", 16, FontWeight.w700, context),
                   footerbluelane(context),
                   footerNavItem(0, 0, 0, 0, "Excercises", 16, FontWeight.w400,
-                      printHello, context),
+                      navigateToPage(context, const ExercisePage()), context),
                   footerNavItem(0, 0, 0, 0, "plans", 16, FontWeight.w400,
-                      printHello, context),
+                      navigateToPage(context, const PlansPage()), context),
                 ],
               ),
               Column(
@@ -138,9 +141,9 @@ Widget desktopView(BuildContext context) {
                   Row(
                     children: [
                       footerNavImages(35, 20, 0, 0, 70, 70, footerinstaimg,
-                          printHello, context),
+                          launchURL('https://instagram.com/'), context),
                       footerNavImages(25, 20, 0, 0, 70, 70, footertwitimg,
-                          printHello, context),
+                          launchURL('https://twitter.com/'), context),
                     ],
                   ),
                   footerboldtext(30, 4, 0, 0, "UPDOWN STUDIO", 18,
@@ -256,4 +259,8 @@ Widget footerbluelane(BuildContext context) {
 
 void printHello() {
   print('Hello');
+}
+
+launchURL(String url) {
+  return () => js.context.callMethod("open", [url]);
 }

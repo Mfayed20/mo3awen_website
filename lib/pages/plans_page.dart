@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/footer_widget.dart';
+import '../widgets/footer/footer_widget.dart';
 import '../widgets/homePage/plans_widget.dart';
-import '../widgets/nav_bar.dart';
+import '../widgets/nav_bar/nav_bar.dart';
 import '../widgets/plansPage/plans_widget.dart';
 
 class PlansPage extends StatelessWidget {
@@ -12,24 +12,14 @@ class PlansPage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: [
-            plansPage(),
+          children: const [
+            NavBar(),
+            Planspage(),
+            Plans(),
+            Footer(),
           ],
         ),
       ),
     );
   }
-}
-
-Widget plansPage() {
-  return SingleChildScrollView(
-    child: Column(
-      children: const [
-        NavBar(),
-        Planspage(),
-        Plans(),
-        Footer(),
-      ],
-    ),
-  );
 }

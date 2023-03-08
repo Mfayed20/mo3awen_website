@@ -7,10 +7,10 @@ environment:
   sdk: ">=2.19.2 <3.0.0"
 
 dependencies:
+  cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-
-  cupertino_icons: ^1.0.2
+  fluttertoast: ^8.2.1
   google_fonts: ^3.0.1
 
 dev_dependencies:

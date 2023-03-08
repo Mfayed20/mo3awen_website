@@ -172,7 +172,7 @@ Widget desktopPlans(BuildContext context) {
           const Color(0xff000000),
           2,
           3,
-          printHello,
+          showAlertDialog(context, '6 MONTH'),
           'SELECT',
           textBttnStyle,
         ),
@@ -252,7 +252,7 @@ Widget desktopPlans(BuildContext context) {
           const Color(0xff000000),
           2,
           3,
-          printHello,
+          showAlertDialog(context, '1 YEAR'),
           'SELECT',
           textBttnStyle,
         ),
@@ -332,7 +332,7 @@ Widget desktopPlans(BuildContext context) {
           const Color(0xff000000),
           2,
           3,
-          printHello,
+          showAlertDialog(context, '2 YEAR'),
           'SELECT',
           textBttnStyle,
         ),
@@ -341,7 +341,51 @@ Widget desktopPlans(BuildContext context) {
   );
 }
 
-// method to print hello
-void printHello() {
-  print('Hello');
+// method returns display a popup message when the user clicks on the button to select the plan and displays the selected plan
+showAlertDialog(BuildContext context, String plan) {
+  return () {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: RichText(
+            text: TextSpan(
+              text: 'You have selected ',
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: plan,
+                  style: const TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const TextSpan(
+                  text: ' plan',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  };
 }

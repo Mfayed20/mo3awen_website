@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../pages/exercise_page.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
-class MainPart extends StatelessWidget {
-  const MainPart({Key? key}) : super(key: key);
+class MainWidget extends StatelessWidget {
+  const MainWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -117,15 +118,10 @@ Widget mainTabletDesktop(BuildContext context) {
             Colors.transparent,
             0,
             3,
-            printHello,
+            navigateToPage(context, const ExercisePage()),
             "BROWSE EXERCISES",
             bttntxtStyle),
       ],
     ),
   );
-}
-
-// method to print hello
-void printHello() {
-  print('Hello');
 }

@@ -433,3 +433,20 @@ Widget imageContainer(BuildContext context, double left, double top,
     ),
   );
 }
+
+/// It takes a context and a page as parameters, and returns a function that navigates to the page
+///
+/// Args:
+///   context (BuildContext): The context of the current page.
+///   page (Widget): The page you want to navigate to.
+///
+/// Returns:
+///   A function that takes no arguments and returns nothing.
+navigateToPage(BuildContext context, Widget page) {
+  return () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+    );
+  };
+}

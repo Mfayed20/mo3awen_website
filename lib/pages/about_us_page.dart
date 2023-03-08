@@ -13,7 +13,7 @@ class AboutUsPage extends StatelessWidget {
         child: Column(
           children: const [
             NavBar(),
-            About_Us(),
+            AboutUs(),
             Footer(),
           ],
         ),

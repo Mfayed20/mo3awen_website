@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mo3awen_website/pages/home_page.dart';
-import 'package:mo3awen_website/utils/colors.dart';
 
 void main() {
   runApp(const MainApp());

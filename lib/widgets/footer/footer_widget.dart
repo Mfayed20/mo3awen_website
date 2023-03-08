@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../pages/about_us_page.dart';
 import '../../pages/contact_us_page.dart';
 import '../../pages/exercise_page.dart';
 import '../../pages/plans_page.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
-import 'dart:js' as js;
 
 class Footer extends StatelessWidget {
   const Footer({Key? key}) : super(key: key);
@@ -141,9 +141,9 @@ Widget desktopView(BuildContext context) {
                   Row(
                     children: [
                       footerNavImages(35, 20, 0, 0, 70, 70, footerinstaimg,
-                          launchURL('https://instagram.com/'), context),
+                          _launchUrl('https://instagram.com/'), context),
                       footerNavImages(25, 20, 0, 0, 70, 70, footertwitimg,
-                          launchURL('https://twitter.com/'), context),
+                          _launchUrl('https://twitter.com/'), context),
                     ],
                   ),
                   footerboldtext(30, 4, 0, 0, "UPDOWN STUDIO", 18,
@@ -257,10 +257,11 @@ Widget footerbluelane(BuildContext context) {
   );
 }
 
-void printHello() {
-  print('Hello');
-}
-
-launchURL(String url) {
-  return () => js.context.callMethod("open", [url]);
+_launchUrl(String url) {
+  return () async {
+    final Uri _url = Uri.parse(url);
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  };
 }

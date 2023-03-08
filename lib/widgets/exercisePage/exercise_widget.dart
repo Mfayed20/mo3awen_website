@@ -14,7 +14,7 @@ class Exercises extends StatelessWidget {
       FontWeight.w700,
       1.2125,
       3,
-      Color(0xffffffff),
+      const Color(0xffffffff),
     );
     TextStyle parghStyle = textStyle(
       context,
@@ -23,7 +23,7 @@ class Exercises extends StatelessWidget {
       FontWeight.w500,
       1.5,
       1.3,
-      Color(0xffffffff),
+      const Color(0xffffffff),
     );
     TextStyle titleStyle = textStyle(
       context,
@@ -32,7 +32,7 @@ class Exercises extends StatelessWidget {
       FontWeight.w700,
       1.5,
       0,
-      Color(0xff000000),
+      const Color(0xff000000),
     );
     TextStyle headerExpStyle = textStyle(
       context,
@@ -41,7 +41,7 @@ class Exercises extends StatelessWidget {
       FontWeight.w700,
       1.3800000509,
       -1.2,
-      Color(0xffffffff),
+      const Color(0xffffffff),
     );
 
     double baseWidth = 1440;
@@ -77,10 +77,10 @@ class Exercises extends StatelessWidget {
                   ),
                 ),
                 /* black cover effect over bg image */
-                colorPositioned(context, 0, 0, 1440, 746, 0, Color(0xb2030303),
-                    Colors.transparent),
-                colorPositioned(context, 0, 432, 403, 74, 3, Color(0xff0076f9),
-                    Colors.transparent),
+                colorPositioned(context, 0, 0, 1440, 746, 0,
+                    const Color(0xb2030303), Colors.transparent),
+                colorPositioned(context, 0, 432, 403, 74, 3,
+                    const Color(0xff0076f9), Colors.transparent),
                 textWidget(
                   context,
                   85,
@@ -102,8 +102,8 @@ class Exercises extends StatelessWidget {
                 textPositioned(
                     context, 85, 438, 276, 61, 'EXERCISE', headerStyle),
                 /* 01 text*/
-                colorPositioned(context, 85, 921, 100, 9, 4, Color(0xff0076f9),
-                    Colors.transparent),
+                colorPositioned(context, 85, 921, 100, 9, 4,
+                    const Color(0xff0076f9), Colors.transparent),
                 textPositioned(
                   context,
                   85,
@@ -194,7 +194,7 @@ class Exercises extends StatelessWidget {
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4 * fem),
-                                color: Color(0xff0076f9),
+                                color: const Color(0xff0076f9),
                               ),
                             ),
                           ),
@@ -210,7 +210,7 @@ class Exercises extends StatelessWidget {
                       EdgeInsets.fromLTRB(1 * fem, 0 * fem, 0 * fem, 0 * fem),
                   width: double.infinity,
                   height: 580 * fem,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage(
@@ -256,7 +256,7 @@ class Exercises extends StatelessWidget {
                       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 1 * fem, 0 * fem),
                   width: double.infinity,
                   height: 580 * fem,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage(
@@ -361,10 +361,10 @@ Widget colorBoxWidget(
         height: height * fem,
         child: Container(
           decoration: BoxDecoration(
-            color: Color(0xff0076f9),
+            color: const Color(0xff0076f9),
             boxShadow: [
               BoxShadow(
-                color: Color(0x4c000000),
+                color: const Color(0x4c000000),
                 offset: Offset(0 * fem, 0 * fem),
                 blurRadius: 7 * fem,
               ),
@@ -394,7 +394,7 @@ Widget colorWidget(
         height: height * fem,
         child: Container(
           decoration: BoxDecoration(
-            color: Color(0xff0076f9),
+            color: const Color(0xff0076f9),
             borderRadius: BorderRadius.circular(4 * fem),
           ),
         ),

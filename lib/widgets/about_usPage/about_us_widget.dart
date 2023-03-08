@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
-class About_Us extends StatelessWidget {
-  const About_Us({Key? key}) : super(key: key);
+class AboutUs extends StatelessWidget {
+  const AboutUs({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ Widget desktopView(BuildContext context) {
                 left: 0 * fem,
                 top: 0 * fem,
                 child: Align(
-                  child: About_Us_Images(1440, 746, aboutUsbgimg1, context),
+                  child: aboutUsImage(1440, 746, aboutUsbgimg1, context),
                 ),
               ),
               Positioned(
@@ -76,7 +76,7 @@ Widget desktopView(BuildContext context) {
                   child: SizedBox(
                     width: 455 * fem,
                     height: 162 * fem,
-                    child: About_Us_Text(
+                    child: aboutUsText(
                         0,
                         0,
                         0,
@@ -96,12 +96,12 @@ Widget desktopView(BuildContext context) {
                   child: SizedBox(
                     width: 862 * fem,
                     height: 150 * fem,
-                    child: About_Us_Text(
+                    child: aboutUsText(
                         0,
                         0,
                         0,
                         0,
-                        "Although Mo3awen can help make your work out fun, it is not  it\'s main\ngoal . High percentage of people who need physical therapy are elderly\nor people who had surgery. Going to the hospital would be a bit difficult \nfor them, with Mo3awen they can do their physical therapy at home with\nthe doctor being able to monitor their prograde easily.",
+                        "Although Mo3awen can help make your work out fun, it is not  it's main\ngoal . High percentage of people who need physical therapy are elderly\nor people who had surgery. Going to the hospital would be a bit difficult \nfor them, with Mo3awen they can do their physical therapy at home with\nthe doctor being able to monitor their prograde easily.",
                         20,
                         FontWeight.w600,
                         context),
@@ -138,7 +138,7 @@ Widget desktopView(BuildContext context) {
                 left: 82 * fem,
                 top: 114 * fem,
                 child: Align(
-                  child: About_Us_Images(702, 468, aboutUsbgimg2, context),
+                  child: aboutUsImage(702, 468, aboutUsbgimg2, context),
                 ),
               ),
               Positioned(
@@ -194,7 +194,7 @@ Widget desktopView(BuildContext context) {
                   child: SizedBox(
                     width: 519 * fem,
                     height: 297 * fem,
-                    child: About_Us_Text(
+                    child: aboutUsText(
                         0,
                         0,
                         0,
@@ -215,7 +215,7 @@ Widget desktopView(BuildContext context) {
 }
 
 // a widget that takes 6 integers and 1 string and returns a container
-Widget About_Us_Images(
+Widget aboutUsImage(
     double width, double height, String image, BuildContext context) {
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
@@ -230,7 +230,7 @@ Widget About_Us_Images(
 }
 
 // a widget call footerboldtext that takes 4 doubles and 1 string and returns a container
-Widget About_Us_Text(double left, double top, double right, double bottom,
+Widget aboutUsText(double left, double top, double right, double bottom,
     String text, double fontSize, FontWeight fontWeight, BuildContext context) {
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
@@ -239,8 +239,4 @@ Widget About_Us_Text(double left, double top, double right, double bottom,
         EdgeInsets.fromLTRB(left * fem, top * fem, right * fem, bottom * fem),
     child: Text(text, style: footerBoldText(fontSize, fontWeight, context)),
   );
-}
-
-void printHello() {
-  print('Hello');
 }

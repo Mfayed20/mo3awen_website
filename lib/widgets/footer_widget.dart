@@ -99,16 +99,16 @@ Widget desktopView(BuildContext context) {
                   footerbluelane(context),
                   Row(
                     children: [
-                      footerimages(0, 0, 10, 0, 20, 20,
-                          'assets/page-1/images/phone-icon-L7X.png', context),
+                      footerimages(
+                          0, 0, 10, 0, 20, 20, footerphoneimg, context),
                       footerboldtext(0, 0, 0, 0, "010 000 0000", 16,
                           FontWeight.w400, context),
                     ],
                   ),
                   Row(
                     children: [
-                      footerimages(0, 10, 10, 0, 20, 20,
-                          'assets/page-1/images/vector-oGq.png', context),
+                      footerimages(
+                          0, 10, 10, 0, 20, 20, footermailimg, context),
                       footerboldtext(
                           0,
                           10,
@@ -122,8 +122,8 @@ Widget desktopView(BuildContext context) {
                   ),
                   Row(
                     children: [
-                      footerimages(0, 10, 10, 0, 20, 20,
-                          'assets/page-1/images/vector-P1X.png', context),
+                      footerimages(
+                          0, 10, 10, 0, 20, 20, footerarrowimg, context),
                       footerboldtext(
                           0,
                           10,
@@ -137,26 +137,10 @@ Widget desktopView(BuildContext context) {
                   ),
                   Row(
                     children: [
-                      footerNavImages(
-                          35,
-                          20,
-                          0,
-                          0,
-                          70,
-                          70,
-                          'assets/page-1/images/instagram-colored-svgrepo-com-1-3.png',
-                          printHello,
-                          context),
-                      footerNavImages(
-                          25,
-                          20,
-                          0,
-                          0,
-                          70,
-                          70,
-                          'assets/page-1/images/twitter-colored-svgrepo-com-1-3.png',
-                          printHello,
-                          context),
+                      footerNavImages(35, 20, 0, 0, 70, 70, footerinstaimg,
+                          printHello, context),
+                      footerNavImages(25, 20, 0, 0, 70, 70, footertwitimg,
+                          printHello, context),
                     ],
                   ),
                   footerboldtext(30, 4, 0, 0, "UPDOWN STUDIO", 18,

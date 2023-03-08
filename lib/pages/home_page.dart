@@ -37,3 +37,15 @@ Widget homePage() {
     ),
   );
 }
+
+Widget About_UsPage() {
+  return SingleChildScrollView(
+    child: Column(
+      children: const [
+        NavBar(),
+        About_Us(),
+        Footer(),
+      ],
+    ),
+  );
+}

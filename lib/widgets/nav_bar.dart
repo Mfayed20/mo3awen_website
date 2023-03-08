@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '../pages/contact_us_page.dart';
+import '../pages/exercise_page.dart';
+import '../pages/home_page.dart';
+import '../pages/plans_page.dart';
 import '../utils/constants.dart';
 import '../utils/styles.dart';
 
@@ -59,11 +63,20 @@ Widget navBarTabletDesktop(BuildContext context) {
         /* Navigation items */
         Row(
           children: [
-            navItemContainer(context, "Home", navItemStyle, printHello),
-            navItemContainer(context, "Exercises", navItemStyle, printHello),
-            navItemContainer(context, "Plans", navItemStyle, printHello),
+            // navItemContainer(context, "Home", navItemStyle, printHello),
+            navItemContainer(context, "Home", navItemStyle,
+                navigateToPage(context, const HomePage())),
+            // navItemContainer(context, "Exercises", navItemStyle, printHello),
+            navItemContainer(context, "Exercises", navItemStyle,
+                navigateToPage(context, const ExercisePage())),
+            // navItemContainer(context, "Plans", navItemStyle, printHello),
+            navItemContainer(context, "Plans", navItemStyle,
+                navigateToPage(context, const PlansPage())),
+
             navItemContainer(context, "About", navItemStyle, printHello),
-            navItemContainer(context, "Contact", navItemStyle, printHello),
+            // navItemContainer(context, "Contact", navItemStyle, printHello),
+            navItemContainer(context, "Contact", navItemStyle,
+                navigateToPage(context, const ContactUsPage())),
           ],
         ),
         /* empty container */
@@ -83,4 +96,14 @@ Widget navBarTabletDesktop(BuildContext context) {
 // method to print hello
 void printHello() {
   print('Hello');
+}
+
+// the above method is not working, so I am using the below method
+navigateToPage(BuildContext context, Widget page) {
+  return () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+    );
+  };
 }

@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
         brightness: Brightness.light,
         primaryColor: WebColors.primaryColor,
       ),
-      home: const Home(),
+      home: const HomePage(),
     );
   }
 }

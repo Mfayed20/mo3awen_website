@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
@@ -27,15 +28,21 @@ class SignUpIn extends StatelessWidget {
       0,
       Color(0xff000000),
     );
-    TextStyle smallStyle = textStyle(
+    TextStyle bttnTextStyle = textStyle(
       context,
-      'poppins',
-      14,
+      "Poppins",
+      18,
       FontWeight.w400,
       1.5,
       0,
-      Color(0xff000000),
+      const Color(0xff000000),
     );
+    TextEditingController firstNameController = TextEditingController();
+    TextEditingController lasttNameController = TextEditingController();
+    TextEditingController dataOfBirthController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController nationalityController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
 
     double baseWidth = 1440;
     double fem = MediaQuery.of(context).size.width / baseWidth;
@@ -130,83 +137,85 @@ class SignUpIn extends StatelessWidget {
                                 'Use your email  for registration.',
                                 normalStyle,
                               ),
+                              signUpInTextFiled(
+                                  context, firstNameController, 'First Name'),
+                              signUpInTextFiled(
+                                  context, lasttNameController, 'Last Name'),
+                              signUpInTextFiled(context, dataOfBirthController,
+                                  'Data of Birth'),
+                              signUpInTextFiled(context, nationalityController,
+                                  'Nationality'),
+                              signUpInTextFiled(
+                                  context, emailController, 'Email'),
+                              signUpInTextFiled(
+                                  context, passwordController, 'Password'),
+                              textContainer(
+                                context,
+                                0,
+                                0,
+                                0,
+                                30,
+                                '------- Or join us with your social accounts -------',
+                                normalStyle,
+                              ),
                               Container(
-                                width: 678 * fem,
-                                height: 45 * fem,
+                                height: 100 * fem,
+                              ),
+                              elevatedBttnPositioned(
+                                context,
+                                1059,
+                                836,
+                                214,
+                                60,
+                                const Color(0xff0076f9),
+                                Colors.transparent,
+                                0,
+                                3,
+                                getTextFieldData(
+                                  firstNameController,
+                                  lasttNameController,
+                                  dataOfBirthController,
+                                  nationalityController,
+                                  emailController,
+                                  passwordController,
+                                ),
+                                'SIGN UP',
+                                bttnTextStyle,
+                              ),
+                              // contener with a row of text and a text button
+                              Container(
                                 margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 0 * fem, 20 * fem),
-                                decoration: BoxDecoration(
-                                  color: Color(0xffe2e2e2),
-                                  borderRadius: BorderRadius.circular(
-                                    3 * fem,
-                                  ),
-                                ),
-                                child: TextField(
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Name',
-                                      hintStyle: smallStyle,
-                                      contentPadding: EdgeInsets.only(
-                                        left: 20,
-                                      )),
-                                ),
-                              ),
-                              // empty container for spacing
-                              Container(
-                                height: 20 * fem,
-                              ),
-                              Container(
-                                // bg color 0xffe2e2e2
-                                width: 678 * fem,
-                                height: 45 * fem,
-                                margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 0 * fem, 20 * fem),
-                                decoration: BoxDecoration(
-                                  color: Color(0xffe2e2e2),
-                                  borderRadius: BorderRadius.circular(
-                                    3 * fem,
-                                  ),
-                                ),
-                                child: TextField(
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Email',
-                                      hintStyle: smallStyle,
-                                      contentPadding: EdgeInsets.only(
-                                        left: 20,
-                                      )),
+                                    0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                                width: double.infinity,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    textContainer(
+                                      context,
+                                      0,
+                                      0,
+                                      0,
+                                      0,
+                                      'Already have an account?',
+                                      normalStyle,
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: textContainer(
+                                        context,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        'Sign In',
+                                        normalStyle,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              // empty container for spacing
-                              Container(
-                                height: 20 * fem,
-                              ),
-                              Container(
-                                // bg color 0xffe2e2e2
-                                width: 678 * fem,
-                                height: 45 * fem,
-                                margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 0 * fem, 20 * fem),
-                                decoration: BoxDecoration(
-                                  color: Color(0xffe2e2e2),
-                                  borderRadius: BorderRadius.circular(
-                                    3 * fem,
-                                  ),
-                                ),
-                                child: TextField(
-                                  obscureText: true,
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Password',
-                                      hintStyle: smallStyle,
-                                      contentPadding: EdgeInsets.only(
-                                        left: 20,
-                                      )),
-                                ),
-                              ),
-                              // textfiled for email bg color 0xffe2e2e2 and hint text 'Email'
                             ],
                           ),
                         ),
@@ -238,47 +247,89 @@ Widget textContainer(BuildContext context, double left, double top,
   );
 }
 
-// create a method that returns name, email, password, and confirm password text fields
-Widget textFields(
-    BuildContext context,
-    double left,
-    double top,
-    double right,
-    double bottom,
-    double width,
-    double height,
-    String hintText,
-    bool obscureText,
-    bool isEmail,
-    bool isPassword,
-    bool isConfirmPassword) {
+Widget signUpInTextFiled(
+    BuildContext context, TextEditingController textController, String text) {
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
   return Container(
-    margin:
-        EdgeInsets.fromLTRB(left * fem, top * fem, right * fem, bottom * fem),
-    width: width * fem,
-    height: height * fem,
+    width: 678 * fem,
+    height: 45 * fem,
+    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 35 * fem),
     decoration: BoxDecoration(
-      color: Color(0xffffffff),
-      borderRadius: BorderRadius.circular(32 * fem),
-      boxShadow: [
-        BoxShadow(
-          color: Color(0x3f000000),
-          offset: Offset(0 * fem, 4 * fem),
-          blurRadius: 7 * fem,
-        ),
-      ],
-    ),
-    child: TextField(
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        border: InputBorder.none,
-        hintText: hintText,
-        hintStyle: TextStyle(
-          color: Color(0xff000000),
-        ),
+      color: Color(0xffe2e2e2),
+      borderRadius: BorderRadius.circular(
+        3 * fem,
       ),
     ),
+    child: TextField(
+      obscureText: false,
+      controller: textController,
+      decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: text,
+          hintStyle: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 15 * ffem,
+            fontWeight: FontWeight.w400,
+            height: 1.5 * ffem / fem,
+            color: const Color(0xff000000),
+          ),
+          contentPadding: EdgeInsets.only(
+            left: 20,
+          )),
+    ),
   );
+}
+
+getTextFieldData(
+    TextEditingController firstNameController,
+    TextEditingController lasttNameController,
+    TextEditingController dataOfBirthController,
+    TextEditingController nationalityController,
+    TextEditingController emailController,
+    TextEditingController passwordController) {
+  return () {
+    String firstName = firstNameController.text;
+    String lastName = lasttNameController.text;
+    String dataOfBrith = dataOfBirthController.text;
+    String nationality = nationalityController.text;
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    if (firstName.isEmpty |
+        lastName.isEmpty |
+        dataOfBrith.isEmpty |
+        nationality.isEmpty |
+        email.isEmpty |
+        password.isEmpty) {
+      Fluttertoast.showToast(
+        msg: 'Please fill all the fields',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.blue,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      return;
+    } else {
+      firstNameController.clear();
+      lasttNameController.clear();
+      dataOfBirthController.clear();
+      nationalityController.clear();
+      emailController.clear();
+      passwordController.clear();
+
+      Fluttertoast.showToast(
+        msg: 'Thank you for registering with us',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.blue,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
+  };
 }

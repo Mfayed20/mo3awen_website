@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/SignUpInPage/sign_up_in_widget.dart';
 import '../widgets/footer/footer_widget.dart';
 import '../widgets/homePage/plans_widget.dart';
 import '../widgets/homePage/visit_us_widget.dart';
@@ -15,12 +16,13 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: const [
-            NavBar(),
-            MainWidget(),
-            AboutUs(),
-            Plans(),
-            VisitUs(),
-            Footer(),
+            // NavBar(),
+            // MainWidget(),
+            // AboutUs(),
+            // Plans(),
+            // VisitUs(),
+            // Footer(),
+            SignUpIn(),
           ],
         ),
       ),

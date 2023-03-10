@@ -16,13 +16,13 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: const [
-            // NavBar(),
-            // MainWidget(),
-            // AboutUs(),
-            // Plans(),
-            // VisitUs(),
-            // Footer(),
-            SignUpIn(),
+            NavBar(),
+            MainWidget(),
+            AboutUs(),
+            Plans(),
+            VisitUs(),
+            Footer(),
+            // SignUpIn(),
           ],
         ),
       ),

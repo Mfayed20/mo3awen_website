@@ -220,14 +220,20 @@ TextField textField(
         borderSide: BorderSide(color: borderColor),
         borderRadius: BorderRadius.circular(boderRadius),
       ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: Color(0xffe2e2e2)),
+        borderRadius: BorderRadius.circular(3),
+      ),
       suffixIcon: SizedBox(
-        width: 10 * fem,
-        height: 10 * fem,
+        width: 7 * fem,
+        height: 7 * fem,
         child: IconButton(
           icon: const Icon(Icons.clear),
           onPressed: () {
             textController.clear();
           },
+          padding: const EdgeInsets.all(0),
+          alignment: Alignment.center,
         ),
       ),
     ),

@@ -37,6 +37,7 @@ class SignUpIn extends StatelessWidget {
       0,
       const Color(0xff000000),
     );
+
     TextEditingController firstNameController = TextEditingController();
     TextEditingController lasttNameController = TextEditingController();
     TextEditingController dataOfBirthController = TextEditingController();
@@ -134,7 +135,7 @@ class SignUpIn extends StatelessWidget {
                                 0,
                                 0,
                                 30,
-                                'Use your email  for registration.',
+                                'Use your email for registration.',
                                 normalStyle,
                               ),
                               signUpInTextFiled(
@@ -251,7 +252,16 @@ Widget signUpInTextFiled(
     BuildContext context, TextEditingController textController, String text) {
   double baseWidth = 1440;
   double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
+
+  TextStyle hintTextStyle = textStyle(
+    context,
+    "Poppins",
+    18,
+    FontWeight.w400,
+    1.5,
+    0,
+    const Color(0xff000000),
+  );
   return Container(
     width: 678 * fem,
     height: 45 * fem,
@@ -266,18 +276,21 @@ Widget signUpInTextFiled(
       obscureText: false,
       controller: textController,
       decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: text,
-          hintStyle: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: 15 * ffem,
-            fontWeight: FontWeight.w400,
-            height: 1.5 * ffem / fem,
-            color: const Color(0xff000000),
-          ),
-          contentPadding: EdgeInsets.only(
-            left: 20,
-          )),
+        border: InputBorder.none,
+        hintText: text,
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color(0xffe2e2e2)),
+          borderRadius: BorderRadius.circular(3),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Color(0xffe2e2e2)),
+          borderRadius: BorderRadius.circular(3),
+        ),
+        hintStyle: hintTextStyle,
+        contentPadding: EdgeInsets.only(
+          left: 20,
+        ),
+      ),
     ),
   );
 }

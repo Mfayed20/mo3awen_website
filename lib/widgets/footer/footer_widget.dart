@@ -51,8 +51,8 @@ Widget desktopView(BuildContext context) {
                           footerlogoimglatterW, context),
                       footerimages(0, 0, 2.64, 0, 11.31, 17.62,
                           footerlogoimglatterE, context),
-                      footerimages(
-                          0, 0, 0, 0, 14, 16.62, footerlogoimglatterN, context),
+                      footerimages(0, 0, 0, 0, 18.82, 18.29,
+                          footerlogoimglatterN, context),
                     ],
                   ),
                   footerboldtext(

@@ -99,10 +99,16 @@ class SignUpIn extends StatelessWidget {
                 children: [
                   Align(
                     alignment: Alignment.topRight,
-                    child: Image.asset(
-                      signcloseicon,
-                      width: 30 * fem,
-                      height: 30 * fem,
+                    child: FloatingActionButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      backgroundColor: Color(0xffffffff),
+                      child: Image.asset(
+                        signcloseicon,
+                        width: 30 * fem,
+                        height: 30 * fem,
+                      ),
                     ),
                   ),
                   Container(

@@ -259,9 +259,9 @@ Widget footerbluelane(BuildContext context) {
 
 _launchUrl(String url) {
   return () async {
-    final Uri _url = Uri.parse(url);
-    if (!await launchUrl(_url)) {
-      throw Exception('Could not launch $_url');
+    final Uri parsedURL = Uri.parse(url);
+    if (!await launchUrl(parsedURL)) {
+      throw Exception('Could not launch $parsedURL');
     }
   };
 }

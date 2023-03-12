@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mo3awen_website/pages/sign_in_page.dart';
 import '../../pages/about_us_page.dart';
 import '../../pages/contact_us_page.dart';
 import '../../pages/exercise_page.dart';
 import '../../pages/home_page.dart';
 import '../../pages/plans_page.dart';
-import '../../pages/sign_up_in_page.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
@@ -85,7 +85,7 @@ Widget navBarTabletDesktop(BuildContext context) {
         SizedBox(
             height: 35 * fem,
             child: navSignBttnContainer(context, "Sign In/Up", navBttnStyle,
-                navigateToPage(context, const SignUpInPage()))),
+                navigateToPage(context, const SignInPage()))),
       ],
     ),
   );

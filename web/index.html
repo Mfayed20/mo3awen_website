@@ -32,6 +32,31 @@
   <title>mo3awen_website</title>
   <link rel="manifest" href="manifest.json">
 
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyA4m5MMpFmbXunNTmSrqeqfoI-HB8mF2Lg",
+      authDomain: "mo3awen-d2404.firebaseapp.com",
+      databaseURL: "https://mo3awen-d2404-default-rtdb.firebaseio.com",
+      projectId: "mo3awen-d2404",
+      storageBucket: "mo3awen-d2404.appspot.com",
+      messagingSenderId: "1005036712664",
+      appId: "1:1005036712664:web:67fce031bdeb7fc90c9dad",
+      measurementId: "G-K0RBXN7LC5"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
   <script>
     // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;

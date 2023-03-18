@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mo3awen_website/pages/sign_up_page.dart';
@@ -284,7 +285,7 @@ Widget signUpInTextFiled(
 
 getTextFieldDataSignIn(TextEditingController emailController,
     TextEditingController passwordController) {
-  return () {
+  return () async {
     String email = emailController.text;
     String password = passwordController.text;
 
@@ -300,18 +301,34 @@ getTextFieldDataSignIn(TextEditingController emailController,
       );
       return;
     } else {
+      try {
+        await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          Fluttertoast.showToast(
+            msg: 'no user found for that email',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.blue,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        } else if (e.code == 'wrong-password') {
+          Fluttertoast.showToast(
+            msg: 'Wrong password',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.blue,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        }
+      }
       emailController.clear();
       passwordController.clear();
-
-      Fluttertoast.showToast(
-        msg: 'Thank you for registering with us',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.blue,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
     }
   };
 }

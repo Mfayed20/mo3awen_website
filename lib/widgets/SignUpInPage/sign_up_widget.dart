@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../utils/constants.dart';
@@ -301,7 +302,7 @@ getTextFieldDataSignUp(
     TextEditingController nationalityController,
     TextEditingController emailController,
     TextEditingController passwordController) {
-  return () {
+  return () async {
     String firstName = firstNameController.text;
     String lastName = lasttNameController.text;
     String dataOfBrith = dataOfBirthController.text;
@@ -326,22 +327,40 @@ getTextFieldDataSignUp(
       );
       return;
     } else {
+      try {
+        await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          Fluttertoast.showToast(
+            msg: 'the password provided is too weak',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.blue,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        } else if (e.code == 'email-already-in-use') {
+          Fluttertoast.showToast(
+            msg: 'The account already exists for that email',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.blue,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        }
+      } catch (e) {
+        print(e);
+      }
       firstNameController.clear();
       lasttNameController.clear();
       dataOfBirthController.clear();
       nationalityController.clear();
       emailController.clear();
       passwordController.clear();
-
-      Fluttertoast.showToast(
-        msg: 'Thank you for registering with us',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.blue,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
     }
   };
 }

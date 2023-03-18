@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:mo3awen_website/pages/home_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      appId: '1:1005036712664:web:67fce031bdeb7fc90c9dad',
+      apiKey: 'AIzaSyA4m5MMpFmbXunNTmSrqeqfoI-HB8mF2Lg',
+      projectId: 'mo3awen-d2404',
+      messagingSenderId: '1005036712664',
+      databaseURL: 'https://mo3awen-d2404-default-rtdb.firebaseio.com',
+    ),
+  );
   runApp(const MainApp());
 }
 

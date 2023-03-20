@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mo3awen_website/pages/sign_in_page.dart';
 import '../../pages/about_us_page.dart';
@@ -83,10 +84,40 @@ Widget navBarTabletDesktop(BuildContext context) {
         ),
         /* Sign In/Up button */
         SizedBox(
-            height: 35 * fem,
-            child: navSignBttnContainer(context, "Sign In/Up", navBttnStyle,
-                navigateToPage(context, const SignInPage()))),
+          height: 35 * fem,
+          child: (FirebaseAuth.instance.currentUser == null)
+              ? navSignBttnContainer(context, "Sign In/Up", navBttnStyle,
+                  navigateToPage(context, const SignInPage()))
+              : ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5 * fem),
+                    ),
+                  ),
+                  onPressed: () {
+                    signOut();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "Sign Out",
+                    style: navBttnStyle,
+                  ),
+                ),
+        ),
       ],
     ),
   );
+}
+
+signOut() {
+  return (FirebaseAuth.instance
+      .signOut()
+      .then((value) => print("Signed Out Successfully"))
+      .catchError((error) => print("Failed to sign out: $error")));
 }

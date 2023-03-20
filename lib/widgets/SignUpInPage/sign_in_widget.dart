@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mo3awen_website/pages/sign_up_page.dart';
+import '../../pages/home_page.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
@@ -146,6 +147,12 @@ class SignIn extends StatelessWidget {
                                       context, emailController, 'Email'),
                                   signUpInTextFiled(
                                       context, passwordController, 'Password'),
+                                  navItemContainer(
+                                      context,
+                                      "Forgot Password ?",
+                                      normalStyle,
+                                      navigateToPage(
+                                          context, const HomePage())),
                                   Container(
                                     height: 20 * fem,
                                   ),

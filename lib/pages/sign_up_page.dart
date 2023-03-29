@@ -12,7 +12,7 @@ class SignUpPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return SignInPage();
+            return const SignInPage();
           } else {
             return Scaffold(
               body: SingleChildScrollView(

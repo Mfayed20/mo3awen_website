@@ -90,7 +90,7 @@ Widget navBarTabletDesktop(BuildContext context) {
                   navigateToPage(context, const SignInPage()))
               : ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
+                    foregroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5 * fem),
                     ),

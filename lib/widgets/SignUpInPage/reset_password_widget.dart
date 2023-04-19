@@ -156,7 +156,7 @@ class ResetPassword extends StatelessWidget {
                                     0,
                                     3,
                                     getTextFieldDataResetPassword(
-                                        emailController),
+                                        emailController, context),
                                     'Send request',
                                     bttnTextStyle,
                                   ),
@@ -240,7 +240,8 @@ Widget signUpInTextFiled(
   );
 }
 
-getTextFieldDataResetPassword(TextEditingController emailController) {
+getTextFieldDataResetPassword(
+    TextEditingController emailController, BuildContext context) {
   return () async {
     String email = emailController.text;
 
@@ -258,21 +259,21 @@ getTextFieldDataResetPassword(TextEditingController emailController) {
     } else {
       try {
         await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+        Fluttertoast.showToast(
+          msg: 'Reset password link sent',
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blue,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+        Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           Fluttertoast.showToast(
             msg: 'no user found for that email',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.blue,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-        } else {
-          Fluttertoast.showToast(
-            msg: 'Reset password link sent',
-            toastLength: Toast.LENGTH_SHORT,
+            toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.blue,

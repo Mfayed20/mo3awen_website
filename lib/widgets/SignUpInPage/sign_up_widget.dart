@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../utils/constants.dart';
@@ -43,6 +44,9 @@ class SignUp extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
     TextEditingController nationalityController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
+    TextEditingController genderController = TextEditingController();
+    TextEditingController hospitalNameController = TextEditingController();
+    TextEditingController hospitalAddressController = TextEditingController();
 
     double baseWidth = 1440;
     double fem = MediaQuery.of(context).size.width / baseWidth;
@@ -154,6 +158,14 @@ class SignUp extends StatelessWidget {
                                   signUpInTextFiled(context,
                                       nationalityController, 'Nationality'),
                                   signUpInTextFiled(
+                                      context, genderController, 'Gender'),
+                                  signUpInTextFiled(context,
+                                      hospitalNameController, 'Hosbital name'),
+                                  signUpInTextFiled(
+                                      context,
+                                      hospitalAddressController,
+                                      'Hosbital address'),
+                                  signUpInTextFiled(
                                       context, emailController, 'Email'),
                                   signUpInTextFiled(
                                       context, passwordController, 'Password'),
@@ -177,6 +189,9 @@ class SignUp extends StatelessWidget {
                                       nationalityController,
                                       emailController,
                                       passwordController,
+                                      genderController,
+                                      hospitalNameController,
+                                      hospitalAddressController,
                                     ),
                                     'SIGN UP',
                                     bttnTextStyle,
@@ -265,7 +280,7 @@ Widget signUpInTextFiled(
   return Container(
     width: 678 * fem,
     height: 45 * fem,
-    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 35 * fem),
+    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 13 * fem),
     decoration: BoxDecoration(
       color: const Color(0xffe2e2e2),
       borderRadius: BorderRadius.circular(
@@ -297,25 +312,34 @@ Widget signUpInTextFiled(
 
 getTextFieldDataSignUp(
     TextEditingController firstNameController,
-    TextEditingController lasttNameController,
-    TextEditingController dataOfBirthController,
+    TextEditingController lastNameController,
+    TextEditingController dateOfBirthController,
     TextEditingController nationalityController,
     TextEditingController emailController,
-    TextEditingController passwordController) {
+    TextEditingController passwordController,
+    TextEditingController genderController,
+    TextEditingController hospitalNameController,
+    TextEditingController hospitalAddressController) {
   return () async {
     String firstName = firstNameController.text;
-    String lastName = lasttNameController.text;
-    String dataOfBrith = dataOfBirthController.text;
+    String lastName = lastNameController.text;
+    String dateOfBirth = dateOfBirthController.text;
     String nationality = nationalityController.text;
     String email = emailController.text;
     String password = passwordController.text;
+    String gender = genderController.text;
+    String hospitalName = hospitalNameController.text;
+    String hospitalAddress = hospitalAddressController.text;
 
-    if (firstName.isEmpty |
-        lastName.isEmpty |
-        dataOfBrith.isEmpty |
-        nationality.isEmpty |
-        email.isEmpty |
-        password.isEmpty) {
+    if (firstName.isEmpty ||
+        lastName.isEmpty ||
+        dateOfBirth.isEmpty ||
+        nationality.isEmpty ||
+        email.isEmpty ||
+        password.isEmpty ||
+        gender.isEmpty ||
+        hospitalName.isEmpty ||
+        hospitalAddress.isEmpty) {
       Fluttertoast.showToast(
         msg: 'Please fill all the fields',
         toastLength: Toast.LENGTH_SHORT,
@@ -328,8 +352,31 @@ getTextFieldDataSignUp(
       return;
     } else {
       try {
-        await FirebaseAuth.instance
+        UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
+
+        if (userCredential.user != null) {
+          // Save the data to Firebase Realtime Database
+          String uid =
+              userCredential.user!.uid; // Use the null assertion operator here
+          DatabaseReference dbRef =
+              FirebaseDatabase.instance.ref().child('admin').child(uid);
+
+          await dbRef.set({
+            'DoB': dateOfBirth,
+            'email': email,
+            'f-name': firstName,
+            'gender': gender, // Add your gender field here if needed
+            'hosAddress':
+                hospitalAddress, // Add your hospital address field here if needed
+            'hosName':
+                hospitalName, // Add your hospital name field here if needed
+            'l-name': lastName,
+            'nationality': nationality,
+          });
+        } else {
+          // Handle the case when userCredential.user is null
+        }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           Fluttertoast.showToast(
@@ -356,45 +403,11 @@ getTextFieldDataSignUp(
         print(e);
       }
       firstNameController.clear();
-      lasttNameController.clear();
-      dataOfBirthController.clear();
+      lastNameController.clear();
+      dateOfBirthController.clear();
       nationalityController.clear();
       emailController.clear();
       passwordController.clear();
-    }
-  };
-}
-
-getTextFieldDataSignIn(TextEditingController emailController,
-    TextEditingController passwordController) {
-  return () {
-    String email = emailController.text;
-    String password = passwordController.text;
-
-    if (email.isEmpty | password.isEmpty) {
-      Fluttertoast.showToast(
-        msg: 'Please fill all the fields',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.blue,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
-      return;
-    } else {
-      emailController.clear();
-      passwordController.clear();
-
-      Fluttertoast.showToast(
-        msg: 'Thank you for registering with us',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.blue,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
     }
   };
 }

@@ -76,6 +76,9 @@ Widget navBarTabletDesktop(BuildContext context) {
                 navigateToPage(context, const AboutUsPage())),
             navItemContainer(context, "Contact", navItemStyle,
                 navigateToPage(context, const ContactUsPage())),
+            if (FirebaseAuth.instance.currentUser != null)
+              navItemContainer(context, "Profile", navItemStyle,
+                  navigateToPage(context, const ContactUsPage())),
           ],
         ),
         /* empty container */

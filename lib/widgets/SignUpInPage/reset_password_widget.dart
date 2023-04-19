@@ -1,14 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mo3awen_website/pages/sign_up_page.dart';
-import '../../pages/home_page.dart';
-import '../../pages/reset_password_page.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
-class SignIn extends StatelessWidget {
-  const SignIn({super.key});
+class ResetPassword extends StatelessWidget {
+  const ResetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +38,6 @@ class SignIn extends StatelessWidget {
     );
 
     TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
 
     double baseWidth = 1440;
     double fem = MediaQuery.of(context).size.width / baseWidth;
@@ -132,7 +128,7 @@ class SignIn extends StatelessWidget {
                                     0,
                                     0,
                                     21,
-                                    'Login to MO3AWEN',
+                                    'Reset Password',
                                     titleStyle,
                                   ),
                                   textContainer(
@@ -141,19 +137,11 @@ class SignIn extends StatelessWidget {
                                     0,
                                     0,
                                     30,
-                                    'Use your email for registration.',
+                                    'Type your registered email',
                                     normalStyle,
                                   ),
                                   signUpInTextFiled(
                                       context, emailController, 'Email'),
-                                  signUpInTextFiled(
-                                      context, passwordController, 'Password'),
-                                  navItemContainer(
-                                      context,
-                                      "Forgot Password ?",
-                                      normalStyle,
-                                      navigateToPage(
-                                          context, const ResetPasswordPage())),
                                   Container(
                                     height: 20 * fem,
                                   ),
@@ -167,49 +155,10 @@ class SignIn extends StatelessWidget {
                                     Colors.transparent,
                                     0,
                                     3,
-                                    getTextFieldDataSignIn(
-                                        emailController, passwordController),
-                                    'LOGIN',
+                                    getTextFieldDataResetPassword(
+                                        emailController),
+                                    'Send request',
                                     bttnTextStyle,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 0 * fem, 0 * fem),
-                                    width: double.infinity,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        textContainer(
-                                          context,
-                                          0,
-                                          0,
-                                          0,
-                                          0,
-                                          'Don\'t have an account?',
-                                          normalStyle,
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const SignUpPage()),
-                                            );
-                                          },
-                                          child: textContainer(
-                                            context,
-                                            0,
-                                            0,
-                                            0,
-                                            0,
-                                            'Sign UP',
-                                            normalStyle,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
                                   ),
                                 ],
                               ),
@@ -291,13 +240,11 @@ Widget signUpInTextFiled(
   );
 }
 
-getTextFieldDataSignIn(TextEditingController emailController,
-    TextEditingController passwordController) {
+getTextFieldDataResetPassword(TextEditingController emailController) {
   return () async {
     String email = emailController.text;
-    String password = passwordController.text;
 
-    if (email.isEmpty | password.isEmpty) {
+    if (email.isEmpty) {
       Fluttertoast.showToast(
         msg: 'Please fill all the fields',
         toastLength: Toast.LENGTH_SHORT,
@@ -310,8 +257,7 @@ getTextFieldDataSignIn(TextEditingController emailController,
       return;
     } else {
       try {
-        await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: email, password: password);
+        await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           Fluttertoast.showToast(
@@ -323,9 +269,9 @@ getTextFieldDataSignIn(TextEditingController emailController,
             textColor: Colors.white,
             fontSize: 16.0,
           );
-        } else if (e.code == 'wrong-password') {
+        } else {
           Fluttertoast.showToast(
-            msg: 'Wrong password',
+            msg: 'Reset password link sent',
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
@@ -336,7 +282,6 @@ getTextFieldDataSignIn(TextEditingController emailController,
         }
       }
       emailController.clear();
-      passwordController.clear();
     }
   };
 }

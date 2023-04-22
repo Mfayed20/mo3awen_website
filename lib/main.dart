@@ -4,15 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      // options: const FirebaseOptions(
-      //   appId: '1:1005036712664:web:67fce031bdeb7fc90c9dad',
-      //   apiKey: 'AIzaSyA4m5MMpFmbXunNTmSrqeqfoI-HB8mF2Lg',
-      //   projectId: 'mo3awen-d2404',
-      //   messagingSenderId: '1005036712664',
-      //   databaseURL: 'https://mo3awen-d2404-default-rtdb.firebaseio.com',
-      // ),
-      );
+  await Firebase.initializeApp();
   runApp(const MainApp());
 }
 

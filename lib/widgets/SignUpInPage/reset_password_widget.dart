@@ -7,9 +7,15 @@ import 'package:mo3awen_website/pages/sign_up_page.dart';
 import '../../utils/constants.dart';
 
 // Main SignIn widget
-class ResetPassword extends StatelessWidget {
+class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
 
+  @override
+  ResetPasswordState createState() => ResetPasswordState();
+}
+
+class ResetPasswordState extends State<ResetPassword> {
+  TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double baseWidth = 1440;
@@ -39,7 +45,7 @@ class ResetPassword extends StatelessWidget {
                           : MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        buildSignInForm(context, fem),
+                        buildSignInForm(context, fem, emailController),
                       ],
                     ),
                   ),
@@ -50,6 +56,12 @@ class ResetPassword extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
   }
 }
 
@@ -81,10 +93,8 @@ Widget buildBackgroundAndLogo(BuildContext context, double fem) {
   );
 }
 
-Widget buildSignInForm(BuildContext context, double fem) {
+Widget buildSignInForm(BuildContext context, double fem, emailController) {
   double screenHeight = MediaQuery.of(context).size.height;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   TextStyle titleStyle = buildTextStyle(
       context, 'poppins', 44, FontWeight.w700, 1.5, 0, const Color(0xff0076f9));
   TextStyle normalStyle = buildTextStyle(
@@ -109,8 +119,8 @@ Widget buildSignInForm(BuildContext context, double fem) {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 buildCloseButton(context, fem),
-                buildFormContent(context, fem, emailController,
-                    passwordController, titleStyle, normalStyle, bttnTextStyle),
+                buildFormContent(context, fem, emailController, titleStyle,
+                    normalStyle, bttnTextStyle),
               ],
             ),
           ),
@@ -147,7 +157,6 @@ Widget buildFormContent(
     BuildContext context,
     double fem,
     TextEditingController emailController,
-    TextEditingController passwordController,
     TextStyle titleStyle,
     TextStyle normalStyle,
     TextStyle bttnTextStyle) {
@@ -178,7 +187,7 @@ Widget buildFormContent(
       const SizedBox(height: 40),
       buildInputField("Email", emailController),
       const SizedBox(height: 24),
-      buildResetButton(context, emailController, passwordController),
+      buildResetButton(context, emailController),
     ],
   );
 }
@@ -204,9 +213,7 @@ Widget buildInputField(String label, TextEditingController controller,
 
 // SignIn button
 Widget buildResetButton(
-    BuildContext context,
-    TextEditingController emailController,
-    TextEditingController passwordController) {
+    BuildContext context, TextEditingController emailController) {
   return SizedBox(
     width: double.infinity,
     child: ElevatedButton(
@@ -306,6 +313,11 @@ getTextFieldDataResetPassword(
       if (e.code == 'user-not-found') {
         showToast(
           msg: 'No user found for that email',
+          toastLength: Toast.LENGTH_LONG,
+        );
+      } else {
+        showToast(
+          msg: 'An error occurred. Please try again.',
           toastLength: Toast.LENGTH_LONG,
         );
       }

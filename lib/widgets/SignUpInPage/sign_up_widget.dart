@@ -8,9 +8,24 @@ import '../../pages/sign_in_page.dart';
 import '../../utils/constants.dart';
 
 // Main SignIn widget
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
+  @override
+  SignUpState createState() => SignUpState();
+}
+
+class SignUpState extends State<SignUp> {
+  // Move all TextEditingController instances to the state class
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController dateOfBirthController = TextEditingController();
+  TextEditingController nationalityController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
+  TextEditingController hospitalNameController = TextEditingController();
+  TextEditingController hospitalAddressController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double baseWidth = 1440;
@@ -40,7 +55,18 @@ class SignUp extends StatelessWidget {
                           : MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        buildSignUpForm(context, fem),
+                        buildSignUpForm(
+                            context,
+                            fem,
+                            emailController,
+                            passwordController,
+                            firstNameController,
+                            lastNameController,
+                            dateOfBirthController,
+                            nationalityController,
+                            genderController,
+                            hospitalNameController,
+                            hospitalAddressController),
                       ],
                     ),
                   ),
@@ -51,6 +77,21 @@ class SignUp extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // Dispose of the TextEditingController instances when the widget is removed from the tree
+    emailController.dispose();
+    passwordController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    dateOfBirthController.dispose();
+    nationalityController.dispose();
+    genderController.dispose();
+    hospitalNameController.dispose();
+    hospitalAddressController.dispose();
+    super.dispose();
   }
 }
 
@@ -82,17 +123,19 @@ Widget buildBackgroundAndLogo(BuildContext context, double fem) {
   );
 }
 
-Widget buildSignUpForm(BuildContext context, double fem) {
+Widget buildSignUpForm(
+    BuildContext context,
+    double fem,
+    TextEditingController emailController,
+    TextEditingController passwordController,
+    TextEditingController firstNameController,
+    TextEditingController lastNameController,
+    TextEditingController dateOfBirthController,
+    TextEditingController nationalityController,
+    TextEditingController genderController,
+    TextEditingController hospitalNameController,
+    TextEditingController hospitalAddressController) {
   double screenHeight = MediaQuery.of(context).size.height;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lasttNameController = TextEditingController();
-  TextEditingController dataOfBirthController = TextEditingController();
-  TextEditingController nationalityController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
-  TextEditingController hospitalNameController = TextEditingController();
-  TextEditingController hospitalAddressController = TextEditingController();
 
   TextStyle titleStyle = buildTextStyle(
       context, 'poppins', 44, FontWeight.w700, 1.5, 0, const Color(0xff0076f9));
@@ -124,8 +167,8 @@ Widget buildSignUpForm(BuildContext context, double fem) {
                     emailController,
                     passwordController,
                     firstNameController,
-                    lasttNameController,
-                    dataOfBirthController,
+                    lastNameController,
+                    dateOfBirthController,
                     nationalityController,
                     genderController,
                     hospitalNameController,
@@ -209,6 +252,7 @@ Widget buildFormContent(
         "Use your email to create an account",
         style: responsiveNormalStyle,
       ),
+      const SizedBox(height: 40),
       buildInputField("First Name", firstNameController),
       const SizedBox(height: 10),
       buildInputField("Last Name", lasttNameController),
@@ -248,19 +292,42 @@ Widget buildFormContent(
 // Input field
 Widget buildInputField(String label, TextEditingController controller,
     {bool isPassword = false}) {
-  return TextField(
-    controller: controller,
-    obscureText: isPassword,
-    decoration: InputDecoration(
-      labelText: label,
-      labelStyle: const TextStyle(color: Colors.grey),
-      focusedBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.blue, width: 2),
-      ),
-      enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.grey, width: 2),
-      ),
-    ),
+  // Define the obscureText variable outside the builder function
+  ValueNotifier<bool> obscureTextNotifier = ValueNotifier<bool>(isPassword);
+
+  return StatefulBuilder(
+    builder: (BuildContext context, StateSetter setState) {
+      return ValueListenableBuilder<bool>(
+        valueListenable: obscureTextNotifier,
+        builder: (BuildContext context, bool obscureText, Widget? child) {
+          return TextField(
+            controller: controller,
+            obscureText: obscureText,
+            decoration: InputDecoration(
+              labelText: label,
+              labelStyle: const TextStyle(color: Colors.grey),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue, width: 2),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey, width: 2),
+              ),
+              suffixIcon: isPassword
+                  ? IconButton(
+                      icon: Icon(
+                        obscureText ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        // Toggle password visibility
+                        obscureTextNotifier.value = !obscureText;
+                      },
+                    )
+                  : null,
+            ),
+          );
+        },
+      );
+    },
   );
 }
 

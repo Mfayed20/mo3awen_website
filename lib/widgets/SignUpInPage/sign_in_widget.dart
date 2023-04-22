@@ -8,8 +8,16 @@ import '../../pages/reset_password_page.dart';
 import '../../utils/constants.dart';
 
 // Main SignIn widget
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
+
+  @override
+  SignInState createState() => SignInState();
+}
+
+class SignInState extends State<SignIn> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +48,8 @@ class SignIn extends StatelessWidget {
                           : MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        buildSignInForm(context, fem),
+                        buildSignInForm(
+                            context, fem, emailController, passwordController),
                       ],
                     ),
                   ),
@@ -51,6 +60,13 @@ class SignIn extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }
 
@@ -82,10 +98,14 @@ Widget buildBackgroundAndLogo(BuildContext context, double fem) {
   );
 }
 
-Widget buildSignInForm(BuildContext context, double fem) {
+Widget buildSignInForm(
+    BuildContext context,
+    double fem,
+    TextEditingController emailController,
+    TextEditingController passwordController) {
   double screenHeight = MediaQuery.of(context).size.height;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  // TextEditingController emailController = TextEditingController();
+  // TextEditingController passwordController = TextEditingController();
   TextStyle titleStyle = buildTextStyle(
       context, 'poppins', 44, FontWeight.w700, 1.5, 0, const Color(0xff0076f9));
   TextStyle normalStyle = buildTextStyle(
@@ -200,19 +220,42 @@ Widget buildFormContent(
 // Input field
 Widget buildInputField(String label, TextEditingController controller,
     {bool isPassword = false}) {
-  return TextField(
-    controller: controller,
-    obscureText: isPassword,
-    decoration: InputDecoration(
-      labelText: label,
-      labelStyle: const TextStyle(color: Colors.grey),
-      focusedBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.blue, width: 2),
-      ),
-      enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.grey, width: 2),
-      ),
-    ),
+  // Define the obscureText variable outside the builder function
+  ValueNotifier<bool> obscureTextNotifier = ValueNotifier<bool>(isPassword);
+
+  return StatefulBuilder(
+    builder: (BuildContext context, StateSetter setState) {
+      return ValueListenableBuilder<bool>(
+        valueListenable: obscureTextNotifier,
+        builder: (BuildContext context, bool obscureText, Widget? child) {
+          return TextField(
+            controller: controller,
+            obscureText: obscureText,
+            decoration: InputDecoration(
+              labelText: label,
+              labelStyle: const TextStyle(color: Colors.grey),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue, width: 2),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey, width: 2),
+              ),
+              suffixIcon: isPassword
+                  ? IconButton(
+                      icon: Icon(
+                        obscureText ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        // Toggle password visibility
+                        obscureTextNotifier.value = !obscureText;
+                      },
+                    )
+                  : null,
+            ),
+          );
+        },
+      );
+    },
   );
 }
 

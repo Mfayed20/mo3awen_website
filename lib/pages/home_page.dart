@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
             AboutUs(),
             Plans(),
             VisitUs(),
-            Footer(),
+            FooterWidget(),
           ],
         ),
       ),

@@ -88,7 +88,7 @@ TextStyle footerBoldText(
   );
 }
 
-/* textStyle method */
+// Creates a TextStyle based on the provided parameters and screen size
 TextStyle textStyle(
   BuildContext context,
   String font,
@@ -108,27 +108,6 @@ TextStyle textStyle(
     height: fontHeight * ffem / fem,
     letterSpacing: letterSpacing * fem,
     color: color,
-  );
-}
-
-/* Navigation Bar: navItem widget  */
-Widget navItemContainer(
-  BuildContext context,
-  String title,
-  TextStyle textStyle,
-  Function() method,
-) {
-  double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
-  return Container(
-    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
-    child: TextButton(
-      onPressed: method,
-      child: Text(
-        title,
-        style: textStyle,
-      ),
-    ),
   );
 }
 
@@ -434,15 +413,8 @@ Widget imageContainer(BuildContext context, double left, double top,
   );
 }
 
-/// It takes a context and a page as parameters, and returns a function that navigates to the page
-///
-/// Args:
-///   context (BuildContext): The context of the current page.
-///   page (Widget): The page you want to navigate to.
-///
-/// Returns:
-///   A function that takes no arguments and returns nothing.
-navigateToPage(BuildContext context, Widget page) {
+// Returns a callback that navigates to the specified page when called
+VoidCallback navigateToPage(BuildContext context, Widget page) {
   return () {
     Navigator.push(
       context,

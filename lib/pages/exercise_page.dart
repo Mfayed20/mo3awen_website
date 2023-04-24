@@ -14,7 +14,7 @@ class ExercisePage extends StatelessWidget {
           children: const [
             NavBar(),
             Exercises(),
-            Footer(),
+            FooterWidget(),
           ],
         ),
       ),

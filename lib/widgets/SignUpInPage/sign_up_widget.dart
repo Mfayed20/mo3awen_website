@@ -454,6 +454,41 @@ getTextFieldDataSignUp(
 }
 
 // SignIn button
+// Widget buildSignInButton(BuildContext context, TextStyle bttnTextStyle) {
+//   double screenWidth = MediaQuery.of(context).size.width;
+//   double fontSize =
+//       screenWidth < 600 ? 14.0 : 18.0; // Adjust font size based on screen width
+
+//   TextStyle responsiveBttnTextStyle =
+//       bttnTextStyle.copyWith(fontSize: fontSize);
+
+//   return SingleChildScrollView(
+//     scrollDirection: Axis.horizontal,
+//     child: Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         Text(
+//           "Already have an account?",
+//           style: responsiveBttnTextStyle,
+//         ),
+//         TextButton(
+//           onPressed: () {
+//             Navigator.push(
+//               context,
+//               MaterialPageRoute(builder: (context) => const SignInPage()),
+//             );
+//           },
+//           child: Text(
+//             "Sign In",
+//             style: responsiveBttnTextStyle.copyWith(
+//                 color: const Color(0xff0076f9)),
+//           ),
+//         ),
+//       ],
+//     ),
+//   );
+// }
+
 Widget buildSignInButton(BuildContext context, TextStyle bttnTextStyle) {
   double screenWidth = MediaQuery.of(context).size.width;
   double fontSize =
@@ -462,30 +497,27 @@ Widget buildSignInButton(BuildContext context, TextStyle bttnTextStyle) {
   TextStyle responsiveBttnTextStyle =
       bttnTextStyle.copyWith(fontSize: fontSize);
 
-  return SingleChildScrollView(
-    scrollDirection: Axis.horizontal,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Already have an account?",
-          style: responsiveBttnTextStyle,
+  return Wrap(
+    alignment: WrapAlignment.start,
+    children: [
+      Text(
+        "Already have an account?",
+        style: responsiveBttnTextStyle,
+      ),
+      TextButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const SignInPage()),
+          );
+        },
+        child: Text(
+          "Sign In",
+          style:
+              responsiveBttnTextStyle.copyWith(color: const Color(0xff0076f9)),
         ),
-        TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SignInPage()),
-            );
-          },
-          child: Text(
-            "Sign In",
-            style: responsiveBttnTextStyle.copyWith(
-                color: const Color(0xff0076f9)),
-          ),
-        ),
-      ],
-    ),
+      ),
+    ],
   );
 }
 

@@ -16,7 +16,7 @@ class PlansPage extends StatelessWidget {
             NavBar(),
             Planspage(),
             Plans(),
-            Footer(),
+            FooterWidget(),
           ],
         ),
       ),

@@ -355,8 +355,8 @@ Widget buildSignUpButton(BuildContext context, TextStyle bttnTextStyle) {
   TextStyle responsiveBttnTextStyle =
       bttnTextStyle.copyWith(fontSize: fontSize);
 
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
+  return Wrap(
+    alignment: WrapAlignment.start,
     children: [
       Text(
         "Don't have an account?",

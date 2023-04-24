@@ -16,7 +16,7 @@ class ContactUsPage extends StatelessWidget {
             NavBar(),
             ContactUs(),
             VisitUs(),
-            Footer(),
+            FooterWidget(),
           ],
         ),
       ),

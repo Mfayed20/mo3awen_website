@@ -16,16 +16,6 @@ const String visitUslocationPhoto = 'assets/page-1/images/map-1-dwK.png';
 
 // Footer: footer_widget
 const String footerLogoImg = 'assets/page-1/images/Picture3.png';
-// const String footerLogoImgLetterM = 'assets/page-1/images/vector-Ya9.png';
-// const String footerLogoImgLetterO = 'assets/page-1/images/vector-rQ5.png';
-// const String footerLogoImgLetter_3 = 'assets/page-1/images/vector-Fkh.png';
-// const String footerLogoImgLetterA = 'assets/page-1/images/vector-Hss.png';
-// const String footerLogoImgLetterW = 'assets/page-1/images/vector.png';
-// const String footerLogoImgLetterE = 'assets/page-1/images/vector-s41.png';
-// const String footerLogoImgLetterN = 'assets/page-1/images/vector-guK.png';
-// const String footerPhoneImg = 'assets/page-1/images/phone-icon-L7X.png';
-// const String footerMailImg = 'assets/page-1/images/vector-oGq.png';
-// const String footerArrowImg = 'assets/page-1/images/vector-P1X.png';
 const String footerInstagrameImg =
     'assets/page-1/images/instagram-colored-svgrepo-com-1-3.png';
 const String footerTwitterImg =

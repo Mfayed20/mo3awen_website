@@ -10,6 +10,8 @@ import 'package:mo3awen_website/pages/plans_page.dart';
 import 'package:mo3awen_website/utils/constants.dart';
 import 'package:mo3awen_website/utils/styles.dart';
 
+import '../../pages/profile_page.dart';
+
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);
 
@@ -101,7 +103,7 @@ Widget buildNavItems(
 
   if (FirebaseAuth.instance.currentUser != null) {
     navItemLabels.add("Profile");
-    navItemPages.add(const ContactUsPage());
+    navItemPages.add(const ProfilePage());
   }
 
   return Align(

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '../../pages/home_page.dart';
 import '../../pages/sign_in_page.dart';
 import '../../utils/constants.dart';
 
@@ -349,6 +350,7 @@ Widget buildSignUpButton(
     width: double.infinity,
     child: ElevatedButton(
       onPressed: getTextFieldDataSignUp(
+          context,
           emailController,
           passwordController,
           firstNameController,
@@ -388,6 +390,7 @@ void showErrorToast(String message) {
 }
 
 getTextFieldDataSignUp(
+    BuildContext context,
     TextEditingController emailController,
     TextEditingController passwordController,
     TextEditingController firstNameController,
@@ -451,6 +454,11 @@ getTextFieldDataSignUp(
       for (var controller in controllers) {
         controller.clear();
       }
+      // Navigate to the HomePage after successful sign-up
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
     }
   };
 }

@@ -389,7 +389,7 @@ void showErrorToast(String message) {
   );
 }
 
-getTextFieldDataSignUp(
+void Function()? getTextFieldDataSignUp(
     BuildContext context,
     TextEditingController emailController,
     TextEditingController passwordController,
@@ -455,7 +455,7 @@ getTextFieldDataSignUp(
         controller.clear();
       }
       // Navigate to the HomePage after successful sign-up
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
       );

@@ -34,7 +34,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     print("_user: " + _user.toString());
     print("\nuid: " + _user.uid);
 
-    _userRef = _databaseRef.child('admin').child(_user.uid);
+    // _userRef = _databaseRef.child('admin').child(_user.uid);
+    _userRef = _databaseRef.child(_user.uid);
+
     _getUserData();
   }
 

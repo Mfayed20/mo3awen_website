@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mo3awen_website/pages/sign_up_page.dart';
+import '../../pages/profile_page.dart';
 import '../../pages/reset_password_page.dart';
 import '../../utils/constants.dart';
 
@@ -286,7 +287,8 @@ Widget buildSignInButton(
   return SizedBox(
     width: double.infinity,
     child: ElevatedButton(
-      onPressed: getTextFieldDataSignIn(emailController, passwordController),
+      onPressed:
+          getTextFieldDataSignIn(context, emailController, passwordController),
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
         backgroundColor: const Color(0xff0076f9),
@@ -314,7 +316,9 @@ void showToast(String message) {
 }
 
 // New function to handle sign-in with validation and error handling
-void Function()? getTextFieldDataSignIn(TextEditingController emailController,
+void Function()? getTextFieldDataSignIn(
+    BuildContext context,
+    TextEditingController emailController,
     TextEditingController passwordController) {
   return () async {
     String email = emailController.text;
@@ -327,6 +331,12 @@ void Function()? getTextFieldDataSignIn(TextEditingController emailController,
       try {
         await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
+
+        // Navigate to the HomePage after successful sign-in
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ProfilePage()),
+        );
       } on FirebaseAuthException catch (e) {
         handleAuthError(e);
       }

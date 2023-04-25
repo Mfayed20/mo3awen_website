@@ -3,7 +3,7 @@ import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
 class ExercisesWidget extends StatelessWidget {
-  const ExercisesWidget({Key? key});
+  const ExercisesWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

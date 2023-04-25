@@ -24,7 +24,7 @@ class SignInState extends State<SignIn> {
     double baseWidth = 1440;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    double fem = screenWidth / baseWidth;
+    double screenWidthRatio = screenWidth / baseWidth;
 
     return Container(
       width: double.infinity,
@@ -33,7 +33,7 @@ class SignInState extends State<SignIn> {
       ),
       child: Row(
         children: [
-          buildBackgroundAndLogo(context, fem),
+          buildBackgroundAndLogo(context, screenWidthRatio),
           Expanded(
             child: Align(
               alignment:
@@ -48,8 +48,8 @@ class SignInState extends State<SignIn> {
                           : MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        buildSignInForm(
-                            context, fem, emailController, passwordController),
+                        buildSignInForm(context, screenWidthRatio,
+                            emailController, passwordController),
                       ],
                     ),
                   ),
@@ -71,11 +71,12 @@ class SignInState extends State<SignIn> {
 }
 
 // Background and logo container
-Widget buildBackgroundAndLogo(BuildContext context, double fem) {
+Widget buildBackgroundAndLogo(BuildContext context, double screenWidthRatio) {
   double screenHeight = MediaQuery.of(context).size.height;
   return Container(
-    padding: EdgeInsets.fromLTRB(85 * fem, 42 * fem, 85 * fem, 42 * fem),
-    width: 618 * fem,
+    padding: EdgeInsets.fromLTRB(85 * screenWidthRatio, 42 * screenWidthRatio,
+        85 * screenWidthRatio, 42 * screenWidthRatio),
+    width: 618 * screenWidthRatio,
     height: screenHeight,
     decoration: const BoxDecoration(
       image: DecorationImage(
@@ -88,8 +89,8 @@ Widget buildBackgroundAndLogo(BuildContext context, double fem) {
     child: Align(
       alignment: Alignment.topLeft,
       child: SizedBox(
-        width: 126 * fem,
-        height: 81 * fem,
+        width: 126 * screenWidthRatio,
+        height: 81 * screenWidthRatio,
         child: Image.asset(
           signlogoimg,
         ),
@@ -100,7 +101,7 @@ Widget buildBackgroundAndLogo(BuildContext context, double fem) {
 
 Widget buildSignInForm(
     BuildContext context,
-    double fem,
+    double screenWidthRatio,
     TextEditingController emailController,
     TextEditingController passwordController) {
   double screenHeight = MediaQuery.of(context).size.height;
@@ -115,7 +116,8 @@ Widget buildSignInForm(
 
   return Expanded(
     child: Container(
-      padding: EdgeInsets.fromLTRB(45 * fem, 41 * fem, 45 * fem, 41 * fem),
+      padding: EdgeInsets.fromLTRB(45 * screenWidthRatio, 41 * screenWidthRatio,
+          45 * screenWidthRatio, 41 * screenWidthRatio),
       height: screenHeight,
       decoration: const BoxDecoration(
         color: Color(0xffffffff),
@@ -129,8 +131,8 @@ Widget buildSignInForm(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                buildCloseButton(context, fem),
-                buildFormContent(context, fem, emailController,
+                buildCloseButton(context, screenWidthRatio),
+                buildFormContent(context, screenWidthRatio, emailController,
                     passwordController, titleStyle, normalStyle, bttnTextStyle),
               ],
             ),
@@ -142,9 +144,9 @@ Widget buildSignInForm(
 }
 
 // Close button
-Widget buildCloseButton(BuildContext context, double fem) {
+Widget buildCloseButton(BuildContext context, double screenWidthRatio) {
   const double maxIconSize = 30.0;
-  double iconSize = min(30 * fem, maxIconSize);
+  double iconSize = min(30 * screenWidthRatio, maxIconSize);
 
   return Align(
     alignment: Alignment.topRight,
@@ -166,7 +168,7 @@ Widget buildCloseButton(BuildContext context, double fem) {
 // Form content
 Widget buildFormContent(
     BuildContext context,
-    double fem,
+    double screenWidthRatio,
     TextEditingController emailController,
     TextEditingController passwordController,
     TextStyle titleStyle,

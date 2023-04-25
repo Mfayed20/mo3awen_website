@@ -20,7 +20,7 @@ class NavBar extends StatelessWidget {
 }
 
 Widget navBarTabletDesktop(BuildContext context) {
-  TextStyle navItemStyle = textStyle(
+  TextStyle navItemStyle = buildTextStyle(
     context,
     "Inter",
     16,
@@ -30,7 +30,7 @@ Widget navBarTabletDesktop(BuildContext context) {
     const Color(0xffffffff),
   );
 
-  TextStyle navBttnStyle = textStyle(
+  TextStyle navBttnStyle = buildTextStyle(
     context,
     "Inter",
     14,
@@ -41,7 +41,7 @@ Widget navBarTabletDesktop(BuildContext context) {
   );
 
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
 
   return LayoutBuilder(
     builder: (BuildContext context, BoxConstraints constraints) {
@@ -50,7 +50,7 @@ Widget navBarTabletDesktop(BuildContext context) {
 
       return Container(
         width: double.infinity,
-        height: 60 * fem,
+        height: 60 * screenWidthRatio,
         decoration: const BoxDecoration(
           color: Color(0xff000000),
         ),
@@ -58,11 +58,11 @@ Widget navBarTabletDesktop(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            buildLogo(fem),
+            buildLogo(screenWidthRatio),
             SizedBox(width: spacerWidth),
             buildNavItems(context, navItemStyle, navItemSpacing),
             SizedBox(width: spacerWidth),
-            buildSignInUpButton(context, navBttnStyle, fem),
+            buildSignInUpButton(context, navBttnStyle, screenWidthRatio),
           ],
         ),
       );
@@ -70,13 +70,13 @@ Widget navBarTabletDesktop(BuildContext context) {
   );
 }
 
-Widget buildLogo(double fem) {
+Widget buildLogo(double screenWidthRatio) {
   return Container(
-    margin: EdgeInsets.all(0 * fem),
+    margin: EdgeInsets.all(0 * screenWidthRatio),
     child: Image.asset(
       navBarLogo,
-      width: 102 * fem,
-      height: 52 * fem,
+      width: 102 * screenWidthRatio,
+      height: 52 * screenWidthRatio,
     ),
   );
 }
@@ -120,11 +120,11 @@ Widget buildNavItems(
 }
 
 Widget buildSignInUpButton(
-    BuildContext context, TextStyle navBttnStyle, double fem) {
+    BuildContext context, TextStyle navBttnStyle, double screenWidthRatio) {
   return SizedBox(
-    height: 35 * fem,
+    height: 35 * screenWidthRatio,
     child: (FirebaseAuth.instance.currentUser == null)
-        ? navSignBttnContainer(context, "Sign In/Up", navBttnStyle,
+        ? buildNavSignBttnContainer(context, "Sign In/Up", navBttnStyle,
             navigateToPage(context, const SignInPage()))
         :
         // If the user is logged in, show the "Sign Out" button
@@ -132,7 +132,7 @@ Widget buildSignInUpButton(
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.blue,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5 * fem),
+                borderRadius: BorderRadius.circular(5 * screenWidthRatio),
               ),
             ),
             onPressed: () {
@@ -169,8 +169,9 @@ Future<void> signOut() async {
 Widget navItemContainer(BuildContext context, String title, TextStyle textStyle,
     Function() method) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
-  EdgeInsets margin = EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem);
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
+  EdgeInsets margin = EdgeInsets.fromLTRB(0 * screenWidthRatio,
+      0 * screenWidthRatio, 3 * screenWidthRatio, 0 * screenWidthRatio);
 
   return Container(
     margin: margin,

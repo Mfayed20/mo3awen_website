@@ -13,7 +13,7 @@ class VisitUs extends StatelessWidget {
 }
 
 Widget visitUs(BuildContext context) {
-  TextStyle titleStyle = textStyle(
+  TextStyle titleStyle = buildTextStyle(
     context,
     "Poppins",
     40,
@@ -22,7 +22,7 @@ Widget visitUs(BuildContext context) {
     0,
     const Color(0xff000000),
   );
-  TextStyle contactUsStyle = textStyle(
+  TextStyle contactUsStyle = buildTextStyle(
     context,
     "Poppins",
     24,
@@ -31,7 +31,7 @@ Widget visitUs(BuildContext context) {
     0,
     const Color(0xff0076f9),
   );
-  TextStyle inputHeaderStyle = textStyle(
+  TextStyle inputHeaderStyle = buildTextStyle(
     context,
     "Poppins",
     16,
@@ -40,7 +40,7 @@ Widget visitUs(BuildContext context) {
     0,
     const Color(0xff000000),
   );
-  TextStyle bttnTextStyle = textStyle(
+  TextStyle bttnTextStyle = buildTextStyle(
     context,
     "Poppins",
     18,
@@ -49,7 +49,7 @@ Widget visitUs(BuildContext context) {
     0,
     const Color(0xff000000),
   );
-  TextStyle normalStyle = textStyle(
+  TextStyle normalStyle = buildTextStyle(
     context,
     "Poppins",
     16,
@@ -58,7 +58,7 @@ Widget visitUs(BuildContext context) {
     0,
     const Color(0xff000000),
   );
-  TextStyle textFieldlStyle = textStyle(
+  TextStyle textFieldlStyle = buildTextStyle(
     context,
     "Poppins",
     16,
@@ -124,33 +124,37 @@ Widget visitUs(BuildContext context) {
     child: Stack(
       children: [
         /* I=images */
-        imagepositioned(context, 0, 0, 1441, 890, visitUsPhoto),
-        imagepositioned(context, 86, 367, 575, 392, visitUslocationPhoto),
+        buildImagepositioned(context, 0, 0, 1441, 890, visitUsPhoto),
+        buildImagepositioned(context, 86, 367, 575, 392, visitUslocationPhoto),
         /* Title */
-        textPositioned(context, 83, 45, 163, 60, 'VISIT US', titleStyle),
-        colorPositioned(context, 83, 117, 100, 9, 4, const Color(0xff0076f9),
-            Colors.transparent),
+        buildTextPositioned(context, 83, 45, 163, 60, 'VISIT US', titleStyle),
+        buildColorPositioned(context, 83, 117, 100, 9, 4,
+            const Color(0xff0076f9), Colors.transparent),
         /* info, Location, email text */
-        textPositioned(
+        buildTextPositioned(
             context, 26, 280, 282, 72, 'Alfaisal university', normalStyle),
-        textPositioned(
+        buildTextPositioned(
             context, 35, 300, 282, 72, 'Riyadh, Saudi Arabia', normalStyle),
-        textPositioned(context, 85, 320, 282, 72,
+        buildTextPositioned(context, 85, 320, 282, 72,
             'updownstudiosgames@gmail.com', normalStyle),
         /* Contact Us Rectangle*/
-        colorPositioned(context, 739, 175, 614, 786, 3, const Color(0xffffffff),
-            Colors.transparent),
-        textPositioned(
+        buildColorPositioned(context, 739, 175, 614, 786, 3,
+            const Color(0xffffffff), Colors.transparent),
+        buildTextPositioned(
             context, 968, 225, 156, 36, 'CONTACT US', contactUsStyle),
-        textPositioned(context, 819, 309, 52, 24, 'Name:', inputHeaderStyle),
-        textPositioned(context, 819, 419, 47, 24, 'Email:', inputHeaderStyle),
-        textPositioned(context, 819, 529, 64, 24, 'Subject:', inputHeaderStyle),
-        textPositioned(context, 819, 639, 76, 24, 'Message:', inputHeaderStyle),
+        buildTextPositioned(
+            context, 819, 309, 52, 24, 'Name:', inputHeaderStyle),
+        buildTextPositioned(
+            context, 819, 419, 47, 24, 'Email:', inputHeaderStyle),
+        buildTextPositioned(
+            context, 819, 529, 64, 24, 'Subject:', inputHeaderStyle),
+        buildTextPositioned(
+            context, 819, 639, 76, 24, 'Message:', inputHeaderStyle),
         simpleTextFieldPositioned(context, 819, 337, 454, 60, nameTf),
         simpleTextFieldPositioned(context, 819, 447, 454, 60, emailTf),
         simpleTextFieldPositioned(context, 819, 557, 454, 60, subjectTf),
         simpleTextFieldPositioned(context, 819, 667, 454, 119, messageTf),
-        elevatedBttnPositioned(
+        buildElevatedBttnPositioned(
           context,
           1059,
           836,

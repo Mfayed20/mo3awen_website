@@ -31,7 +31,7 @@ class SignUpState extends State<SignUp> {
     double baseWidth = 1440;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    double fem = screenWidth / baseWidth;
+    double screenWidthRatio = screenWidth / baseWidth;
 
     return Container(
       width: double.infinity,
@@ -40,7 +40,7 @@ class SignUpState extends State<SignUp> {
       ),
       child: Row(
         children: [
-          buildBackgroundAndLogo(context, fem),
+          buildBackgroundAndLogo(context, screenWidthRatio),
           Expanded(
             child: Align(
               alignment:
@@ -57,7 +57,7 @@ class SignUpState extends State<SignUp> {
                       children: [
                         buildSignUpForm(
                             context,
-                            fem,
+                            screenWidthRatio,
                             emailController,
                             passwordController,
                             firstNameController,
@@ -96,11 +96,12 @@ class SignUpState extends State<SignUp> {
 }
 
 // Background and logo container
-Widget buildBackgroundAndLogo(BuildContext context, double fem) {
+Widget buildBackgroundAndLogo(BuildContext context, double screenWidthRatio) {
   double screenHeight = MediaQuery.of(context).size.height;
   return Container(
-    padding: EdgeInsets.fromLTRB(85 * fem, 42 * fem, 85 * fem, 42 * fem),
-    width: 618 * fem,
+    padding: EdgeInsets.fromLTRB(85 * screenWidthRatio, 42 * screenWidthRatio,
+        85 * screenWidthRatio, 42 * screenWidthRatio),
+    width: 618 * screenWidthRatio,
     height: screenHeight,
     decoration: const BoxDecoration(
       image: DecorationImage(
@@ -113,8 +114,8 @@ Widget buildBackgroundAndLogo(BuildContext context, double fem) {
     child: Align(
       alignment: Alignment.topLeft,
       child: SizedBox(
-        width: 126 * fem,
-        height: 81 * fem,
+        width: 126 * screenWidthRatio,
+        height: 81 * screenWidthRatio,
         child: Image.asset(
           signlogoimg,
         ),
@@ -125,7 +126,7 @@ Widget buildBackgroundAndLogo(BuildContext context, double fem) {
 
 Widget buildSignUpForm(
     BuildContext context,
-    double fem,
+    double screenWidthRatio,
     TextEditingController emailController,
     TextEditingController passwordController,
     TextEditingController firstNameController,
@@ -146,7 +147,8 @@ Widget buildSignUpForm(
 
   return Expanded(
     child: Container(
-      padding: EdgeInsets.fromLTRB(45 * fem, 41 * fem, 45 * fem, 41 * fem),
+      padding: EdgeInsets.fromLTRB(45 * screenWidthRatio, 41 * screenWidthRatio,
+          45 * screenWidthRatio, 41 * screenWidthRatio),
       height: screenHeight,
       decoration: const BoxDecoration(
         color: Color(0xffffffff),
@@ -160,10 +162,10 @@ Widget buildSignUpForm(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                buildCloseButton(context, fem),
+                buildCloseButton(context, screenWidthRatio),
                 buildFormContent(
                     context,
-                    fem,
+                    screenWidthRatio,
                     emailController,
                     passwordController,
                     firstNameController,
@@ -186,9 +188,9 @@ Widget buildSignUpForm(
 }
 
 // Close button
-Widget buildCloseButton(BuildContext context, double fem) {
+Widget buildCloseButton(BuildContext context, double screenWidthRatio) {
   const double maxIconSize = 30.0;
-  double iconSize = min(30 * fem, maxIconSize);
+  double iconSize = min(30 * screenWidthRatio, maxIconSize);
 
   return Align(
     alignment: Alignment.topRight,
@@ -210,7 +212,7 @@ Widget buildCloseButton(BuildContext context, double fem) {
 // Form content
 Widget buildFormContent(
     BuildContext context,
-    double fem,
+    double screenWidthRatio,
     TextEditingController emailController,
     TextEditingController passwordController,
     TextEditingController firstNameController,
@@ -452,42 +454,6 @@ getTextFieldDataSignUp(
     }
   };
 }
-
-// SignIn button
-// Widget buildSignInButton(BuildContext context, TextStyle bttnTextStyle) {
-//   double screenWidth = MediaQuery.of(context).size.width;
-//   double fontSize =
-//       screenWidth < 600 ? 14.0 : 18.0; // Adjust font size based on screen width
-
-//   TextStyle responsiveBttnTextStyle =
-//       bttnTextStyle.copyWith(fontSize: fontSize);
-
-//   return SingleChildScrollView(
-//     scrollDirection: Axis.horizontal,
-//     child: Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         Text(
-//           "Already have an account?",
-//           style: responsiveBttnTextStyle,
-//         ),
-//         TextButton(
-//           onPressed: () {
-//             Navigator.push(
-//               context,
-//               MaterialPageRoute(builder: (context) => const SignInPage()),
-//             );
-//           },
-//           child: Text(
-//             "Sign In",
-//             style: responsiveBttnTextStyle.copyWith(
-//                 color: const Color(0xff0076f9)),
-//           ),
-//         ),
-//       ],
-//     ),
-//   );
-// }
 
 Widget buildSignInButton(BuildContext context, TextStyle bttnTextStyle) {
   double screenWidth = MediaQuery.of(context).size.width;

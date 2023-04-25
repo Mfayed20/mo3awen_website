@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
-class Exercises extends StatelessWidget {
-  const Exercises({super.key});
+class ExercisesWidget extends StatelessWidget {
+  const ExercisesWidget({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    TextStyle headerStyle = textStyle(
+    // Define text styles
+    final headerStyle = buildTextStyle(
       context,
       'Inter',
       50,
@@ -16,7 +17,7 @@ class Exercises extends StatelessWidget {
       3,
       const Color(0xffffffff),
     );
-    TextStyle parghStyle = textStyle(
+    final parghStyle = buildTextStyle(
       context,
       'Poppins',
       20,
@@ -25,7 +26,7 @@ class Exercises extends StatelessWidget {
       1.3,
       const Color(0xffffffff),
     );
-    TextStyle titleStyle = textStyle(
+    final titleStyle = buildTextStyle(
       context,
       'Poppins',
       40,
@@ -34,7 +35,7 @@ class Exercises extends StatelessWidget {
       0,
       const Color(0xff000000),
     );
-    TextStyle headerExpStyle = textStyle(
+    final headerExpStyle = buildTextStyle(
       context,
       'Inter',
       30,
@@ -44,8 +45,10 @@ class Exercises extends StatelessWidget {
       const Color(0xffffffff),
     );
 
-    double baseWidth = 1440;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
+    // Get the screen width ratio to use for scaling
+    const baseWidth = 1440;
+    final screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
+
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
@@ -54,21 +57,26 @@ class Exercises extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          /* header container */
+          // Header container with a stack of widgets
           Container(
-            margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 30 * fem),
-            width: 2211.57 * fem,
-            height: 960 * fem,
+            margin: EdgeInsets.fromLTRB(
+              0 * screenWidthRatio,
+              0 * screenWidthRatio,
+              0 * screenWidthRatio,
+              30 * screenWidthRatio,
+            ),
+            width: 2211.57 * screenWidthRatio,
+            height: 960 * screenWidthRatio,
             child: Stack(
               children: [
-                /* bg image */
+                // Background image
                 Positioned(
-                  left: 0 * fem,
-                  top: 0 * fem,
+                  left: 0 * screenWidthRatio,
+                  top: 0 * screenWidthRatio,
                   child: Align(
                     child: SizedBox(
-                      width: 1440 * fem,
-                      height: 746 * fem,
+                      width: 1440 * screenWidthRatio,
+                      height: 746 * screenWidthRatio,
                       child: Image.asset(
                         exercisebgimg1,
                         fit: BoxFit.cover,
@@ -76,11 +84,18 @@ class Exercises extends StatelessWidget {
                     ),
                   ),
                 ),
-                /* black cover effect over bg image */
-                colorPositioned(context, 0, 0, 1440, 746, 0,
-                    const Color(0xb2030303), Colors.transparent),
-                colorPositioned(context, 0, 432, 403, 74, 3,
-                    const Color(0xff0076f9), Colors.transparent),
+                // Black cover effect over bg image
+                buildColorPositioned(
+                  context,
+                  0,
+                  0,
+                  1440,
+                  746,
+                  0,
+                  const Color(0xb2030303),
+                  Colors.transparent,
+                ),
+                // Exercise images and text
                 textWidget(
                   context,
                   85,
@@ -98,13 +113,34 @@ class Exercises extends StatelessWidget {
                   528,
                   exercisebgimg3,
                 ),
-                imageWidget(context, 705, 177, 300, 528, exercisebgimg2),
-                textPositioned(
-                    context, 85, 438, 276, 61, 'EXERCISE', headerStyle),
-                /* 01 text*/
-                colorPositioned(context, 85, 921, 100, 9, 4,
-                    const Color(0xff0076f9), Colors.transparent),
-                textPositioned(
+                imageWidget(
+                  context,
+                  705,
+                  177,
+                  300,
+                  528,
+                  exercisebgimg2,
+                ),
+                buildTextPositioned(
+                  context,
+                  85,
+                  438,
+                  276,
+                  61,
+                  'EXERCISE',
+                  headerStyle,
+                ),
+                buildColorPositioned(
+                  context,
+                  85,
+                  921,
+                  100,
+                  9,
+                  4,
+                  const Color(0xff0076f9),
+                  Colors.transparent,
+                ),
+                buildTextPositioned(
                   context,
                   85,
                   824,
@@ -116,36 +152,33 @@ class Exercises extends StatelessWidget {
               ],
             ),
           ),
-          /* 01 container
-          *The above code is creating a container with a stack of widgets. The stack of widgets is
-          *creating a background image and a rectangle with a text widget.
-          */
+
+          // Container for exercise 1
           SizedBox(
             width: double.infinity,
-            height: 580 * fem,
+            height: 580 * screenWidthRatio,
             child: Stack(
               children: [
-                /* 01 image*/
+                // Exercise 1 image
                 Positioned(
-                  left: 0 * fem,
-                  top: 0 * fem,
+                  left: 0 * screenWidthRatio,
+                  top: 0 * screenWidthRatio,
                   child: Align(
                     child: SizedBox(
-                      width: 1440 * fem,
-                      height: 580 * fem,
+                      width: 1440 * screenWidthRatio,
+                      height: 580 * screenWidthRatio,
                       child: Container(
                         decoration: const BoxDecoration(
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: AssetImage(
-                              exerciseloginimg1,
-                            ),
+                            image: AssetImage(exerciseloginimg1),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
+                // Black cover effect over exercise 1 image
                 colorBoxWidget(
                   context,
                   806,
@@ -153,128 +186,183 @@ class Exercises extends StatelessWidget {
                   550,
                   580,
                 ),
+                // Exercise 1 text description
                 textWidget(
-                    context,
-                    847,
-                    220,
-                    463,
-                    150,
-                    'Hand stretch is an exercise where the work out focus on the stability of patient\'s arm as the scoring will depend on how straight the patient can extend his/her arm.\n',
-                    parghStyle),
+                  context,
+                  847,
+                  220,
+                  463,
+                  150,
+                  'Hand stretch is an exercise where the work out focus on the stability of patient\'s arm as the scoring will depend on how straight the patient can extend his/her arm.\n',
+                  parghStyle,
+                ),
               ],
             ),
           ),
-          /* 02 & 03 container*/
+
+          // Containers for exercises 2 and 3
           Container(
-            padding: EdgeInsets.fromLTRB(0 * fem, 78 * fem, 0 * fem, 115 * fem),
+            padding: EdgeInsets.fromLTRB(
+              0 * screenWidthRatio,
+              78 * screenWidthRatio,
+              0 * screenWidthRatio,
+              115 * screenWidthRatio,
+            ),
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /* 02 container 
-                * The above code is creating a container with a stack of widgets. The stack of widgets
-                * is creating a text widget and a text positioned widget. The text widget is creating
-                * a text with a paragraph style. The text positioned widget is creating a text with a
-                * title style.
-                */
+                // Container for exercise 2
                 Container(
-                  margin:
-                      EdgeInsets.fromLTRB(85 * fem, 0 * fem, 0 * fem, 30 * fem),
-                  width: 321 * fem,
-                  height: 120 * fem,
+                  margin: EdgeInsets.fromLTRB(
+                    85 * screenWidthRatio,
+                    0 * screenWidthRatio,
+                    0 * screenWidthRatio,
+                    30 * screenWidthRatio,
+                  ),
+                  width: 321 * screenWidthRatio,
+                  height: 120 * screenWidthRatio,
                   child: Stack(
                     children: [
+                      // Blue bar at the bottom of exercise 2 container
                       Positioned(
-                        left: 0 * fem,
-                        top: 106 * fem,
+                        left: 0 * screenWidthRatio,
+                        top: 106 * screenWidthRatio,
                         child: Align(
                           child: SizedBox(
-                            width: 100 * fem,
-                            height: 9 * fem,
+                            width: 100 * screenWidthRatio,
+                            height: 9 * screenWidthRatio,
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4 * fem),
+                                borderRadius:
+                                    BorderRadius.circular(4 * screenWidthRatio),
                                 color: const Color(0xff0076f9),
                               ),
                             ),
                           ),
                         ),
                       ),
-                      textPositioned(context, 0, 0, 321, 120,
-                          '02\nEye cordination\n', titleStyle),
+                      // Exercise 2 title
+                      buildTextPositioned(
+                        context,
+                        0,
+                        0,
+                        321,
+                        120,
+                        '02\nEye coordination\n',
+                        titleStyle,
+                      ),
                     ],
                   ),
                 ),
+                // Container for exercise 2 description and image
                 Container(
-                  margin:
-                      EdgeInsets.fromLTRB(1 * fem, 0 * fem, 0 * fem, 0 * fem),
+                  margin: EdgeInsets.fromLTRB(
+                    1 * screenWidthRatio,
+                    0 * screenWidthRatio,
+                    0 * screenWidthRatio,
+                    0 * screenWidthRatio,
+                  ),
                   width: double.infinity,
-                  height: 580 * fem,
+                  height: 580 * screenWidthRatio,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(
-                        exerciseloginimg2,
-                      ),
+                      image: AssetImage(exerciseloginimg2),
                     ),
                   ),
                   child: Stack(
                     children: [
-                      colorBoxWidget(context, 84, 0, 550, 579),
+                      // Black cover effect over exercise 2 image
+                      colorBoxWidget(
+                        context,
+                        84,
+                        0,
+                        550,
+                        579,
+                      ),
+                      // Exercise 2 text
                       textWidget(
-                          context,
-                          117,
-                          141,
-                          483,
-                          300,
-                          'Eye Coordination game is where the patient will test their eye-muscle coordination. The patient must insert the ball inside the ring/doughnut shape without letting the ball hit the ring, and the patient should try as much as possible to keep his arm on his side, this way the patient will also work on their Infraspinatus, teres minor, posterior deltoid muscles.\n',
-                          parghStyle)
+                        context,
+                        117,
+                        141,
+                        483,
+                        300,
+                        'Eye Coordination game is where the patient will test their eye-muscle coordination. The patient must insert the ball inside the ring/doughnut shape without letting the ball hit the ring, and the patient should try as much as possible to keep his arm on his side, this way the patient will also work on their Infraspinatus, teres minor, posterior deltoid muscles.\n',
+                        parghStyle,
+                      ),
                     ],
                   ),
                 ),
-                /* 03 container 
-                * The above code is creating a widget that is a container with a stack of widgets
-                * inside it. The stack of widgets is a text widget and a positioned widget. The text
-                * widget is a paragraph of text and the positioned widget is a blue bar that is
-                * positioned at the bottom of the container.
-                */
+                // Container for exercise 3
                 Container(
-                  margin:
-                      EdgeInsets.fromLTRB(85 * fem, 0 * fem, 0 * fem, 30 * fem),
-                  width: 255 * fem,
-                  height: 120 * fem,
+                  margin: EdgeInsets.fromLTRB(
+                    85 * screenWidthRatio,
+                    0 * screenWidthRatio,
+                    0 * screenWidthRatio,
+                    30 * screenWidthRatio,
+                  ),
+                  width: 255 * screenWidthRatio,
+                  height: 120 * screenWidthRatio,
                   child: Stack(
                     children: [
-                      colorWidget(context, 0, 98, 100, 9),
-                      textPositioned(context, 0, 0, 255, 120,
-                          '03\nLateral raise\n', titleStyle),
+                      // Blue bar at the bottom of exercise 3 container
+                      colorWidget(
+                        context,
+                        0,
+                        98,
+                        100,
+                        9,
+                      ),
+                      // Exercise 3 title
+                      buildTextPositioned(
+                        context,
+                        0,
+                        0,
+                        255,
+                        120,
+                        '03\nLateral raise\n',
+                        titleStyle,
+                      ),
                     ],
                   ),
                 ),
+                // Container for exercise 3 description and image
                 Container(
-                  margin:
-                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 1 * fem, 0 * fem),
+                  margin: EdgeInsets.fromLTRB(
+                    0 * screenWidthRatio,
+                    0 * screenWidthRatio,
+                    1 * screenWidthRatio,
+                    0 * screenWidthRatio,
+                  ),
                   width: double.infinity,
-                  height: 580 * fem,
+                  height: 580 * screenWidthRatio,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(
-                        exerciseloginimg3,
-                      ),
+                      image: AssetImage(exerciseloginimg3),
                     ),
                   ),
                   child: Stack(
                     children: [
-                      colorBoxWidget(context, 806, 0, 550, 580),
+                      // Black cover effect over exercise 3 image
+                      colorBoxWidget(
+                        context,
+                        806,
+                        0,
+                        550,
+                        580,
+                      ),
+                      // Exercise 3 text description
                       textWidget(
-                          context,
-                          847,
-                          221,
-                          439,
-                          150,
-                          'Lateral Raise is an exercise where the patients raise their arms on their sides with a slight bent on the elbow, this exercise will strengthen the Lateral deltoids.\n',
-                          parghStyle),
+                        context,
+                        847,
+                        221,
+                        439,
+                        150,
+                        'Lateral Raise is an exercise where the patients raise their arms on their sides with a slight bent on the elbow, this exercise will strengthen the Lateral deltoids.\n',
+                        parghStyle,
+                      ),
                     ],
                   ),
                 ),
@@ -287,6 +375,7 @@ class Exercises extends StatelessWidget {
   }
 }
 
+// Returns a Positioned widget containing a text widget
 Widget textWidget(
   BuildContext context,
   double left,
@@ -297,14 +386,14 @@ Widget textWidget(
   TextStyle textStyle,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Positioned(
-    left: left * fem,
-    top: top * fem,
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
     child: Align(
       child: SizedBox(
-        width: width * fem,
-        height: height * fem,
+        width: width * screenWidthRatio,
+        height: height * screenWidthRatio,
         child: Text(
           text,
           style: textStyle,
@@ -314,6 +403,7 @@ Widget textWidget(
   );
 }
 
+// Returns a Positioned widget containing an image widget
 Widget imageWidget(
   BuildContext context,
   double left,
@@ -323,16 +413,16 @@ Widget imageWidget(
   String image,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Positioned(
-    left: left * fem,
-    top: top * fem,
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
     child: Align(
       child: SizedBox(
-        width: width * fem,
-        height: height * fem,
+        width: width * screenWidthRatio,
+        height: height * screenWidthRatio,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(50 * fem),
+          borderRadius: BorderRadius.circular(50 * screenWidthRatio),
           child: Image.asset(
             image,
             fit: BoxFit.cover,
@@ -343,6 +433,7 @@ Widget imageWidget(
   );
 }
 
+// Returns a Positioned widget containing a colored box
 Widget colorBoxWidget(
   BuildContext context,
   double left,
@@ -351,22 +442,22 @@ Widget colorBoxWidget(
   double height,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Positioned(
-    left: left * fem,
-    top: top * fem,
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
     child: Align(
       child: SizedBox(
-        width: width * fem,
-        height: height * fem,
+        width: width * screenWidthRatio,
+        height: height * screenWidthRatio,
         child: Container(
           decoration: BoxDecoration(
             color: const Color(0xff0076f9),
             boxShadow: [
               BoxShadow(
                 color: const Color(0x4c000000),
-                offset: Offset(0 * fem, 0 * fem),
-                blurRadius: 7 * fem,
+                offset: Offset(0 * screenWidthRatio, 0 * screenWidthRatio),
+                blurRadius: 7 * screenWidthRatio,
               ),
             ],
           ),
@@ -376,6 +467,7 @@ Widget colorBoxWidget(
   );
 }
 
+// Returns a Positioned widget containing a colored box
 Widget colorWidget(
   BuildContext context,
   double left,
@@ -384,18 +476,18 @@ Widget colorWidget(
   double height,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Positioned(
-    left: left * fem,
-    top: top * fem,
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
     child: Align(
       child: SizedBox(
-        width: width * fem,
-        height: height * fem,
+        width: width * screenWidthRatio,
+        height: height * screenWidthRatio,
         child: Container(
           decoration: BoxDecoration(
             color: const Color(0xff0076f9),
-            borderRadius: BorderRadius.circular(4 * fem),
+            borderRadius: BorderRadius.circular(4 * screenWidthRatio),
           ),
         ),
       ),

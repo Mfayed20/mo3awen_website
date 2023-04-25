@@ -18,7 +18,7 @@ class FooterWidget extends StatelessWidget {
         children: [
           LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
-              if (constraints.maxWidth > 600) {
+              if (constraints.maxWidth > 650) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,10 +32,10 @@ class FooterWidget extends StatelessWidget {
                   ],
                 );
               } else {
-                return Align(
-                  alignment: Alignment.topCenter,
+                return Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildFooterLogoAndDescription(context),
                       const SizedBox(height: 20),
@@ -54,7 +54,7 @@ class FooterWidget extends StatelessWidget {
           const Center(
             child: Text(
               "© 2023 M03AWEN. All rights reserved.",
-              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
             ),
           ),
         ],
@@ -66,7 +66,7 @@ class FooterWidget extends StatelessWidget {
 Widget _buildFooterLogoAndDescription(BuildContext context) {
   double screenWidth = MediaQuery.of(context).size.width;
   double fontSize =
-      screenWidth < 600 ? 12.0 : 16.0; // Adjust font size based on screen width
+      screenWidth < 600 ? 12.0 : 14.0; // Adjust font size based on screen width
 
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +90,7 @@ Widget _buildFooterLogoAndDescription(BuildContext context) {
 Widget _buildQuickLinksColumn(BuildContext context) {
   double screenWidth = MediaQuery.of(context).size.width;
   double fontSize =
-      screenWidth < 600 ? 12.0 : 16.0; // Adjust font size based on screen width
+      screenWidth < 600 ? 12.0 : 14.0; // Adjust font size based on screen width
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -147,7 +147,7 @@ Widget _buildQuickLinksColumn(BuildContext context) {
 Widget _buildServicesColumn(BuildContext context) {
   double screenWidth = MediaQuery.of(context).size.width;
   double fontSize =
-      screenWidth < 600 ? 12.0 : 16.0; // Adjust font size based on screen width
+      screenWidth < 600 ? 12.0 : 14.0; // Adjust font size based on screen width
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -184,7 +184,7 @@ Widget _buildServicesColumn(BuildContext context) {
 Widget _buildGetInTouchColumn(BuildContext context) {
   double screenWidth = MediaQuery.of(context).size.width;
   double fontSize =
-      screenWidth < 600 ? 12.0 : 16.0; // Adjust font size based on screen width
+      screenWidth < 600 ? 12.0 : 14.0; // Adjust font size based on screen width
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [

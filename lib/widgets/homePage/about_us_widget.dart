@@ -1,46 +1,52 @@
+// Importing necessary libraries and files
 import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
-class AboutUs extends StatelessWidget {
-  const AboutUs({Key? key}) : super(key: key);
+class AboutUsHP extends StatelessWidget {
+  const AboutUsHP({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return desktopView(context);
+    return aboutUS(context);
   }
 }
 
-Widget desktopView(BuildContext context) {
-  TextStyle normalStyle = textStyle(
+Widget aboutUS(BuildContext context) {
+  // Defining text styles
+  TextStyle normalStyle = buildTextStyle(
     context,
     "poppins",
-    24,
-    FontWeight.w500,
+    27,
+    FontWeight.w700,
     1.5,
     1.56,
-    const Color(0xff000000),
+    Colors.black,
   );
-  TextStyle titleStyle = textStyle(
+  TextStyle titleStyle = buildTextStyle(
     context,
     "poppins",
     40,
-    FontWeight.w700,
+    FontWeight.w900,
     1.5,
     2.6,
     const Color(0xff000000),
   );
 
+  // Calculating relative dimensions for UI layout
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
+
+  // Returning the UI layout
   return Container(
-    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 95 * fem),
-    width: 1441 * fem,
-    height: 721 * fem,
+    margin: EdgeInsets.fromLTRB(0 * screenWidthRatio, 50 * screenWidthRatio,
+        0 * screenWidthRatio, 50 * screenWidthRatio),
+    width: 1441 * screenWidthRatio,
+    height: 721 * screenWidthRatio,
     child: Stack(
       children: [
-        /* background */
-        colorPositioned(
+        // Background container
+        buildColorPositioned(
           context,
           0,
           141,
@@ -50,8 +56,8 @@ Widget desktopView(BuildContext context) {
           const Color(0xff0076f9),
           Colors.transparent,
         ),
-        /* title */
-        colorPositioned(
+        // Title container
+        buildColorPositioned(
           context,
           85,
           72,
@@ -61,9 +67,9 @@ Widget desktopView(BuildContext context) {
           const Color(0xff0076f9),
           Colors.transparent,
         ),
-        textPositioned(context, 85, 0, 222, 60, 'ABOUT US', titleStyle),
-        /* text */
-        textPositioned(
+        buildTextPositioned(context, 85, 0, 222, 60, 'ABOUT US', titleStyle),
+        // Text container
+        buildTextPositioned(
           context,
           85,
           216,
@@ -72,8 +78,8 @@ Widget desktopView(BuildContext context) {
           'The main goal of Mo3awen is to help you do your physical therapy. It adds a fun element to the dull routine of working out. It will also keep the patients entertained and committed to doing their exercises.',
           normalStyle,
         ),
-        /* Image */
-        imagepositioned(
+        // Image container
+        buildImagepositioned(
           context,
           789,
           29,
@@ -81,7 +87,8 @@ Widget desktopView(BuildContext context) {
           556,
           aboutUsPhoto,
         ),
-        colorPositioned(
+        // Overlay container
+        buildColorPositioned(
           context,
           761,
           1,

@@ -1,95 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-TextStyle safeGoogleFont(
-  String fontFamily, {
-  TextStyle? textStyle,
-  Color? color,
-  Color? backgroundColor,
-  double? fontSize,
-  FontWeight? fontWeight,
-  FontStyle? fontStyle,
-  double? letterSpacing,
-  double? wordSpacing,
-  TextBaseline? textBaseline,
-  double? height,
-  Locale? locale,
-  Paint? foreground,
-  Paint? background,
-  List<Shadow>? shadows,
-  List<FontFeature>? fontFeatures,
-  TextDecoration? decoration,
-  Color? decorationColor,
-  TextDecorationStyle? decorationStyle,
-  double? decorationThickness,
-}) {
-  try {
-    return GoogleFonts.getFont(
-      fontFamily,
-      textStyle: textStyle,
-      color: color,
-      backgroundColor: backgroundColor,
-      fontSize: fontSize,
-      fontWeight: fontWeight,
-      fontStyle: fontStyle,
-      letterSpacing: letterSpacing,
-      wordSpacing: wordSpacing,
-      textBaseline: textBaseline,
-      height: height,
-      locale: locale,
-      foreground: foreground,
-      background: background,
-      shadows: shadows,
-      fontFeatures: fontFeatures,
-      decoration: decoration,
-      decorationColor: decorationColor,
-      decorationStyle: decorationStyle,
-      decorationThickness: decorationThickness,
-    );
-  } catch (ex) {
-    return GoogleFonts.getFont(
-      "Source Sans Pro",
-      textStyle: textStyle,
-      color: color,
-      backgroundColor: backgroundColor,
-      fontSize: fontSize,
-      fontWeight: fontWeight,
-      fontStyle: fontStyle,
-      letterSpacing: letterSpacing,
-      wordSpacing: wordSpacing,
-      textBaseline: textBaseline,
-      height: height,
-      locale: locale,
-      foreground: foreground,
-      background: background,
-      shadows: shadows,
-      fontFeatures: fontFeatures,
-      decoration: decoration,
-      decorationColor: decorationColor,
-      decorationStyle: decorationStyle,
-      decorationThickness: decorationThickness,
-    );
-  }
-}
-
-// ! remove this and make it as local variable in footer widget
-TextStyle footerBoldText(
-    double fontSize, FontWeight fontWeight, BuildContext context) {
-  double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
-  return TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: fontSize * ffem,
-    fontWeight: fontWeight,
-    height: 1.5 * ffem / fem,
-    color: const Color(0xff000000),
-  );
-}
 
 // Creates a TextStyle based on the provided parameters and screen size
-TextStyle textStyle(
+TextStyle buildTextStyle(
   BuildContext context,
   String font,
   double size,
@@ -99,40 +12,41 @@ TextStyle textStyle(
   Color color,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = fem * 0.97;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = screenWidthRatio * 0.97;
   return TextStyle(
     fontFamily: font,
     fontSize: size * ffem,
     fontWeight: fontWeight,
-    height: fontHeight * ffem / fem,
-    letterSpacing: letterSpacing * fem,
+    height: fontHeight * ffem / screenWidthRatio,
+    letterSpacing: letterSpacing * screenWidthRatio,
     color: color,
   );
 }
 
 /* Navigation Bar: navSignBttn widget */
-Widget navSignBttnContainer(BuildContext context, String title,
+Widget buildNavSignBttnContainer(BuildContext context, String title,
     TextStyle textStyle, Function() method) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Container(
-    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 10 * fem, 0 * fem),
-    width: 140 * fem,
+    margin: EdgeInsets.fromLTRB(0 * screenWidthRatio, 0 * screenWidthRatio,
+        10 * screenWidthRatio, 0 * screenWidthRatio),
+    width: 140 * screenWidthRatio,
     height: double.infinity,
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
           color: const Color(0x3f000000),
-          offset: Offset(0 * fem, 4 * fem),
-          blurRadius: 7 * fem,
+          offset: Offset(0 * screenWidthRatio, 4 * screenWidthRatio),
+          blurRadius: 7 * screenWidthRatio,
         ),
       ],
     ),
     child: Center(
       child: SizedBox(
-        height: 60 * fem,
-        width: 140 * fem,
+        height: 60 * screenWidthRatio,
+        width: 140 * screenWidthRatio,
         child: ElevatedButton(
           onPressed: method,
           child: Text(
@@ -147,7 +61,7 @@ Widget navSignBttnContainer(BuildContext context, String title,
 }
 
 /* textCountanier method */
-Widget textPositioned(
+Widget buildTextPositioned(
   BuildContext context,
   double left,
   double top,
@@ -157,14 +71,14 @@ Widget textPositioned(
   TextStyle textStyle,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Positioned(
-    left: left * fem,
-    top: top * fem,
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
     child: Align(
       child: SizedBox(
-        width: width * fem,
-        height: height * fem,
+        width: width * screenWidthRatio,
+        height: height * screenWidthRatio,
         child: Text(
           text,
           textAlign: TextAlign.center,
@@ -176,7 +90,7 @@ Widget textPositioned(
 }
 
 /* textCountanier method */
-Widget textBttnPositioned(
+Widget buildTextBttnPositioned(
   BuildContext context,
   double left,
   double top,
@@ -187,14 +101,14 @@ Widget textBttnPositioned(
   Function() onpressed,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Positioned(
-    left: left * fem,
-    top: top * fem,
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
     child: Align(
       child: SizedBox(
-        width: width * fem,
-        height: height * fem,
+        width: width * screenWidthRatio,
+        height: height * screenWidthRatio,
         child: TextButton(
           onPressed: onpressed,
           child: Text(
@@ -209,7 +123,7 @@ Widget textBttnPositioned(
 }
 
 /* colorCountanier method */
-Widget colorPositioned(
+Widget buildColorPositioned(
   BuildContext context,
   double left,
   double top,
@@ -220,17 +134,18 @@ Widget colorPositioned(
   Color borderColor,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Positioned(
-    left: left * fem,
-    top: top * fem,
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
     child: Align(
       child: SizedBox(
-        width: width * fem,
-        height: height * fem,
+        width: width * screenWidthRatio,
+        height: height * screenWidthRatio,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius * fem),
+            borderRadius:
+                BorderRadius.circular(borderRadius * screenWidthRatio),
             color: color,
             border: Border.all(color: borderColor),
           ),
@@ -241,7 +156,7 @@ Widget colorPositioned(
 }
 
 /* blurContainer method */
-Widget blurPositioned(
+Widget buildBlurPositioned(
   BuildContext context,
   double left,
   double top,
@@ -252,20 +167,20 @@ Widget blurPositioned(
   Color color,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Positioned(
-    left: left * fem,
-    top: top * fem,
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
     child: ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(
-          sigmaX: sigmaX * fem,
-          sigmaY: sigmaY * fem,
+          sigmaX: sigmaX * screenWidthRatio,
+          sigmaY: sigmaY * screenWidthRatio,
         ),
         child: Align(
           child: SizedBox(
-            width: width * fem,
-            height: height * fem,
+            width: width * screenWidthRatio,
+            height: height * screenWidthRatio,
             child: Container(
               decoration: BoxDecoration(
                 color: color,
@@ -279,7 +194,7 @@ Widget blurPositioned(
 }
 
 /* elevatedBttn method */
-Widget elevatedBttnPositioned(
+Widget buildElevatedBttnPositioned(
   BuildContext context,
   double left,
   double top,
@@ -294,23 +209,24 @@ Widget elevatedBttnPositioned(
   TextStyle textStyle,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Positioned(
-    left: left * fem,
-    top: top * fem,
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
     child: Align(
       child: SizedBox(
-        width: width * fem,
-        height: height * fem,
+        width: width * screenWidthRatio,
+        height: height * screenWidthRatio,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: bttnColor,
             side: BorderSide(
               color: borderColor,
-              width: borderWidth * fem,
+              width: borderWidth * screenWidthRatio,
             ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius * fem),
+              borderRadius:
+                  BorderRadius.circular(borderRadius * screenWidthRatio),
             ),
           ),
           onPressed: onPressed,
@@ -325,7 +241,7 @@ Widget elevatedBttnPositioned(
 }
 
 /* imageContainer */
-Widget imagepositioned(
+Widget buildImagepositioned(
   BuildContext context,
   double left,
   double top,
@@ -334,14 +250,14 @@ Widget imagepositioned(
   String image,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Positioned(
-    left: left * fem,
-    top: top * fem,
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
     child: Align(
       child: SizedBox(
-        width: width * fem,
-        height: height * fem,
+        width: width * screenWidthRatio,
+        height: height * screenWidthRatio,
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -356,7 +272,7 @@ Widget imagepositioned(
 }
 
 /* textFieldContainer */
-Widget textFieldPositioned(
+Widget buildTextFieldPositioned(
   BuildContext context,
   double left,
   double top,
@@ -370,14 +286,14 @@ Widget textFieldPositioned(
   double boderRadius,
 ) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Positioned(
-    left: left * fem,
-    top: top * fem,
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
     child: Align(
       child: SizedBox(
-        width: width * fem,
-        height: height * fem,
+        width: width * screenWidthRatio,
+        height: height * screenWidthRatio,
         child: TextField(
           maxLines: maxLines,
           decoration: InputDecoration(
@@ -396,19 +312,19 @@ Widget textFieldPositioned(
   );
 }
 
-Widget imageContainer(BuildContext context, double left, double top,
+Widget buildImageContainer(BuildContext context, double left, double top,
     double right, double bottom, double width, double height, String image) {
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
   return Container(
-    margin:
-        EdgeInsets.fromLTRB(left * fem, top * fem, right * fem, bottom * fem),
-    width: width * fem,
-    height: height * fem,
+    margin: EdgeInsets.fromLTRB(left * screenWidthRatio, top * screenWidthRatio,
+        right * screenWidthRatio, bottom * screenWidthRatio),
+    width: width * screenWidthRatio,
+    height: height * screenWidthRatio,
     child: Image.asset(
       image,
-      // width: width * fem,
-      // height: height * fem,
+      // width: width * screenWidthRatio,
+      // height: height * screenWidthRatio,
     ),
   );
 }

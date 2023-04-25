@@ -7,15 +7,17 @@ class ContactUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return desktopPlans(context);
+    return welcomeContactUS(context);
   }
 }
 
-Widget desktopPlans(BuildContext context) {
+Widget welcomeContactUS(BuildContext context) {
+  // Defining variables for responsive design
   double baseWidth = 1440;
-  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
 
-  TextStyle titleStyle = textStyle(
+  // Defining a TextStyle object for the title
+  TextStyle titleStyle = buildTextStyle(
     context,
     "Poppins",
     80,
@@ -25,37 +27,39 @@ Widget desktopPlans(BuildContext context) {
     const Color(0xffffffff),
   );
 
+  // Returning a Container with a background image and a Stack containing a border and a Text
   return Container(
     width: double.infinity,
-    height: 650 * fem,
+    height: 650 * screenWidthRatio,
     decoration: BoxDecoration(
       color: const Color(0x99030303),
       image: DecorationImage(
         colorFilter:
             ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken),
         image: const AssetImage(
-          contactUsbgimg,
+          contactUsbgimg, // Using the contactUsbgimg constant from the constants file
         ),
       ),
     ),
     child: Stack(
+      alignment: Alignment.center,
       children: [
-        Positioned(
-          left: 158 * fem,
-          top: 35 * fem,
-          child: Align(
-            child: SizedBox(
-              width: 1125 * fem,
-              height: 562 * fem,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xffffffff)),
-                ),
-              ),
+        // Defining a SizedBox containing a border
+        SizedBox(
+          width: 1125 * screenWidthRatio,
+          height: 562 * screenWidthRatio,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xffffffff)),
             ),
           ),
         ),
-        textPositioned(context, 460, 256, 522, 120, 'CONTACT US', titleStyle),
+        // Defining a Text widget containing the title
+        Text(
+          'CONTACT US',
+          textAlign: TextAlign.center,
+          style: titleStyle,
+        ),
       ],
     ),
   );

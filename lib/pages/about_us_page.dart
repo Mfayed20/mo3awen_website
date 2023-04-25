@@ -11,7 +11,7 @@ class AboutUsPage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: [
+          children: const [
             NavBar(),
             AboutUsWidget(),
             FooterWidget(),

@@ -13,7 +13,7 @@ class ExercisePage extends StatelessWidget {
         child: Column(
           children: const [
             NavBar(),
-            Exercises(),
+            ExercisesWidget(),
             FooterWidget(),
           ],
         ),

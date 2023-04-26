@@ -2,9 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../pages/add_docter_page.dart';
-import '../pages/add_patient_page.dart';
-import '../pages/home_page.dart';
 
 class AdminProfileWidget extends StatefulWidget {
   const AdminProfileWidget({super.key});
@@ -18,10 +15,23 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
   final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref();
   late User _user;
   late DatabaseReference _userRef;
-
   String fName = '';
   String lName = '';
   String usertype = '';
+
+  bool _showUserList = false; // Add this variable to toggle between widgets
+
+  // Add user form related variables
+  final _formKey = GlobalKey<FormState>();
+  String _firstName = '';
+  String _lastName = '';
+  String _dob = '';
+  String _gender = '';
+  String _nationality = '';
+  String _email = '';
+  String _password = '';
+  String _associatedDr = '';
+  bool _isDoctor = true;
 
   @override
   void initState() {
@@ -31,9 +41,7 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
       print("_user: $_user");
       print("\nuid: ${_user.uid}");
     }
-
     _userRef = _databaseRef.child('users').child(_user.uid);
-
     _getUserData();
   }
 
@@ -41,18 +49,25 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
     DataSnapshot snapshot = (await _userRef.once()).snapshot;
     Map<String, dynamic>? userData = snapshot.value as Map<String, dynamic>?;
 
-    if (userData != null) {
+    if (userData == null) {
+      // handle null value here
+    } else {
       setState(() {
-        fName = userData['f-name'] ?? '';
-        lName = userData['l-name'] ?? '';
-        usertype = userData['usertype'] ?? '';
+        fName = userData['f-name']?.toString() ?? '';
+        lName = userData['l-name']?.toString() ?? '';
+        usertype = userData['usertype']?.toString() ?? '';
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return _buildProfileHeader();
+    return Column(
+      children: [
+        _buildProfileHeader(),
+        _showUserList ? UserListWidget() : _buildAddUserForm(),
+      ],
+    );
   }
 
   Widget _buildProfileHeader() {
@@ -93,11 +108,12 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AddDocterPage()),
-                  );
+                  setState(() {
+                    _showUserList = false;
+                  });
+                  if (kDebugMode) {
+                    print("From Add user: $_showUserList");
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey,
@@ -105,36 +121,19 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                   padding: EdgeInsets.all(16 * screenWidthRatio),
                 ),
                 child: Text(
-                  'Add Doctor',
+                  'Add User',
                   style: TextStyle(fontSize: 16 * screenWidthRatio),
                 ),
               ),
               SizedBox(width: 10.0 * screenWidthRatio),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AddPatientPage()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
-                  foregroundColor: Colors.black,
-                  padding: EdgeInsets.all(16 * screenWidthRatio),
-                ),
-                child: Text(
-                  'Add Patient',
-                  style: TextStyle(fontSize: 16 * screenWidthRatio),
-                ),
-              ),
-              SizedBox(width: 10.0 * screenWidthRatio),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                  );
+                  setState(() {
+                    _showUserList = true;
+                  });
+                  if (kDebugMode) {
+                    print("From Search: $_showUserList");
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey,
@@ -152,4 +151,378 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
       ],
     );
   }
+
+  Widget _buildAddUserForm() {
+    final _formKey = GlobalKey<FormState>();
+    TextEditingController firstNameController = TextEditingController();
+    TextEditingController lastNameController = TextEditingController();
+    TextEditingController dobController = TextEditingController();
+    TextEditingController genderController = TextEditingController();
+    TextEditingController nationalityController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController associatedDrController = TextEditingController();
+
+    return Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: ListTile(
+                    title: const Text('Doctor'),
+                    leading: Radio<bool>(
+                      value: true,
+                      groupValue: _isDoctor,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          _isDoctor = value!;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ListTile(
+                    title: const Text('Patient'),
+                    leading: Radio<bool>(
+                      value: false,
+                      groupValue: _isDoctor,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          _isDoctor = value!;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            buildInputField(
+              "First Name",
+              firstNameController,
+            ),
+            const SizedBox(height: 16),
+            buildInputField(
+              "Last Name",
+              lastNameController,
+            ),
+            const SizedBox(height: 16),
+            buildInputField(
+              "Date of Birth",
+              dobController,
+            ),
+            const SizedBox(height: 16),
+            buildInputField(
+              "Gender",
+              genderController,
+            ),
+            const SizedBox(height: 16),
+            buildInputField(
+              "Nationality",
+              nationalityController,
+            ),
+            const SizedBox(height: 16),
+            buildInputField(
+              "Email",
+              emailController,
+            ),
+            const SizedBox(height: 16),
+            buildInputField(
+              "Password",
+              passwordController,
+              isPassword: true,
+            ),
+            if (!_isDoctor)
+              Column(
+                children: [
+                  const SizedBox(height: 16),
+                  buildInputField(
+                    "Associated Dr. Name",
+                    associatedDrController,
+                  ),
+                ],
+              ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () async {
+                // if fields are empty
+                if (firstNameController.text.isEmpty ||
+                    lastNameController.text.isEmpty ||
+                    dobController.text.isEmpty ||
+                    genderController.text.isEmpty ||
+                    nationalityController.text.isEmpty ||
+                    emailController.text.isEmpty ||
+                    passwordController.text.isEmpty ||
+                    (!_isDoctor && associatedDrController.text.isEmpty)) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Please fill all fields.'),
+                    ),
+                  );
+                  return;
+                }
+
+                if (_formKey.currentState!.validate()) {
+                  // Add user to Firebase
+                  try {
+                    DatabaseReference newUserRef =
+                        _databaseRef.child('users').push();
+                    // generate a new unique key for the new user
+                    await newUserRef.set({
+                      'DoB': dobController.text,
+                      'email': emailController.text,
+                      'f-name': firstNameController.text,
+                      'gender': genderController.text,
+                      'l-name': lastNameController.text,
+                      'nationality': nationalityController.text,
+                      'usertype': _isDoctor ? 'dr' : 'patient',
+                      if (!_isDoctor && associatedDrController.text.isNotEmpty)
+                        'associated-dr': associatedDrController.text,
+                    });
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('User added successfully.'),
+                      ),
+                    );
+                  } catch (e) {
+                    if (kDebugMode) {
+                      print(e);
+                    }
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Error adding user: $e'),
+                      ),
+                    );
+                  }
+                }
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+// Input field
+  Widget buildInputField(String label, TextEditingController controller,
+      {bool isPassword = false}) {
+    return TextField(
+      controller: controller,
+      obscureText: isPassword,
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: const TextStyle(color: Colors.grey),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.blue, width: 2),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey, width: 2),
+        ),
+      ),
+    );
+  }
+}
+
+class UserListWidget extends StatefulWidget {
+  @override
+  UserListWidgetState createState() => UserListWidgetState();
+}
+
+class UserListWidgetState extends State<UserListWidget> {
+  final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref();
+  List<Map<String, dynamic>> _users = [];
+  List<Map<String, dynamic>> _filteredUsers = [];
+  String _searchText = '';
+  String _filterType = 'all';
+
+  TextEditingController searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUsers();
+  }
+
+  Future<void> _fetchUsers() async {
+    DataSnapshot snapshot = (await _databaseRef.child('users').once()).snapshot;
+    Map<String, dynamic> usersData = snapshot.value as Map<String, dynamic>;
+    _users = usersData.values.map((e) => e as Map<String, dynamic>).toList();
+    _filterUsers();
+  }
+
+  void _filterUsers() {
+    setState(() {
+      if (_filterType == 'all') {
+        _filteredUsers = _users;
+      } else {
+        _filteredUsers = _users
+            .where((user) =>
+                user['usertype'] == (_filterType == 'dr' ? 'dr' : 'patient'))
+            .toList();
+      }
+      if (_searchText.isNotEmpty) {
+        _filteredUsers = _filteredUsers
+            .where((user) =>
+                (user['f-name'] as String)
+                    .toLowerCase()
+                    .contains(_searchText.toLowerCase()) ||
+                (user['l-name'] as String)
+                    .toLowerCase()
+                    .contains(_searchText.toLowerCase()))
+            .toList();
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _filterType = 'all';
+                });
+                _filterUsers();
+              },
+              child: Text('All'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _filterType = 'dr';
+                });
+                _filterUsers();
+              },
+              child: Text('Doctors'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _filterType = 'patient';
+                });
+                _filterUsers();
+              },
+              child: Text('Patients'),
+            ),
+            Expanded(
+              child: TextField(
+                controller: searchController,
+                decoration: InputDecoration(hintText: 'Search by name'),
+                onChanged: (value) {
+                  setState(() {
+                    _searchText = value;
+                  });
+                  _filterUsers();
+                },
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                _filterUsers();
+              },
+              child: Text('Search by name'),
+            ),
+          ],
+        ),
+        // Expanded(
+        //   child: ListView.builder(
+        //     itemCount: _filteredUsers.length,
+        //     itemBuilder: (context, index) {
+        //       Map<String, dynamic> user = _filteredUsers[index];
+        //       return ListTile(
+        //         title: Text('${user['f-name']} ${user['l-name']}'),
+        //         onTap: () {
+        //           // Display user information and handle editing
+        //         },
+        //       );
+        //     },
+        //   ),
+        // ),
+      ],
+    );
+  }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Column(
+  //     // mainAxisSize: MainAxisSize.min,
+  //     children: [
+  //       Row(
+  //         children: [
+  //           TextButton(
+  //             onPressed: () {
+  //               setState(() {
+  //                 _filterType = 'all';
+  //               });
+  //               _filterUsers();
+  //             },
+  //             child: Text('All'),
+  //           ),
+  //           TextButton(
+  //             onPressed: () {
+  //               setState(() {
+  //                 _filterType = 'dr';
+  //               });
+  //               _filterUsers();
+  //             },
+  //             child: Text('Doctors'),
+  //           ),
+  //           TextButton(
+  //             onPressed: () {
+  //               setState(() {
+  //                 _filterType = 'patient';
+  //               });
+  //               _filterUsers();
+  //             },
+  //             child: Text('Patients'),
+  //           ),
+  //           Flexible(
+  //             fit: FlexFit.loose,
+  //             child: TextField(
+  //               controller: searchController,
+  //               decoration: InputDecoration(hintText: 'Search by name'),
+  //               onChanged: (value) {
+  //                 setState(() {
+  //                   _searchText = value;
+  //                 });
+  //                 _filterUsers();
+  //               },
+  //             ),
+  //           ),
+  //           TextButton(
+  //             onPressed: () {
+  //               _filterUsers();
+  //             },
+  //             child: Text('Search by name'),
+  //           ),
+  //         ],
+  //       ),
+  // Flexible(
+  //   fit: FlexFit.loose,
+  //   // Add the Expanded widget here
+  //   child: ListView.builder(
+  //     itemCount: _filteredUsers.length,
+  //     itemBuilder: (context, index) {
+  //       Map<String, dynamic> user = _filteredUsers[index];
+  //       return ListTile(
+  //         title: Text('${user['f-name']} ${user['l-name']}'),
+  //         onTap: () {
+  //           // Display user information and handle editing
+  //         },
+  //       );
+  //     },
+  //   ),
+  // ),
+  //     ],
+  //   );
+  // }
 }

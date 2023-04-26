@@ -65,7 +65,7 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
     return Column(
       children: [
         _buildProfileHeader(),
-        _showUserList ? UserListWidget() : _buildAddUserForm(),
+        _showUserList ? _buildUserListWidget() : _buildAddUserForm(),
       ],
     );
   }
@@ -329,25 +329,17 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
   }
 }
 
-class UserListWidget extends StatefulWidget {
-  @override
-  UserListWidgetState createState() => UserListWidgetState();
-}
-
-class UserListWidgetState extends State<UserListWidget> {
+class _buildUserListWidget extends StatelessWidget {
   final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref();
   List<Map<String, dynamic>> _users = [];
   List<Map<String, dynamic>> _filteredUsers = [];
   String _searchText = '';
   String _filterType = 'all';
-
   TextEditingController searchController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchUsers();
-  }
+  // Add any parameters needed in the constructor
+
+  _buildUserListWidget();
 
   Future<void> _fetchUsers() async {
     DataSnapshot snapshot = (await _databaseRef.child('users').once()).snapshot;
@@ -357,27 +349,26 @@ class UserListWidgetState extends State<UserListWidget> {
   }
 
   void _filterUsers() {
-    setState(() {
-      if (_filterType == 'all') {
-        _filteredUsers = _users;
-      } else {
-        _filteredUsers = _users
-            .where((user) =>
-                user['usertype'] == (_filterType == 'dr' ? 'dr' : 'patient'))
-            .toList();
-      }
-      if (_searchText.isNotEmpty) {
-        _filteredUsers = _filteredUsers
-            .where((user) =>
-                (user['f-name'] as String)
-                    .toLowerCase()
-                    .contains(_searchText.toLowerCase()) ||
-                (user['l-name'] as String)
-                    .toLowerCase()
-                    .contains(_searchText.toLowerCase()))
-            .toList();
-      }
-    });
+    // No need for setState since this is now a StatelessWidget
+    if (_filterType == 'all') {
+      _filteredUsers = _users;
+    } else {
+      _filteredUsers = _users
+          .where((user) =>
+              user['usertype'] == (_filterType == 'dr' ? 'dr' : 'patient'))
+          .toList();
+    }
+    if (_searchText.isNotEmpty) {
+      _filteredUsers = _filteredUsers
+          .where((user) =>
+              (user['f-name'] as String)
+                  .toLowerCase()
+                  .contains(_searchText.toLowerCase()) ||
+              (user['l-name'] as String)
+                  .toLowerCase()
+                  .contains(_searchText.toLowerCase()))
+          .toList();
+    }
   }
 
   @override
@@ -388,27 +379,21 @@ class UserListWidgetState extends State<UserListWidget> {
           children: [
             TextButton(
               onPressed: () {
-                setState(() {
-                  _filterType = 'all';
-                });
+                _filterType = 'all';
                 _filterUsers();
               },
               child: Text('All'),
             ),
             TextButton(
               onPressed: () {
-                setState(() {
-                  _filterType = 'dr';
-                });
+                _filterType = 'dr';
                 _filterUsers();
               },
               child: Text('Doctors'),
             ),
             TextButton(
               onPressed: () {
-                setState(() {
-                  _filterType = 'patient';
-                });
+                _filterType = 'patient';
                 _filterUsers();
               },
               child: Text('Patients'),
@@ -418,9 +403,7 @@ class UserListWidgetState extends State<UserListWidget> {
                 controller: searchController,
                 decoration: InputDecoration(hintText: 'Search by name'),
                 onChanged: (value) {
-                  setState(() {
-                    _searchText = value;
-                  });
+                  _searchText = value;
                   _filterUsers();
                 },
               ),
@@ -433,96 +416,21 @@ class UserListWidgetState extends State<UserListWidget> {
             ),
           ],
         ),
-        // Expanded(
-        //   child: ListView.builder(
-        //     itemCount: _filteredUsers.length,
-        //     itemBuilder: (context, index) {
-        //       Map<String, dynamic> user = _filteredUsers[index];
-        //       return ListTile(
-        //         title: Text('${user['f-name']} ${user['l-name']}'),
-        //         onTap: () {
-        //           // Display user information and handle editing
-        //         },
-        //       );
-        //     },
-        //   ),
-        // ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: _filteredUsers.length,
+            itemBuilder: (context, index) {
+              Map<String, dynamic> user = _filteredUsers[index];
+              return ListTile(
+                title: Text('${user['f-name']} ${user['l-name']}'),
+                onTap: () {
+                  // Display user information and handle editing
+                },
+              );
+            },
+          ),
+        ),
       ],
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Column(
-  //     // mainAxisSize: MainAxisSize.min,
-  //     children: [
-  //       Row(
-  //         children: [
-  //           TextButton(
-  //             onPressed: () {
-  //               setState(() {
-  //                 _filterType = 'all';
-  //               });
-  //               _filterUsers();
-  //             },
-  //             child: Text('All'),
-  //           ),
-  //           TextButton(
-  //             onPressed: () {
-  //               setState(() {
-  //                 _filterType = 'dr';
-  //               });
-  //               _filterUsers();
-  //             },
-  //             child: Text('Doctors'),
-  //           ),
-  //           TextButton(
-  //             onPressed: () {
-  //               setState(() {
-  //                 _filterType = 'patient';
-  //               });
-  //               _filterUsers();
-  //             },
-  //             child: Text('Patients'),
-  //           ),
-  //           Flexible(
-  //             fit: FlexFit.loose,
-  //             child: TextField(
-  //               controller: searchController,
-  //               decoration: InputDecoration(hintText: 'Search by name'),
-  //               onChanged: (value) {
-  //                 setState(() {
-  //                   _searchText = value;
-  //                 });
-  //                 _filterUsers();
-  //               },
-  //             ),
-  //           ),
-  //           TextButton(
-  //             onPressed: () {
-  //               _filterUsers();
-  //             },
-  //             child: Text('Search by name'),
-  //           ),
-  //         ],
-  //       ),
-  // Flexible(
-  //   fit: FlexFit.loose,
-  //   // Add the Expanded widget here
-  //   child: ListView.builder(
-  //     itemCount: _filteredUsers.length,
-  //     itemBuilder: (context, index) {
-  //       Map<String, dynamic> user = _filteredUsers[index];
-  //       return ListTile(
-  //         title: Text('${user['f-name']} ${user['l-name']}'),
-  //         onTap: () {
-  //           // Display user information and handle editing
-  //         },
-  //       );
-  //     },
-  //   ),
-  // ),
-  //     ],
-  //   );
-  // }
 }

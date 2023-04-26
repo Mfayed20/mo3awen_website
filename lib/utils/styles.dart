@@ -13,12 +13,12 @@ TextStyle buildTextStyle(
 ) {
   double baseWidth = 1440;
   double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
-  double ffem = screenWidthRatio * 0.97;
+  double fontSizeInEm = screenWidthRatio * 0.97;
   return TextStyle(
     fontFamily: font,
-    fontSize: size * ffem,
+    fontSize: size * fontSizeInEm,
     fontWeight: fontWeight,
-    height: fontHeight * ffem / screenWidthRatio,
+    height: fontHeight * fontSizeInEm / screenWidthRatio,
     letterSpacing: letterSpacing * screenWidthRatio,
     color: color,
   );

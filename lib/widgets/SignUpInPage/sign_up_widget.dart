@@ -426,7 +426,8 @@ void Function()? getTextFieldDataSignUp(
           // Save the data to Firebase Realtime Database
           String uid =
               userCredential.user!.uid; // Use the null assertion operator here
-          DatabaseReference dbRef = FirebaseDatabase.instance.ref().child(uid);
+          DatabaseReference dbRef =
+              FirebaseDatabase.instance.ref().child("users").child(uid);
 
           await dbRef.set({
             'DoB': dateOfBirthController.text,
@@ -437,7 +438,7 @@ void Function()? getTextFieldDataSignUp(
             'hosName': hospitalNameController.text,
             'l-name': lastNameController.text,
             'nationality': nationalityController.text,
-            'user-type': "patient",
+            'usertype': "admin",
           });
         }
       } on FirebaseAuthException catch (e) {

@@ -1,17 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../pages/home_page.dart';
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DrProfileWidget(),
-    );
-  }
-}
 
 class DrProfileWidget extends StatefulWidget {
   @override
@@ -78,7 +68,7 @@ class _DrProfileWidgetState extends State<DrProfileWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Name: $fName $lName\nDate of Birth: $dob\nGender: $gender\nHospital Name: $hospitalName\nHospital Address: $hospitalAdd\nNationality: $nationality',
+                'Dr. Name: $fName $lName\nDate of Birth: $dob\nGender: $gender\nHospital Name: $hospitalName\nHospital Address: $hospitalAdd\nNationality: $nationality',
                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
               ),
             ],

@@ -1,27 +1,19 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import '../pages/add_docter_page.dart';
 import '../pages/add_patient_page.dart';
-import '../pages/dr_profile_page.dart';
 import '../pages/home_page.dart';
-import '../pages/patient_profile_page.dart';
 
-class MyApp extends StatelessWidget {
+class AdminProfileWidget extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ProfileWidget(),
-    );
-  }
+  _AdminProfileWidgetState createState() => _AdminProfileWidgetState();
 }
 
-class ProfileWidget extends StatefulWidget {
-  @override
-  _ProfileWidgetState createState() => _ProfileWidgetState();
-}
-
-class _ProfileWidgetState extends State<ProfileWidget> {
+class _AdminProfileWidgetState extends State<AdminProfileWidget> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref();
   late User _user;
@@ -29,21 +21,18 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   String fName = '';
   String lName = '';
-  String dob = '';
-  String gender = '';
-  String hospitalName = '';
-  String hospitalAdd = '';
-  String nationality = '';
+  String usertype = '';
 
   @override
   void initState() {
     super.initState();
     _user = _auth.currentUser!;
-    print("_user: " + _user.toString());
-    print("\nuid: " + _user.uid);
+    if (kDebugMode) {
+      print("_user: $_user");
+      print("\nuid: ${_user.uid}");
+    }
 
-    // _userRef = _databaseRef.child('admin').child(_user.uid);
-    _userRef = _databaseRef.child(_user.uid);
+    _userRef = _databaseRef.child('users').child(_user.uid);
 
     _getUserData();
   }
@@ -52,22 +41,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     DataSnapshot snapshot = (await _userRef.once()).snapshot;
     Map<String, dynamic>? userData = snapshot.value as Map<String, dynamic>?;
 
-    if (userData != null && userData['user-type'] == 'admin') {
+    if (userData != null) {
       setState(() {
         fName = userData['f-name'] ?? '';
         lName = userData['l-name'] ?? '';
-        dob = userData['DoB'] ?? '';
-        gender = userData['gender'] ?? '';
-        hospitalName = userData['hosName'] ?? '';
-        hospitalAdd = userData['hosAddress'] ?? '';
-        nationality = userData['nationality'] ?? '';
+        usertype = userData['usertype'] ?? '';
       });
-    } else if (userData != null && userData['user-type'] == 'dr') {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const DrProfilePage()));
-    } else {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const PatientProfilePage()));
     }
   }
 
@@ -77,25 +56,37 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   }
 
   Widget _buildProfileHeader() {
+    double baseWidth = 1440;
+    double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0 * screenWidthRatio),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Name: $fName $lName\nDate of Birth: $dob\nGender: $gender\nHospital Name: $hospitalName\nHospital Address: $hospitalAdd\nNationality: $nationality',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                '$fName $lName',
+                style: TextStyle(
+                    fontSize: 24.0 * screenWidthRatio,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 4.0 * screenWidthRatio),
+              Text(
+                'User Type: ${usertype.isNotEmpty ? usertype[0].toUpperCase() + usertype.substring(1) : ''}',
+                style: TextStyle(
+                  fontSize: 16.0 * screenWidthRatio,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
               ),
             ],
           ),
         ),
         Row(
           children: [
-            // create a button to navigate to the home page
             ElevatedButton(
               onPressed: () {
                 Navigator.push(

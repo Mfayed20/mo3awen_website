@@ -4,15 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../pages/home_page.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: PatientProfileWidget(),
-    );
-  }
-}
-
 class PatientProfileWidget extends StatefulWidget {
   @override
   _PatientProfileWidgetState createState() => _PatientProfileWidgetState();
@@ -78,7 +69,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Name: $fName $lName\nDate of Birth: $dob\nGender: $gender\nHospital Name: $hospitalName\nHospital Address: $hospitalAdd\nNationality: $nationality',
+                'Pa.Name: $fName $lName\nDate of Birth: $dob\nGender: $gender\nHospital Name: $hospitalName\nHospital Address: $hospitalAdd\nNationality: $nationality',
                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
               ),
             ],

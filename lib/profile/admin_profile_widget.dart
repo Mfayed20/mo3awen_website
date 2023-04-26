@@ -1,19 +1,19 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../pages/add_docter_page.dart';
 import '../pages/add_patient_page.dart';
 import '../pages/home_page.dart';
 
 class AdminProfileWidget extends StatefulWidget {
+  const AdminProfileWidget({super.key});
+
   @override
-  _AdminProfileWidgetState createState() => _AdminProfileWidgetState();
+  AdminProfileWidgetState createState() => AdminProfileWidgetState();
 }
 
-class _AdminProfileWidgetState extends State<AdminProfileWidget> {
+class AdminProfileWidgetState extends State<AdminProfileWidget> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref();
   late User _user;
@@ -68,10 +68,11 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                '$fName $lName',
+                '${fName.isNotEmpty ? fName.substring(0, 1).toUpperCase() + fName.substring(1) : ''} ${lName.isNotEmpty ? lName.substring(0, 1).toUpperCase() + lName.substring(1) : ''}',
                 style: TextStyle(
-                    fontSize: 24.0 * screenWidthRatio,
-                    fontWeight: FontWeight.bold),
+                  fontSize: 24.0 * screenWidthRatio,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               SizedBox(height: 4.0 * screenWidthRatio),
               Text(
@@ -85,37 +86,69 @@ class _AdminProfileWidgetState extends State<AdminProfileWidget> {
             ],
           ),
         ),
-        Row(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AddDocterPage()),
-                );
-              },
-              child: const Text('Add Doctor'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AddPatientPage()),
-                );
-              },
-              child: const Text('Add Patient'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
-              },
-              child: const Text('Search'),
-            ),
-          ],
-        ),
+        Padding(
+          padding: EdgeInsets.all(16.0 * screenWidthRatio),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddDocterPage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.all(16 * screenWidthRatio),
+                ),
+                child: Text(
+                  'Add Doctor',
+                  style: TextStyle(fontSize: 16 * screenWidthRatio),
+                ),
+              ),
+              SizedBox(width: 10.0 * screenWidthRatio),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddPatientPage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.all(16 * screenWidthRatio),
+                ),
+                child: Text(
+                  'Add Patient',
+                  style: TextStyle(fontSize: 16 * screenWidthRatio),
+                ),
+              ),
+              SizedBox(width: 10.0 * screenWidthRatio),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.all(16 * screenWidthRatio),
+                ),
+                child: Text(
+                  'Search',
+                  style: TextStyle(fontSize: 16 * screenWidthRatio),
+                ),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }

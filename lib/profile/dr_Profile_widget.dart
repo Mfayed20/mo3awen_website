@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../pages/add_docter_page.dart';
-import '../pages/add_patient_page.dart';
-import '../pages/dr_profile_page.dart';
+
 import '../pages/home_page.dart';
-import '../pages/patient_profile_page.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ProfileWidget(),
+      home: DrProfileWidget(),
     );
   }
 }
 
-class ProfileWidget extends StatefulWidget {
+class DrProfileWidget extends StatefulWidget {
   @override
-  _ProfileWidgetState createState() => _ProfileWidgetState();
+  _DrProfileWidgetState createState() => _DrProfileWidgetState();
 }
 
-class _ProfileWidgetState extends State<ProfileWidget> {
+class _DrProfileWidgetState extends State<DrProfileWidget> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref();
   late User _user;
@@ -52,7 +49,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     DataSnapshot snapshot = (await _userRef.once()).snapshot;
     Map<String, dynamic>? userData = snapshot.value as Map<String, dynamic>?;
 
-    if (userData != null && userData['user-type'] == 'admin') {
+    if (userData != null) {
       setState(() {
         fName = userData['f-name'] ?? '';
         lName = userData['l-name'] ?? '';
@@ -62,12 +59,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         hospitalAdd = userData['hosAddress'] ?? '';
         nationality = userData['nationality'] ?? '';
       });
-    } else if (userData != null && userData['user-type'] == 'dr') {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const DrProfilePage()));
-    } else {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const PatientProfilePage()));
     }
   }
 
@@ -95,24 +86,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         ),
         Row(
           children: [
-            // create a button to navigate to the home page
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AddDocterPage()),
+                  MaterialPageRoute(builder: (context) => HomePage()),
                 );
               },
-              child: const Text('Add Doctor'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AddPatientPage()),
-                );
-              },
-              child: const Text('Add Patient'),
+              child: const Text('Set patient goals'),
             ),
             ElevatedButton(
               onPressed: () {

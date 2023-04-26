@@ -5,18 +5,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../pages/profile_page.dart';
-import '../../pages/sign_in_page.dart';
 import '../../utils/constants.dart';
 
 // Main SignIn widget
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class AddPatient extends StatefulWidget {
+  const AddPatient({Key? key}) : super(key: key);
 
   @override
-  SignUpState createState() => SignUpState();
+  AddPatientState createState() => AddPatientState();
 }
 
-class SignUpState extends State<SignUp> {
+class AddPatientState extends State<AddPatient> {
   // Move all TextEditingController instances to the state class
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -56,7 +55,7 @@ class SignUpState extends State<SignUp> {
                           : MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        buildSignUpForm(
+                        buildAddPatientForm(
                             context,
                             screenWidthRatio,
                             emailController,
@@ -125,7 +124,7 @@ Widget buildBackgroundAndLogo(BuildContext context, double screenWidthRatio) {
   );
 }
 
-Widget buildSignUpForm(
+Widget buildAddPatientForm(
     BuildContext context,
     double screenWidthRatio,
     TextEditingController emailController,
@@ -247,12 +246,12 @@ Widget buildFormContent(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
-        "Create an account",
+        "Create a account for a Patient",
         style: responsiveTitleStyle,
       ),
       const SizedBox(height: 10),
       Text(
-        "Use your email to create an account",
+        "Use the Patient's email to create an account",
         style: responsiveNormalStyle,
       ),
       const SizedBox(height: 40),
@@ -274,7 +273,7 @@ Widget buildFormContent(
       const SizedBox(height: 10),
       buildInputField("Password", passwordController, isPassword: true),
       const SizedBox(height: 10),
-      buildSignUpButton(
+      buildAddPatientButton(
         context,
         emailController,
         passwordController,
@@ -287,7 +286,6 @@ Widget buildFormContent(
         hospitalAddressController,
       ),
       const SizedBox(height: 20),
-      buildSignInButton(context, responsiveBttnTextStyle),
     ],
   );
 }
@@ -334,8 +332,8 @@ Widget buildInputField(String label, TextEditingController controller,
   );
 }
 
-// SignUp button
-Widget buildSignUpButton(
+// AddPatient button
+Widget buildAddPatientButton(
     BuildContext context,
     TextEditingController emailController,
     TextEditingController passwordController,
@@ -349,7 +347,7 @@ Widget buildSignUpButton(
   return SizedBox(
     width: double.infinity,
     child: ElevatedButton(
-      onPressed: getTextFieldDataSignUp(
+      onPressed: getTextFieldDataAddPatient(
           context,
           emailController,
           passwordController,
@@ -368,7 +366,7 @@ Widget buildSignUpButton(
         ),
         padding: const EdgeInsets.symmetric(vertical: 16),
       ),
-      child: const Text('Sign Up'),
+      child: const Text('Create Patient Account'),
     ),
   );
 }
@@ -389,7 +387,7 @@ void showErrorToast(String message) {
   );
 }
 
-void Function()? getTextFieldDataSignUp(
+void Function()? getTextFieldDataAddPatient(
     BuildContext context,
     TextEditingController emailController,
     TextEditingController passwordController,
@@ -461,38 +459,6 @@ void Function()? getTextFieldDataSignUp(
       );
     }
   };
-}
-
-Widget buildSignInButton(BuildContext context, TextStyle bttnTextStyle) {
-  double screenWidth = MediaQuery.of(context).size.width;
-  double fontSize =
-      screenWidth < 600 ? 14.0 : 18.0; // Adjust font size based on screen width
-
-  TextStyle responsiveBttnTextStyle =
-      bttnTextStyle.copyWith(fontSize: fontSize);
-
-  return Wrap(
-    alignment: WrapAlignment.start,
-    children: [
-      Text(
-        "Already have an account?",
-        style: responsiveBttnTextStyle,
-      ),
-      TextButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const SignInPage()),
-          );
-        },
-        child: Text(
-          "Sign In",
-          style:
-              responsiveBttnTextStyle.copyWith(color: const Color(0xff0076f9)),
-        ),
-      ),
-    ],
-  );
 }
 
 TextStyle buildTextStyle(BuildContext context, String s, int i, FontWeight w700,

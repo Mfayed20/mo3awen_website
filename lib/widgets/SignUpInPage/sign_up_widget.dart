@@ -438,7 +438,7 @@ void Function()? getTextFieldDataSignUp(
             'hosName': hospitalNameController.text,
             'l-name': lastNameController.text,
             'nationality': nationalityController.text,
-            'usertype': "dr",
+            'usertype': "admin",
           });
         }
       } on FirebaseAuthException catch (e) {

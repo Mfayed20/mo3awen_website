@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'edit_users_admin.dart';
+import '../edit/edit_users_admin.dart';
 
 class DisplayAllUsers extends StatefulWidget {
   const DisplayAllUsers({Key? key}) : super(key: key);
@@ -18,8 +18,10 @@ class _DisplayAllUsersState extends State<DisplayAllUsers> {
     return Container(
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
-      height: 110,
-      color: Colors.amberAccent,
+      decoration: BoxDecoration(
+        color: Colors.blue[400],
+        borderRadius: BorderRadius.circular(10), // add rounded corners
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,10 +52,10 @@ class _DisplayAllUsersState extends State<DisplayAllUsers> {
                           builder: (_) => EditUsersAdmin(uid: users['key'])));
                 },
                 child: Row(
-                  children: [
+                  children: const [
                     Icon(
                       Icons.edit,
-                      color: Theme.of(context).primaryColor,
+                      color: Colors.black,
                     ),
                   ],
                 ),
@@ -83,8 +85,7 @@ class _DisplayAllUsersState extends State<DisplayAllUsers> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 5000,
+    return Expanded(
       child: FirebaseAnimatedList(
         query: dbRef,
         itemBuilder: (BuildContext context, DataSnapshot snapshot,

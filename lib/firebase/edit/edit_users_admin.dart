@@ -13,12 +13,10 @@ class EditUsersAdmin extends StatefulWidget {
 class _EditUsersAdminState extends State<EditUsersAdmin> {
   final userFirstNameController = TextEditingController();
   final userLastNameController = TextEditingController();
-  final userUserTypeController = TextEditingController();
+  final userTypeController = TextEditingController();
   final userGenderController = TextEditingController();
   final userDobController = TextEditingController();
-  final userHosNameController = TextEditingController();
-  final userHosAddressController = TextEditingController();
-  final usernationalityController = TextEditingController();
+  final userNationalityController = TextEditingController();
 
   late DatabaseReference dbRef;
 
@@ -36,19 +34,17 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
 
     userFirstNameController.text = user['f-name'];
     userLastNameController.text = user['l-name'];
-    userUserTypeController.text = user['usertype'];
+    userTypeController.text = user['usertype'];
     userDobController.text = user['DoB'];
     userGenderController.text = user['gender'];
-    userHosNameController.text = user['hosName'];
-    userHosAddressController.text = user['hosAddress'];
-    usernationalityController.text = user['nationality'];
+    userNationalityController.text = user['nationality'];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Updating User Data'),
+        title: Text('Update User Data'),
       ),
       body: Center(
         child: Padding(
@@ -94,7 +90,7 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
                 height: 30,
               ),
               TextField(
-                controller: userUserTypeController,
+                controller: userTypeController,
                 keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -130,31 +126,7 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
                 height: 30,
               ),
               TextField(
-                controller: userHosNameController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Hospital Name',
-                  hintText: 'Enter Hospital Name',
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: userHosAddressController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Hospital Address',
-                  hintText: 'Enter Hospital Address',
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: usernationalityController,
+                controller: userNationalityController,
                 keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -170,12 +142,10 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
                   Map<String, String> students = {
                     'f-name': userFirstNameController.text,
                     'l-name': userLastNameController.text,
-                    'usertype': userUserTypeController.text,
+                    'usertype': userTypeController.text,
                     'gender': userGenderController.text,
                     'DoB': userDobController.text,
-                    'hosName': userHosNameController.text,
-                    'hosAddress': userHosAddressController.text,
-                    'nationality': usernationalityController.text,
+                    'nationality': userNationalityController.text,
                   };
 
                   dbRef
@@ -183,11 +153,11 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
                       .update(students)
                       .then((value) => {Navigator.pop(context)});
                 },
-                child: const Text('Update Data'),
                 color: Colors.blue,
                 textColor: Colors.white,
                 minWidth: 300,
                 height: 40,
+                child: const Text('Update User Data'),
               ),
             ],
           ),

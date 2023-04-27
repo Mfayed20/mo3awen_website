@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import '../pages/display_all_exercises_page.dart';
 import '../pages/display_all_users_page.dart';
 
 class AdminProfileWidget extends StatefulWidget {
@@ -20,7 +20,6 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
   String fName = '';
   String lName = '';
   String usertype = '';
-
   // Add user form related variables
   final _formKey = GlobalKey<FormState>();
   String _firstName = '';
@@ -32,6 +31,7 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
   String _password = '';
   String _associatedDr = '';
   bool _isDoctor = true;
+  bool _isExerciseFocus = false;
 
   @override
   void initState() {
@@ -65,7 +65,7 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
     return Column(
       children: [
         _buildProfileHeader(),
-        _buildAddUserForm(),
+        _isExerciseFocus ? _buildAddExerciseForm() : _buildAddUserForm(),
       ],
     );
   }
@@ -103,22 +103,79 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
         ),
         Padding(
           padding: EdgeInsets.all(16.0 * screenWidthRatio),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const DisplayAllUsersPage()));
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.grey,
-              foregroundColor: Colors.black,
-              padding: EdgeInsets.all(16 * screenWidthRatio),
-            ),
-            child: Text(
-              'show all Users',
-              style: TextStyle(fontSize: 16 * screenWidthRatio),
-            ),
+          child: Row(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _isExerciseFocus = false;
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.all(16 * screenWidthRatio),
+                ),
+                child: Text(
+                  'Add User',
+                  style: TextStyle(fontSize: 16 * screenWidthRatio),
+                ),
+              ),
+              SizedBox(width: 10.0 * screenWidthRatio),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _isExerciseFocus = true;
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.all(16 * screenWidthRatio),
+                ),
+                child: Text(
+                  'Add Exercise',
+                  style: TextStyle(fontSize: 16 * screenWidthRatio),
+                ),
+              ),
+              SizedBox(width: 10.0 * screenWidthRatio),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DisplayUsersPage()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.all(16 * screenWidthRatio),
+                ),
+                child: Text(
+                  'Show all Users',
+                  style: TextStyle(fontSize: 16 * screenWidthRatio),
+                ),
+              ),
+              SizedBox(width: 10.0 * screenWidthRatio),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const DisplayAllExercisesPage()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.all(16 * screenWidthRatio),
+                ),
+                child: Text(
+                  'Show all Exercises',
+                  style: TextStyle(fontSize: 16 * screenWidthRatio),
+                ),
+              ),
+            ],
           ),
         )
       ],
@@ -141,6 +198,8 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
               'Add User',
@@ -299,12 +358,109 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
     );
   }
 
-// Input field
+  Widget _buildAddExerciseForm() {
+    final _formKey = GlobalKey<FormState>();
+    TextEditingController exerciseName = TextEditingController();
+    TextEditingController exerciseDescription = TextEditingController();
+    TextEditingController exerciseResps = TextEditingController();
+    TextEditingController exerciseSets = TextEditingController();
+
+    return Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            const Text(
+              'Add Exercise',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            buildInputField(
+              "Name",
+              exerciseName,
+            ),
+            const SizedBox(height: 16),
+            buildInputField(
+              "Description",
+              exerciseDescription,
+              maxLines: 3,
+            ),
+            const SizedBox(height: 16),
+            buildInputField(
+              "Reps",
+              exerciseResps,
+            ),
+            const SizedBox(height: 16),
+            buildInputField(
+              "Sets",
+              exerciseSets,
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () async {
+                // if fields are empty
+                if (exerciseName.text.isEmpty ||
+                    exerciseDescription.text.isEmpty ||
+                    exerciseResps.text.isEmpty ||
+                    exerciseSets.text.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Please fill all fields.'),
+                    ),
+                  );
+                  return;
+                }
+
+                if (_formKey.currentState!.validate()) {
+                  // Add user to Firebase
+                  try {
+                    DatabaseReference newUserRef =
+                        _databaseRef.child('exercises').push();
+
+                    final Map<String, dynamic> userData = {
+                      'name': exerciseName.text,
+                      'reps': exerciseResps.text,
+                      'sets': exerciseSets.text,
+                      'description': exerciseDescription.text,
+                    };
+
+                    await newUserRef.set(userData);
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Exercise added successfully.'),
+                      ),
+                    );
+                  } catch (e) {
+                    if (kDebugMode) {
+                      print(e);
+                    }
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Error adding user: $e'),
+                      ),
+                    );
+                  }
+                }
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget buildInputField(String label, TextEditingController controller,
-      {bool isPassword = false}) {
+      {bool isPassword = false, int maxLines = 1}) {
     return TextField(
       controller: controller,
       obscureText: isPassword,
+      maxLines: maxLines,
       decoration: InputDecoration(
         labelText: label,
         labelStyle: const TextStyle(color: Colors.grey),

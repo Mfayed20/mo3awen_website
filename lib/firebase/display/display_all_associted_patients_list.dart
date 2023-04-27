@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'edit_patient_therapy.dart';
+import '../edit/edit_patient_therapy.dart';
 
 class DsplayAssociatedPatient extends StatefulWidget {
   const DsplayAssociatedPatient({Key? key}) : super(key: key);
@@ -28,8 +28,10 @@ class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
     return Container(
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
-      height: 110,
-      color: Colors.amberAccent,
+      decoration: BoxDecoration(
+        color: Colors.blue[400],
+        borderRadius: BorderRadius.circular(10), // add rounded corners
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,10 +63,10 @@ class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
                               EditPatientTherapy(uid: users['key'])));
                 },
                 child: Row(
-                  children: [
+                  children: const [
                     Icon(
                       Icons.edit,
-                      color: Theme.of(context).primaryColor,
+                      color: Colors.black,
                     ),
                   ],
                 ),

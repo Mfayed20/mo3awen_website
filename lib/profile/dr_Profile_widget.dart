@@ -93,7 +93,7 @@ class _DrProfileWidgetState extends State<DrProfileWidget> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const DisplayAllUsersPage()));
+                          builder: (context) => const DisplayUsersPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey,

@@ -1,19 +1,19 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-class EditDataBase extends StatefulWidget {
-  const EditDataBase({Key? key, required this.studentKey}) : super(key: key);
+class EditUsersAdmin extends StatefulWidget {
+  const EditUsersAdmin({Key? key, required this.uid}) : super(key: key);
 
-  final String studentKey;
+  final String uid;
 
   @override
-  State<EditDataBase> createState() => _EditDataBaseState();
+  State<EditUsersAdmin> createState() => _EditUsersAdminState();
 }
 
-class _EditDataBaseState extends State<EditDataBase> {
-  final userNameController = TextEditingController();
-  final userAgeController = TextEditingController();
-  final userSalaryController = TextEditingController();
+class _EditUsersAdminState extends State<EditUsersAdmin> {
+  final userFirstNameController = TextEditingController();
+  final userLastNameController = TextEditingController();
+  final userUserTypeController = TextEditingController();
   final userGenderController = TextEditingController();
   final userDobController = TextEditingController();
   final userHosNameController = TextEditingController();
@@ -30,18 +30,18 @@ class _EditDataBaseState extends State<EditDataBase> {
   }
 
   void getStudentData() async {
-    DataSnapshot snapshot = await dbRef.child(widget.studentKey).get();
+    DataSnapshot snapshot = await dbRef.child(widget.uid).get();
 
-    Map student = snapshot.value as Map;
+    Map user = snapshot.value as Map;
 
-    userNameController.text = student['f-name'];
-    userAgeController.text = student['l-name'];
-    userSalaryController.text = student['usertype'];
-    userDobController.text = student['DoB'];
-    userGenderController.text = student['gender'];
-    userHosNameController.text = student['hosName'];
-    userHosAddressController.text = student['hosAddress'];
-    usernationalityController.text = student['nationality'];
+    userFirstNameController.text = user['f-name'];
+    userLastNameController.text = user['l-name'];
+    userUserTypeController.text = user['usertype'];
+    userDobController.text = user['DoB'];
+    userGenderController.text = user['gender'];
+    userHosNameController.text = user['hosName'];
+    userHosAddressController.text = user['hosAddress'];
+    usernationalityController.text = user['nationality'];
   }
 
   @override
@@ -70,7 +70,7 @@ class _EditDataBaseState extends State<EditDataBase> {
                 height: 30,
               ),
               TextField(
-                controller: userNameController,
+                controller: userFirstNameController,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -82,7 +82,7 @@ class _EditDataBaseState extends State<EditDataBase> {
                 height: 30,
               ),
               TextField(
-                controller: userAgeController,
+                controller: userLastNameController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -94,7 +94,7 @@ class _EditDataBaseState extends State<EditDataBase> {
                 height: 30,
               ),
               TextField(
-                controller: userSalaryController,
+                controller: userUserTypeController,
                 keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -168,9 +168,9 @@ class _EditDataBaseState extends State<EditDataBase> {
               MaterialButton(
                 onPressed: () {
                   Map<String, String> students = {
-                    'f-name': userNameController.text,
-                    'l-name': userAgeController.text,
-                    'usertype': userSalaryController.text,
+                    'f-name': userFirstNameController.text,
+                    'l-name': userLastNameController.text,
+                    'usertype': userUserTypeController.text,
                     'gender': userGenderController.text,
                     'DoB': userDobController.text,
                     'hosName': userHosNameController.text,
@@ -179,7 +179,7 @@ class _EditDataBaseState extends State<EditDataBase> {
                   };
 
                   dbRef
-                      .child(widget.studentKey)
+                      .child(widget.uid)
                       .update(students)
                       .then((value) => {Navigator.pop(context)});
                 },

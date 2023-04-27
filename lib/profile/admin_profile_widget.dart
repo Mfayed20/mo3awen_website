@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../pages/get_all_accounts_page.dart';
+import '../pages/display_all_users_page.dart';
 
 class AdminProfileWidget extends StatefulWidget {
   const AdminProfileWidget({super.key});
@@ -108,7 +108,7 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const GetAllAccounts()));
+                      builder: (context) => const DisplayAllUsersPage()));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.grey,
@@ -252,8 +252,8 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                   try {
                     DatabaseReference newUserRef =
                         _databaseRef.child('users').push();
-                    // generate a new unique key for the new user
-                    await newUserRef.set({
+
+                    final Map<String, dynamic> userData = {
                       'DoB': dobController.text,
                       'email': emailController.text,
                       'f-name': firstNameController.text,
@@ -263,7 +263,17 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                       'usertype': _isDoctor ? 'dr' : 'patient',
                       if (!_isDoctor && associatedDrController.text.isNotEmpty)
                         'associated-dr': associatedDrController.text,
-                    });
+                    };
+
+                    if (!_isDoctor) {
+                      userData['therapy'] = {
+                        'session': '',
+                        'goals': '',
+                      };
+                    }
+
+                    await newUserRef.set(userData);
+
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('User added successfully.'),

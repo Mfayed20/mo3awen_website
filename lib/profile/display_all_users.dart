@@ -1,21 +1,20 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'edit_database.dart';
+import 'edit_users_admin.dart';
 
-class FetchData extends StatefulWidget {
-  const FetchData({Key? key}) : super(key: key);
+class DisplayAllUsers extends StatefulWidget {
+  const DisplayAllUsers({Key? key}) : super(key: key);
 
   @override
-  State<FetchData> createState() => _FetchDataState();
+  State<DisplayAllUsers> createState() => _DisplayAllUsersState();
 }
 
-class _FetchDataState extends State<FetchData> {
+class _DisplayAllUsersState extends State<DisplayAllUsers> {
   Query dbRef = FirebaseDatabase.instance.ref().child('users');
   DatabaseReference reference = FirebaseDatabase.instance.ref().child('users');
 
-  Widget listItem({required Map student}) {
+  Widget listItem({required Map users}) {
     return Container(
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
@@ -26,7 +25,7 @@ class _FetchDataState extends State<FetchData> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            student['f-name'] + " " + student['l-name'],
+            '${users['f-name'][0].toUpperCase()}${users['f-name'].substring(1)} ${users['l-name'][0].toUpperCase()}${users['l-name'].substring(1)}',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           const SizedBox(
@@ -36,7 +35,7 @@ class _FetchDataState extends State<FetchData> {
             height: 5,
           ),
           Text(
-            student['usertype'],
+            users['usertype'],
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           Row(
@@ -48,8 +47,7 @@ class _FetchDataState extends State<FetchData> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) =>
-                              EditDataBase(studentKey: student['key'])));
+                          builder: (_) => EditUsersAdmin(uid: users['key'])));
                 },
                 child: Row(
                   children: [
@@ -65,7 +63,7 @@ class _FetchDataState extends State<FetchData> {
               ),
               GestureDetector(
                 onTap: () {
-                  reference.child(student['key']).remove();
+                  reference.child(users['key']).remove();
                 },
                 child: Row(
                   children: [
@@ -94,7 +92,7 @@ class _FetchDataState extends State<FetchData> {
           Map student = snapshot.value as Map;
           student['key'] = snapshot.key;
 
-          return listItem(student: student);
+          return listItem(users: student);
         },
       ),
     );

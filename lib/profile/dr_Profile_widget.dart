@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../pages/display_all_users_page.dart';
 import '../pages/home_page.dart';
 
 class DrProfileWidget extends StatefulWidget {
@@ -84,6 +85,26 @@ class _DrProfileWidgetState extends State<DrProfileWidget> {
                 );
               },
               child: const Text('Set patient goals'),
+            ),
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DisplayAllUsersPage()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.all(16),
+                ),
+                child: Text(
+                  'show all patients',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
             ),
             ElevatedButton(
               onPressed: () {

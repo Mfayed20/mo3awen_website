@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mo3awen_website/pages/about_us_page.dart';
-import 'package:mo3awen_website/pages/contact_us_page.dart';
-import 'package:mo3awen_website/pages/exercise_page.dart';
-import 'package:mo3awen_website/pages/plans_page.dart';
+import 'package:mo3awen_website/pages/mainpages/about_us_page.dart';
+import 'package:mo3awen_website/pages/mainpages/contact_us_page.dart';
+import 'package:mo3awen_website/pages/mainpages/exercise_page.dart';
+import 'package:mo3awen_website/pages/mainpages/plans_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../utils/constants.dart';
 

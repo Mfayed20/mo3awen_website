@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mo3awen_website/pages/home_page.dart';
+import 'package:mo3awen_website/pages/mainpages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future main() async {

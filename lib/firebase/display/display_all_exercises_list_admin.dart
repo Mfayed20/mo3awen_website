@@ -3,14 +3,15 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import '../edit/edit_exercises_admin.dart';
 
-class DisplayAllExercises extends StatefulWidget {
-  const DisplayAllExercises({Key? key}) : super(key: key);
+class DisplayAllExercisesAdmin extends StatefulWidget {
+  const DisplayAllExercisesAdmin({Key? key}) : super(key: key);
 
   @override
-  State<DisplayAllExercises> createState() => _DisplayAllExercisesState();
+  State<DisplayAllExercisesAdmin> createState() =>
+      _DisplayAllExercisesAdminState();
 }
 
-class _DisplayAllExercisesState extends State<DisplayAllExercises> {
+class _DisplayAllExercisesAdminState extends State<DisplayAllExercisesAdmin> {
   Query dbRef = FirebaseDatabase.instance.ref().child('exercises');
   DatabaseReference reference =
       FirebaseDatabase.instance.ref().child('exercises');

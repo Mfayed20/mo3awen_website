@@ -1,14 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import '../widgets/profile/admin_profile_widget.dart';
-import '../widgets/profile/dr_Profile_widget.dart';
-import '../widgets/profile/patient_Profile_widget.dart';
-import '../widgets/footer/footer_widget.dart';
-import '../widgets/nav_bar/nav_bar.dart';
+import '../../firebase/display/display_all_associted_patients_list.dart';
+import '../../firebase/display/display_all_users_list.dart';
+import '../footer/footer_widget.dart';
+import '../nav_bar/nav_bar.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class DisplayUsersPage extends StatelessWidget {
+  const DisplayUsersPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +48,9 @@ Widget _profilePicker() {
 
         final userData = snapshot.data?.value as Map<String, dynamic>;
         if (userData['usertype'] == 'admin') {
-          return const AdminProfileWidget();
+          return const DisplayAllUsers();
         } else if (userData['usertype'] == 'dr') {
-          return const DrProfileWidget();
-        } else if (userData['usertype'] == 'patient') {
-          return PatientProfileWidget();
+          return const DsplayAssociatedPatient();
         } else {
           return const Center(child: Text('Unknown user type'));
         }

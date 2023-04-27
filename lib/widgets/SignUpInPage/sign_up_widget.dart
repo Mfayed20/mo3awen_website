@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../pages/profile_page.dart';
-import '../../pages/sign_in_page.dart';
+import '../../pages/signIn/sign_in_page.dart';
 import '../../utils/constants.dart';
 
 // Main SignIn widget

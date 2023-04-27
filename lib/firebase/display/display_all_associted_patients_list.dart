@@ -95,8 +95,7 @@ class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
         .orderByChild('associated-dr')
         .equalTo(uid);
 
-    return Container(
-      height: 5000,
+    return Expanded(
       child: FirebaseAnimatedList(
         query: dbRef,
         itemBuilder: (BuildContext context, DataSnapshot snapshot,

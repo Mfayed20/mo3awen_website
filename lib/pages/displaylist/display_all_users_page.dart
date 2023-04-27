@@ -1,43 +1,8 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_database/firebase_database.dart';
-// import 'package:flutter/material.dart';
-// import '../profile/display_all_users.dart';
-// import '../profile/display_all_associted_patients.dart';
-// import '../widgets/footer/footer_widget.dart';
-// import '../widgets/nav_bar/nav_bar.dart';
-
-// class DisplayUsersPage extends StatelessWidget {
-//   const DisplayUsersPage({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return StreamBuilder<User?>(
-//       stream: FirebaseAuth.instance.authStateChanges(),
-//       builder: (context, snapshot) {
-//         return Scaffold(
-//           body: ConstrainedBox(
-//             constraints: BoxConstraints(
-//               minHeight: MediaQuery.of(context).size.height,
-//             ),
-//             child: Column(
-//               mainAxisSize: MainAxisSize.min, // Add this property
-//               children: [
-//                 _profilePicker(),
-//                 // const FooterWidget(),
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import '../firebase/display/display_all_users_list.dart';
-import '../firebase/display/display_all_associted_patients_list.dart';
+import '../../firebase/display/display_all_users_list.dart';
+import '../../firebase/display/display_all_associted_patients_list.dart';
 
 class DisplayUsersPage extends StatelessWidget {
   const DisplayUsersPage({Key? key}) : super(key: key);
@@ -86,7 +51,6 @@ class DisplayUsersPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min, // Add this property
                   children: [
                     _profilePicker(),
-                    // const FooterWidget(),
                   ],
                 ),
               ),

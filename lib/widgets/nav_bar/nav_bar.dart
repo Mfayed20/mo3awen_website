@@ -1,16 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mo3awen_website/pages/sign_in_page.dart';
-import 'package:mo3awen_website/pages/about_us_page.dart';
-import 'package:mo3awen_website/pages/contact_us_page.dart';
-import 'package:mo3awen_website/pages/exercise_page.dart';
-import 'package:mo3awen_website/pages/home_page.dart';
-import 'package:mo3awen_website/pages/plans_page.dart';
+import 'package:mo3awen_website/pages/mainpages/about_us_page.dart';
+import 'package:mo3awen_website/pages/mainpages/contact_us_page.dart';
+import 'package:mo3awen_website/pages/mainpages/exercise_page.dart';
+import 'package:mo3awen_website/pages/mainpages/home_page.dart';
+import 'package:mo3awen_website/pages/mainpages/plans_page.dart';
 import 'package:mo3awen_website/utils/constants.dart';
 import 'package:mo3awen_website/utils/styles.dart';
 
 import '../../pages/profile_page.dart';
+import '../../pages/signIn/sign_in_page.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);

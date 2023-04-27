@@ -40,7 +40,7 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Updating User Data'),
+        title: Text('Update User Therapy Sessions'),
       ),
       body: Center(
         child: Padding(
@@ -51,7 +51,7 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
                 height: 50,
               ),
               const Text(
-                'User Information',
+                'User Therapy session',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
@@ -66,8 +66,8 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
                 keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: ' therapy session',
-                  hintText: 'Enter Patient therapy session',
+                  labelText: 'Therapy Session',
+                  hintText: 'Enter Therapy session Name',
                 ),
               ),
               const SizedBox(
@@ -99,11 +99,11 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
                       .update(students)
                       .then((value) => {Navigator.pop(context)});
                 },
-                child: const Text('Update Data'),
                 color: Colors.blue,
                 textColor: Colors.white,
                 minWidth: 300,
                 height: 40,
+                child: const Text('Update Thesrapy Session'),
               ),
             ],
           ),

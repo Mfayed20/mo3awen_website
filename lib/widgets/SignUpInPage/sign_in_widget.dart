@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mo3awen_website/pages/sign_up_page.dart';
 import '../../pages/profile_page.dart';
-import '../../pages/reset_password_page.dart';
+import '../../pages/signIn/reset_password_page.dart';
+import '../../pages/signIn/sign_up_page.dart';
 import '../../utils/constants.dart';
 
 // Main SignIn widget

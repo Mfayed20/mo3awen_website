@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../widgets/SignUpInPage/reset_password_widget.dart';
-import 'about_us_page.dart';
+import '../../widgets/SignUpInPage/reset_password_widget.dart';
+import '../mainpages/about_us_page.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   const ResetPasswordPage({Key? key}) : super(key: key);

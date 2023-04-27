@@ -28,7 +28,7 @@ class _DisplayAllUsersState extends State<DisplayAllUsers> {
         children: [
           Text(
             '${users['f-name'][0].toUpperCase()}${users['f-name'].substring(1)} ${users['l-name'][0].toUpperCase()}${users['l-name'].substring(1)}',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           const SizedBox(
             height: 5,
@@ -38,7 +38,7 @@ class _DisplayAllUsersState extends State<DisplayAllUsers> {
           ),
           Text(
             users['usertype'],
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,

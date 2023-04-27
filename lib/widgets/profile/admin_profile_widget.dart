@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../pages/display_all_exercises_page.dart';
-import '../pages/display_all_users_page.dart';
+import '../../../pages/displaylist/display_all_exercises_page_admin.dart';
+import '../../../pages/displaylist/display_all_users_page.dart';
 
 class AdminProfileWidget extends StatefulWidget {
   const AdminProfileWidget({super.key});
@@ -20,6 +20,7 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
   String fName = '';
   String lName = '';
   String usertype = '';
+
   // Add user form related variables
   final _formKey = GlobalKey<FormState>();
   String _firstName = '';
@@ -37,10 +38,6 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
   void initState() {
     super.initState();
     _user = _auth.currentUser!;
-    if (kDebugMode) {
-      print("_user: $_user");
-      print("\nuid: ${_user.uid}");
-    }
     _userRef = _databaseRef.child('users').child(_user.uid);
     _getUserData();
   }

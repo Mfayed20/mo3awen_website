@@ -21,8 +21,6 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
   String lName = '';
   String usertype = '';
 
-  bool _showUserList = false; // Add this variable to toggle between widgets
-
   // Add user form related variables
   final _formKey = GlobalKey<FormState>();
   String _firstName = '';
@@ -67,7 +65,7 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
     return Column(
       children: [
         _buildProfileHeader(),
-        _showUserList ? _buildUserListWidget() : _buildAddUserForm(),
+        _buildAddUserForm(),
       ],
     );
   }
@@ -105,66 +103,22 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
         ),
         Padding(
           padding: EdgeInsets.all(16.0 * screenWidthRatio),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _showUserList = false;
-                  });
-                  if (kDebugMode) {
-                    print("From Add user: $_showUserList");
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
-                  foregroundColor: Colors.black,
-                  padding: EdgeInsets.all(16 * screenWidthRatio),
-                ),
-                child: Text(
-                  'Add User',
-                  style: TextStyle(fontSize: 16 * screenWidthRatio),
-                ),
-              ),
-              SizedBox(width: 10.0 * screenWidthRatio),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _showUserList = true;
-                  });
-                  if (kDebugMode) {
-                    print("From Search: $_showUserList");
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
-                  foregroundColor: Colors.black,
-                  padding: EdgeInsets.all(16 * screenWidthRatio),
-                ),
-                child: Text(
-                  'Search',
-                  style: TextStyle(fontSize: 16 * screenWidthRatio),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => GetAllAccounts()));
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
-                  foregroundColor: Colors.black,
-                  padding: EdgeInsets.all(16 * screenWidthRatio),
-                ),
-                child: Text(
-                  'show all accounts',
-                  style: TextStyle(fontSize: 16 * screenWidthRatio),
-                ),
-              ),
-            ],
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const GetAllAccounts()));
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.grey,
+              foregroundColor: Colors.black,
+              padding: EdgeInsets.all(16 * screenWidthRatio),
+            ),
+            child: Text(
+              'show all Users',
+              style: TextStyle(fontSize: 16 * screenWidthRatio),
+            ),
           ),
         )
       ],
@@ -188,6 +142,13 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
+            const Text(
+              'Add User',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             Row(
               children: [
                 Expanded(
@@ -279,7 +240,7 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                     passwordController.text.isEmpty ||
                     (!_isDoctor && associatedDrController.text.isEmpty)) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Please fill all fields.'),
                     ),
                   );
@@ -304,7 +265,7 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                         'associated-dr': associatedDrController.text,
                     });
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text('User added successfully.'),
                       ),
                     );
@@ -344,112 +305,6 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
           borderSide: BorderSide(color: Colors.grey, width: 2),
         ),
       ),
-    );
-  }
-}
-
-class _buildUserListWidget extends StatelessWidget {
-  final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref();
-  List<Map<String, dynamic>> _users = [];
-  List<Map<String, dynamic>> _filteredUsers = [];
-  String _searchText = '';
-  String _filterType = 'all';
-  TextEditingController searchController = TextEditingController();
-
-  // Add any parameters needed in the constructor
-
-  _buildUserListWidget();
-
-  Future<void> _fetchUsers() async {
-    DataSnapshot snapshot = (await _databaseRef.child('users').once()).snapshot;
-    Map<String, dynamic> usersData = snapshot.value as Map<String, dynamic>;
-    _users = usersData.values.map((e) => e as Map<String, dynamic>).toList();
-    _filterUsers();
-  }
-
-  void _filterUsers() {
-    // No need for setState since this is now a StatelessWidget
-    if (_filterType == 'all') {
-      _filteredUsers = _users;
-    } else {
-      _filteredUsers = _users
-          .where((user) =>
-              user['usertype'] == (_filterType == 'dr' ? 'dr' : 'patient'))
-          .toList();
-    }
-    if (_searchText.isNotEmpty) {
-      _filteredUsers = _filteredUsers
-          .where((user) =>
-              (user['f-name'] as String)
-                  .toLowerCase()
-                  .contains(_searchText.toLowerCase()) ||
-              (user['l-name'] as String)
-                  .toLowerCase()
-                  .contains(_searchText.toLowerCase()))
-          .toList();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            TextButton(
-              onPressed: () {
-                _filterType = 'all';
-                _filterUsers();
-              },
-              child: Text('All'),
-            ),
-            TextButton(
-              onPressed: () {
-                _filterType = 'dr';
-                _filterUsers();
-              },
-              child: Text('Doctors'),
-            ),
-            TextButton(
-              onPressed: () {
-                _filterType = 'patient';
-                _filterUsers();
-              },
-              child: Text('Patients'),
-            ),
-            Expanded(
-              child: TextField(
-                controller: searchController,
-                decoration: InputDecoration(hintText: 'Search by name'),
-                onChanged: (value) {
-                  _searchText = value;
-                  _filterUsers();
-                },
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                _filterUsers();
-              },
-              child: Text('Search by name'),
-            ),
-          ],
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: _filteredUsers.length,
-            itemBuilder: (context, index) {
-              Map<String, dynamic> user = _filteredUsers[index];
-              return ListTile(
-                title: Text('${user['f-name']} ${user['l-name']}'),
-                onTap: () {
-                  // Display user information and handle editing
-                },
-              );
-            },
-          ),
-        ),
-      ],
     );
   }
 }

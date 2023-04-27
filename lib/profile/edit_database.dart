@@ -14,6 +14,11 @@ class _EditDataBaseState extends State<EditDataBase> {
   final userNameController = TextEditingController();
   final userAgeController = TextEditingController();
   final userSalaryController = TextEditingController();
+  final userGenderController = TextEditingController();
+  final userDobController = TextEditingController();
+  final userHosNameController = TextEditingController();
+  final userHosAddressController = TextEditingController();
+  final usernationalityController = TextEditingController();
 
   late DatabaseReference dbRef;
 
@@ -32,6 +37,11 @@ class _EditDataBaseState extends State<EditDataBase> {
     userNameController.text = student['f-name'];
     userAgeController.text = student['l-name'];
     userSalaryController.text = student['usertype'];
+    userDobController.text = student['DoB'];
+    userGenderController.text = student['gender'];
+    userHosNameController.text = student['hosName'];
+    userHosAddressController.text = student['hosAddress'];
+    usernationalityController.text = student['nationality'];
   }
 
   @override
@@ -95,12 +105,77 @@ class _EditDataBaseState extends State<EditDataBase> {
               const SizedBox(
                 height: 30,
               ),
+              TextField(
+                controller: userDobController,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Data of birth',
+                  hintText: 'Enter Data of birth',
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextField(
+                controller: userGenderController,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Gender',
+                  hintText: 'Enter Gnder',
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextField(
+                controller: userHosNameController,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Hospital Name',
+                  hintText: 'Enter Hospital Name',
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextField(
+                controller: userHosAddressController,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Hospital Address',
+                  hintText: 'Enter Hospital Address',
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextField(
+                controller: usernationalityController,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Nationality',
+                  hintText: 'Enter Nationality',
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
               MaterialButton(
                 onPressed: () {
                   Map<String, String> students = {
                     'f-name': userNameController.text,
                     'l-name': userAgeController.text,
-                    'usertype': userSalaryController.text
+                    'usertype': userSalaryController.text,
+                    'gender': userGenderController.text,
+                    'DoB': userDobController.text,
+                    'hosName': userHosNameController.text,
+                    'hosAddress': userHosAddressController.text,
+                    'nationality': usernationalityController.text,
                   };
 
                   dbRef

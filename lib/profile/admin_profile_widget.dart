@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../pages/get_all_accounts_page.dart';
+
 class AdminProfileWidget extends StatefulWidget {
   const AdminProfileWidget({super.key});
 
@@ -142,6 +144,23 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                 ),
                 child: Text(
                   'Search',
+                  style: TextStyle(fontSize: 16 * screenWidthRatio),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => GetAllAccounts()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.all(16 * screenWidthRatio),
+                ),
+                child: Text(
+                  'show all accounts',
                   style: TextStyle(fontSize: 16 * screenWidthRatio),
                 ),
               ),

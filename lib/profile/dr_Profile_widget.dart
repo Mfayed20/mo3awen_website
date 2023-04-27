@@ -30,7 +30,7 @@ class _DrProfileWidgetState extends State<DrProfileWidget> {
     print("\nuid: " + _user.uid);
 
     // _userRef = _databaseRef.child('admin').child(_user.uid);
-    _userRef = _databaseRef.child(_user.uid);
+    _userRef = _databaseRef.child('users').child(_user.uid);
 
     _getUserData();
   }

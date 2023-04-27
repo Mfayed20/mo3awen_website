@@ -18,7 +18,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
   String fName = '';
   String lName = '';
   String dob = '';
-  String gender = '';
+  String usertype = '';
   String hospitalName = '';
   String hospitalAdd = '';
   String nationality = '';
@@ -31,7 +31,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
     print("\nuid: " + _user.uid);
 
     // _userRef = _databaseRef.child('admin').child(_user.uid);
-    _userRef = _databaseRef.child(_user.uid);
+    _userRef = _databaseRef.child('users').child(_user.uid);
 
     _getUserData();
   }
@@ -40,15 +40,13 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
     DataSnapshot snapshot = (await _userRef.once()).snapshot;
     Map<String, dynamic>? userData = snapshot.value as Map<String, dynamic>?;
 
-    if (userData != null) {
+    if (userData == null) {
+      // handle null value here
+    } else {
       setState(() {
-        fName = userData['f-name'] ?? '';
-        lName = userData['l-name'] ?? '';
-        dob = userData['DoB'] ?? '';
-        gender = userData['gender'] ?? '';
-        hospitalName = userData['hosName'] ?? '';
-        hospitalAdd = userData['hosAddress'] ?? '';
-        nationality = userData['nationality'] ?? '';
+        fName = userData['f-name']?.toString() ?? '';
+        lName = userData['l-name']?.toString() ?? '';
+        usertype = userData['usertype']?.toString() ?? '';
       });
     }
   }
@@ -69,8 +67,11 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Pa.Name: $fName $lName\nDate of Birth: $dob\nGender: $gender\nHospital Name: $hospitalName\nHospital Address: $hospitalAdd\nNationality: $nationality',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                '${fName.isNotEmpty ? fName.substring(0, 1).toUpperCase() + fName.substring(1) : ''} ${lName.isNotEmpty ? lName.substring(0, 1).toUpperCase() + lName.substring(1) : ''}',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),

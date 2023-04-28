@@ -15,6 +15,8 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
   final userLastNameController = TextEditingController();
   final userTherapySessionController = TextEditingController();
   final userTherapyGoalsController = TextEditingController();
+  final userTherapyFeedbackController = TextEditingController();
+  final userTherapyExercisesController = TextEditingController();
 
   late DatabaseReference dbRef;
 
@@ -34,6 +36,8 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
     userLastNameController.text = user['l-name'];
     userTherapySessionController.text = user['therapy']['session'];
     userTherapyGoalsController.text = user['therapy']['goals'];
+    userTherapyFeedbackController.text = user['therapy']['feedback'];
+    userTherapyExercisesController.text = user['therapy']['exercises'];
   }
 
   @override
@@ -74,6 +78,30 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
                 height: 30,
               ),
               TextField(
+                controller: userTherapyExercisesController,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Therapy exercises',
+                  hintText: 'Enter Therapy exercises',
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextField(
+                controller: userTherapyFeedbackController,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Therapy Feedback',
+                  hintText: 'Enter Therapy Feedback',
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              TextField(
                 controller: userTherapyGoalsController,
                 keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(
@@ -91,6 +119,8 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
                     'therapy': {
                       'session': userTherapySessionController.text,
                       'goals': userTherapyGoalsController.text,
+                      'exercises': userTherapyExercisesController.text,
+                      'feedback': userTherapyFeedbackController.text,
                     },
                   };
 

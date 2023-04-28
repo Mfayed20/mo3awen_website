@@ -18,6 +18,10 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
   String fName = '';
   String lName = '';
   String usertype = '';
+  String session = '';
+  String exercises = '';
+  String goals = '';
+  String feedback = '';
 
   @override
   void initState() {
@@ -38,6 +42,10 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
         fName = userData['f-name']?.toString() ?? '';
         lName = userData['l-name']?.toString() ?? '';
         usertype = userData['usertype']?.toString() ?? '';
+        session = userData['therapy']['session']?.toString() ?? '';
+        exercises = userData['therapy']['exercises']?.toString() ?? '';
+        goals = userData['therapy']['goals']?.toString() ?? '';
+        feedback = userData['therapy']['feedback']?.toString() ?? '';
       });
     }
   }
@@ -118,7 +126,16 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
     return Center(
       child: SizedBox(
         height: 200.0,
-        child: Text("Display Progress Here", style: TextStyle(fontSize: 40.0)),
+        child: Text(
+            "Display Progress Here\nSeasson: " +
+                session +
+                '\nExercises: ' +
+                exercises +
+                '\nGoals: ' +
+                goals +
+                '\nFeedback: ' +
+                feedback,
+            style: TextStyle(fontSize: 40.0)),
       ),
     );
   }

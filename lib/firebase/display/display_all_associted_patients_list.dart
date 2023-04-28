@@ -47,7 +47,11 @@ class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
             height: 5,
           ),
           Text(
-            'Session: ${users['therapy']['session']}, Goals: ${users['therapy']['goals']}',
+            'Session: ${users['therapy']['session']}, Exercises: ${users['therapy']['exercises']}',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+          ),
+          Text(
+            'Feedback: ${users['therapy']['feedback']}, Goals: ${users['therapy']['goals']}',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           Row(

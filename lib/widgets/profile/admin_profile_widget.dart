@@ -325,6 +325,8 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                       userData['therapy'] = {
                         'session': '',
                         'goals': '',
+                        'feedback': '',
+                        'exercises': '',
                       };
                     }
 

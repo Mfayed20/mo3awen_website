@@ -139,13 +139,6 @@ Widget buildSignUpForm(
     TextEditingController hospitalAddressController) {
   double screenHeight = MediaQuery.of(context).size.height;
 
-  TextStyle titleStyle = buildTextStyle(
-      context, 'poppins', 44, FontWeight.w700, 1.5, 0, const Color(0xff0076f9));
-  TextStyle normalStyle = buildTextStyle(
-      context, 'poppins', 20, FontWeight.w400, 1.5, 0, const Color(0xff000000));
-  TextStyle bttnTextStyle = buildTextStyle(
-      context, "Poppins", 18, FontWeight.w400, 1.5, 0, const Color(0xff000000));
-
   return Expanded(
     child: Container(
       padding: EdgeInsets.fromLTRB(45 * screenWidthRatio, 41 * screenWidthRatio,
@@ -164,21 +157,7 @@ Widget buildSignUpForm(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 buildCloseButton(context, screenWidthRatio),
-                buildFormContent(
-                    context,
-                    screenWidthRatio,
-                    emailController,
-                    passwordController,
-                    firstNameController,
-                    lastNameController,
-                    dateOfBirthController,
-                    nationalityController,
-                    genderController,
-                    hospitalNameController,
-                    hospitalAddressController,
-                    titleStyle,
-                    normalStyle,
-                    bttnTextStyle),
+                _BuilSignUpForm(),
               ],
             ),
           ),
@@ -210,173 +189,6 @@ Widget buildCloseButton(BuildContext context, double screenWidthRatio) {
   );
 }
 
-// Form content
-Widget buildFormContent(
-    BuildContext context,
-    double screenWidthRatio,
-    TextEditingController emailController,
-    TextEditingController passwordController,
-    TextEditingController firstNameController,
-    TextEditingController lasttNameController,
-    TextEditingController dataOfBirthController,
-    TextEditingController nationalityController,
-    TextEditingController genderController,
-    TextEditingController hospitalNameController,
-    TextEditingController hospitalAddressController,
-    TextStyle titleStyle,
-    TextStyle normalStyle,
-    TextStyle bttnTextStyle) {
-  double screenWidth = MediaQuery.of(context).size.width;
-  double titleFontSize = screenWidth < 600
-      ? 24.0
-      : 32.0; // Adjust title font size based on screen width
-  double normalFontSize = screenWidth < 600
-      ? 14.0
-      : 18.0; // Adjust normal font size based on screen width
-  double bttnFontSize = screenWidth < 600
-      ? 14.0
-      : 18.0; // Adjust button font size based on screen width
-
-  TextStyle responsiveTitleStyle = titleStyle.copyWith(fontSize: titleFontSize);
-  TextStyle responsiveNormalStyle =
-      normalStyle.copyWith(fontSize: normalFontSize);
-  TextStyle responsiveBttnTextStyle =
-      bttnTextStyle.copyWith(fontSize: bttnFontSize);
-
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        "Create an account",
-        style: responsiveTitleStyle,
-      ),
-      const SizedBox(height: 10),
-      Text(
-        "Use your email to create an account",
-        style: responsiveNormalStyle,
-      ),
-      const SizedBox(height: 40),
-      buildInputField("First Name", firstNameController),
-      const SizedBox(height: 10),
-      buildInputField("Last Name", lasttNameController),
-      const SizedBox(height: 10),
-      buildInputField("Date of Birth", dataOfBirthController),
-      const SizedBox(height: 10),
-      buildInputField("Nationality", nationalityController),
-      const SizedBox(height: 10),
-      buildInputField("Gender", genderController),
-      const SizedBox(height: 10),
-      buildInputField("Hospital Name", hospitalNameController),
-      const SizedBox(height: 10),
-      buildInputField("Hospital Address", hospitalAddressController),
-      const SizedBox(height: 10),
-      buildInputField("Email", emailController),
-      const SizedBox(height: 10),
-      buildInputField("Password", passwordController, isPassword: true),
-      const SizedBox(height: 10),
-      buildSignUpButton(
-        context,
-        emailController,
-        passwordController,
-        firstNameController,
-        lasttNameController,
-        dataOfBirthController,
-        nationalityController,
-        genderController,
-        hospitalNameController,
-        hospitalAddressController,
-      ),
-      const SizedBox(height: 20),
-      buildSignInButton(context, responsiveBttnTextStyle),
-    ],
-  );
-}
-
-// Input field
-Widget buildInputField(String label, TextEditingController controller,
-    {bool isPassword = false}) {
-  // Define the obscureText variable outside the builder function
-  ValueNotifier<bool> obscureTextNotifier = ValueNotifier<bool>(isPassword);
-
-  return StatefulBuilder(
-    builder: (BuildContext context, StateSetter setState) {
-      return ValueListenableBuilder<bool>(
-        valueListenable: obscureTextNotifier,
-        builder: (BuildContext context, bool obscureText, Widget? child) {
-          return TextField(
-            controller: controller,
-            obscureText: obscureText,
-            decoration: InputDecoration(
-              labelText: label,
-              labelStyle: const TextStyle(color: Colors.grey),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue, width: 2),
-              ),
-              enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey, width: 2),
-              ),
-              suffixIcon: isPassword
-                  ? IconButton(
-                      icon: Icon(
-                        obscureText ? Icons.visibility : Icons.visibility_off,
-                      ),
-                      onPressed: () {
-                        // Toggle password visibility
-                        obscureTextNotifier.value = !obscureText;
-                      },
-                    )
-                  : null,
-            ),
-          );
-        },
-      );
-    },
-  );
-}
-
-// SignUp button
-Widget buildSignUpButton(
-    BuildContext context,
-    TextEditingController emailController,
-    TextEditingController passwordController,
-    TextEditingController firstNameController,
-    TextEditingController lasttNameController,
-    TextEditingController dataOfBirthController,
-    TextEditingController nationalityController,
-    TextEditingController genderController,
-    TextEditingController hospitalNameController,
-    TextEditingController hospitalAddressController) {
-  return SizedBox(
-    width: double.infinity,
-    child: ElevatedButton(
-      onPressed: getTextFieldDataSignUp(
-          context,
-          emailController,
-          passwordController,
-          firstNameController,
-          lasttNameController,
-          dataOfBirthController,
-          nationalityController,
-          genderController,
-          hospitalNameController,
-          hospitalAddressController),
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        backgroundColor: const Color(0xff0076f9),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 16),
-      ),
-      child: const Text('Sign Up'),
-    ),
-  );
-}
-
-bool areFieldsEmpty(List<TextEditingController> controllers) {
-  return controllers.any((controller) => controller.text.isEmpty);
-}
-
 void showErrorToast(String message) {
   Fluttertoast.showToast(
     msg: message,
@@ -387,81 +199,6 @@ void showErrorToast(String message) {
     textColor: Colors.white,
     fontSize: 16.0,
   );
-}
-
-void Function()? getTextFieldDataSignUp(
-    BuildContext context,
-    TextEditingController emailController,
-    TextEditingController passwordController,
-    TextEditingController firstNameController,
-    TextEditingController lastNameController,
-    TextEditingController dateOfBirthController,
-    TextEditingController nationalityController,
-    TextEditingController genderController,
-    TextEditingController hospitalNameController,
-    TextEditingController hospitalAddressController) {
-  return () async {
-    List<TextEditingController> controllers = [
-      emailController,
-      passwordController,
-      firstNameController,
-      lastNameController,
-      dateOfBirthController,
-      nationalityController,
-      genderController,
-      hospitalNameController,
-      hospitalAddressController,
-    ];
-
-    if (areFieldsEmpty(controllers)) {
-      showErrorToast('Please fill all the fields');
-      return;
-    } else {
-      try {
-        UserCredential userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-                email: emailController.text, password: passwordController.text);
-
-        if (userCredential.user != null) {
-          // Save the data to Firebase Realtime Database
-          String uid =
-              userCredential.user!.uid; // Use the null assertion operator here
-          DatabaseReference dbRef =
-              FirebaseDatabase.instance.ref().child("users").child(uid);
-
-          await dbRef.set({
-            'DoB': dateOfBirthController.text,
-            'email': emailController.text,
-            'f-name': firstNameController.text,
-            'gender': genderController.text,
-            'hosAddress': hospitalAddressController.text,
-            'hosName': hospitalNameController.text,
-            'l-name': lastNameController.text,
-            'nationality': nationalityController.text,
-            'usertype': "admin",
-          });
-        }
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          showErrorToast('the password provided is too weak');
-        } else if (e.code == 'email-already-in-use') {
-          showErrorToast('The account already exists for that email');
-        }
-      } catch (e) {
-        if (kDebugMode) {
-          print(e);
-        }
-      }
-      for (var controller in controllers) {
-        controller.clear();
-      }
-      // Navigate to the HomePage after successful sign-up
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const ProfilePage()),
-      );
-    }
-  };
 }
 
 Widget buildSignInButton(BuildContext context, TextStyle bttnTextStyle) {
@@ -506,4 +243,263 @@ TextStyle buildTextStyle(BuildContext context, String s, int i, FontWeight w700,
     letterSpacing: j * MediaQuery.of(context).textScaleFactor,
     color: color,
   );
+}
+
+class _BuilSignUpForm extends StatefulWidget {
+  @override
+  _BuilSignUpFormState createState() => _BuilSignUpFormState();
+}
+
+class _BuilSignUpFormState extends State<_BuilSignUpForm> {
+  final _formKey = GlobalKey<FormState>();
+
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+  TextEditingController nationalityController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController hospitalNameController = TextEditingController();
+  TextEditingController hospitalAddressController = TextEditingController();
+
+  String? _selectedGender;
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildAddUserForm();
+  }
+
+  Widget _buildAddUserForm() {
+    TextStyle titleStyle = buildTextStyle(context, 'poppins', 44,
+        FontWeight.w700, 1.5, 0, const Color(0xff0076f9));
+    TextStyle normalStyle = buildTextStyle(context, 'poppins', 20,
+        FontWeight.w400, 1.5, 0, const Color(0xff000000));
+    TextStyle bttnTextStyle = buildTextStyle(context, "Poppins", 18,
+        FontWeight.w400, 1.5, 0, const Color(0xff000000));
+
+    double screenWidth = MediaQuery.of(context).size.width;
+    double titleFontSize = screenWidth < 600
+        ? 24.0
+        : 32.0; // Adjust title font size based on screen width
+    double normalFontSize = screenWidth < 600
+        ? 14.0
+        : 18.0; // Adjust normal font size based on screen width
+    double bttnFontSize = screenWidth < 600
+        ? 14.0
+        : 18.0; // Adjust button font size based on screen width
+
+    TextStyle responsiveTitleStyle =
+        titleStyle.copyWith(fontSize: titleFontSize);
+    TextStyle responsiveNormalStyle =
+        normalStyle.copyWith(fontSize: normalFontSize);
+    TextStyle responsiveBttnTextStyle =
+        bttnTextStyle.copyWith(fontSize: bttnFontSize);
+
+    return Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Create an account",
+              style: responsiveTitleStyle,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "Use your email to create an account",
+              style: responsiveNormalStyle,
+            ),
+            const SizedBox(height: 40),
+            buildInputField("First Name", firstNameController),
+            const SizedBox(height: 10),
+            buildInputField("Last Name", lastNameController),
+            const SizedBox(height: 10),
+            buildInputField("Date of Birth", dobController),
+            const SizedBox(height: 10),
+            genderDropdownButtonFormField(
+              value: _selectedGender,
+              onChanged: (newValue) {
+                setState(() {
+                  _selectedGender = newValue;
+                });
+              },
+            ),
+            const SizedBox(height: 10),
+            buildInputField("Nationality", nationalityController),
+            const SizedBox(height: 10),
+            buildInputField("Hospital Name", hospitalNameController),
+            const SizedBox(height: 10),
+            buildInputField("Hospital Address", hospitalAddressController),
+            const SizedBox(height: 10),
+            buildInputField("Email", emailController),
+            const SizedBox(height: 10),
+            buildInputField("Password", passwordController, isPassword: true),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: const Color(0xff0076f9),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                ),
+                onPressed: () async {
+                  if (firstNameController.text.isEmpty ||
+                      lastNameController.text.isEmpty ||
+                      dobController.text.isEmpty ||
+                      _selectedGender == null ||
+                      nationalityController.text.isEmpty ||
+                      emailController.text.isEmpty ||
+                      passwordController.text.isEmpty ||
+                      _selectedGender == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please fill all fields.'),
+                      ),
+                    );
+                    return;
+                  } else {
+                    try {
+                      UserCredential userCredential = await FirebaseAuth
+                          .instance
+                          .createUserWithEmailAndPassword(
+                              email: emailController.text,
+                              password: passwordController.text);
+
+                      if (userCredential.user != null) {
+                        // Save the data to Firebase Realtime Database
+                        String uid = userCredential
+                            .user!.uid; // Use the null assertion operator here
+                        DatabaseReference newUserRef = FirebaseDatabase.instance
+                            .ref()
+                            .child("users")
+                            .child(uid);
+
+                        await newUserRef.set({
+                          'DoB': dobController.text,
+                          'email': emailController.text,
+                          'f-name': firstNameController.text,
+                          'gender': _selectedGender,
+                          'hosAddress': hospitalAddressController.text,
+                          'hosName': hospitalNameController.text,
+                          'l-name': lastNameController.text,
+                          'nationality': nationalityController.text,
+                          'usertype': "admin",
+                        });
+                        // Navigate to the HomePage after successful sign-up
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProfilePage()),
+                        );
+                      }
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == 'weak-password') {
+                        showErrorToast('the password provided is too weak');
+                      } else if (e.code == 'email-already-in-use') {
+                        showErrorToast(
+                            'The account already exists for that email');
+                      }
+                    } catch (e) {
+                      if (kDebugMode) {
+                        print(e);
+                      }
+                    }
+                  }
+                },
+                child: const Text('Sign Up'),
+              ),
+            ),
+            const SizedBox(height: 20),
+            buildSignIntextButton(context, responsiveBttnTextStyle),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildSignIntextButton(BuildContext context, TextStyle bttnTextStyle) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double fontSize = screenWidth < 600
+        ? 14.0
+        : 18.0; // Adjust font size based on screen width
+
+    TextStyle responsiveBttnTextStyle =
+        bttnTextStyle.copyWith(fontSize: fontSize);
+
+    return Wrap(
+      alignment: WrapAlignment.start,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        Text(
+          "Already have an account?",
+          style: responsiveBttnTextStyle,
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SignInPage()),
+            );
+          },
+          child: Text(
+            "Sign In",
+            style: responsiveBttnTextStyle.copyWith(
+                color: const Color(0xff0076f9)),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildInputField(String label, TextEditingController controller,
+      {bool isPassword = false, int maxLines = 1}) {
+    return TextField(
+      controller: controller,
+      obscureText: isPassword,
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: const TextStyle(color: Colors.grey),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.blue, width: 2),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey, width: 2),
+        ),
+      ),
+    );
+  }
+
+  Widget genderDropdownButtonFormField({
+    required String? value,
+    required Function(String?) onChanged,
+  }) {
+    return DropdownButtonFormField<String>(
+      value: value,
+      decoration: InputDecoration(
+        labelText: 'Gender',
+        border: const OutlineInputBorder(),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade500, width: 2.0),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.blue, width: 2.0),
+        ),
+        filled: true,
+        fillColor: Colors.white,
+      ),
+      items: const [
+        DropdownMenuItem(value: 'male', child: Text('Male')),
+        DropdownMenuItem(value: 'female', child: Text('Female')),
+      ],
+      onChanged: onChanged,
+    );
+  }
 }

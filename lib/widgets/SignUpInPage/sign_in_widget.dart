@@ -215,7 +215,7 @@ Widget buildFormContent(
       const SizedBox(height: 30),
       buildSignInButton(context, emailController, passwordController),
       const SizedBox(height: 48),
-      buildSignUpButton(context, responsiveBttnTextStyle),
+      buildSignUpTextButton(context, responsiveBttnTextStyle),
     ],
   );
 }
@@ -359,7 +359,7 @@ void handleAuthError(FirebaseAuthException e) {
 }
 
 // SignUp button
-Widget buildSignUpButton(BuildContext context, TextStyle bttnTextStyle) {
+Widget buildSignUpTextButton(BuildContext context, TextStyle bttnTextStyle) {
   double screenWidth = MediaQuery.of(context).size.width;
   double fontSize =
       screenWidth < 600 ? 14.0 : 18.0; // Adjust font size based on screen width
@@ -369,6 +369,7 @@ Widget buildSignUpButton(BuildContext context, TextStyle bttnTextStyle) {
 
   return Wrap(
     alignment: WrapAlignment.start,
+    crossAxisAlignment: WrapCrossAlignment.center,
     children: [
       Text(
         "Don't have an account?",

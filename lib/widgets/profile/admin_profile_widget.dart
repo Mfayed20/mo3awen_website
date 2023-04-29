@@ -62,7 +62,7 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
     return Column(
       children: [
         _buildProfileHeader(),
-        _isExerciseFocus ? _buildAddExerciseForm() : _buildAddUserForm(),
+        _isExerciseFocus ? _buildAddExerciseForm() : _AddUserForm(),
       ],
     );
   }
@@ -179,184 +179,6 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
     );
   }
 
-  Widget _buildAddUserForm() {
-    final _formKey = GlobalKey<FormState>();
-    TextEditingController firstNameController = TextEditingController();
-    TextEditingController lastNameController = TextEditingController();
-    TextEditingController dobController = TextEditingController();
-    TextEditingController genderController = TextEditingController();
-    TextEditingController nationalityController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    TextEditingController associatedDrController = TextEditingController();
-
-    return Form(
-      key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Add User',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: ListTile(
-                    title: const Text('Doctor'),
-                    leading: Radio<bool>(
-                      value: true,
-                      groupValue: _isDoctor,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          _isDoctor = value!;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: ListTile(
-                    title: const Text('Patient'),
-                    leading: Radio<bool>(
-                      value: false,
-                      groupValue: _isDoctor,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          _isDoctor = value!;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            buildInputField(
-              "First Name",
-              firstNameController,
-            ),
-            const SizedBox(height: 16),
-            buildInputField(
-              "Last Name",
-              lastNameController,
-            ),
-            const SizedBox(height: 16),
-            buildInputField(
-              "Date of Birth",
-              dobController,
-            ),
-            const SizedBox(height: 16),
-            buildInputField(
-              "Gender",
-              genderController,
-            ),
-            const SizedBox(height: 16),
-            buildInputField(
-              "Nationality",
-              nationalityController,
-            ),
-            const SizedBox(height: 16),
-            buildInputField(
-              "Email",
-              emailController,
-            ),
-            const SizedBox(height: 16),
-            buildInputField(
-              "Password",
-              passwordController,
-              isPassword: true,
-            ),
-            if (!_isDoctor)
-              Column(
-                children: [
-                  const SizedBox(height: 16),
-                  buildInputField(
-                    "Associated Dr. Name",
-                    associatedDrController,
-                  ),
-                ],
-              ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () async {
-                // if fields are empty
-                if (firstNameController.text.isEmpty ||
-                    lastNameController.text.isEmpty ||
-                    dobController.text.isEmpty ||
-                    genderController.text.isEmpty ||
-                    nationalityController.text.isEmpty ||
-                    emailController.text.isEmpty ||
-                    passwordController.text.isEmpty ||
-                    (!_isDoctor && associatedDrController.text.isEmpty)) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Please fill all fields.'),
-                    ),
-                  );
-                  return;
-                }
-
-                if (_formKey.currentState!.validate()) {
-                  // Add user to Firebase
-                  try {
-                    DatabaseReference newUserRef =
-                        _databaseRef.child('users').push();
-
-                    final Map<String, dynamic> userData = {
-                      'DoB': dobController.text,
-                      'email': emailController.text,
-                      'f-name': firstNameController.text,
-                      'gender': genderController.text,
-                      'l-name': lastNameController.text,
-                      'nationality': nationalityController.text,
-                      'usertype': _isDoctor ? 'dr' : 'patient',
-                      if (!_isDoctor && associatedDrController.text.isNotEmpty)
-                        'associated-dr': associatedDrController.text,
-                    };
-
-                    if (!_isDoctor) {
-                      userData['therapy'] = {
-                        'session': '',
-                        'goals': '',
-                        'feedback': '',
-                        'exercises': '',
-                      };
-                    }
-
-                    await newUserRef.set(userData);
-
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('User added successfully.'),
-                      ),
-                    );
-                  } catch (e) {
-                    if (kDebugMode) {
-                      print(e);
-                    }
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Error adding user: $e'),
-                      ),
-                    );
-                  }
-                }
-              },
-              child: const Text('Submit'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildAddExerciseForm() {
     final _formKey = GlobalKey<FormState>();
     TextEditingController exerciseName = TextEditingController();
@@ -470,6 +292,225 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
           borderSide: BorderSide(color: Colors.grey, width: 2),
         ),
       ),
+    );
+  }
+}
+
+class _AddUserForm extends StatefulWidget {
+  @override
+  _AddUserFormState createState() => _AddUserFormState();
+}
+
+class _AddUserFormState extends State<_AddUserForm> {
+  final _formKey = GlobalKey<FormState>();
+  final _databaseRef = FirebaseDatabase.instance.ref();
+
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+  TextEditingController nationalityController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController associatedDrController = TextEditingController();
+
+  String? _selectedGender;
+  bool _isDoctor = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildAddUserForm();
+  }
+
+  Widget _buildAddUserForm() {
+    return Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text(
+              'Add User',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: ListTile(
+                    title: const Text('Doctor'),
+                    leading: Radio<bool>(
+                      value: true,
+                      groupValue: _isDoctor,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          _isDoctor = value!;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ListTile(
+                    title: const Text('Patient'),
+                    leading: Radio<bool>(
+                      value: false,
+                      groupValue: _isDoctor,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          _isDoctor = value!;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            buildInputField("First Name", firstNameController),
+            const SizedBox(height: 16),
+            buildInputField("Last Name", lastNameController),
+            const SizedBox(height: 16),
+            buildInputField("Date of Birth", dobController),
+            const SizedBox(height: 16),
+            genderDropdownButtonFormField(
+              value: _selectedGender,
+              onChanged: (newValue) {
+                setState(() {
+                  _selectedGender = newValue;
+                });
+              },
+            ),
+            const SizedBox(height: 16),
+            buildInputField("Nationality", nationalityController),
+            const SizedBox(height: 16),
+            buildInputField("Email", emailController),
+            const SizedBox(height: 16),
+            buildInputField("Password", passwordController, isPassword: true),
+            if (!_isDoctor)
+              Column(
+                children: [
+                  const SizedBox(height: 16),
+                  buildInputField(
+                      "Associated Dr. Name", associatedDrController),
+                ],
+              ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () async {
+                if (firstNameController.text.isEmpty ||
+                    lastNameController.text.isEmpty ||
+                    dobController.text.isEmpty ||
+                    _selectedGender == null ||
+                    nationalityController.text.isEmpty ||
+                    emailController.text.isEmpty ||
+                    passwordController.text.isEmpty ||
+                    (!_isDoctor && associatedDrController.text.isEmpty)) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Please fill all fields.'),
+                    ),
+                  );
+                  return;
+                }
+
+                if (_formKey.currentState!.validate()) {
+                  try {
+                    DatabaseReference newUserRef =
+                        _databaseRef.child('users').push();
+
+                    final Map<String, dynamic> userData = {
+                      'DoB': dobController.text,
+                      'email': emailController.text,
+                      'f-name': firstNameController.text,
+                      'gender': _selectedGender,
+                      'l-name': lastNameController.text,
+                      'nationality': nationalityController.text,
+                      'usertype': _isDoctor ? 'dr' : 'patient',
+                      if (!_isDoctor && associatedDrController.text.isNotEmpty)
+                        'associated-dr': associatedDrController.text,
+                    };
+
+                    if (!_isDoctor) {
+                      userData['therapy'] = {
+                        'session': '',
+                        'goals': '',
+                        'feedback': '',
+                        'exercises': '',
+                      };
+                    }
+
+                    await newUserRef.set(userData);
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('User added successfully.'),
+                      ),
+                    );
+                  } catch (e) {
+                    if (kDebugMode) {
+                      print(e);
+                    }
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Error adding user: $e'),
+                      ),
+                    );
+                  }
+                }
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildInputField(String label, TextEditingController controller,
+      {bool isPassword = false}) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(),
+      ),
+      obscureText: isPassword,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter $label';
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget genderDropdownButtonFormField({
+    required String? value,
+    required Function(String?) onChanged,
+  }) {
+    return DropdownButtonFormField<String>(
+      value: value,
+      decoration: InputDecoration(
+        labelText: 'Gender',
+        border: const OutlineInputBorder(),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade500, width: 1.0),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.blue, width: 1.0),
+        ),
+        filled: true,
+        fillColor: Colors.white,
+      ),
+      items: const [
+        DropdownMenuItem(value: 'male', child: Text('Male')),
+        DropdownMenuItem(value: 'female', child: Text('Female')),
+      ],
+      onChanged: onChanged,
     );
   }
 }

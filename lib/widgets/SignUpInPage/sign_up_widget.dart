@@ -390,7 +390,7 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
                           'hosName': hospitalNameController.text,
                           'l-name': lastNameController.text,
                           'nationality': nationalityController.text,
-                          'usertype': "admin",
+                          'usertype': "user",
                         });
                         // Navigate to the HomePage after successful sign-up
                         Navigator.push(

@@ -17,6 +17,7 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
   final userGenderController = TextEditingController();
   final userDobController = TextEditingController();
   final userNationalityController = TextEditingController();
+  final userAssociatedDoctorController = TextEditingController();
 
   late DatabaseReference dbRef;
 
@@ -38,10 +39,16 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
     userDobController.text = user['DoB'];
     userGenderController.text = user['gender'];
     userNationalityController.text = user['nationality'];
+    if (user['associated-dr'] != null) {
+      userAssociatedDoctorController.text = user['associated-dr'];
+    } else {
+      userAssociatedDoctorController.text = '';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    bool _isDoctor = true;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Update User Data'),
@@ -61,6 +68,41 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
                   fontWeight: FontWeight.w500,
                 ),
                 textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: ListTile(
+                      title: const Text('Doctor'),
+                      leading: Radio<bool>(
+                        value: true,
+                        groupValue: _isDoctor,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _isDoctor = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListTile(
+                      title: const Text('Patient'),
+                      leading: Radio<bool>(
+                        value: false,
+                        groupValue: _isDoctor,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _isDoctor = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 30,
@@ -137,6 +179,23 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
               const SizedBox(
                 height: 30,
               ),
+              if (_isDoctor)
+                Column(
+                  children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    TextField(
+                      controller: userAssociatedDoctorController,
+                      keyboardType: TextInputType.phone,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Associated Doctor',
+                        hintText: 'Enter Associated Doctor',
+                      ),
+                    ),
+                  ],
+                ),
               MaterialButton(
                 onPressed: () {
                   Map<String, String> students = {
@@ -146,6 +205,8 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
                     'gender': userGenderController.text,
                     'DoB': userDobController.text,
                     'nationality': userNationalityController.text,
+                    if (_isDoctor)
+                      'associated-dr': userAssociatedDoctorController.text,
                   };
 
                   dbRef

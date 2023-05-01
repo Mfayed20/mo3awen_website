@@ -3,14 +3,14 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../pages/displaylist/display_all_exercises_page_normal_user.dart';
 
-class PatientProfileWidget extends StatefulWidget {
-  const PatientProfileWidget({super.key});
+class UserProfileWidget extends StatefulWidget {
+  const UserProfileWidget({super.key});
 
   @override
-  PatientProfileWidgetState createState() => PatientProfileWidgetState();
+  UserProfileWidgetState createState() => UserProfileWidgetState();
 }
 
-class PatientProfileWidgetState extends State<PatientProfileWidget> {
+class UserProfileWidgetState extends State<UserProfileWidget> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref();
   late User _user;
@@ -18,10 +18,6 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
   String fName = '';
   String lName = '';
   String usertype = '';
-  String session = '';
-  String exercises = '';
-  String goals = '';
-  String feedback = '';
 
   @override
   void initState() {
@@ -42,17 +38,6 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
         fName = userData['f-name']?.toString() ?? '';
         lName = userData['l-name']?.toString() ?? '';
         usertype = userData['usertype']?.toString() ?? '';
-        if (userData['therapy'] != null) {
-          session = userData['therapy']['session']?.toString() ?? '';
-          exercises = userData['therapy']['exercises']?.toString() ?? '';
-          goals = userData['therapy']['goals']?.toString() ?? '';
-          feedback = userData['therapy']['feedback']?.toString() ?? '';
-        } else {
-          session = '';
-          exercises = '';
-          goals = '';
-          feedback = '';
-        }
       });
     }
   }
@@ -132,17 +117,10 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
     double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
     return Center(
       child: SizedBox(
-        height: 400.0,
+        height: 200.0,
         child: Text(
-            "Display Progress Here\nSeasson: " +
-                session +
-                '\nExercises: ' +
-                exercises +
-                '\nGoals: ' +
-                goals +
-                '\nFeedback: ' +
-                feedback,
-            style: TextStyle(fontSize: 40.0)),
+            "Thank you for your sign up with Mo3awen \n if you are an admin we will make your account and adming in no time\n if you are a dr or patent your adming will fix your accounts ",
+            style: TextStyle(fontSize: 20.0)),
       ),
     );
   }

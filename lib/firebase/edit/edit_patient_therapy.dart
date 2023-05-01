@@ -34,10 +34,17 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
 
     userFirstNameController.text = user['f-name'];
     userLastNameController.text = user['l-name'];
-    userTherapySessionController.text = user['therapy']['session'];
-    userTherapyGoalsController.text = user['therapy']['goals'];
-    userTherapyFeedbackController.text = user['therapy']['feedback'];
-    userTherapyExercisesController.text = user['therapy']['exercises'];
+    if (user['therapy'] != null) {
+      userTherapySessionController.text = user['therapy']['session'];
+      userTherapyGoalsController.text = user['therapy']['goals'];
+      userTherapyFeedbackController.text = user['therapy']['feedback'];
+      userTherapyExercisesController.text = user['therapy']['exercises'];
+    } else {
+      userTherapySessionController.text = '';
+      userTherapyGoalsController.text = '';
+      userTherapyFeedbackController.text = '';
+      userTherapyExercisesController.text = '';
+    }
   }
 
   @override

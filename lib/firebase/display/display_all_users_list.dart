@@ -4,15 +4,28 @@ import 'package:flutter/material.dart';
 import '../edit/edit_users_admin.dart';
 
 class DisplayAllUsers extends StatefulWidget {
-  const DisplayAllUsers({Key? key}) : super(key: key);
+  final String currentHosName;
+
+  const DisplayAllUsers({Key? key, required this.currentHosName})
+      : super(key: key);
 
   @override
   State<DisplayAllUsers> createState() => _DisplayAllUsersState();
 }
 
 class _DisplayAllUsersState extends State<DisplayAllUsers> {
-  Query dbRef = FirebaseDatabase.instance.ref().child('users');
+  late Query dbRef;
   DatabaseReference reference = FirebaseDatabase.instance.ref().child('users');
+
+  @override
+  void initState() {
+    super.initState();
+    dbRef = FirebaseDatabase.instance
+        .ref()
+        .child('users')
+        .orderByChild('hosName')
+        .equalTo(widget.currentHosName);
+  }
 
   Widget listItem({required Map users}) {
     return Container(
@@ -90,10 +103,11 @@ class _DisplayAllUsersState extends State<DisplayAllUsers> {
         query: dbRef,
         itemBuilder: (BuildContext context, DataSnapshot snapshot,
             Animation<double> animation, int index) {
-          Map student = snapshot.value as Map;
-          student['key'] = snapshot.key;
-
-          return listItem(users: student);
+          Map users = snapshot.value as Map;
+          users['key'] = snapshot.key;
+          return users['usertype'] != 'admin'
+              ? listItem(users: users)
+              : Container();
         },
       ),
     );

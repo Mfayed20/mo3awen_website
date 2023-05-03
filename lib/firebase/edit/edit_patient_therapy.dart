@@ -56,93 +56,95 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 50,
-              ),
-              const Text(
-                'User Therapy session',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 50,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: userTherapySessionController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Therapy Session',
-                  hintText: 'Enter Therapy session Name',
+                const Text(
+                  'User Therapy session',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: userTherapyExercisesController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Therapy exercises',
-                  hintText: 'Enter Therapy exercises',
+                const SizedBox(
+                  height: 30,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: userTherapyFeedbackController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Therapy Feedback',
-                  hintText: 'Enter Therapy Feedback',
+                TextField(
+                  controller: userTherapySessionController,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Therapy Session',
+                    hintText: 'Enter Therapy session Name',
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: userTherapyGoalsController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Therapy Goals',
-                  hintText: 'Enter Therapy Goals',
+                const SizedBox(
+                  height: 30,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              MaterialButton(
-                onPressed: () {
-                  Map<String, dynamic> students = {
-                    'therapy': {
-                      'session': userTherapySessionController.text,
-                      'goals': userTherapyGoalsController.text,
-                      'exercises': userTherapyExercisesController.text,
-                      'feedback': userTherapyFeedbackController.text,
-                    },
-                  };
+                TextField(
+                  controller: userTherapyExercisesController,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Therapy exercises',
+                    hintText: 'Enter Therapy exercises',
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                TextField(
+                  controller: userTherapyFeedbackController,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Therapy Feedback',
+                    hintText: 'Enter Therapy Feedback',
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                TextField(
+                  controller: userTherapyGoalsController,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Therapy Goals',
+                    hintText: 'Enter Therapy Goals',
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                MaterialButton(
+                  onPressed: () {
+                    Map<String, dynamic> user = {
+                      'therapy': {
+                        'session': userTherapySessionController.text,
+                        'goals': userTherapyGoalsController.text,
+                        'exercises': userTherapyExercisesController.text,
+                        'feedback': userTherapyFeedbackController.text,
+                      },
+                    };
 
-                  dbRef
-                      .child(widget.uid)
-                      .update(students)
-                      .then((value) => {Navigator.pop(context)});
-                },
-                color: Colors.blue,
-                textColor: Colors.white,
-                minWidth: 300,
-                height: 40,
-                child: const Text('Update Thesrapy Session'),
-              ),
-            ],
+                    dbRef
+                        .child(widget.uid)
+                        .update(user)
+                        .then((value) => {Navigator.pop(context)});
+                  },
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  minWidth: 300,
+                  height: 40,
+                  child: const Text('Update Thesrapy Session'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

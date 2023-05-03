@@ -22,7 +22,7 @@ class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
 
     if (users['associated-dr'] != uid) {
       // Skip this item if usertype doesn't match uid
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
 
     return Container(
@@ -106,10 +106,10 @@ class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
         query: dbRef,
         itemBuilder: (BuildContext context, DataSnapshot snapshot,
             Animation<double> animation, int index) {
-          Map student = snapshot.value as Map;
-          student['key'] = snapshot.key;
+          Map patients = snapshot.value as Map;
+          patients['key'] = snapshot.key;
 
-          return listItem(users: student);
+          return listItem(users: patients);
         },
       ),
     );

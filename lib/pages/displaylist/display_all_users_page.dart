@@ -80,7 +80,7 @@ Widget _profilePicker() {
 
         final userData = snapshot.data?.value as Map<String, dynamic>;
         if (userData['usertype'] == 'admin') {
-          return const DisplayAllUsers();
+          return DisplayAllUsers(currentHosName: userData['hosName']);
         } else if (userData['usertype'] == 'dr') {
           return const DsplayAssociatedPatient();
         } else {

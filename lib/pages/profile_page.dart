@@ -6,7 +6,7 @@ import '../widgets/profile/dr_Profile_widget.dart';
 import '../widgets/profile/patient_Profile_widget.dart';
 import '../widgets/footer/footer_widget.dart';
 import '../widgets/nav_bar/nav_bar.dart';
-import '../widgets/profile/user_profile_widget.dart';
+import '../widgets/profile/normal_user_profile_widget.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -56,7 +56,7 @@ Widget _profilePicker() {
         } else if (userData['usertype'] == 'patient') {
           return PatientProfileWidget();
         } else if (userData['usertype'] == 'user') {
-          return UserProfileWidget();
+          return NormalUserProfileWidget();
         } else {
           return const Center(child: Text('Unknown user type'));
         }

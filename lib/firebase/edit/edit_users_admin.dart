@@ -20,6 +20,7 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
   final userAssociatedDoctorController = TextEditingController();
 
   late DatabaseReference dbRef;
+  bool _isDoctor = true;
 
   @override
   void initState() {
@@ -48,7 +49,6 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
 
   @override
   Widget build(BuildContext context) {
-    bool _isDoctor = true;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Update User Data'),
@@ -56,171 +56,168 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 50,
-              ),
-              const Text(
-                'User Information',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 50,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: ListTile(
-                      title: const Text('Doctor'),
-                      leading: Radio<bool>(
-                        value: true,
-                        groupValue: _isDoctor,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            _isDoctor = value!;
-                          });
-                        },
-                      ),
-                    ),
+                const Text(
+                  'User Information',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
                   ),
-                  Expanded(
-                    child: ListTile(
-                      title: const Text('Patient'),
-                      leading: Radio<bool>(
-                        value: false,
-                        groupValue: _isDoctor,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            _isDoctor = value!;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: userFirstNameController,
-                keyboardType: TextInputType.text,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'First Name',
-                  hintText: 'Enter Your First Name',
+                  textAlign: TextAlign.center,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: userLastNameController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'last name',
-                  hintText: 'Enter Your last nam',
+                const SizedBox(
+                  height: 30,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: userTypeController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'account type',
-                  hintText: 'Enter Your account type',
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: userDobController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Data of birth',
-                  hintText: 'Enter Data of birth',
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: userGenderController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Gender',
-                  hintText: 'Enter Gnder',
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                controller: userNationalityController,
-                keyboardType: TextInputType.phone,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Nationality',
-                  hintText: 'Enter Nationality',
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              if (_isDoctor)
-                Column(
+                Row(
                   children: [
-                    const SizedBox(
-                      height: 30,
+                    Expanded(
+                      child: ListTile(
+                        title: const Text('Doctor'),
+                        leading: Radio<bool>(
+                          value: true,
+                          groupValue: _isDoctor,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              _isDoctor = value!;
+                            });
+                          },
+                        ),
+                      ),
                     ),
-                    TextField(
-                      controller: userAssociatedDoctorController,
-                      keyboardType: TextInputType.phone,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Associated Doctor',
-                        hintText: 'Enter Associated Doctor',
+                    Expanded(
+                      child: ListTile(
+                        title: const Text('Patient'),
+                        leading: Radio<bool>(
+                          value: false,
+                          groupValue: _isDoctor,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              _isDoctor = value!;
+                            });
+                          },
+                        ),
                       ),
                     ),
                   ],
                 ),
-              MaterialButton(
-                onPressed: () {
-                  Map<String, String> students = {
-                    'f-name': userFirstNameController.text,
-                    'l-name': userLastNameController.text,
-                    'usertype': userTypeController.text,
-                    'gender': userGenderController.text,
-                    'DoB': userDobController.text,
-                    'nationality': userNationalityController.text,
-                    if (_isDoctor)
-                      'associated-dr': userAssociatedDoctorController.text,
-                  };
-
-                  dbRef
-                      .child(widget.uid)
-                      .update(students)
-                      .then((value) => {Navigator.pop(context)});
-                },
-                color: Colors.blue,
-                textColor: Colors.white,
-                minWidth: 300,
-                height: 40,
-                child: const Text('Update User Data'),
-              ),
-            ],
+                const SizedBox(
+                  height: 30,
+                ),
+                TextField(
+                  controller: userFirstNameController,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'First Name',
+                    hintText: 'Enter Your First Name',
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                TextField(
+                  controller: userLastNameController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'last name',
+                    hintText: 'Enter Your last nam',
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                TextField(
+                  controller: userDobController,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Data of birth',
+                    hintText: 'Enter Data of birth',
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                TextField(
+                  controller: userGenderController,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Gender',
+                    hintText: 'Enter Gnder',
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                TextField(
+                  controller: userNationalityController,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Nationality',
+                    hintText: 'Enter Nationality',
+                  ),
+                ),
+                if (!_isDoctor)
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      TextField(
+                        controller: userAssociatedDoctorController,
+                        keyboardType: TextInputType.phone,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Associated Doctor',
+                          hintText: 'Enter Associated Doctor',
+                        ),
+                      ),
+                    ],
+                  ),
+                const SizedBox(
+                  height: 30,
+                ),
+                MaterialButton(
+                  onPressed: () async {
+                    Map<String, String> user = {
+                      'f-name': userFirstNameController.text,
+                      'l-name': userLastNameController.text,
+                      'usertype': _isDoctor ? 'doctor' : 'patient',
+                      'gender': userGenderController.text,
+                      'DoB': userDobController.text,
+                      'nationality': userNationalityController.text,
+                    };
+                    if (!_isDoctor) {
+                      user['associated-dr'] =
+                          userAssociatedDoctorController.text;
+                    } else {
+                      DataSnapshot snapshot =
+                          await dbRef.child(widget.uid).get();
+                      if (snapshot.hasChild('associated-dr')) {
+                        dbRef.child(widget.uid).child('associated-dr').remove();
+                      }
+                    }
+                    dbRef
+                        .child(widget.uid)
+                        .update(user)
+                        .then((value) => {Navigator.pop(context)});
+                  },
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  minWidth: 300,
+                  height: 40,
+                  child: const Text('Update User Data'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

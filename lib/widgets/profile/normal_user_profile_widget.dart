@@ -3,14 +3,14 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../pages/displaylist/display_all_exercises_page_normal_user.dart';
 
-class UserProfileWidget extends StatefulWidget {
-  const UserProfileWidget({super.key});
+class NormalUserProfileWidget extends StatefulWidget {
+  const NormalUserProfileWidget({super.key});
 
   @override
-  UserProfileWidgetState createState() => UserProfileWidgetState();
+  NormalUserProfileWidgetState createState() => NormalUserProfileWidgetState();
 }
 
-class UserProfileWidgetState extends State<UserProfileWidget> {
+class NormalUserProfileWidgetState extends State<NormalUserProfileWidget> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref();
   late User _user;
@@ -115,12 +115,14 @@ class UserProfileWidgetState extends State<UserProfileWidget> {
   Widget _buildProfileHeader() {
     double baseWidth = 1440;
     double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
-    return Center(
-      child: SizedBox(
-        height: 200.0,
-        child: Text(
-            "Thank you for your sign up with Mo3awen \n if you are an admin we will make your account and adming in no time\n if you are a dr or patent your adming will fix your accounts ",
-            style: TextStyle(fontSize: 20.0)),
+    return const Padding(
+      padding: EdgeInsets.all(18.0),
+      child: Center(
+        child: SizedBox(
+          child: Text(
+              "Thank you for your sign up with Mo3awen \nIf you are an admin we will make your account and adming in no time\nIf you are a dr or patent your adming will fix your accounts",
+              style: TextStyle(fontSize: 20.0)),
+        ),
       ),
     );
   }

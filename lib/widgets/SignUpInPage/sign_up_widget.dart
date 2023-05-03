@@ -458,22 +458,64 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
     );
   }
 
+  // Widget buildInputField(String label, TextEditingController controller,
+  //     {bool isPassword = false, int maxLines = 1}) {
+  //   return TextField(
+  //     controller: controller,
+  //     obscureText: isPassword,
+  //     maxLines: maxLines,
+  //     decoration: InputDecoration(
+  //       labelText: label,
+  //       labelStyle: const TextStyle(color: Colors.grey),
+  //       focusedBorder: const OutlineInputBorder(
+  //         borderSide: BorderSide(color: Colors.blue, width: 2),
+  //       ),
+  //       enabledBorder: const OutlineInputBorder(
+  //         borderSide: BorderSide(color: Colors.grey, width: 2),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // Input field
   Widget buildInputField(String label, TextEditingController controller,
-      {bool isPassword = false, int maxLines = 1}) {
-    return TextField(
-      controller: controller,
-      obscureText: isPassword,
-      maxLines: maxLines,
-      decoration: InputDecoration(
-        labelText: label,
-        labelStyle: const TextStyle(color: Colors.grey),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blue, width: 2),
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey, width: 2),
-        ),
-      ),
+      {bool isPassword = false}) {
+    // Define the obscureText variable outside the builder function
+    ValueNotifier<bool> obscureTextNotifier = ValueNotifier<bool>(isPassword);
+
+    return StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        return ValueListenableBuilder<bool>(
+          valueListenable: obscureTextNotifier,
+          builder: (BuildContext context, bool obscureText, Widget? child) {
+            return TextField(
+              controller: controller,
+              obscureText: obscureText,
+              decoration: InputDecoration(
+                labelText: label,
+                labelStyle: const TextStyle(color: Colors.grey),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue, width: 2),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 2),
+                ),
+                suffixIcon: isPassword
+                    ? IconButton(
+                        icon: Icon(
+                          obscureText ? Icons.visibility : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          // Toggle password visibility
+                          obscureTextNotifier.value = !obscureText;
+                        },
+                      )
+                    : null,
+              ),
+            );
+          },
+        );
+      },
     );
   }
 

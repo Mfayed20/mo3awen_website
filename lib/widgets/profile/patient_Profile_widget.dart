@@ -130,19 +130,15 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
   Widget _buildProfileHeader() {
     double baseWidth = 1440;
     double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
-    return Center(
-      child: SizedBox(
-        height: 400.0,
-        child: Text(
-            "Display Progress Here\nSeasson: " +
-                session +
-                '\nExercises: ' +
-                exercises +
-                '\nGoals: ' +
-                goals +
-                '\nFeedback: ' +
-                feedback,
-            style: TextStyle(fontSize: 40.0)),
+    return Padding(
+      padding: const EdgeInsets.all(18.0),
+      child: Center(
+        child: SizedBox(
+          child: Text(
+            'Display Progress Here\nSeasson: $session\nExercises: $exercises\nGoals: $goals\nFeedback: $feedback',
+            style: TextStyle(fontSize: 40.0 * screenWidthRatio),
+          ),
+        ),
       ),
     );
   }

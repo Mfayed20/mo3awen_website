@@ -4,9 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 import 'package:mo3awen_website/pages/mainpages/home_page.dart';
 import 'package:mo3awen_website/widgets/SignUpInPage/reset_password_widget.dart';
-import '../../pages/profile_page.dart';
 import '../../pages/signIn/sign_in_page.dart';
 import '../../utils/constants.dart';
 
@@ -319,7 +319,7 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
             const SizedBox(height: 10),
             buildInputField("Last Name", lastNameController),
             const SizedBox(height: 10),
-            buildInputField("Date of Birth", dobController),
+            buildDatePicker(context, dobController),
             const SizedBox(height: 10),
             genderDropdownButtonFormField(
               value: _selectedGender,
@@ -420,6 +420,10 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
                       passwordController.clear();
                       hospitalAddressController.clear();
                       hospitalNameController.clear();
+                      // clear the gender dropdown
+                      setState(() {
+                        _selectedGender = null;
+                      });
                     } catch (e) {
                       if (kDebugMode) {
                         print(e);
@@ -471,25 +475,6 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
       ],
     );
   }
-
-  // Widget buildInputField(String label, TextEditingController controller,
-  //     {bool isPassword = false, int maxLines = 1}) {
-  //   return TextField(
-  //     controller: controller,
-  //     obscureText: isPassword,
-  //     maxLines: maxLines,
-  //     decoration: InputDecoration(
-  //       labelText: label,
-  //       labelStyle: const TextStyle(color: Colors.grey),
-  //       focusedBorder: const OutlineInputBorder(
-  //         borderSide: BorderSide(color: Colors.blue, width: 2),
-  //       ),
-  //       enabledBorder: const OutlineInputBorder(
-  //         borderSide: BorderSide(color: Colors.grey, width: 2),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   // Input field
   Widget buildInputField(String label, TextEditingController controller,
@@ -556,6 +541,38 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
         DropdownMenuItem(value: 'female', child: Text('Female')),
       ],
       onChanged: onChanged,
+    );
+  }
+
+  Widget buildDatePicker(
+      BuildContext context, TextEditingController dobController) {
+    return GestureDetector(
+      onTap: () async {
+        final DateTime? pickedDate = await showDatePicker(
+          context: context,
+          initialDate: DateTime.now(),
+          firstDate: DateTime(1900),
+          lastDate: DateTime.now(),
+        );
+        if (pickedDate != null) {
+          dobController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+        }
+      },
+      child: AbsorbPointer(
+        child: TextField(
+          controller: dobController,
+          decoration: const InputDecoration(
+            labelText: 'Date of Birth',
+            labelStyle: TextStyle(color: Colors.grey),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue, width: 2),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey, width: 2),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

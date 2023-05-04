@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 
@@ -125,8 +126,17 @@ Widget visitUs(BuildContext context) {
     child: Stack(
       children: [
         /* I=images */
-        buildImagepositioned(context, 0, 0, 1441, 890, visitUsPhoto),
-        buildImagepositioned(context, 86, 367, 575, 392, visitUslocationPhoto),
+        buildImagepositioned(context, 0, 0, 1441, 890, visitUsBg),
+        // buildImagepositioned(context, 86, 367, 575, 392, visitUslocationPhoto),
+        buildClickableImagePositioned(
+            context,
+            86,
+            367,
+            575,
+            392,
+            visitUslocationPhoto,
+            'https://www.google.com/maps?q=Alfaisal+university,+Riyadh,+Saudi+Arabia'),
+
         /* Title */
         buildTextPositioned(context, 83, 45, 163, 60, 'VISIT US', titleStyle),
         buildColorPositioned(context, 83, 117, 100, 9, 4,
@@ -292,4 +302,52 @@ getTextFieldData(TextEditingController nameTf, TextEditingController emailTf,
       );
     }
   };
+}
+
+Widget buildClickableImagePositioned(
+  BuildContext context,
+  double left,
+  double top,
+  double width,
+  double height,
+  String imageUrl,
+  String mapUrl,
+) {
+  double baseWidth = 1440;
+  double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
+  return Positioned(
+    left: left * screenWidthRatio,
+    top: top * screenWidthRatio,
+    child: GestureDetector(
+      onTap: () async {
+        if (await canLaunch(mapUrl)) {
+          await launch(mapUrl);
+        } else {
+          Fluttertoast.showToast(
+            msg: 'Could not open Google Maps',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.blue,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        }
+      },
+      child: Align(
+        child: SizedBox(
+          width: width * screenWidthRatio,
+          height: height * screenWidthRatio,
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(imageUrl),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
 }

@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class EditUsersAdmin extends StatefulWidget {
   const EditUsersAdmin({Key? key, required this.uid}) : super(key: key);
@@ -19,8 +20,10 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
   final userNationalityController = TextEditingController();
   final userAssociatedDoctorController = TextEditingController();
 
+  String? _selectedGender; // Add a variable to store the selected gender
   late DatabaseReference dbRef;
   bool _isDoctor = true;
+  late String isMale;
 
   @override
   void initState() {
@@ -39,12 +42,15 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
     userTypeController.text = user['usertype'];
     userDobController.text = user['DoB'];
     userGenderController.text = user['gender'];
+    _selectedGender = user['gender'];
     userNationalityController.text = user['nationality'];
     if (user['associated-dr'] != null) {
       userAssociatedDoctorController.text = user['associated-dr'];
     } else {
       userAssociatedDoctorController.text = '';
     }
+    setState(() {}); // Add this line to trigger a rebuild of the widget
+    print("gender: ${_selectedGender}");
   }
 
   @override
@@ -132,27 +138,20 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
                 const SizedBox(
                   height: 30,
                 ),
-                TextField(
-                  controller: userDobController,
-                  keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Data of birth',
-                    hintText: 'Enter Data of birth',
-                  ),
-                ),
+                buildDatePicker(
+                    context, userDobController), // Use the DatePicker widget
                 const SizedBox(
                   height: 30,
                 ),
-                TextField(
-                  controller: userGenderController,
-                  keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Gender',
-                    hintText: 'Enter Gnder',
-                  ),
+                buildGenderDropdown(
+                  value: _selectedGender,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _selectedGender = newValue;
+                    });
+                  },
                 ),
+
                 const SizedBox(
                   height: 30,
                 ),
@@ -191,7 +190,7 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
                       'f-name': userFirstNameController.text,
                       'l-name': userLastNameController.text,
                       'usertype': _isDoctor ? 'doctor' : 'patient',
-                      'gender': userGenderController.text,
+                      'gender': _selectedGender.toString(),
                       'DoB': userDobController.text,
                       'nationality': userNationalityController.text,
                     };
@@ -221,6 +220,65 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildDatePicker(
+      BuildContext context, TextEditingController dobController) {
+    return GestureDetector(
+      onTap: () async {
+        final DateTime? pickedDate = await showDatePicker(
+          context: context,
+          initialDate: DateTime.now(),
+          firstDate: DateTime(1900),
+          lastDate: DateTime.now(),
+        );
+        if (pickedDate != null) {
+          dobController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+        }
+      },
+      child: AbsorbPointer(
+        child: TextField(
+          controller: dobController,
+          decoration: const InputDecoration(
+            labelText: 'Date of Birth',
+            labelStyle: TextStyle(color: Colors.grey),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue, width: 1),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey, width: 1),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildGenderDropdown({
+    required String? value,
+    required Function(String?) onChanged,
+  }) {
+    return DropdownButtonFormField<String>(
+      value:
+          value, // This will set the initial value based on the gender saved in the Firebase realtime database
+      decoration: InputDecoration(
+        labelText: 'Gender',
+        border: const OutlineInputBorder(),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade500, width: 1.0),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.blue, width: 1.0),
+        ),
+        filled: true,
+        fillColor: Colors.grey.shade50,
+      ),
+      items: const [
+        DropdownMenuItem(value: 'male', child: Text('Male')),
+        DropdownMenuItem(value: 'female', child: Text('Female')),
+      ],
+      onChanged: onChanged,
     );
   }
 }

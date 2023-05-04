@@ -17,6 +17,7 @@ dependencies:
   flutter_svg: ^2.0.5
   fluttertoast: ^8.2.1
   google_fonts: ^4.0.3
+  # intl: ^0.18.1
   url_launcher: ^6.1.10
 
 dev_dependencies:

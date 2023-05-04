@@ -11,7 +11,7 @@ const String aboutUsPhoto = 'assets/page-1/images/rectangle-15.png';
 const String plansPhoto = 'assets/page-1/images/plans-image-bg-ART.png';
 
 // Homepage: visitUs_widget
-const String visitUsPhoto = 'assets/page-1/images/cross-rectangle.png';
+const String visitUsBg = 'assets/page-1/images/cross-rectangle.png';
 const String visitUslocationPhoto = 'assets/page-1/images/map-1-dwK.png';
 
 // Footer: footer_widget

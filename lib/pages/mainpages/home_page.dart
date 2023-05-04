@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: const [
+          children: [
             NavBar(),
             WelcomeHP(),
             AboutUsHP(),

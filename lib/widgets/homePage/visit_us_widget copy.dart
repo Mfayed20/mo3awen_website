@@ -33,6 +33,15 @@ Widget visitUs(BuildContext context) {
     0,
     const Color(0xff0076f9),
   );
+  TextStyle inputHeaderStyle = buildTextStyle(
+    context,
+    "Poppins",
+    16,
+    FontWeight.w400,
+    1.5,
+    0,
+    const Color(0xff000000),
+  );
   TextStyle bttnTextStyle = buildTextStyle(
     context,
     "Poppins",
@@ -51,6 +60,15 @@ Widget visitUs(BuildContext context) {
     0,
     const Color(0xff000000),
   );
+  TextStyle textFieldlStyle = buildTextStyle(
+    context,
+    "Poppins",
+    16,
+    FontWeight.w400,
+    1.5,
+    0,
+    const Color(0xff000000),
+  );
 
   // textediting controllers
   TextEditingController nameController = TextEditingController();
@@ -58,20 +76,49 @@ Widget visitUs(BuildContext context) {
   TextEditingController subjectController = TextEditingController();
   TextEditingController messageController = TextEditingController();
 
-  Widget nameInputField = buildInputField('Enter your name', nameController);
-  Widget emailInputField = buildInputField('Enter your email', emailController);
-  Widget subjectInputField =
-      buildInputField('Enter your subject', subjectController);
-  Widget messageInputField = buildInputField(
-      'Enter your message', messageController,
-      isPassword: false);
+  TextField nameTf = textField(
+    context,
+    nameController,
+    1,
+    'Enter your name',
+    textFieldlStyle,
+    const Color(0xffe2e2e2),
+    Colors.transparent,
+    3,
+  );
+  TextField emailTf = textField(
+    context,
+    emailController,
+    1,
+    'Enter your email',
+    textFieldlStyle,
+    const Color(0xffe2e2e2),
+    Colors.transparent,
+    3,
+  );
+  TextField subjectTf = textField(
+    context,
+    subjectController,
+    1,
+    'Enter your subject',
+    textFieldlStyle,
+    const Color(0xffe2e2e2),
+    Colors.transparent,
+    3,
+  );
+  TextField messageTf = textField(
+    context,
+    messageController,
+    5,
+    'Enter your message',
+    textFieldlStyle,
+    const Color(0xffe2e2e2),
+    Colors.transparent,
+    3,
+  );
 
   double baseWidth = 1440;
   double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
-  double gap = screenWidthRatio < 0.8
-      ? 110
-      : 70; // Adjust he gap based on the screen size
-
   return Container(
     margin: EdgeInsets.fromLTRB(0 * screenWidthRatio, 0 * screenWidthRatio,
         0 * screenWidthRatio, 54 * screenWidthRatio),
@@ -81,6 +128,7 @@ Widget visitUs(BuildContext context) {
       children: [
         /* I=images */
         buildImagepositioned(context, 0, 0, 1441, 890, visitUsBg),
+        // buildImagepositioned(context, 86, 367, 575, 392, visitUslocationPhoto),
         buildClickableImagePositioned(
             context,
             86,
@@ -89,6 +137,7 @@ Widget visitUs(BuildContext context) {
             392,
             visitUslocationPhoto,
             'https://www.google.com/maps?q=Alfaisal+university,+Riyadh,+Saudi+Arabia'),
+
         /* Title */
         buildTextPositioned(context, 83, 45, 163, 60, 'VISIT US', titleStyle),
         buildColorPositioned(context, 83, 117, 100, 9, 4,
@@ -105,19 +154,22 @@ Widget visitUs(BuildContext context) {
             const Color(0xffffffff), Colors.transparent),
         buildTextPositioned(
             context, 968, 225, 156, 36, 'CONTACT US', contactUsStyle),
-        simpleTextFieldPositioned(context, 819, 309, 454, 60, nameInputField),
-        simpleTextFieldPositioned(
-            context, 819, 309 + gap, 454, 60, emailInputField),
-        simpleTextFieldPositioned(
-            context, 819, 309 + gap * 2, 454, 60, subjectInputField),
-        simpleTextFieldPositioned(
-            context, 819, 309 + gap * 3, 454, 119, messageInputField),
+        buildTextPositioned(
+            context, 819, 309, 52, 24, 'Name:', inputHeaderStyle),
+        buildTextPositioned(
+            context, 819, 419, 47, 24, 'Email:', inputHeaderStyle),
+        buildTextPositioned(
+            context, 819, 529, 64, 24, 'Subject:', inputHeaderStyle),
+        buildTextPositioned(
+            context, 819, 639, 76, 24, 'Message:', inputHeaderStyle),
+        simpleTextFieldPositioned(context, 819, 337, 454, 60, nameTf),
+        simpleTextFieldPositioned(context, 819, 447, 454, 60, emailTf),
+        simpleTextFieldPositioned(context, 819, 557, 454, 60, subjectTf),
+        simpleTextFieldPositioned(context, 819, 667, 454, 119, messageTf),
         buildElevatedBttnPositioned(
           context,
           1059,
-          309 +
-              gap *
-                  4.5, // Calculate the top position based on the gap between text fields
+          836,
           214,
           60,
           const Color(0xff0076f9),
@@ -138,55 +190,13 @@ Widget visitUs(BuildContext context) {
   );
 }
 
-Widget buildInputField(String label, TextEditingController controller,
-    {bool isPassword = false}) {
-  // Define the obscureText variable outside the builder function
-  ValueNotifier<bool> obscureTextNotifier = ValueNotifier<bool>(isPassword);
-
-  return StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
-    return ValueListenableBuilder<bool>(
-        valueListenable: obscureTextNotifier,
-        builder: (BuildContext context, bool obscureText, Widget? child) {
-          final double screenWidth = MediaQuery.of(context).size.width;
-          final double fontSize = screenWidth <= 600
-              ? 14.0
-              : 16.0; // adjust the font size based on the screen size
-          return TextField(
-            controller: controller,
-            obscureText: obscureText,
-            decoration: InputDecoration(
-              labelText: label,
-              labelStyle: TextStyle(color: Colors.grey, fontSize: fontSize),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue, width: 1),
-              ),
-              enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey, width: 1),
-              ),
-              suffixIcon: isPassword
-                  ? IconButton(
-                      icon: Icon(
-                        obscureText ? Icons.visibility : Icons.visibility_off,
-                      ),
-                      onPressed: () {
-                        // Toggle password visibility
-                        obscureTextNotifier.value = !obscureText;
-                      },
-                    )
-                  : null,
-            ),
-          );
-        });
-  });
-}
-
 Widget simpleTextFieldPositioned(
   BuildContext context,
   double left,
   double top,
   double width,
   double height,
-  Widget inputField,
+  TextField textField,
 ) {
   double baseWidth = 1440;
   double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
@@ -197,7 +207,7 @@ Widget simpleTextFieldPositioned(
       child: SizedBox(
         width: width * screenWidthRatio,
         height: height * screenWidthRatio,
-        child: inputField,
+        child: textField,
       ),
     ),
   );

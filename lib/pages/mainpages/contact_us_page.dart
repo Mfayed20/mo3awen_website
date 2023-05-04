@@ -12,7 +12,7 @@ class ContactUsPage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: const [
+          children: [
             NavBar(),
             ContactUs(),
             VisitUs(),

@@ -4,6 +4,9 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../pages/displaylist/display_all_exercises_page_admin.dart';
 import '../../../pages/displaylist/display_all_users_page.dart';
+import '../../firebase/display/display_all_exercises_requests_list.dart';
+import '../../pages/displaylist/display_all_contact_us_page.dart';
+import '../../pages/displaylist/display_all_requested_exercises_page.dart';
 
 class AdminProfileWidget extends StatefulWidget {
   const AdminProfileWidget({super.key});
@@ -125,6 +128,44 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                   style: TextStyle(fontSize: 16 * screenWidthRatio),
                 ),
               ),
+              SizedBox(width: 10.0 * screenWidthRatio),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const DisplayAllRequestedExercisesPage()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.all(16 * screenWidthRatio),
+                ),
+                child: Text(
+                  'Show all Exercises requested',
+                  style: TextStyle(fontSize: 16 * screenWidthRatio),
+                ),
+              ),
+              SizedBox(width: 10.0 * screenWidthRatio),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const DisplayAllContactUsPage()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.black,
+                  padding: EdgeInsets.all(16 * screenWidthRatio),
+                ),
+                child: Text(
+                  'Show all contact',
+                  style: TextStyle(fontSize: 16 * screenWidthRatio),
+                ),
+              ),
             ],
           ),
         )
@@ -203,7 +244,10 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                     };
 
                     await newUserRef.set(userData);
-
+                    exerciseName.clear();
+                    exerciseDescription.clear();
+                    exerciseResps.clear();
+                    exerciseSets.clear();
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Exercise added successfully.'),

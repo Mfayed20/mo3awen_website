@@ -327,16 +327,22 @@ void Function()? getTextFieldDataSignIn(
     if (email.isEmpty || password.isEmpty) {
       showToast('Please fill all the fields');
       return;
-    } else {
+    }
+    {
       try {
         await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
-
-        // Navigate to the HomePage after successful sign-in
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const ProfilePage()),
-        );
+        if (FirebaseAuth.instance.currentUser!.emailVerified) {
+          // Navigate to the HomePage after successful sign-in
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ProfilePage()),
+          );
+        } else {
+          showToast('Please verify your email');
+          FirebaseAuth.instance.currentUser!.sendEmailVerification();
+          FirebaseAuth.instance.signOut();
+        }
       } on FirebaseAuthException catch (e) {
         handleAuthError(e);
       }

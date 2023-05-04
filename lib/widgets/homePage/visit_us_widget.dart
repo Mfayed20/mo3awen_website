@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../utils/constants.dart';
@@ -247,6 +248,7 @@ TextField textField(
 // method to get the text from textfields
 getTextFieldData(TextEditingController nameTf, TextEditingController emailTf,
     TextEditingController subjectTf, TextEditingController messageTf) {
+  final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref();
   return () {
     String name = nameTf.text;
     String email = emailTf.text;
@@ -265,6 +267,15 @@ getTextFieldData(TextEditingController nameTf, TextEditingController emailTf,
       );
       return;
     } else {
+      DatabaseReference newUserRef = _databaseRef.child('contact').push();
+
+      final Map<String, dynamic> userData = {
+        'name': name,
+        'email': email,
+        'subject': subject,
+        'message': message,
+      };
+      newUserRef.set(userData);
       nameTf.clear();
       emailTf.clear();
       subjectTf.clear();

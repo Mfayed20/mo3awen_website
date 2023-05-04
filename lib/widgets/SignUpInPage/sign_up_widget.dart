@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:mo3awen_website/pages/mainpages/home_page.dart';
+import 'package:mo3awen_website/widgets/SignUpInPage/reset_password_widget.dart';
 import '../../pages/profile_page.dart';
 import '../../pages/signIn/sign_in_page.dart';
 import '../../utils/constants.dart';
@@ -392,11 +394,15 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
                           'nationality': nationalityController.text,
                           'usertype': "user",
                         });
-                        // Navigate to the HomePage after successful sign-up
+
+                        FirebaseAuth.instance.currentUser!
+                            .sendEmailVerification();
+                        FirebaseAuth.instance.signOut();
+                        showToast(msg: 'A verification email has been sent');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ProfilePage()),
+                              builder: (context) => const HomePage()),
                         );
                       }
                     } on FirebaseAuthException catch (e) {
@@ -406,6 +412,14 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
                         showErrorToast(
                             'The account already exists for that email');
                       }
+                      dobController.clear();
+                      emailController.clear();
+                      firstNameController.clear();
+                      lastNameController.clear();
+                      nationalityController.clear();
+                      passwordController.clear();
+                      hospitalAddressController.clear();
+                      hospitalNameController.clear();
                     } catch (e) {
                       if (kDebugMode) {
                         print(e);

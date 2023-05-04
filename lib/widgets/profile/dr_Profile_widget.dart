@@ -191,6 +191,41 @@ class DrProfileWidgetState extends State<DrProfileWidget> {
                   );
                   return;
                 }
+                if (_formKey.currentState!.validate()) {
+                  // Add user to Firebase
+                  try {
+                    DatabaseReference newUserRef =
+                        _databaseRef.child('exercisesR').push();
+
+                    final Map<String, dynamic> userData = {
+                      'name': exerciseNameController.text,
+                      'reps': exerciseRepsController.text,
+                      'sets': exerciseSetsController.text,
+                      'description': exerciseDescribtionController.text,
+                    };
+
+                    await newUserRef.set(userData);
+                    exerciseRepsController.clear();
+                    exerciseSetsController.clear();
+                    exerciseDescribtionController.clear();
+                    exerciseNameController.clear();
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Exercise request sent successfully.'),
+                      ),
+                    );
+                  } catch (e) {
+                    if (kDebugMode) {
+                      print(e);
+                    }
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Error sending request: $e'),
+                      ),
+                    );
+                  }
+                }
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('User added successfully.'),

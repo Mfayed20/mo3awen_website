@@ -49,6 +49,28 @@ class _DisplayAllContactUsAdminState extends State<DisplayAllContactUsAdmin> {
           const SizedBox(
             height: 5,
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                width: 6,
+              ),
+              GestureDetector(
+                onTap: () {
+                  reference.child(contact['key']).remove();
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.delete,
+                      color: Colors.red[700],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

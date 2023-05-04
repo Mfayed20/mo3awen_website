@@ -13,7 +13,7 @@ class DisplayAllRequestedExercisesPage extends StatelessWidget {
       builder: (context, snapshot) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('All Exercises'),
+            title: const Text('All Requested Exercises List'),
           ),
           body: ConstrainedBox(
             constraints: BoxConstraints(

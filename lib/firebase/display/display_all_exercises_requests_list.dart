@@ -17,7 +17,7 @@ class _DisplayAllExercisesRequestAdminState
   DatabaseReference reference =
       FirebaseDatabase.instance.ref().child('exercisesR');
 
-  Widget listItem({required Map exercises}) {
+  Widget listItem({required Map requestedExercises}) {
     return Container(
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
@@ -30,25 +30,47 @@ class _DisplayAllExercisesRequestAdminState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${exercises['name'][0].toUpperCase()}${exercises['name']?.substring(1) ?? ''}',
+            '${requestedExercises['name'][0].toUpperCase()}${requestedExercises['name']?.substring(1) ?? ''}',
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           const SizedBox(
             height: 5,
           ),
           Text(
-            'Reps: ${exercises['reps'] ?? ''} Sets: ${exercises['sets'] ?? ''}',
+            'Reps: ${requestedExercises['reps'] ?? ''} Sets: ${requestedExercises['sets'] ?? ''}',
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           const SizedBox(
             height: 5,
           ),
           Text(
-            '${exercises['description']?.isNotEmpty == true ? exercises['description'][0].toUpperCase() + exercises['description'].substring(1) : ''}',
+            '${requestedExercises['description']?.isNotEmpty == true ? requestedExercises['description'][0].toUpperCase() + requestedExercises['description'].substring(1) : ''}',
             style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
           ),
           const SizedBox(
             height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                width: 6,
+              ),
+              GestureDetector(
+                onTap: () {
+                  reference.child(requestedExercises['key']).remove();
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.delete,
+                      color: Colors.red[700],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -67,7 +89,7 @@ class _DisplayAllExercisesRequestAdminState
               Map exercise = snapshot.value as Map;
               exercise['key'] = snapshot.key;
 
-              return listItem(exercises: exercise);
+              return listItem(requestedExercises: exercise);
             },
           ),
         ),

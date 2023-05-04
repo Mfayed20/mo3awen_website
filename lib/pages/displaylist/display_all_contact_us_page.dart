@@ -14,7 +14,7 @@ class DisplayAllContactUsPage extends StatelessWidget {
       builder: (context, snapshot) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('All Exercises'),
+            title: const Text('All Contact Us List'),
           ),
           body: ConstrainedBox(
             constraints: BoxConstraints(

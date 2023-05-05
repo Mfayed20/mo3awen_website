@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'package:country_pickers/country.dart';
+import 'package:country_pickers/country_pickers.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -330,7 +332,26 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
               },
             ),
             const SizedBox(height: 10),
-            buildInputField("Nationality", nationalityController),
+            GestureDetector(
+              onTap: () {
+                _showCustomCountryPicker(context, nationalityController);
+              },
+              child: AbsorbPointer(
+                child: TextField(
+                  controller: nationalityController,
+                  decoration: const InputDecoration(
+                    labelText: 'Nationality',
+                    labelStyle: TextStyle(color: Colors.grey),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue, width: 2),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey, width: 2),
+                    ),
+                  ),
+                ),
+              ),
+            ),
             const SizedBox(height: 10),
             buildInputField("Hospital Name", hospitalNameController),
             const SizedBox(height: 10),
@@ -441,6 +462,48 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
       ),
     );
   }
+
+  void _showCustomCountryPicker(
+      BuildContext context, TextEditingController nationalityController) {
+    showDialog(
+      context: context,
+      builder: (context) => SizedBox(
+        height: MediaQuery.of(context).size.height / 8,
+        width: MediaQuery.of(context).size.width,
+        child: DraggableScrollableSheet(
+          initialChildSize: 0.4,
+          minChildSize: 0.4,
+          maxChildSize: 0.4,
+          builder: (BuildContext context, ScrollController scrollController) {
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: CountryPickerDialog(
+                titlePadding: EdgeInsets.all(8.0),
+                searchCursorColor: Colors.pinkAccent,
+                searchInputDecoration: InputDecoration(hintText: 'Search...'),
+                isSearchable: true,
+                title: Text('Select your country'),
+                onValuePicked: (Country country) {
+                  nationalityController.text = country.name;
+                },
+                itemBuilder: _buildDialogItem,
+                itemFilter: (Country country) =>
+                    country.name !=
+                    "Israel", // Added this line to filter out Israel
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDialogItem(Country country) => Row(
+        children: <Widget>[
+          const SizedBox(width: 8.0),
+          Text(country.name),
+        ],
+      );
 
   Widget buildSignIntextButton(BuildContext context, TextStyle bttnTextStyle) {
     double screenWidth = MediaQuery.of(context).size.width;

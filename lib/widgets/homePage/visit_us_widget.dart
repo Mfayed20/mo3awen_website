@@ -58,13 +58,11 @@ Widget visitUs(BuildContext context) {
   TextEditingController subjectController = TextEditingController();
   TextEditingController messageController = TextEditingController();
 
-  Widget nameInputField = buildInputField('Enter your name', nameController);
-  Widget emailInputField = buildInputField('Enter your email', emailController);
-  Widget subjectInputField =
-      buildInputField('Enter your subject', subjectController);
-  Widget messageInputField = buildInputField(
-      'Enter your message', messageController,
-      isPassword: false);
+  Widget nameInputField = buildInputField('Name', nameController);
+  Widget emailInputField = buildInputField('Email', emailController);
+  Widget subjectInputField = buildInputField('Subject', subjectController);
+  Widget messageInputField =
+      buildInputField('Message', messageController, isPassword: false);
 
   double baseWidth = 1440;
   double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;

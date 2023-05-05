@@ -1,3 +1,5 @@
+import 'package:country_pickers/country.dart';
+import 'package:country_pickers/country_pickers.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -155,15 +157,23 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
                 const SizedBox(
                   height: 30,
                 ),
-                TextField(
-                  controller: userNationalityController,
-                  keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Nationality',
-                    hintText: 'Enter Nationality',
+                GestureDetector(
+                  onTap: () {
+                    _showCustomCountryPicker(
+                        context, userNationalityController);
+                  },
+                  child: AbsorbPointer(
+                    child: TextField(
+                      controller: userNationalityController,
+                      decoration: const InputDecoration(
+                        labelText: 'Nationality',
+                        hintText: 'Select Nationality',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
                   ),
                 ),
+
                 if (!_isDoctor)
                   Column(
                     children: [
@@ -222,6 +232,48 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
       ),
     );
   }
+
+  void _showCustomCountryPicker(
+      BuildContext context, TextEditingController nationalityController) {
+    showDialog(
+      context: context,
+      builder: (context) => SizedBox(
+        height: MediaQuery.of(context).size.height / 8,
+        width: MediaQuery.of(context).size.width,
+        child: DraggableScrollableSheet(
+          initialChildSize: 0.4,
+          minChildSize: 0.4,
+          maxChildSize: 0.4,
+          builder: (BuildContext context, ScrollController scrollController) {
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: CountryPickerDialog(
+                titlePadding: EdgeInsets.all(8.0),
+                searchCursorColor: Colors.pinkAccent,
+                searchInputDecoration: InputDecoration(hintText: 'Search...'),
+                isSearchable: true,
+                title: Text('Select your country'),
+                onValuePicked: (Country country) {
+                  nationalityController.text = country.name;
+                },
+                itemBuilder: _buildDialogItem,
+                itemFilter: (Country country) =>
+                    country.name !=
+                    "Israel", // Added this line to filter out Israel
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDialogItem(Country country) => Row(
+        children: <Widget>[
+          const SizedBox(width: 8.0),
+          Text(country.name),
+        ],
+      );
 
   Widget buildDatePicker(
       BuildContext context, TextEditingController dobController) {

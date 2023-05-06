@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -8,6 +9,8 @@ import '../../../pages/displaylist/display_all_users_page.dart';
 import '../../firebase/display/display_all_exercises_requests_list.dart';
 import '../../pages/displaylist/display_all_contact_us_page.dart';
 import '../../pages/displaylist/display_all_requested_exercises_page.dart';
+import 'dart:html' as html;
+import 'package:path/path.dart' as path;
 
 class AdminProfileWidget extends StatefulWidget {
   const AdminProfileWidget({super.key});
@@ -24,6 +27,34 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
   String fName = '';
   String lName = '';
   String usertype = '';
+
+  // Add this method for image uploading
+  Future<void> _pickImage() async {
+    html.FileUploadInputElement uploadInput = html.FileUploadInputElement()
+      ..accept = 'image/*';
+    uploadInput.click();
+
+    uploadInput.onChange.listen((event) {
+      final file = uploadInput.files!.first;
+      final reader = html.FileReader();
+
+      reader.readAsDataUrl(file);
+      reader.onLoadEnd.listen((event) async {
+        String fileName = path.basename(file.name);
+        Reference storageRef = FirebaseStorage.instance
+            .ref('profile_images')
+            .child(_user.uid)
+            .child(fileName);
+
+        await storageRef.putString(reader.result as String,
+            format: PutStringFormat.dataUrl);
+        String photoUrl = await storageRef.getDownloadURL();
+
+        _user.updatePhotoURL(photoUrl);
+        setState(() {});
+      });
+    });
+  }
 
   @override
   void initState() {
@@ -70,28 +101,39 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
           padding: EdgeInsets.all(16.0 * screenWidthRatio),
           child: Row(
             children: [
-              ImageNetwork(
-                image: _user.photoURL!,
-                height: avatarSize,
-                width: avatarSize,
-                duration: 1500,
-                curve: Curves.easeIn,
-                onPointer: true,
-                debugPrint: false,
-                fullScreen: false,
-                fitAndroidIos: BoxFit.cover,
-                fitWeb: BoxFitWeb.cover,
-                borderRadius: BorderRadius.circular(70),
-                onLoading: const CircularProgressIndicator(
-                  color: Colors.indigoAccent,
-                ),
-                onError: const Icon(
-                  Icons.person,
-                  color: Colors.red,
-                ),
-                onTap: () {
-                  debugPrint("©gabriel_patrick_souza");
-                },
+              Column(
+                children: [
+                  ImageNetwork(
+                    image: _user.photoURL!,
+                    height: avatarSize,
+                    width: avatarSize,
+                    duration: 1500,
+                    curve: Curves.easeIn,
+                    onPointer: true,
+                    debugPrint: false,
+                    fullScreen: false,
+                    fitAndroidIos: BoxFit.cover,
+                    fitWeb: BoxFitWeb.cover,
+                    borderRadius: BorderRadius.circular(70),
+                    onLoading: const CircularProgressIndicator(
+                      color: Colors.indigoAccent,
+                    ),
+                    onError: const Icon(
+                      Icons.person,
+                      color: Colors.red,
+                    ),
+                    onTap: () {
+                      debugPrint("©gabriel_patrick_souza");
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.edit),
+                    color: Colors.blue,
+                    onPressed: () {
+                      _pickImage();
+                    },
+                  ),
+                ],
               ),
               SizedBox(width: 16.0 * screenWidthRatio),
               Column(

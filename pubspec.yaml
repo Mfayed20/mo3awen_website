@@ -13,11 +13,13 @@ dependencies:
   firebase_auth: ^4.3.0
   firebase_core: ^2.8.0
   firebase_database: ^10.0.1
+  firebase_storage: ^11.1.2
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.5
   fluttertoast: ^8.2.1
   google_fonts: ^4.0.3
+  html: ^0.15.3
   image_network: ^2.5.2
   url_launcher: ^6.1.10
 

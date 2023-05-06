@@ -396,6 +396,12 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
                               password: passwordController.text);
 
                       if (userCredential.user != null) {
+                        // Save the profile photo URL in Firebase Authentication
+                        String profilePhotoURL =
+                            'https://firebasestorage.googleapis.com/v0/b/mo3awen-d2404.appspot.com/o/default_profile_pics%2Fred.jpg?alt=media&token=8bbcdef6-e207-4c21-bfc6-d943b0573e5f';
+                        await userCredential.user!
+                            .updatePhotoURL(profilePhotoURL);
+
                         // Save the data to Firebase Realtime Database
                         String uid = userCredential
                             .user!.uid; // Use the null assertion operator here

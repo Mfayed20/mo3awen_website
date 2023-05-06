@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:image_network/image_network.dart';
 import '../../../pages/displaylist/display_all_exercises_page_admin.dart';
 import '../../../pages/displaylist/display_all_users_page.dart';
 import '../../firebase/display/display_all_exercises_requests_list.dart';
@@ -60,30 +61,60 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
   Widget _buildProfileHeader() {
     double baseWidth = 1440;
     double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
+    double avatarSize = 80.0 * screenWidthRatio;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
           padding: EdgeInsets.all(16.0 * screenWidthRatio),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Row(
             children: [
-              Text(
-                '${fName.isNotEmpty ? fName.substring(0, 1).toUpperCase() + fName.substring(1) : ''} ${lName.isNotEmpty ? lName.substring(0, 1).toUpperCase() + lName.substring(1) : ''}',
-                style: TextStyle(
-                  fontSize: 24.0 * screenWidthRatio,
-                  fontWeight: FontWeight.bold,
+              ImageNetwork(
+                image: _user.photoURL!,
+                height: avatarSize,
+                width: avatarSize,
+                duration: 1500,
+                curve: Curves.easeIn,
+                onPointer: true,
+                debugPrint: false,
+                fullScreen: false,
+                fitAndroidIos: BoxFit.cover,
+                fitWeb: BoxFitWeb.cover,
+                borderRadius: BorderRadius.circular(70),
+                onLoading: const CircularProgressIndicator(
+                  color: Colors.indigoAccent,
                 ),
+                onError: const Icon(
+                  Icons.person,
+                  color: Colors.red,
+                ),
+                onTap: () {
+                  debugPrint("©gabriel_patrick_souza");
+                },
               ),
-              SizedBox(height: 4.0 * screenWidthRatio),
-              Text(
-                'User Type: ${usertype.isNotEmpty ? usertype[0].toUpperCase() + usertype.substring(1) : ''}',
-                style: TextStyle(
-                  fontSize: 16.0 * screenWidthRatio,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey,
-                ),
+              SizedBox(width: 16.0 * screenWidthRatio),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '${fName.isNotEmpty ? fName.substring(0, 1).toUpperCase() + fName.substring(1) : ''} ${lName.isNotEmpty ? lName.substring(0, 1).toUpperCase() + lName.substring(1) : ''}',
+                    style: TextStyle(
+                      fontSize: 24.0 * screenWidthRatio,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 4.0 * screenWidthRatio),
+                  Text(
+                    'User Type: ${usertype.isNotEmpty ? usertype[0].toUpperCase() + usertype.substring(1) : ''}',
+                    style: TextStyle(
+                      fontSize: 16.0 * screenWidthRatio,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

@@ -93,7 +93,7 @@ Widget visitUs(BuildContext context) {
             const Color(0xff0076f9), Colors.transparent),
         /* info, Location, email text */
         buildTextPositioned(
-            context, 26, 280, 282, 72, 'Alfaisal university', normalStyle),
+            context, 26, 280, 282, 72, 'Alfaisal University', normalStyle),
         buildTextPositioned(
             context, 35, 300, 282, 72, 'Riyadh, Saudi Arabia', normalStyle),
         buildTextPositioned(context, 85, 320, 282, 72,

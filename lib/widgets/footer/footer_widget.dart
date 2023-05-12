@@ -200,7 +200,7 @@ Widget _buildGetInTouchColumn(BuildContext context) {
         spacing: 8,
         children: [
           const Icon(Icons.phone, size: 20),
-          Text("999 999 9999", style: TextStyle(fontSize: fontSize)),
+          Text("+996 53 940 4083", style: TextStyle(fontSize: fontSize)),
         ],
       ),
       const SizedBox(height: 8),

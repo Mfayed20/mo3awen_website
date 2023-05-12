@@ -192,7 +192,7 @@ class NormalUserProfileWidgetState extends State<NormalUserProfileWidget> {
       child: Center(
         child: SizedBox(
           child: Text(
-              "Thank you for your sign up with Mo3awen \nIf you are an admin we will make your account and adming in no time\nIf you are a dr or patent your adming will fix your accounts",
+              "Thank you for your sign up with Mo3awen \nIf you are an admin we will make your account an *admin* in no time\nIf you are a docter or patient your *admin* will fix your accounts",
               style: TextStyle(fontSize: 20.0 * screenWidthRatio)),
         ),
       ),

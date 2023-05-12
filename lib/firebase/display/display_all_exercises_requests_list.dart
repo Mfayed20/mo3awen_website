@@ -12,9 +12,9 @@ class DisplayAllExercisesRequestAdmin extends StatefulWidget {
 
 class _DisplayAllExercisesRequestAdminState
     extends State<DisplayAllExercisesRequestAdmin> {
-  Query dbRef = FirebaseDatabase.instance.ref().child('exercisesR');
+  Query dbRef = FirebaseDatabase.instance.ref().child('requestedExercises');
   DatabaseReference reference =
-      FirebaseDatabase.instance.ref().child('exercisesR');
+      FirebaseDatabase.instance.ref().child('requestedExercises');
 
   Widget listItem({required Map requestedExercises}) {
     return Container(

@@ -102,7 +102,7 @@ class ExercisesWidget extends StatelessWidget {
                   544,
                   551,
                   83,
-                  'These are the exercises we can over right\nnow and hopefully more will be added.',
+                  'These are the exercises we offer now\nand hopefully more will be added.',
                   headerExpStyle,
                 ),
                 imageWidget(

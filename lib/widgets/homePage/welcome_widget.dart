@@ -95,8 +95,8 @@ Widget welcomeWidget(BuildContext context) {
                 borderRadius: BorderRadius.circular(3.0),
               ),
               // Add the third text with the created style
-              child:
-                  Text("COMBING GAMING WITH EXERCISING", style: thirdTxtStyle),
+              child: Text("COMBINING GAMING WITH EXERCISING",
+                  style: thirdTxtStyle),
             ),
             SizedBox(height: 35 * screenWidthRatio),
             Padding(

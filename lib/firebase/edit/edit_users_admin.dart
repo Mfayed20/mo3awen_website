@@ -199,24 +199,41 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
                 ),
                 MaterialButton(
                   onPressed: () async {
-                    Map<String, String> user = {
+                    Map<String, dynamic> user = {
                       'f-name': userFirstNameController.text,
                       'l-name': userLastNameController.text,
-                      'usertype': _isDoctor ? 'doctor' : 'patient',
+                      'usertype': _isDoctor ? 'dr' : 'patient',
                       'gender': _selectedGender.toString(),
                       'DoB': userDobController.text,
                       'nationality': userNationalityController.text,
                     };
+
+                    // Fetch the current user's data
+                    DataSnapshot snapshot = await dbRef.child(widget.uid).get();
+
                     if (!_isDoctor) {
                       user['associated-dr'] =
                           userAssociatedDoctorController.text;
-                    } else {
-                      DataSnapshot snapshot =
-                          await dbRef.child(widget.uid).get();
-                      if (snapshot.hasChild('associated-dr')) {
-                        dbRef.child(widget.uid).child('associated-dr').remove();
+
+                      if (snapshot.value != null &&
+                          snapshot.value is Map<String, dynamic>) {
+                        Map<String, dynamic> userData =
+                            snapshot.value as Map<String, dynamic>;
+
+                        // Add 'All-progress' if it doesn't exist
+                        if (userData['All-progress'] == null) {
+                          user['All-progress'] = {
+                            'allPlayTime': 0,
+                            'allReps': 0,
+                            'allScore': 0,
+                            'allSets': 0,
+                          };
+                        }
                       }
+                    } else if (snapshot.hasChild('associated-dr')) {
+                      dbRef.child(widget.uid).child('associated-dr').remove();
                     }
+
                     dbRef
                         .child(widget.uid)
                         .update(user)
@@ -227,7 +244,7 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
                   minWidth: 300,
                   height: 40,
                   child: const Text('Update User Data'),
-                ),
+                )
               ],
             ),
           ),

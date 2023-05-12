@@ -159,17 +159,17 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
                       color: Colors.grey,
                     ),
                   ),
+                  IconButton(
+                    icon: const Icon(Icons.edit),
+                    color: Colors.blue,
+                    onPressed: () {
+                      _pickImage();
+                    },
+                  ),
                 ],
               ),
             ],
           ),
-        ),
-        IconButton(
-          icon: const Icon(Icons.edit),
-          color: Colors.blue,
-          onPressed: () {
-            _pickImage();
-          },
         ),
         Padding(
           padding: EdgeInsets.all(16.0 * screenWidthRatio),
@@ -208,7 +208,7 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
       child: Center(
         child: SizedBox(
           child: Text(
-            'Your Progress\nSeasson: $session\nExercises: $exercises\nGoals: $goals\nFeedback: $feedback',
+            'Your Progress\nSession: $session\nExercises: $exercises\nGoals: $goals\nFeedback: $feedback',
             style: TextStyle(fontSize: 40.0 * screenWidthRatio),
           ),
         ),

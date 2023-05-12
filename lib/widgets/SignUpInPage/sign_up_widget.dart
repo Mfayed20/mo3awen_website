@@ -398,7 +398,7 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
                       if (userCredential.user != null) {
                         // Save the profile photo URL in Firebase Authentication
                         String profilePhotoURL =
-                            'https://firebasestorage.googleapis.com/v0/b/mo3awen-d2404.appspot.com/o/default_profile_pics%2Fred.jpg?alt=media&token=8bbcdef6-e207-4c21-bfc6-d943b0573e5f';
+                            'https://firebasestorage.googleapis.com/v0/b/mo3awen-d2404.appspot.com/o/default_profile_pics%2Fprofile_pic.png?alt=media&token=3b04c8ac-4c2f-48f0-b93e-f6ba20a483c7';
                         await userCredential.user!
                             .updatePhotoURL(profilePhotoURL);
 
@@ -486,7 +486,8 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
               child: CountryPickerDialog(
                 titlePadding: const EdgeInsets.all(8.0),
                 searchCursorColor: Colors.pinkAccent,
-                searchInputDecoration: const InputDecoration(hintText: 'Search...'),
+                searchInputDecoration:
+                    const InputDecoration(hintText: 'Search...'),
                 isSearchable: true,
                 title: const Text('Select your country'),
                 onValuePicked: (Country country) {

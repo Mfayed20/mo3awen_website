@@ -141,7 +141,7 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
                   textColor: Colors.white,
                   minWidth: 300,
                   height: 40,
-                  child: const Text('Update Thesrapy Session'),
+                  child: const Text('Update Therapy Session'),
                 ),
               ],
             ),

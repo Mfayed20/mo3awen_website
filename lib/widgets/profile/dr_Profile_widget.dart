@@ -268,7 +268,7 @@ class DrProfileWidgetState extends State<DrProfileWidget> {
                   // Add user to Firebase
                   try {
                     DatabaseReference newUserRef =
-                        _databaseRef.child('exercisesR').push();
+                        _databaseRef.child('requestedExercises').push();
 
                     final Map<String, dynamic> userData = {
                       'name': exerciseNameController.text,

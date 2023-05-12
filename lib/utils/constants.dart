@@ -36,10 +36,8 @@ const String exerciseloginimg2 =
     'assets/page-1/images/rectangle-02-eye-cordination-bg.jpg';
 
 // AboutUs: about_Us_widget
-const String aboutUsbgimg1 =
-    'assets/page-1/images/hero-section-for-about-us.png';
-const String aboutUsbgimg2 =
-    'assets/page-1/images/b7a2665c-978e-46cf-83ed-7b46f77ed88f-1.png';
+const String aboutUsbgimg1 = 'assets/page-1/images/hero-section-image.png';
+const String aboutUsbgimg2 = 'assets/page-1/images/plans-image-bg-ART.png';
 
 // Plans: plans_widget
 const String plansbgimg = 'assets/page-1/images/hero-section-image-wND.png';

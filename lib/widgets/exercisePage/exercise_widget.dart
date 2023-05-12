@@ -146,7 +146,7 @@ class ExercisesWidget extends StatelessWidget {
                   824,
                   297,
                   120,
-                  '01\nHand stretch\n',
+                  '01\nShip Voyage\n',
                   titleStyle,
                 ),
               ],
@@ -193,7 +193,7 @@ class ExercisesWidget extends StatelessWidget {
                   220,
                   463,
                   150,
-                  'Hand stretch is an exercise where the work out focus on the stability of patient\'s arm as the scoring will depend on how straight the patient can extend his/her arm.\n',
+                  'Your ship has crashed, and you see a distant village. Reach the island before dying. Stand up, grab the oars, and move them in a lateral raise motion to make the boat move.',
                   parghStyle,
                 ),
               ],
@@ -249,7 +249,7 @@ class ExercisesWidget extends StatelessWidget {
                         0,
                         321,
                         120,
-                        '02\nEye coordination\n',
+                        '02\nBunker Run\n',
                         titleStyle,
                       ),
                     ],
@@ -288,79 +288,7 @@ class ExercisesWidget extends StatelessWidget {
                         141,
                         483,
                         300,
-                        'Eye Coordination game is where the patient will test their eye-muscle coordination. The patient must insert the ball inside the ring/doughnut shape without letting the ball hit the ring, and the patient should try as much as possible to keep his arm on his side, this way the patient will also work on their Infraspinatus, teres minor, posterior deltoid muscles.\n',
-                        parghStyle,
-                      ),
-                    ],
-                  ),
-                ),
-                // Container for exercise 3
-                Container(
-                  margin: EdgeInsets.fromLTRB(
-                    85 * screenWidthRatio,
-                    0 * screenWidthRatio,
-                    0 * screenWidthRatio,
-                    30 * screenWidthRatio,
-                  ),
-                  width: 255 * screenWidthRatio,
-                  height: 120 * screenWidthRatio,
-                  child: Stack(
-                    children: [
-                      // Blue bar at the bottom of exercise 3 container
-                      colorWidget(
-                        context,
-                        0,
-                        98,
-                        100,
-                        9,
-                      ),
-                      // Exercise 3 title
-                      buildTextPositioned(
-                        context,
-                        0,
-                        0,
-                        255,
-                        120,
-                        '03\nLateral raise\n',
-                        titleStyle,
-                      ),
-                    ],
-                  ),
-                ),
-                // Container for exercise 3 description and image
-                Container(
-                  margin: EdgeInsets.fromLTRB(
-                    0 * screenWidthRatio,
-                    0 * screenWidthRatio,
-                    1 * screenWidthRatio,
-                    0 * screenWidthRatio,
-                  ),
-                  width: double.infinity,
-                  height: 580 * screenWidthRatio,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(exerciseloginimg3),
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      // Black cover effect over exercise 3 image
-                      colorBoxWidget(
-                        context,
-                        806,
-                        0,
-                        550,
-                        580,
-                      ),
-                      // Exercise 3 text description
-                      textWidget(
-                        context,
-                        847,
-                        221,
-                        439,
-                        150,
-                        'Lateral Raise is an exercise where the patients raise their arms on their sides with a slight bent on the elbow, this exercise will strengthen the Lateral deltoids.\n',
+                        'During this exercise, you will find yourself in a warzone and will need to use your jumping skills to navigate a series of obstacles and evade danger. These obstacles may include rubble, debris, and other hazards that you must jump over or navigate around in order to make your way to safety.\n',
                         parghStyle,
                       ),
                     ],

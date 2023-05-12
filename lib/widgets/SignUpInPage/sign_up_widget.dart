@@ -425,7 +425,11 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
                         FirebaseAuth.instance.currentUser!
                             .sendEmailVerification();
                         FirebaseAuth.instance.signOut();
-                        showToast(msg: 'A verification email has been sent');
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('A verification email has been sent'),
+                          ),
+                        );
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -434,10 +438,18 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
                       }
                     } on FirebaseAuthException catch (e) {
                       if (e.code == 'weak-password') {
-                        showErrorToast('the password provided is too weak');
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('the password provided is too weak'),
+                          ),
+                        );
                       } else if (e.code == 'email-already-in-use') {
-                        showErrorToast(
-                            'The account already exists for that email');
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                                'The account already exists for that email'),
+                          ),
+                        );
                       }
                       dobController.clear();
                       emailController.clear();

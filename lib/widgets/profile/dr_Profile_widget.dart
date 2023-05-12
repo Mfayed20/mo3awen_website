@@ -299,11 +299,6 @@ class DrProfileWidgetState extends State<DrProfileWidget> {
                     );
                   }
                 }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('User added successfully.'),
-                  ),
-                );
               },
               child: const Text('Send Request'),
             ),

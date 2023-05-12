@@ -247,7 +247,7 @@ TextField textField(
 // method to get the text from textfields
 getTextFieldData(TextEditingController nameTf, TextEditingController emailTf,
     TextEditingController subjectTf, TextEditingController messageTf) {
-  final DatabaseReference _databaseRef = FirebaseDatabase.instance.ref();
+  final DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
   return () {
     String name = nameTf.text;
     String email = emailTf.text;
@@ -266,7 +266,7 @@ getTextFieldData(TextEditingController nameTf, TextEditingController emailTf,
       );
       return;
     } else {
-      DatabaseReference newUserRef = _databaseRef.child('contact').push();
+      DatabaseReference newUserRef = databaseRef.child('contact').push();
 
       final Map<String, dynamic> userData = {
         'name': name,
@@ -309,8 +309,9 @@ Widget buildClickableImagePositioned(
     top: top * screenWidthRatio,
     child: GestureDetector(
       onTap: () async {
-        if (await canLaunch(mapUrl)) {
-          await launch(mapUrl);
+        Uri uri = Uri.parse(mapUrl);
+        if (await canLaunchUrl(uri)) {
+          await launchUrl(uri);
         } else {
           Fluttertoast.showToast(
             msg: 'Could not open Google Maps',

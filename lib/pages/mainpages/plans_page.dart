@@ -9,10 +9,10 @@ class PlansPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: const [
+          children: [
             NavBar(),
             PlansWelcome(),
             PlansPrice(),

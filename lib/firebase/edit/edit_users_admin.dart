@@ -1,6 +1,7 @@
 import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -52,7 +53,9 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
       userAssociatedDoctorController.text = '';
     }
     setState(() {}); // Add this line to trigger a rebuild of the widget
-    print("gender: ${_selectedGender}");
+    if (kDebugMode) {
+      print("gender: $_selectedGender");
+    }
   }
 
   @override
@@ -248,11 +251,12 @@ class _EditUsersAdminState extends State<EditUsersAdmin> {
             return SingleChildScrollView(
               controller: scrollController,
               child: CountryPickerDialog(
-                titlePadding: EdgeInsets.all(8.0),
+                titlePadding: const EdgeInsets.all(8.0),
                 searchCursorColor: Colors.pinkAccent,
-                searchInputDecoration: InputDecoration(hintText: 'Search...'),
+                searchInputDecoration:
+                    const InputDecoration(hintText: 'Search...'),
                 isSearchable: true,
-                title: Text('Select your country'),
+                title: const Text('Select your country'),
                 onValuePicked: (Country country) {
                   nationalityController.text = country.name;
                 },

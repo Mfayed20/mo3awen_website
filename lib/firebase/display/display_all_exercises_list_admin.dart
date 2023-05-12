@@ -62,8 +62,8 @@ class _DisplayAllExercisesAdminState extends State<DisplayAllExercisesAdmin> {
                     ),
                   );
                 },
-                child: Row(
-                  children: const [
+                child: const Row(
+                  children: [
                     Icon(
                       Icons.edit,
                       color: Colors.black,

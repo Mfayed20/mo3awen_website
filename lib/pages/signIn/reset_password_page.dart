@@ -14,10 +14,10 @@ class ResetPasswordPage extends StatelessWidget {
           if (snapshot.hasData) {
             return const AboutUsPage();
           } else {
-            return Scaffold(
+            return const Scaffold(
               body: SingleChildScrollView(
                 child: Column(
-                  children: const [
+                  children: [
                     ResetPassword(),
                   ],
                 ),

@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../widgets/profile/admin_profile_widget.dart';
-import '../widgets/profile/dr_Profile_widget.dart';
-import '../widgets/profile/patient_Profile_widget.dart';
+import '../widgets/profile/dr_profile_widget.dart';
+import '../widgets/profile/patient_profile_widget.dart';
 import '../widgets/footer/footer_widget.dart';
 import '../widgets/nav_bar/nav_bar.dart';
 import '../widgets/profile/normal_user_profile_widget.dart';
@@ -54,9 +54,9 @@ Widget _profilePicker() {
         } else if (userData['usertype'] == 'dr') {
           return const DrProfileWidget();
         } else if (userData['usertype'] == 'patient') {
-          return PatientProfileWidget();
+          return const PatientProfileWidget();
         } else if (userData['usertype'] == 'user') {
-          return NormalUserProfileWidget();
+          return const NormalUserProfileWidget();
         } else {
           return const Center(child: Text('Unknown user type'));
         }

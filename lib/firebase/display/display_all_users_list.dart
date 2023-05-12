@@ -64,8 +64,8 @@ class _DisplayAllUsersState extends State<DisplayAllUsers> {
                       MaterialPageRoute(
                           builder: (_) => EditUsersAdmin(uid: users['key'])));
                 },
-                child: Row(
-                  children: const [
+                child: const Row(
+                  children: [
                     Icon(
                       Icons.edit,
                       color: Colors.black,

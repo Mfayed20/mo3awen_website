@@ -38,7 +38,7 @@ class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
         children: [
           Text(
             '${users['f-name'][0].toUpperCase()}${users['f-name'].substring(1)} ${users['l-name'][0].toUpperCase()}${users['l-name'].substring(1)}',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           const SizedBox(
             height: 5,
@@ -49,12 +49,12 @@ class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
           if (users['therapy'] != null)
             Text(
               'Session: ${users['therapy']['session']}, Exercises: ${users['therapy']['exercises']}',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
           if (users['therapy'] != null)
             Text(
               'Feedback: ${users['therapy']['feedback']}, Goals: ${users['therapy']['goals']}',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -68,8 +68,8 @@ class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
                           builder: (_) =>
                               EditPatientTherapy(uid: users['key'])));
                 },
-                child: Row(
-                  children: const [
+                child: const Row(
+                  children: [
                     Icon(
                       Icons.edit,
                       color: Colors.black,

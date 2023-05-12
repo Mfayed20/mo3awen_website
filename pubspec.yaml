@@ -21,6 +21,8 @@ dependencies:
   google_fonts: ^4.0.3
   html: ^0.15.3
   image_network: ^2.5.2
+  intl: ^0.18.1
+  path: ^1.8.3
   url_launcher: ^6.1.10
 
 dev_dependencies:

@@ -206,7 +206,7 @@ class DrProfileWidgetState extends State<DrProfileWidget> {
   }
 
   Widget _buildAddExerciseForm() {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     TextEditingController exerciseNameController = TextEditingController();
     TextEditingController exerciseDescribtionController =
         TextEditingController();
@@ -214,7 +214,7 @@ class DrProfileWidgetState extends State<DrProfileWidget> {
     TextEditingController exerciseSetsController = TextEditingController();
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -264,7 +264,7 @@ class DrProfileWidgetState extends State<DrProfileWidget> {
                   );
                   return;
                 }
-                if (_formKey.currentState!.validate()) {
+                if (formKey.currentState!.validate()) {
                   // Add user to Firebase
                   try {
                     DatabaseReference newUserRef =

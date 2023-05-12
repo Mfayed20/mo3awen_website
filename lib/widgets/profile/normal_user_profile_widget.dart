@@ -187,13 +187,13 @@ class NormalUserProfileWidgetState extends State<NormalUserProfileWidget> {
   Widget _buildProfileHeader() {
     double baseWidth = 1440;
     double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
-    return const Padding(
-      padding: EdgeInsets.all(18.0),
+    return Padding(
+      padding: const EdgeInsets.all(18.0),
       child: Center(
         child: SizedBox(
           child: Text(
               "Thank you for your sign up with Mo3awen \nIf you are an admin we will make your account and adming in no time\nIf you are a dr or patent your adming will fix your accounts",
-              style: TextStyle(fontSize: 20.0)),
+              style: TextStyle(fontSize: 20.0 * screenWidthRatio)),
         ),
       ),
     );

@@ -484,11 +484,11 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
             return SingleChildScrollView(
               controller: scrollController,
               child: CountryPickerDialog(
-                titlePadding: EdgeInsets.all(8.0),
+                titlePadding: const EdgeInsets.all(8.0),
                 searchCursorColor: Colors.pinkAccent,
-                searchInputDecoration: InputDecoration(hintText: 'Search...'),
+                searchInputDecoration: const InputDecoration(hintText: 'Search...'),
                 isSearchable: true,
-                title: Text('Select your country'),
+                title: const Text('Select your country'),
                 onValuePicked: (Country country) {
                   nationalityController.text = country.name;
                 },

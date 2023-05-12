@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../firebase/display/display_all_exercises_list_admin.dart';
 import '../../firebase/display/display_all_exercises_requests_list.dart';
 
 class DisplayAllRequestedExercisesPage extends StatelessWidget {

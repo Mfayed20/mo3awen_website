@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_network/image_network.dart';
 import '../../../pages/displaylist/display_all_exercises_page_admin.dart';
 import '../../../pages/displaylist/display_all_users_page.dart';
-import '../../firebase/display/display_all_exercises_requests_list.dart';
 import '../../pages/displaylist/display_all_contact_us_page.dart';
 import '../../pages/displaylist/display_all_requested_exercises_page.dart';
 import 'dart:html' as html;
@@ -247,14 +246,14 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
   }
 
   Widget _buildAddExerciseForm() {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     TextEditingController exerciseName = TextEditingController();
     TextEditingController exerciseDescription = TextEditingController();
     TextEditingController exerciseResps = TextEditingController();
     TextEditingController exerciseSets = TextEditingController();
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -303,7 +302,7 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                   return;
                 }
 
-                if (_formKey.currentState!.validate()) {
+                if (formKey.currentState!.validate()) {
                   // Add user to Firebase
                   try {
                     DatabaseReference newUserRef =

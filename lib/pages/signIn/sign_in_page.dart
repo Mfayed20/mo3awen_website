@@ -10,10 +10,10 @@ class SignInPage extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        return Scaffold(
+        return const Scaffold(
           body: SingleChildScrollView(
             child: Column(
-              children: const [
+              children: [
                 SignIn(),
               ],
             ),

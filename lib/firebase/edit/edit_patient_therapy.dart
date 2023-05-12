@@ -51,11 +51,11 @@ class _EditPatientTherapyState extends State<EditPatientTherapy> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Update User Therapy Sessions'),
+        title: const Text('Update User Therapy Sessions'),
       ),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
             child: Column(
               children: [

@@ -31,11 +31,9 @@ const String exercisebgimg1 = 'assets/page-1/images/hero-section-image.png';
 const String exercisebgimg2 = 'assets/page-1/images/rectangle-41.png';
 const String exercisebgimg3 = 'assets/page-1/images/rectangle-40.png';
 const String exerciseloginimg1 =
-    'assets/page-1/images/rectangle-01-hand-stretch-bg-MCZ.png';
+    'assets/page-1/images/rectangle-01-hand-stretch-bg-MCZ.jpg';
 const String exerciseloginimg2 =
-    'assets/page-1/images/rectangle-02-eye-cordination-bg.png';
-const String exerciseloginimg3 =
-    'assets/page-1/images/rectangle-01-hand-stretch-bg.png';
+    'assets/page-1/images/rectangle-02-eye-cordination-bg.jpg';
 
 // AboutUs: about_Us_widget
 const String aboutUsbgimg1 =

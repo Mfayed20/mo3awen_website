@@ -11,9 +11,9 @@ class DisplayAllContactUsAdmin extends StatefulWidget {
 }
 
 class _DisplayAllContactUsAdminState extends State<DisplayAllContactUsAdmin> {
-  Query dbRef = FirebaseDatabase.instance.ref().child('contact');
+  Query dbRef = FirebaseDatabase.instance.ref().child('contactUsRequests');
   DatabaseReference reference =
-      FirebaseDatabase.instance.ref().child('contact');
+      FirebaseDatabase.instance.ref().child('contactUsRequests');
 
   Widget listItem({required Map contact}) {
     return Container(

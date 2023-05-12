@@ -266,7 +266,8 @@ getTextFieldData(TextEditingController nameTf, TextEditingController emailTf,
       );
       return;
     } else {
-      DatabaseReference newUserRef = databaseRef.child('contact').push();
+      DatabaseReference newUserRef =
+          databaseRef.child('contactUsRequests').push();
 
       final Map<String, dynamic> userData = {
         'name': name,

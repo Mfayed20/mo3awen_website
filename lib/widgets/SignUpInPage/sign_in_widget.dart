@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:js';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';

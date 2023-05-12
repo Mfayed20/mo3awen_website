@@ -220,12 +220,8 @@
 //   }
 // }
 
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, avoid_unnecessary_containers
-
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
 

@@ -1,3 +1,4 @@
+import 'dart:js';
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -301,27 +302,34 @@ getTextFieldDataResetPassword(
     String email = emailController.text;
 
     if (email.isEmpty) {
-      showToast(msg: 'Please fill all the fields');
+      ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+        const SnackBar(
+          content: Text('Please fill all the fields'),
+        ),
+      );
       return;
     }
 
     try {
       await sendResetPasswordEmail(email);
-      showToast(
-        msg: 'Reset password link sent',
-        toastLength: Toast.LENGTH_LONG,
+      ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+        const SnackBar(
+          content: Text('Reset password link sent'),
+        ),
       );
       onSuccess();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        showToast(
-          msg: 'No user found for that email',
-          toastLength: Toast.LENGTH_LONG,
+        ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+          const SnackBar(
+            content: Text('No user found for that email'),
+          ),
         );
       } else {
-        showToast(
-          msg: 'An error occurred. Please try again.',
-          toastLength: Toast.LENGTH_LONG,
+        ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+          const SnackBar(
+            content: Text('An error occurred. Please try again.'),
+          ),
         );
       }
     }

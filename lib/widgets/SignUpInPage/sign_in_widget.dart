@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:js';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -339,12 +341,16 @@ void Function()? getTextFieldDataSignIn(
             MaterialPageRoute(builder: (context) => const ProfilePage()),
           );
         } else {
-          showToast('Please verify your email');
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Please verify your email'),
+            ),
+          );
           FirebaseAuth.instance.currentUser!.sendEmailVerification();
           FirebaseAuth.instance.signOut();
         }
       } on FirebaseAuthException catch (e) {
-        handleAuthError(e);
+        handleAuthError(e, context);
       }
 
       emailController.clear();
@@ -354,13 +360,27 @@ void Function()? getTextFieldDataSignIn(
 }
 
 // Function to handle FirebaseAuthException errors
-void handleAuthError(FirebaseAuthException e) {
+void handleAuthError(FirebaseAuthException e, BuildContext context) {
   if (e.code == 'user-not-found') {
-    showToast('No user found for that email');
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('No user found for that email'),
+      ),
+    );
+    print(e.code);
   } else if (e.code == 'wrong-password') {
-    showToast('Wrong password');
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Wrong password'),
+      ),
+    );
   } else {
-    showToast('An unknown error occurred');
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('An unknown error occurred'),
+      ),
+    );
+    print(e.code);
   }
 }
 

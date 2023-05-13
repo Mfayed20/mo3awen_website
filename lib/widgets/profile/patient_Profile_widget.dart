@@ -209,6 +209,42 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
   Widget _buildProgressBody() {
     double baseWidth = 1440;
     double screenWidthRatio = MediaQuery.of(context).size.width / baseWidth;
+
+    List<TextSpan> _styledText(String progress, double screenWidthRatio) {
+      // Transform the string as in your original code
+      progress = progress
+          .replaceAll('{', '')
+          .replaceAll('}', '')
+          .replaceAll(',', '\n')
+          .replaceAll('D', '\n D')
+          .replaceAll(': r', '\n R')
+          .replaceAll('-', '/')
+          .replaceAll('Ship Voyage:', '\nSHIP VOYAGE:')
+          .replaceAll('BunkerRun:', '\nBUNKER RUN:')
+          .replaceAll('Clock', 'Time')
+          .replaceAll('score', 'Score')
+          .replaceAll('set', 'Set');
+
+      // Split into lines
+      List<String> lines = progress.split('\n');
+
+      // Map each line to a TextSpan, with special styling for specific lines
+      List<TextSpan> spans = lines.map((line) {
+        if (line.contains('SHIP VOYAGE') || line.contains('BUNKER RUN')) {
+          return TextSpan(
+              text: '$line\n',
+              style: TextStyle(
+                  fontSize: 40.0 * screenWidthRatio, color: Colors.red));
+        } else {
+          return TextSpan(
+              text: '$line\n',
+              style: TextStyle(fontSize: 30.0 * screenWidthRatio));
+        }
+      }).toList();
+
+      return spans;
+    }
+
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: Center(
@@ -226,9 +262,11 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
                     fontSize: 40.0 * screenWidthRatio, color: Colors.blue),
               ),
               SizedBox(height: 10.0 * screenWidthRatio),
-              Text(
-                progress,
-                style: TextStyle(fontSize: 30.0 * screenWidthRatio),
+              RichText(
+                text: TextSpan(
+                  style: DefaultTextStyle.of(context).style,
+                  children: _styledText(progress, screenWidthRatio),
+                ),
               ),
             ],
           ),

@@ -15,6 +15,10 @@ class DsplayAssociatedPatient extends StatefulWidget {
 class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
   Widget listItem({required Map users}) {
     final user = FirebaseAuth.instance.currentUser;
+    String? progress = '';
+    if (users['progress'] != null) {
+      progress = users['progress'].toString();
+    }
     String? uid;
     if (user != null) {
       uid = user.uid;
@@ -58,7 +62,7 @@ class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
             ),
           if (users['progress'] != null)
             Text(
-              'Progress: ${users['progress']}',
+              'Progress:\n${progress.replaceAll('}', '\n').replaceAll('{', '').replaceAll(',', '').replaceAll('Ship Voyage:', '\nSHIP VOYAGE:\n').replaceAll('BunkerRun:', '\nBUNKER RUN:\n')}',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
           Row(

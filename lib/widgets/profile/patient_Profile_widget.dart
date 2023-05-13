@@ -219,9 +219,16 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
                 'Session: $session\nExercises: $exercises\nGoals: $goals\nFeedback: $feedback',
                 style: TextStyle(fontSize: 40.0 * screenWidthRatio),
               ),
+              SizedBox(height: 20.0 * screenWidthRatio),
               Text(
-                'Your Progress:\n $progress',
-                style: TextStyle(fontSize: 40.0 * screenWidthRatio),
+                'Your Progress:',
+                style: TextStyle(
+                    fontSize: 40.0 * screenWidthRatio, color: Colors.blue),
+              ),
+              SizedBox(height: 10.0 * screenWidthRatio),
+              Text(
+                progress,
+                style: TextStyle(fontSize: 30.0 * screenWidthRatio),
               ),
             ],
           ),

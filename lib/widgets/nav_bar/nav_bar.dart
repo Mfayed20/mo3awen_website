@@ -60,7 +60,7 @@ Widget navBarTabletDesktop(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            buildLogo(screenWidthRatio),
+            buildLogo(screenWidthRatio, context),
             SizedBox(width: spacerWidth),
             buildNavItems(context, navItemStyle, navItemSpacing),
             SizedBox(width: spacerWidth),
@@ -72,13 +72,23 @@ Widget navBarTabletDesktop(BuildContext context) {
   );
 }
 
-Widget buildLogo(double screenWidthRatio) {
+Widget buildLogo(double screenWidthRatio, BuildContext context) {
   return Container(
     margin: EdgeInsets.all(0 * screenWidthRatio),
-    child: Image.asset(
-      navBarLogo,
-      width: 102 * screenWidthRatio,
-      height: 52 * screenWidthRatio,
+    child: GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+        );
+      },
+      child: Image.asset(
+        navBarLogo,
+        width: 102 * screenWidthRatio,
+        height: 52 * screenWidthRatio,
+      ),
     ),
   );
 }

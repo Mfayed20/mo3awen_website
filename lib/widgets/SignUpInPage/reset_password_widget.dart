@@ -236,6 +236,8 @@ Widget buildResetButton(
   );
 }
 
+// Helper function to display toast messages
+
 // SignUp button
 Widget buildSignUpButton(BuildContext context, TextStyle bttnTextStyle) {
   double screenWidth = MediaQuery.of(context).size.width;
@@ -292,13 +294,8 @@ getTextFieldDataResetPassword(TextEditingController emailController,
 
     try {
       await sendResetPasswordEmail(email);
+      showToast(context);
       onSuccess();
-      MotionToast.success(
-        title: const Text('Verification Email Sent'),
-        description: const Text('Please check your email'),
-        animationType: AnimationType.fromBottom,
-        position: MotionToastPosition.bottom,
-      ).show(context);
     } on FirebaseAuthException {
       MotionToast.error(
         title: const Text('Invalid Email'),
@@ -321,5 +318,13 @@ TextStyle buildTextStyle(BuildContext context, String s, int i, FontWeight w700,
     height: d,
     letterSpacing: j * MediaQuery.of(context).textScaleFactor,
     color: color,
+  );
+}
+
+showToast(BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text('Verification Email Sent'),
+    ),
   );
 }

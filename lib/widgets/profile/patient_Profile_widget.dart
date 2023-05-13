@@ -26,6 +26,7 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
   String exercises = '';
   String goals = '';
   String feedback = '';
+  String progress = '';
 
   // Add this method for image uploading
   Future<void> _pickImage() async {
@@ -84,6 +85,11 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
           exercises = '';
           goals = '';
           feedback = '';
+        }
+        if (userData['progress'] != null) {
+          progress = userData['progress']?.toString() ?? '';
+        } else {
+          progress = '';
         }
       });
     }
@@ -207,9 +213,17 @@ class PatientProfileWidgetState extends State<PatientProfileWidget> {
       padding: const EdgeInsets.all(18.0),
       child: Center(
         child: SizedBox(
-          child: Text(
-            'Your Progress\nSession: $session\nExercises: $exercises\nGoals: $goals\nFeedback: $feedback',
-            style: TextStyle(fontSize: 40.0 * screenWidthRatio),
+          child: Column(
+            children: [
+              Text(
+                'Session: $session\nExercises: $exercises\nGoals: $goals\nFeedback: $feedback',
+                style: TextStyle(fontSize: 40.0 * screenWidthRatio),
+              ),
+              Text(
+                'Your Progress:\n $progress',
+                style: TextStyle(fontSize: 40.0 * screenWidthRatio),
+              ),
+            ],
           ),
         ),
       ),

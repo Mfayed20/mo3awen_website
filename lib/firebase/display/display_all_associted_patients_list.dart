@@ -56,6 +56,11 @@ class _DsplayAssociatedPatientState extends State<DsplayAssociatedPatient> {
               'Feedback: ${users['therapy']['feedback']}, Goals: ${users['therapy']['goals']}',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
+          if (users['progress'] != null)
+            Text(
+              'Progress: ${users['progress']}',
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,

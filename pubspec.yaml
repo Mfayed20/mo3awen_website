@@ -7,7 +7,6 @@ environment:
   sdk: ">=2.19.2 <3.0.0"
 
 dependencies:
-  cherry_toast: ^1.2.1
   cloud_functions: ^4.1.1
   country_pickers: ^2.0.0
   cupertino_icons: ^1.0.2

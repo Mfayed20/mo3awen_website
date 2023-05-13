@@ -4,10 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import '../../pages/profile_page.dart';
 import '../../pages/signIn/reset_password_page.dart';
 import '../../pages/signIn/sign_up_page.dart';
 import '../../utils/constants.dart';
+import 'package:motion_toast/motion_toast.dart';
 
 // Main SignIn widget
 class SignIn extends StatefulWidget {
@@ -303,19 +305,6 @@ Widget buildSignInButton(
   );
 }
 
-// Helper function to display toast messages
-void showToast(String message) {
-  Fluttertoast.showToast(
-    msg: message,
-    toastLength: Toast.LENGTH_LONG,
-    gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 1,
-    backgroundColor: Colors.blue,
-    textColor: Colors.white,
-    fontSize: 16.0,
-  );
-}
-
 // New function to handle sign-in with validation and error handling
 void Function()? getTextFieldDataSignIn(
     BuildContext context,
@@ -326,7 +315,12 @@ void Function()? getTextFieldDataSignIn(
     String password = passwordController.text;
 
     if (email.isEmpty || password.isEmpty) {
-      showToast('Please fill all the fields');
+      MotionToast.error(
+        title: const Text('Empty Fields'),
+        description: const Text('Please fill all the fields'),
+        animationType: AnimationType.fromBottom,
+        position: MotionToastPosition.bottom,
+      ).show(context);
       return;
     }
     {
@@ -340,11 +334,12 @@ void Function()? getTextFieldDataSignIn(
             MaterialPageRoute(builder: (context) => const ProfilePage()),
           );
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Please verify your email'),
-            ),
-          );
+          MotionToast.error(
+            title: const Text('Email not verified'),
+            description: const Text('Please verify your email'),
+            animationType: AnimationType.fromBottom,
+            position: MotionToastPosition.bottom,
+          ).show(context);
           FirebaseAuth.instance.currentUser!.sendEmailVerification();
           FirebaseAuth.instance.signOut();
         }
@@ -360,27 +355,12 @@ void Function()? getTextFieldDataSignIn(
 
 // Function to handle FirebaseAuthException errors
 void handleAuthError(FirebaseAuthException e, BuildContext context) {
-  if (e.code == 'user-not-found') {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('No user found for that email'),
-      ),
-    );
-    print(e.code);
-  } else if (e.code == 'wrong-password') {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Wrong password'),
-      ),
-    );
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('An unknown error occurred'),
-      ),
-    );
-    print(e.code);
-  }
+  MotionToast.error(
+    title: const Text('Sign In Failed'),
+    description: const Text('Please check your email and password'),
+    animationType: AnimationType.fromBottom,
+    position: MotionToastPosition.bottom,
+  ).show(context);
 }
 
 // SignUp button
@@ -422,16 +402,13 @@ Future<void> signInWithEmailAndPassword(
     BuildContext context, String email, String password) async {
   try {
     Navigator.pop(context);
-  } on FirebaseAuthException catch (error) {
-    Fluttertoast.showToast(
-      msg: error.message ?? "Unknown Error",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0,
-    );
+  } on FirebaseAuthException {
+    MotionToast.error(
+      title: const Text('Error'),
+      description: const Text('An unknown error occurred'),
+      animationType: AnimationType.fromBottom,
+      position: MotionToastPosition.bottom,
+    ).show(context);
   } catch (error) {
     if (kDebugMode) {
       print("Error: $error");

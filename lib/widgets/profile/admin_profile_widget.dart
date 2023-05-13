@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_network/image_network.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import '../../../pages/displaylist/display_all_exercises_page_admin.dart';
 import '../../../pages/displaylist/display_all_users_page.dart';
 import '../../pages/displaylist/display_all_contact_us_page.dart';
@@ -125,13 +127,6 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                       debugPrint("©gabriel_patrick_souza");
                     },
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.edit),
-                    color: Colors.blue,
-                    onPressed: () {
-                      _pickImage();
-                    },
-                  ),
                 ],
               ),
               SizedBox(width: 16.0 * screenWidthRatio),
@@ -154,6 +149,13 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
                     ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.edit),
+                    color: Colors.blue,
+                    onPressed: () {
+                      _pickImage();
+                    },
                   ),
                 ],
               ),
@@ -294,11 +296,12 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                     exerciseDescription.text.isEmpty ||
                     exerciseResps.text.isEmpty ||
                     exerciseSets.text.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Please fill all fields.'),
-                    ),
-                  );
+                  MotionToast.error(
+                    title: const Text('Empty Fields'),
+                    description: const Text('Please fill all the fields'),
+                    animationType: AnimationType.fromBottom,
+                    position: MotionToastPosition.bottom,
+                  ).show(context);
                   return;
                 }
 
@@ -320,20 +323,22 @@ class AdminProfileWidgetState extends State<AdminProfileWidget> {
                     exerciseDescription.clear();
                     exerciseResps.clear();
                     exerciseSets.clear();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Exercise added successfully.'),
-                      ),
-                    );
+                    MotionToast.success(
+                      title: const Text('Success'),
+                      description: const Text('Exercise added successfully'),
+                      animationType: AnimationType.fromBottom,
+                      position: MotionToastPosition.bottom,
+                    ).show(context);
                   } catch (e) {
                     if (kDebugMode) {
                       print(e);
                     }
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Error adding user: $e'),
-                      ),
-                    );
+                    MotionToast.error(
+                      title: const Text('Error'),
+                      description: const Text('Something went wrong'),
+                      animationType: AnimationType.fromBottom,
+                      position: MotionToastPosition.bottom,
+                    ).show(context);
                   }
                 }
               },

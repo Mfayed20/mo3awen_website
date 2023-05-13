@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_network/image_network.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import '../../pages/displaylist/display_all_exercises_page_normal_user.dart';
 import '../../pages/displaylist/display_all_users_page.dart';
 import 'dart:html' as html;
@@ -123,13 +125,6 @@ class DrProfileWidgetState extends State<DrProfileWidget> {
                       debugPrint("©gabriel_patrick_souza");
                     },
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.edit),
-                    color: Colors.blue,
-                    onPressed: () {
-                      _pickImage();
-                    },
-                  ),
                 ],
               ),
               SizedBox(width: 16.0 * screenWidthRatio),
@@ -152,6 +147,13 @@ class DrProfileWidgetState extends State<DrProfileWidget> {
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
                     ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.edit),
+                    color: Colors.blue,
+                    onPressed: () {
+                      _pickImage();
+                    },
                   ),
                 ],
               ),
@@ -257,11 +259,12 @@ class DrProfileWidgetState extends State<DrProfileWidget> {
                     exerciseDescribtionController.text.isEmpty ||
                     exerciseRepsController.text.isEmpty ||
                     exerciseSetsController.text.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Please fill all fields.'),
-                    ),
-                  );
+                  MotionToast.error(
+                    title: const Text('Empty Fields'),
+                    description: const Text('Please fill all the fields'),
+                    animationType: AnimationType.fromBottom,
+                    position: MotionToastPosition.bottom,
+                  ).show(context);
                   return;
                 }
                 if (formKey.currentState!.validate()) {
@@ -283,20 +286,22 @@ class DrProfileWidgetState extends State<DrProfileWidget> {
                     exerciseDescribtionController.clear();
                     exerciseNameController.clear();
 
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Exercise request sent successfully.'),
-                      ),
-                    );
+                    MotionToast.success(
+                      title: const Text('Success'),
+                      description: const Text('Request sent successfully'),
+                      animationType: AnimationType.fromBottom,
+                      position: MotionToastPosition.bottom,
+                    ).show(context);
                   } catch (e) {
                     if (kDebugMode) {
                       print(e);
                     }
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Error sending request: $e'),
-                      ),
-                    );
+                    MotionToast.error(
+                      title: const Text('Error'),
+                      description: const Text('Something went wrong'),
+                      animationType: AnimationType.fromBottom,
+                      position: MotionToastPosition.bottom,
+                    ).show(context);
                   }
                 }
               },

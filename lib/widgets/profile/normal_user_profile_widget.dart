@@ -120,13 +120,6 @@ class NormalUserProfileWidgetState extends State<NormalUserProfileWidget> {
                       debugPrint("©gabriel_patrick_souza");
                     },
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.edit),
-                    color: Colors.blue,
-                    onPressed: () {
-                      _pickImage();
-                    },
-                  ),
                 ],
               ),
               SizedBox(width: 16.0 * screenWidthRatio),
@@ -149,6 +142,13 @@ class NormalUserProfileWidgetState extends State<NormalUserProfileWidget> {
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
                     ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.edit),
+                    color: Colors.blue,
+                    onPressed: () {
+                      _pickImage();
+                    },
                   ),
                 ],
               ),

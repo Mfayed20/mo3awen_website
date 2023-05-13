@@ -2,7 +2,8 @@ import 'dart:js';
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import '../../pages/signIn/sign_up_page.dart';
 import '../../utils/constants.dart';
 
@@ -222,7 +223,7 @@ Widget buildResetButton(
     width: double.infinity,
     child: ElevatedButton(
       onPressed: getTextFieldDataResetPassword(
-          emailController, () => Navigator.pop(context)),
+          emailController, () => Navigator.pop(context), context),
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
         backgroundColor: const Color(0xff0076f9),
@@ -237,25 +238,6 @@ Widget buildResetButton(
 }
 
 // Helper function to display toast messages
-void showToast({
-  required String msg,
-  Toast toastLength = Toast.LENGTH_SHORT,
-  ToastGravity gravity = ToastGravity.BOTTOM,
-  int timeInSecForIosWeb = 1,
-  Color backgroundColor = Colors.blue,
-  Color textColor = Colors.white,
-  double fontSize = 16.0,
-}) {
-  Fluttertoast.showToast(
-    msg: msg,
-    toastLength: toastLength,
-    gravity: gravity,
-    timeInSecForIosWeb: timeInSecForIosWeb,
-    backgroundColor: backgroundColor,
-    textColor: textColor,
-    fontSize: fontSize,
-  );
-}
 
 // SignUp button
 Widget buildSignUpButton(BuildContext context, TextStyle bttnTextStyle) {
@@ -296,42 +278,32 @@ Future<void> sendResetPasswordEmail(String email) async {
 
 typedef OnSuccessCallback = void Function();
 
-getTextFieldDataResetPassword(
-    TextEditingController emailController, OnSuccessCallback onSuccess) {
+getTextFieldDataResetPassword(TextEditingController emailController,
+    OnSuccessCallback onSuccess, BuildContext context) {
   return () async {
     String email = emailController.text;
 
     if (email.isEmpty) {
-      ScaffoldMessenger.of(context as BuildContext).showSnackBar(
-        const SnackBar(
-          content: Text('Please fill all the fields'),
-        ),
-      );
+      MotionToast.error(
+        title: const Text('Empty Fields'),
+        description: const Text('Please enter your email'),
+        animationType: AnimationType.fromBottom,
+        position: MotionToastPosition.bottom,
+      ).show(context);
       return;
     }
 
     try {
       await sendResetPasswordEmail(email);
-      ScaffoldMessenger.of(context as BuildContext).showSnackBar(
-        const SnackBar(
-          content: Text('Reset password link sent'),
-        ),
-      );
+      showToast(context);
       onSuccess();
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        ScaffoldMessenger.of(context as BuildContext).showSnackBar(
-          const SnackBar(
-            content: Text('No user found for that email'),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context as BuildContext).showSnackBar(
-          const SnackBar(
-            content: Text('An error occurred. Please try again.'),
-          ),
-        );
-      }
+    } on FirebaseAuthException {
+      MotionToast.error(
+        title: const Text('Invalid Email'),
+        description: const Text('Please enter a valid email'),
+        animationType: AnimationType.fromBottom,
+        position: MotionToastPosition.bottom,
+      ).show(context);
     }
 
     emailController.clear();
@@ -347,5 +319,13 @@ TextStyle buildTextStyle(BuildContext context, String s, int i, FontWeight w700,
     height: d,
     letterSpacing: j * MediaQuery.of(context).textScaleFactor,
     color: color,
+  );
+}
+
+showToast(BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text('Verification Email Sent'),
+    ),
   );
 }

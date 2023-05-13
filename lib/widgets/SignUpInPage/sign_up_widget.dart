@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:mo3awen_website/pages/mainpages/home_page.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import '../../pages/signIn/sign_in_page.dart';
 import '../../utils/constants.dart';
 
@@ -380,11 +382,12 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
                       emailController.text.isEmpty ||
                       passwordController.text.isEmpty ||
                       _selectedGender == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Please fill all fields.'),
-                      ),
-                    );
+                    MotionToast.error(
+                      title: const Text('Empty Fields'),
+                      description: const Text('Please fill all the fields'),
+                      animationType: AnimationType.fromBottom,
+                      position: MotionToastPosition.bottom,
+                    ).show(context);
                     return;
                   } else {
                     try {
@@ -424,32 +427,28 @@ class _BuilSignUpFormState extends State<_BuilSignUpForm> {
                         FirebaseAuth.instance.currentUser!
                             .sendEmailVerification();
                         FirebaseAuth.instance.signOut();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('A verification email has been sent'),
-                          ),
-                        );
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const HomePage()),
                         );
+                        MotionToast.success(
+                          title: const Text('Verification email sent'),
+                          description: const Text(
+                              'Please check your email to verify your account'),
+                          animationType: AnimationType.fromBottom,
+                          position: MotionToastPosition.bottom,
+                        ).show(context);
                       }
-                    } on FirebaseAuthException catch (e) {
-                      if (e.code == 'weak-password') {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('the password provided is too weak'),
-                          ),
-                        );
-                      } else if (e.code == 'email-already-in-use') {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                                'The account already exists for that email'),
-                          ),
-                        );
-                      }
+                    } on FirebaseAuthException {
+                      MotionToast.error(
+                        title: const Text('Failed to create account'),
+                        description:
+                            const Text('Please check email and password'),
+                        animationType: AnimationType.fromBottom,
+                        position: MotionToastPosition.bottom,
+                      ).show(context);
+
                       dobController.clear();
                       emailController.clear();
                       firstNameController.clear();

@@ -1,13 +1,10 @@
-import 'package:cherry_toast/resources/arrays.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
-import 'package:cherry_toast/cherry_toast.dart';
 
 class VisitUs extends StatelessWidget {
   const VisitUs({Key? key}) : super(key: key);
@@ -264,17 +261,12 @@ getTextFieldData(
     String message = messageTf.text;
 
     if (name.isEmpty | email.isEmpty | subject.isEmpty | message.isEmpty) {
-      // MotionToast.error(
-      //   title: const Text('Empty Fields'),
-      //   description: const Text('Please fill all the fields'),
-      //   animationType: AnimationType.fromBottom,
-      //   position: MotionToastPosition.bottom,
-      // ).show(context);
-
-      // CherryToast.error(
-      //   title: const Text("Please fill all the fields"),
-      //   toastPosition: Position.bottom,
-      // ).show(context);
+      MotionToast.error(
+        title: const Text('Empty Fields'),
+        description: const Text('Please fill all the fields'),
+        animationType: AnimationType.fromBottom,
+        position: MotionToastPosition.bottom,
+      ).show(context);
 
       return;
     } else {
@@ -293,15 +285,12 @@ getTextFieldData(
       subjectTf.clear();
       messageTf.clear();
 
-      Fluttertoast.showToast(
-        msg: 'Thank you for contacting us',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.blue,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      MotionToast.success(
+        title: const Text('Thank you'),
+        description: const Text('We will get back to you soon'),
+        animationType: AnimationType.fromBottom,
+        position: MotionToastPosition.bottom,
+      ).show(context);
     }
   };
 }
@@ -326,15 +315,12 @@ Widget buildClickableImagePositioned(
         if (await canLaunchUrl(uri)) {
           await launchUrl(uri);
         } else {
-          Fluttertoast.showToast(
-            msg: 'Could not open Google Maps',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.blue,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
+          MotionToast.error(
+            title: const Text('Error'),
+            description: const Text('Could not open Google Maps'),
+            animationType: AnimationType.fromBottom,
+            position: MotionToastPosition.bottom,
+          ).show(context);
         }
       },
       child: Align(

@@ -1,9 +1,13 @@
+import 'package:cherry_toast/resources/arrays.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../utils/constants.dart';
 import '../../utils/styles.dart';
+import 'package:cherry_toast/cherry_toast.dart';
 
 class VisitUs extends StatelessWidget {
   const VisitUs({Key? key}) : super(key: key);
@@ -127,6 +131,7 @@ Widget visitUs(BuildContext context) {
             emailController,
             subjectController,
             messageController,
+            context,
           ),
           'SUBMIT',
           bttnTextStyle,
@@ -245,8 +250,12 @@ TextField textField(
 }
 
 // method to get the text from textfields
-getTextFieldData(TextEditingController nameTf, TextEditingController emailTf,
-    TextEditingController subjectTf, TextEditingController messageTf) {
+getTextFieldData(
+    TextEditingController nameTf,
+    TextEditingController emailTf,
+    TextEditingController subjectTf,
+    TextEditingController messageTf,
+    BuildContext context) {
   final DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
   return () {
     String name = nameTf.text;
@@ -255,15 +264,18 @@ getTextFieldData(TextEditingController nameTf, TextEditingController emailTf,
     String message = messageTf.text;
 
     if (name.isEmpty | email.isEmpty | subject.isEmpty | message.isEmpty) {
-      Fluttertoast.showToast(
-        msg: 'Please fill all the fields',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.blue,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      // MotionToast.error(
+      //   title: const Text('Empty Fields'),
+      //   description: const Text('Please fill all the fields'),
+      //   animationType: AnimationType.fromBottom,
+      //   position: MotionToastPosition.bottom,
+      // ).show(context);
+
+      // CherryToast.error(
+      //   title: const Text("Please fill all the fields"),
+      //   toastPosition: Position.bottom,
+      // ).show(context);
+
       return;
     } else {
       DatabaseReference newUserRef =
